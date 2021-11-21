@@ -46,7 +46,9 @@ u_in = M_in*a_in; % Inlet x-component of velocity [m/s]
 % Flow field variables initialization %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Flow_field = struct('M',zeros(401,877),'u',zeros(401,877),'v',zeros(401,877),'T',zeros(401,877),'P',zeros(401,877),'Rho',zeros(401,877),'a',zeros(401,877),'M_angle',zeros(401,877));
+Flow_field = struct('M',zeros(401,877),'u',zeros(401,877),'v',zeros(401,877),...
+    'T',zeros(401,877),'P',zeros(401,877),'Rho',zeros(401,877),'a',zeros(401,877),...
+    'M_angle',zeros(401,877));
 % I have chosen this matrix size in order to preallocate them and increase
 % performance. Anderson uses 41 steps in the vertical direction but I
 % increased the number of points by a factor of 10 to increase precision.
