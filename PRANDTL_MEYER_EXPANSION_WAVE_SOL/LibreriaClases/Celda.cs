@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LibreriaClases
 {
@@ -246,7 +247,7 @@ namespace LibreriaClases
             double u_cal = F1 / Rho_cal;
             double v_cal = F3 / F1;
             double P_cal = F2 - (F1 * u_cal);
-            double T_cal = P_cal / (R_air * Rho_cal);
+            double T_cal = P_cal / (R_aire * Rho_cal);
             double M_cal = (Math.Sqrt((Math.Pow(u_cal, 2)) + (Math.Pow(v_cal, 2)))) / Math.Sqrt(Gamma * R_aire * T_cal);
 
             double phi;
@@ -261,22 +262,9 @@ namespace LibreriaClases
             }
             double f_cal = Math.Sqrt((Gamma + 1) / (Gamma - 1)) * Math.Atan(Math.Sqrt((Gamma - 1) / (Gamma + 1) * (Math.Pow(M_cal, 2) - 1))) - Math.Atan(Math.Sqrt(Math.Pow(M_cal, 2) - 1));
             double f_act = f_cal + phi;
-            double a_int = 1.1;
-            double b_int = 2.9;
-            double precision = 0.0000001;
-            double zero_f1 = Math.Sqrt((Gamma + 1) / (Gamma - 1)) * (Math.Atan(Math.Sqrt(((Gamma - 1) / (Gamma + 1)) * (Math.Pow(a_int, 2) - 1)))) - (Math.Atan(Math.Sqrt(Math.Pow(a_int, 2) - 1))) - f_act;
-            double zero_f2 = Math.Sqrt((Gamma + 1) / (Gamma - 1)) * (Math.Atan(Math.Sqrt(((Gamma - 1) / (Gamma + 1)) * (Math.Pow(((a_int + b_int) / 2), 2) - 1)))) - (Math.Atan(Math.Sqrt(Math.Pow(((a_int + b_int) / 2), 2) - 1))) - f_act;
-            while ((b_int - a_int) / 2 > precision)
-            {
-                if (zero_f1 * zero_f2 <= 0)
-                    b_int = (a_int + b_int) / 2;
-                else
-                    a_int = (a_int + b_int) / 2;
-                zero_f1 = Math.Sqrt((Gamma + 1) / (Gamma - 1)) * (Math.Atan(Math.Sqrt(((Gamma - 1) / (Gamma + 1)) * (Math.Pow(a_int, 2) - 1)))) - (Math.Atan(Math.Sqrt(Math.Pow(a_int, 2) - 1))) - f_act;
-                zero_f2 = Math.Sqrt((Gamma + 1) / (Gamma - 1)) * (Math.Atan(Math.Sqrt(((Gamma - 1) / (Gamma + 1)) * (Math.Pow(((a_int + b_int) / 2), 2) - 1)))) - (Math.Atan(Math.Sqrt(Math.Pow(((a_int + b_int) / 2), 2) - 1))) - f_act;
-            }
 
-            double M_act = (a_int + b_int) / 2;
+
+            double M_act = compute_M_act(Gamma, f_act);
             M = M_act;
             M_angle = (Math.Asin(1 / M));
             P = P_cal * (Math.Pow(((1 + ((Gamma - 1) / 2) * (Math.Pow(M_cal, 2))) / (1 + ((Gamma - 1) / 2) * (Math.Pow(M_act, 2)))), (Gamma / (Gamma - 1))));
@@ -302,6 +290,33 @@ namespace LibreriaClases
 
         }
 
+        public double compute_M_act(double Gamma, double f_act)
+        {
+
+            List<double> x0 = new List<double>(); //vector posicion inicial
+            List<double> xi = new List<double>(); //vector siguientes posiciones
+
+            x0.Add(2.0); 
+            xi.Add(2.4);
+
+            int iteraciones = 30; // maximo de iteraciones
+            double Tol = 10e-9; // Tolerancia para el criterio de convergencia a superar o igualar(%)
+
+            for (int i = 0; i < iteraciones; i++)
+            { 
+              double f_M_i = (Math.Sqrt((Gamma + 1) / (Gamma - 1)) * Math.Atan(Math.Sqrt((Gamma - 1) / (Gamma + 1) * (Math.Pow(xi[i],2) - 1))) - Math.Atan(Math.Sqrt(Math.Pow(xi[i],2) - 1))) - f_act;
+              double f_M_0 = (Math.Sqrt((Gamma + 1) / (Gamma - 1)) * Math.Atan(Math.Sqrt((Gamma - 1) / (Gamma + 1) * (Math.Pow(x0[i], 2) - 1))) - Math.Atan(Math.Sqrt(Math.Pow(x0[i], 2) - 1))) - f_act;
+              double xi_2 = xi[i] - (f_M_i * (x0[i] - xi[i])) / (f_M_0 - f_M_i);
+              xi.Add(xi_2);
+              x0.Add(xi[i]);
+
+                if (f_M_i < Tol)
+                { break; }
+            }
+
+            return xi[xi.Count - 1];
+    
+        }
 
 
 
