@@ -23,7 +23,7 @@ namespace LibreriaClases
         double M_angle;
         double a_in;
 
-        public void Compute_u(double M, double a)
+        public void Compute_u()
         {
             this.u_in= this.M_in *this.a_in;
         }
@@ -31,7 +31,7 @@ namespace LibreriaClases
         {
             this.M_angle = Math.Asin(1 / this.M_in);
         }
-        public void Compute_a(double M, double a)
+        public void Compute_a()
         {
             this.a_in = Math.Sqrt(this.Gamma * this.R_air * this.T_in);
         }
