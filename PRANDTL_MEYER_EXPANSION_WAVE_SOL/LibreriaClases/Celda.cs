@@ -67,6 +67,15 @@ namespace LibreriaClases
         double dF4_x_av;
 
 
+        //SETS
+        public void SetM(double m) { this.M = m; }
+        public void SetU (double U) { this.u = U; }
+        public void SetV(double V) { this.v = V; }
+        public void SetT(double t) { this.T = t; }
+        public void SetP (double p) { this.P = p; }
+        public void SetRho (double r) { this.Rho = r;}
+        public void SetA (double A) { this.a = A; }
+        public void SetMAngle (double m) { this.M_angle = m; }
 
         public void xy_Transformation_ToEtaXi(double H, double E, double Theta)
         { if (x < E)

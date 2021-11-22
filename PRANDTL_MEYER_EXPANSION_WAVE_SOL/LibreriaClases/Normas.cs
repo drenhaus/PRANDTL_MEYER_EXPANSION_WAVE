@@ -23,6 +23,21 @@ namespace LibreriaClases
         double M_angle;
         double a_in;
 
+        //GETS
+        public double GetH () { return H; }
+        public double GetTheta() { return Theta; }
+        public double GetL() { return L; }
+        public double GetE() { return E; }
+        public double GetM_in() { return M_in; }
+        public double GetP_in() { return P_in; }
+        public double GetRho_in() { return Rho_in; }
+        public double GetR_air() { return R_air; }
+        public double GetV_in() { return v_in; }
+        public double GetT_in() { return T_in; }
+        public double GetU_in() { return u_in; }
+        public double GetM_angle() { return M_angle; }
+        public double GetA_in() { return a_in; }
+
         public void Compute_u()
         {
             this.u_in= this.M_in *this.a_in;
@@ -35,9 +50,6 @@ namespace LibreriaClases
         {
             this.a_in = Math.Sqrt(this.Gamma * this.R_air * this.T_in);
         }
-    
-
-    
  
        
 
