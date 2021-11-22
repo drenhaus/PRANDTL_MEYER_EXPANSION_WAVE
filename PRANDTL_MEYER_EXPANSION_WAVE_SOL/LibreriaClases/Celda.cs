@@ -5,80 +5,71 @@ namespace LibreriaClases
 {
     public class Celda
     {
-        double M;
-        double u;
-        double v;
-        double T;
-        double P;
-        double Rho;
-        double a;
-        double M_angle;
-
-        double F1;
-        double F2;
-        double F3;
-        double F4;
-
-        double G1;
-        double G2;
-        double G3;
-        double G4;
-
-        double F1_p;
-        double F2_p;
-        double F3_p;
-        double F4_p;
+        public double M { get; set; }
+        public double u { get; set; }
+        public double v { get; set; }
+        public double T { get; set; }
+        public double P { get; set; }
+        public double Rho { get; set; }
+        public double a { get; set; }
+        public double M_angle { get; set; }
 
 
-        double G1_p;
-        double G2_p;
-        double G3_p;
-        double G4_p;
-
-        double dF1_x;
-        double dF2_x;
-        double dF3_x;
-        double dF4_x;
-
-        double dF1_p_x;
-        double dF2_p_x;
-        double dF3_p_x;
-        double dF4_p_x;
-
-        double x;
-        double y;
-        double y_t;
-        double y_s;
-        double h;
-        double dEta_dx;
-        double dEta_dy;
-        double delta_y_t;
-
-        double P_p;
-
-        double SF1;
-        double SF2;
-        double SF3;
-        double SF4;
-
-        double dF1_x_av;
-        double dF2_x_av;
-        double dF3_x_av;
-        double dF4_x_av;
+        public double F1 { get; set; }
+        public double F2 { get; set; }
+        public double F3 { get; set; }
+        public double F4 { get; set; }
 
 
-        //SETS
-        public void SetM(double m) { this.M = m; }
-        public void SetU (double U) { this.u = U; }
-        public void SetV(double V) { this.v = V; }
-        public void SetT(double t) { this.T = t; }
-        public void SetP (double p) { this.P = p; }
-        public void SetRho (double r) { this.Rho = r;}
-        public void SetA (double A) { this.a = A; }
-        public void SetMAngle (double m) { this.M_angle = m; }
+        public double G1 { get; set; }
+        public double G2 { get; set; }
+        public double G3 { get; set; }
+        public double G4 { get; set; }
+
+        public double F1_p { get; set; }
+        public double F2_p { get; set; }
+        public double F3_p { get; set; }
+        public double F4_p { get; set; }
+
+        public double G1_p { get; set; }
+        public double G2_p { get; set; }
+        public double G3_p { get; set; }
+        public double G4_p { get; set; }
 
 
+        public double dF1_x { get; set; }
+        public double dF2_x { get; set; }
+        public double dF3_x { get; set; }
+        public double dF4_x { get; set; }
 
+        public double dF1_p_x { get; set; }
+        public double dF2_p_x { get; set; }
+        public double dF3_p_x { get; set; }
+        public double dF4_p_x { get; set; }
+
+
+        public double x { get; set; }
+        public double y { get; set; }
+        public double y_t { get; set; }
+        public double y_s { get; set; }
+        public double h { get; set; }
+        public double dEta_dx { get; set; }
+        public double dEta_dy { get; set; }
+        public double delta_y_t { get; set; }
+
+
+        public double P_p { get; set; }
+
+        public double SF1 { get; set; }
+        public double SF2 { get; set; }
+        public double SF3 { get; set; }
+        public double SF4 { get; set; }
+
+
+        public double dF1_x_av { get; set; }
+        public double dF2_x_av { get; set; }
+        public double dF3_x_av { get; set; }
+        public double dF4_x_av { get; set; }
 
         public void Compute_G_F(double Gamma)
         {
@@ -128,7 +119,7 @@ namespace LibreriaClases
             double dF1_x = dEta_dx * (F1 - F1_arriba) / delta_y_t + dEta_dy * (G1 - G1_arriba) / delta_y_t;
             double dF2_x = dEta_dx * (F2 - F2_arriba) / delta_y_t + (dEta_dy) * (G2 - G2_arriba) / delta_y_t;
             double dF3_x = dEta_dx * (F3 - F3_arriba) / delta_y_t + (dEta_dy) * (G3 - G3_arriba) / delta_y_t;
-            double dF3_x = dEta_dx * (F4 - F4_arriba) / delta_y_t + (dEta_dy) * (G4 - G4_arriba) / delta_y_t;
+            double dF4_x = dEta_dx * (F4 - F4_arriba) / delta_y_t + (dEta_dy) * (G4 - G4_arriba) / delta_y_t;
 
             SF1 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F1_arriba - (2 * F1) + F1_abajo);
             SF2 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F2_arriba - (2 * F2) + F2_abajo);

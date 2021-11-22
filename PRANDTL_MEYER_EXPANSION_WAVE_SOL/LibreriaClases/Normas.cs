@@ -6,37 +6,24 @@ namespace LibreriaClases
 {
     class Normas
     {
-        double H = 40;
-        double Theta = 5.352*Math.PI/180; 
-        double L = 66.278; 
-        double E = 10; 
+        public double H { get; set; } = 40;
+        public double Theta { get; set; } = 5.352 * Math.PI / 180;
+        public double L { get; set; } = 66.278;
+        public double E { get; set; } = 10;
 
-        double M_in = 2; 
-        double P_in = 101000; 
-        double Rho_in = 1.23; 
-        double R_air = 287; 
-        double Gamma = 1.4;
-        double T_in=286.1;
-        double v_in = 0;
-        double u_in;
-        double M_angle;
-        double a_in;
 
-        //GETS
-        public double GetGamma() { return Gamma; }
-        public double GetH () { return H; }
-        public double GetTheta() { return Theta; }
-        public double GetL() { return L; }
-        public double GetE() { return E; }
-        public double GetM_in() { return M_in; }
-        public double GetP_in() { return P_in; }
-        public double GetRho_in() { return Rho_in; }
-        public double GetR_air() { return R_air; }
-        public double GetV_in() { return v_in; }
-        public double GetT_in() { return T_in; }
-        public double GetU_in() { return u_in; }
-        public double GetM_angle() { return M_angle; }
-        public double GetA_in() { return a_in; }
+
+        public double M_in { get; set; } = 2;
+        public double P_in { get; set; } = 101000;
+        public double Rho_in { get; set; } = 1.23;
+        public double R_air { get; set; } = 287;
+        public double Gamma { get; set; } = 1.4;
+        public double T_in { get; set; } = 286.1;
+        public double v_in { get; set; } = 0;
+        public double u_in { get; set; }
+        public double M_angle { get; set; }
+        public double a_in { get; set; }
+
 
         public void Compute_u()
         {
