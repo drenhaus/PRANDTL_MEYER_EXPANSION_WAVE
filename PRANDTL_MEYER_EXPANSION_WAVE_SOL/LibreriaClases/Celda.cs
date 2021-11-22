@@ -26,45 +26,45 @@ namespace LibreriaClases
         public double G3 { get; set; }
         public double G4 { get; set; }
 
+        public double F1_p { get; set; }
+        public double F2_p { get; set; }
+        public double F3_p { get; set; }
+        public double F4_p { get; set; }
 
-        double F1_p;
-        double F2_p;
-        double F3_p;
-        double F4_p;
+        public double G1_p { get; set; }
+        public double G2_p { get; set; }
+        public double G3_p { get; set; }
+        public double G4_p { get; set; }
 
 
-        double G1_p;
-        double G2_p;
-        double G3_p;
-        double G4_p;
-
-        public double FdF1_x1 { get; set; }
+        public double dF1_x { get; set; }
         public double dF2_x { get; set; }
         public double dF3_x { get; set; }
         public double dF4_x { get; set; }
 
+        public double dF1_p_x { get; set; }
+        public double dF2_p_x { get; set; }
+        public double dF3_p_x { get; set; }
+        public double dF4_p_x { get; set; }
 
-        double dF1_p_x;
-        double dF2_p_x;
-        double dF3_p_x;
-        double dF4_p_x;
+
+        public double x { get; set; }
+        public double y { get; set; }
+        public double y_t { get; set; }
+        public double y_s { get; set; }
+        public double h { get; set; }
+        public double dEta_dx { get; set; }
+        public double dEta_dy { get; set; }
+        public double delta_y_t { get; set; }
 
 
-        double x;
-        double y;
-        double y_t;
-        double y_s;
-        double h;
-        double dEta_dx;
-        double dEta_dy;
-        double delta_y_t;
+        public double P_p { get; set; }
 
-        double P_p;
+        public double SF1 { get; set; }
+        public double SF2 { get; set; }
+        public double SF3 { get; set; }
+        public double SF4 { get; set; }
 
-        double SF1;
-        double SF2;
-        double SF3;
-        double SF4;
 
         double dF1_x_av;
         double dF2_x_av;
