@@ -6,6 +6,18 @@ namespace LibreriaClases
 {
     class Normas
     {
+        public double H { get; set; } = 40;
+        public double Theta { get; set; } = 40;
+        public double H { get; set; } = 40;
+        public double H { get; set; } = 40;
+        public double H { get; set; } = 40;
+        public double H { get; set; } = 40;
+
+        public double H { get; set; } = 40;
+        public double H { get; set; } = 40;
+
+
+        
         double H = 40;
         double Theta = 5.352*Math.PI/180; 
         double L = 66.278; 
@@ -24,7 +36,7 @@ namespace LibreriaClases
 
        
 
-        
+        H = 40;
 
         //GETS
         public double GetGamma() { return Gamma; }

@@ -66,24 +66,10 @@ namespace LibreriaClases
         public double SF4 { get; set; }
 
 
-        double dF1_x_av;
-        double dF2_x_av;
-        double dF3_x_av;
-        double dF4_x_av;
-
-
-        //SETS
-        public void SetM(double m) { this.M = m; }
-        public void SetU (double U) { this.u = U; }
-        public void SetV(double V) { this.v = V; }
-        public void SetT(double t) { this.T = t; }
-        public void SetP (double p) { this.P = p; }
-        public void SetRho (double r) { this.Rho = r;}
-        public void SetA (double A) { this.a = A; }
-        public void SetMAngle (double m) { this.M_angle = m; }
-
-
-
+        public double dF1_x_av { get; set; }
+        public double dF2_x_av { get; set; }
+        public double dF3_x_av { get; set; }
+        public double dF4_x_av { get; set; }
 
         public void Compute_G_F(double Gamma)
         {
@@ -133,7 +119,7 @@ namespace LibreriaClases
             double dF1_x = dEta_dx * (F1 - F1_arriba) / delta_y_t + dEta_dy * (G1 - G1_arriba) / delta_y_t;
             double dF2_x = dEta_dx * (F2 - F2_arriba) / delta_y_t + (dEta_dy) * (G2 - G2_arriba) / delta_y_t;
             double dF3_x = dEta_dx * (F3 - F3_arriba) / delta_y_t + (dEta_dy) * (G3 - G3_arriba) / delta_y_t;
-            double dF3_x = dEta_dx * (F4 - F4_arriba) / delta_y_t + (dEta_dy) * (G4 - G4_arriba) / delta_y_t;
+            double dF4_x = dEta_dx * (F4 - F4_arriba) / delta_y_t + (dEta_dy) * (G4 - G4_arriba) / delta_y_t;
 
             SF1 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F1_arriba - (2 * F1) + F1_abajo);
             SF2 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F2_arriba - (2 * F2) + F2_abajo);
