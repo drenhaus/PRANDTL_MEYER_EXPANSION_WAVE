@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 
 namespace LibreriaClases
 {
@@ -10,6 +11,15 @@ namespace LibreriaClases
         int divisiones_eta; // filas
         Normas norma = new Normas();
         Celda[,] matriz;
+
+
+        //Tables with the data of all iterations
+        //DataTable Temperature_table = new DataTable("All Temperature values [K]");
+        //DataTable Mach_table = new DataTable("All Mach values");
+        //DataTable F1_table = new DataTable("All F1 values");
+            
+
+        //Tables for comparing with Anderson
 
 
         public void DefinirMatriz(int filas, int columnas)
@@ -48,7 +58,7 @@ namespace LibreriaClases
                 matriz[j, 0].SetP(norma.GetP_in());
                 matriz[j, 0].SetRho(norma.GetRho_in());
                 matriz[j, 0].SetMAngle(norma.GetM_angle());
-
+                matriz[j, 0].Compute_G_F(norma.GetGamma());
 
             }
 

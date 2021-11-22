@@ -77,22 +77,42 @@ namespace LibreriaClases
         public void SetA (double A) { this.a = A; }
         public void SetMAngle (double m) { this.M_angle = m; }
 
-        public void xy_Transformation_ToEtaXi(double H, double E, double Theta)
+
+
+
+        public void Compute_G_F(double Gamma)
+        {
+
+            this.F1 = Rho * u;
+            this.F2 = Rho * Math.Pow(u, 2) + P;
+            this.F3 = Rho * u * v;
+            this.F4 = Gamma / (Gamma - 1) * P * u + Rho * u * (Math.Pow(u, 2) + Math.Pow(v, 2)) / 2;
+
+            this.G1 = Rho * (F3 / F1);
+            this.G2 = F3;
+            this.G3 = Rho * Math.Pow(F3 / F1, 2) + F2 - Math.Pow(F1, 2) / Rho;
+            this.G4 = Gamma / (Gamma - 1) * (F2 - Math.Pow(F1, 2) / Rho) * (F3 / F1) + Rho * F3 / (2 * F1) * (Math.Pow(F1 / Rho, 2) + Math.Pow(F3 / F1, 2));
+
+        }
+
+
+        public void xy_Transformation_ToEtaXi(double H, double E, double Theta, double delta_y_t, double y_t_debajo )
         { if (x < E)
             {
                 y_s = 0;
-                h = H;
-                dEta_dx = 0;
+                this.h= H;
+                this.dEta_dx = 0;
             }
             else
             {
                 y_s = -(x-E) * Math.Tan(Theta);
                 h = H+(x-E) * Math.Tan(Theta) ;
                 double Eta = (y - y_s) / h;
-                dEta_dx = (Math.Tan(Theta) / h) *(1-Eta);
+                this.dEta_dx = Math.Tan(Theta) / h *(1-Eta);
             }
-            y = h*y_t+y_s;
-            dEta_dy = 1/h;       
+            this.y_t = y_t_debajo + delta_y_t;
+            this.y = h*y_t+y_s;
+            this.dEta_dy = 1/h;       
         }
 
         public double[] StepSize_TanMax(double Theta, double delta_y, double M_angle)
@@ -105,10 +125,10 @@ namespace LibreriaClases
 
         public double[] Predictor_Step_Principal (double Cy, double delta_y_t,double delta_x, double F1_arriba, double F2_arriba,double F3_arriba, double F4_arriba, double F1_abajo,double F2_abajo, double F3_abajo, double F4_abajo ,double G1_arriba,double G2_arriba, double G3_arriba, double G4_arriba, double P_arriba, double P_abajo)
         { 
-            dF1_x = (dEta_dx) * (F1 - F1_arriba) / delta_y_t + (dEta_dy) * (G1 - G1_arriba) / delta_y_t;
-            dF2_x = (dEta_dx) * (F2 - F2_arriba) / delta_y_t + (dEta_dy) * (G2 - G2_arriba) / delta_y_t;
-            dF3_x = (dEta_dx) * (F3 - F3_arriba) / delta_y_t + (dEta_dy) * (G3 - G3_arriba) / delta_y_t;
-            dF3_x = (dEta_dx) * (F4 - F4_arriba) / delta_y_t + (dEta_dy) * (G4 - G4_arriba) / delta_y_t;
+            double dF1_x = dEta_dx * (F1 - F1_arriba) / delta_y_t + dEta_dy * (G1 - G1_arriba) / delta_y_t;
+            double dF2_x = dEta_dx * (F2 - F2_arriba) / delta_y_t + (dEta_dy) * (G2 - G2_arriba) / delta_y_t;
+            double dF3_x = dEta_dx * (F3 - F3_arriba) / delta_y_t + (dEta_dy) * (G3 - G3_arriba) / delta_y_t;
+            double dF3_x = dEta_dx * (F4 - F4_arriba) / delta_y_t + (dEta_dy) * (G4 - G4_arriba) / delta_y_t;
 
             SF1 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F1_arriba - (2 * F1) + F1_abajo);
             SF2 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F2_arriba - (2 * F2) + F2_abajo);
@@ -275,7 +295,7 @@ namespace LibreriaClases
 
             double M_act = compute_M_act(Gamma, f_act);
             M = M_act;
-            M_angle = (Math.Asin(1 / M));
+            M_angle = Math.Asin(1 / M);
             P = P_cal * (Math.Pow(((1 + ((Gamma - 1) / 2) * (Math.Pow(M_cal, 2))) / (1 + ((Gamma - 1) / 2) * (Math.Pow(M_act, 2)))), (Gamma / (Gamma - 1))));
             T = T_cal * ((1 + ((Gamma - 1) / 2) * (Math.Pow(M_cal, 2))) / (1 + ((Gamma - 1) / 2) * (Math.Pow(M_act, 2))));
             Rho = P / (R_aire * T);
@@ -288,14 +308,14 @@ namespace LibreriaClases
             { v = 0; }
 
             F1 = Rho * u;
-            F2 = (Rho * (Math.Pow(u, 2))) + P;
+            F2 = Rho * Math.Pow(u, 2) + P;
             F3 = Rho * u * v;
-            F4 = ((Gamma / (Gamma - 1)) * P * u) + (Rho * u * (((Math.Pow(u, 2)) + (Math.Pow(v, 2)))) / 2);
+            F4 = Gamma / (Gamma - 1) * P * u + Rho * u * (Math.Pow(u, 2) + Math.Pow(v, 2)) / 2;
 
             G1 = Rho * (F3 / F1);
             G2 = F3;
-            G3 = (Rho * (Math.Pow((F3 / F1), 2))) + F2 - ((Math.Pow(F1, 2)) / Rho);
-            G4 = ((Gamma / (Gamma - 1)) * ((F2) - ((Math.Pow(F1, 2)) / Rho)) * (F3 / F1)) + (((Rho * F3) / (2 * F1)) * ((Math.Pow((F1 / Rho), 2)) + (Math.Pow((F3 / F1), 2))));
+            G3 = Rho * Math.Pow(F3 / F1, 2) + F2 - Math.Pow(F1, 2) / Rho;
+            G4 = Gamma / (Gamma - 1) * (F2 - Math.Pow(F1, 2) / Rho) * (F3 / F1) + Rho * F3 / (2 * F1) * (Math.Pow(F1 / Rho, 2) + Math.Pow(F3 / F1, 2));
 
         }
 
@@ -313,13 +333,13 @@ namespace LibreriaClases
 
             for (int i = 0; i < iteraciones; i++)
             { 
-              double f_M_i = (Math.Sqrt((Gamma + 1) / (Gamma - 1)) * Math.Atan(Math.Sqrt((Gamma - 1) / (Gamma + 1) * (Math.Pow(xi[i],2) - 1))) - Math.Atan(Math.Sqrt(Math.Pow(xi[i],2) - 1))) - f_act;
-              double f_M_0 = (Math.Sqrt((Gamma + 1) / (Gamma - 1)) * Math.Atan(Math.Sqrt((Gamma - 1) / (Gamma + 1) * (Math.Pow(x0[i], 2) - 1))) - Math.Atan(Math.Sqrt(Math.Pow(x0[i], 2) - 1))) - f_act;
-              double xi_2 = xi[i] - (f_M_i * (x0[i] - xi[i])) / (f_M_0 - f_M_i);
+              double f_M_i = Math.Sqrt((Gamma + 1) / (Gamma - 1)) * Math.Atan(Math.Sqrt((Gamma - 1) / (Gamma + 1) * (Math.Pow(xi[i],2) - 1))) - Math.Atan(Math.Sqrt(Math.Pow(xi[i],2) - 1)) - f_act;
+              double f_M_0 = Math.Sqrt((Gamma + 1) / (Gamma - 1)) * Math.Atan(Math.Sqrt((Gamma - 1) / (Gamma + 1) * (Math.Pow(x0[i], 2) - 1))) - Math.Atan(Math.Sqrt(Math.Pow(x0[i], 2) - 1)) - f_act;
+              double xi_2 = xi[i] - f_M_i * (x0[i] - xi[i]) / (f_M_0 - f_M_i);
               xi.Add(xi_2);
               x0.Add(xi[i]);
 
-                if (f_M_i < Tol)
+                if (Math.Abs(f_M_i) < Tol)
                 { break; }
             }
 

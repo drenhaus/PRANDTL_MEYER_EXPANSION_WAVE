@@ -18,12 +18,12 @@ namespace LibreriaClases
         double Gamma = 1.4;
         double T_in=286.1;
         double v_in = 0;
-
         double u_in;
         double M_angle;
         double a_in;
 
         //GETS
+        public double GetGamma() { return Gamma; }
         public double GetH () { return H; }
         public double GetTheta() { return Theta; }
         public double GetL() { return L; }
