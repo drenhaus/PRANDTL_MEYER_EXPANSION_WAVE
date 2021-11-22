@@ -22,6 +22,10 @@ namespace LibreriaClases
         double M_angle;
         double a_in;
 
+       
+
+        
+
         //GETS
         public double GetGamma() { return Gamma; }
         public double GetH () { return H; }

@@ -59,6 +59,7 @@ namespace LibreriaClases
                 matriz[j, 0].SetRho(norma.GetRho_in());
                 matriz[j, 0].SetMAngle(norma.GetM_angle());
                 matriz[j, 0].Compute_G_F(norma.GetGamma());
+                matriz[j, 0].test = 2;
 
             }
 

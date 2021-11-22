@@ -5,24 +5,27 @@ namespace LibreriaClases
 {
     public class Celda
     {
-        double M;
-        double u;
-        double v;
-        double T;
-        double P;
-        double Rho;
-        double a;
-        double M_angle;
+        public double M { get; set; }
+        public double u { get; set; }
+        public double v { get; set; }
+        public double T { get; set; }
+        public double P { get; set; }
+        public double Rho { get; set; }
+        public double a { get; set; }
+        public double M_angle { get; set; }
 
-        double F1;
-        double F2;
-        double F3;
-        double F4;
 
-        double G1;
-        double G2;
-        double G3;
-        double G4;
+        public double F1 { get; set; }
+        public double F2 { get; set; }
+        public double F3 { get; set; }
+        public double F4 { get; set; }
+
+
+        public double G1 { get; set; }
+        public double G2 { get; set; }
+        public double G3 { get; set; }
+        public double G4 { get; set; }
+
 
         double F1_p;
         double F2_p;
@@ -35,15 +38,17 @@ namespace LibreriaClases
         double G3_p;
         double G4_p;
 
-        double dF1_x;
-        double dF2_x;
-        double dF3_x;
-        double dF4_x;
+        public double FdF1_x1 { get; set; }
+        public double dF2_x { get; set; }
+        public double dF3_x { get; set; }
+        public double dF4_x { get; set; }
+
 
         double dF1_p_x;
         double dF2_p_x;
         double dF3_p_x;
         double dF4_p_x;
+
 
         double x;
         double y;
