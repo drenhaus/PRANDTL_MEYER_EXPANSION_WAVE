@@ -50,16 +50,34 @@ namespace LibreriaClases
             // We define the initial line conditions
             for (int j = 0; j < divisiones_eta; j++)
             {
-                matriz[j, 0].SetA(norma.GetA_in());
-                matriz[j, 0].SetM(norma.GetM_in());
-                matriz[j, 0].SetU(norma.GetU_in());
-                matriz[j, 0].SetV(norma.GetV_in());
-                matriz[j, 0].SetT(norma.GetT_in());
-                matriz[j, 0].SetP(norma.GetP_in());
-                matriz[j, 0].SetRho(norma.GetRho_in());
-                matriz[j, 0].SetMAngle(norma.GetM_angle());
-                matriz[j, 0].Compute_G_F(norma.GetGamma());
-                matriz[j, 0].test = 2;
+                
+                //matriz[j, 0].SetA(norma.GetA_in());
+                matriz[j, 0].a = norma.a_in;
+
+                //matriz[j, 0].SetM(norma.GetM_in());
+                matriz[j, 0].M = norma.M_in;
+
+               // matriz[j, 0].SetU(norma.GetU_in());
+                matriz[j, 0].u = norma.u_in;
+
+                //matriz[j, 0].SetV(norma.GetV_in());
+                matriz[j, 0].v = norma.u_in;
+
+                //matriz[j, 0].SetT(norma.GetT_in());
+                matriz[j, 0].T = norma.T_in;
+
+               // matriz[j, 0].SetP(norma.GetP_in());
+                matriz[j, 0].P = norma.T_in;
+
+               // matriz[j, 0].SetRho(norma.GetRho_in());
+                matriz[j, 0].Rho = norma.Rho_in;
+
+                //matriz[j, 0].SetMAngle(norma.GetM_angle());
+                matriz[j, 0].M_angle = norma.M_angle;
+
+                //matriz[j, 0].Compute_G_F(norma.GetGamma());
+                matriz[j, 0].Compute_G_F(norma.Gamma);
+
 
             }
 
