@@ -177,7 +177,7 @@ namespace LibreriaClases
             double C_p=-(Gamma + 1)/(2*(Gamma - 1))*Math.Pow(F1_p_derecha,3);
             
             double Rho_p= (-B_p + (Math.Sqrt(Math.Pow(B_p, 2) - (4 * A_p * C_p)))) / (2 * A_p);
-            double P_p= F2_p_derecha - Math.Pow(F1_p_derecha , 2) / Rho_p;
+            this.P_p= F2_p_derecha - Math.Pow(F1_p_derecha , 2) / Rho_p;
 
             this.G1_p = Rho_p * (F3_p_derecha / F1_p_derecha);
             this.G2_p = F3_p_derecha;

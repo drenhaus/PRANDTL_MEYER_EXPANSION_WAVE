@@ -102,13 +102,38 @@ namespace LibreriaClases
                         G1p_G2p_G3p_G4p_Rhop_Pp= matriz[i, j].Gp_Rhop_Pp_Predicted(norma.Gamma, F1_F2_F3_F4_p_derecha_vector[0], F1_F2_F3_F4_p_derecha_vector[1], F1_F2_F3_F4_p_derecha_vector[2], F1_F2_F3_F4_p_derecha_vector[3]);
 
 
-                        matriz[i,j].Corrector_Step_Principal(Cy,)
+                      
+
+                        double[] F1_F2_F3_F4_futuras_corrected = new double[4];
+                        if (i == 0)
+                        {
+                          F1_F2_F3_F4_futuras_corrected = matriz[i, j].Corrector_Step_Contorno_Inferior(matriz[i, j].F1_p, matriz[i, j].F2_p, matriz[i, j].F3_p, matriz[i, j].F4_p, matriz[i + 1, j].F1_p,
+                                matriz[i + 1, j].F2_p, matriz[i + 1, j].F3_p, matriz[i + 1, j].F4_p, matriz[i, j].G1_p, matriz[i, j].G2_p, matriz[i, j].G3_p, matriz[i, j].G4_p, matriz[i + 1, j].G1_p,
+                                matriz[i + 1, j].G2_p, matriz[i + 1, j].G3_p, matriz[i + 1, j].G4_p, TanMax_deltax[1]);
+                        }
+                        if (i == divisiones_eta - 1)
+                        {
+                            F1_F2_F3_F4_futuras_corrected = matriz[i, j].Corrector_Step_Contorno_Superior(matriz[i, j].F1_p, matriz[i, j].F2_p, matriz[i, j].F3_p, matriz[i, j].F4_p, matriz[i - 1, j].F1_p,
+                                matriz[i - 1, j].F2_p, matriz[i - 1, j].F3_p, matriz[i - 1, j].F4_p, matriz[i, j].G1_p, matriz[i, j].G2_p, matriz[i, j].G3_p, matriz[i, j].G4_p, matriz[i - 1, j].G1_p,
+                                matriz[i - 1, j].G2_p, matriz[i - 1, j].G3_p, matriz[i - 1, j].G4_p, TanMax_deltax[1]);
+
+                        }
+                        if (i > 0 && i < divisiones_eta)
+                        {
+                            F1_F2_F3_F4_futuras_corrected = matriz[i, j].Corrector_Step_Principal(Cy, TanMax_deltax[1], delta_y_t, matriz[i - 1, j].F1_p, matriz[i - 1, j].F2_p, matriz[i - 1, j].F3_p, matriz[i - 1, j].F4_p, matriz[i, j].F1_p, matriz[i, j].F2_p, matriz[i, j].F3_p,
+                          matriz[i, j].F4_p, matriz[i - 1, j].G1_p, matriz[i - 1, j].G2_p, matriz[i - 1, j].G3_p, matriz[i - 1, j].G4_p, matriz[i, j].G1_p, matriz[i, j].G2_p, matriz[i, j].G3_p, matriz[i, j].G4_p,
+                          matriz[i + 1, j].F1_p, matriz[i + 1, j].F2_p, matriz[i + 1, j].F3_p, matriz[i + 1, j].F4_p, matriz[i + 1, j].P_p, matriz[i, j].P_p, matriz[i - 1, j].P_p);
+
+                        }
+
+
+
 
                     }
 
 
 
-                    }
+                }
 
             }
 
