@@ -87,7 +87,10 @@ namespace LibreriaClases
         }
 
 
-        public void xy_Transformation_ToEtaXi(double H, double E, double Theta, double delta_y_t, double y_t_debajo )
+        public void Compute_y_t(double y_t_debajo, double delta_y_t)
+        { this.y_t = y_t_debajo + delta_y_t; }
+
+        public void xy_Transformation_ToEtaXi(double H, double E, double Theta)
         { if (x < E)
             {
                 y_s = 0;
@@ -101,14 +104,14 @@ namespace LibreriaClases
                 double Eta = (y - y_s) / h;
                 this.dEta_dx = Math.Tan(Theta) / h *(1-Eta);
             }
-            this.y_t = y_t_debajo + delta_y_t;
+            
             this.y = h*y_t+y_s;
             this.dEta_dy = 1/h;       
         }
 
-        public double[] StepSize_TanMax(double Theta, double delta_y, double M_angle)
+        public double[] StepSize_TanMax(double Theta, double delta_y)
         {
-            double tan_max = Math.Max(Math.Abs(Math.Tan(Theta + M_angle)), Math.Abs(Math.Tan(Theta - M_angle)));
+            double tan_max = Math.Max(Math.Abs(Math.Tan(Theta + this.M_angle)), Math.Abs(Math.Tan(Theta - this.M_angle)));
             double delta_x = 0.5 * delta_y / tan_max;
             double[] values = { tan_max, delta_x };
             return values;
@@ -121,10 +124,10 @@ namespace LibreriaClases
             double dF3_x = dEta_dx * (F3 - F3_arriba) / delta_y_t + (dEta_dy) * (G3 - G3_arriba) / delta_y_t;
             double dF4_x = dEta_dx * (F4 - F4_arriba) / delta_y_t + (dEta_dy) * (G4 - G4_arriba) / delta_y_t;
 
-            SF1 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F1_arriba - (2 * F1) + F1_abajo);
-            SF2 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F2_arriba - (2 * F2) + F2_abajo);
-            SF3 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F3_arriba - (2 * F3) + F3_abajo);
-            SF4 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F4_arriba - (2 * F4) + F4_abajo);
+            double SF1 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F1_arriba - (2 * F1) + F1_abajo);
+            double SF2 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F2_arriba - (2 * F2) + F2_abajo);
+            double SF3 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F3_arriba - (2 * F3) + F3_abajo);
+            double SF4 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F4_arriba - (2 * F4) + F4_abajo);
 
             double F1_p_derecha = F1 + dF1_x * delta_x + SF1;
             double F2_p_derecha = F2 + dF2_x * delta_x + SF2;
@@ -137,10 +140,10 @@ namespace LibreriaClases
 
         public double[] Predictor_Step_Contorno_Superior (double delta_y_t, double delta_x, double F1_abajo, double F2_abajo, double F3_abajo, double F4_abajo, double G1_abajo, double G2_abajo, double G3_abajo, double G4_abajo)
         {
-            dF1_x = (dEta_dx) * (F1_abajo - F1) / delta_y_t + (dEta_dy) * (G1_abajo - G1) / delta_y_t;
-            dF2_x = (dEta_dx) * (F2_abajo - F2) / delta_y_t + (dEta_dy) * (G2_abajo - G2) / delta_y_t;
-            dF3_x = (dEta_dx) * (F3_abajo - F3) / delta_y_t + (dEta_dy) * (G3_abajo - G3) / delta_y_t;
-            dF4_x = (dEta_dx) * (F4_abajo - F4) / delta_y_t + (dEta_dy) * (G4_abajo - G4) / delta_y_t;
+            double dF1_x = (dEta_dx) * (F1_abajo - F1) / delta_y_t + (dEta_dy) * (G1_abajo - G1) / delta_y_t;
+            double dF2_x = (dEta_dx) * (F2_abajo - F2) / delta_y_t + (dEta_dy) * (G2_abajo - G2) / delta_y_t;
+            double dF3_x = (dEta_dx) * (F3_abajo - F3) / delta_y_t + (dEta_dy) * (G3_abajo - G3) / delta_y_t;
+            double dF4_x = (dEta_dx) * (F4_abajo - F4) / delta_y_t + (dEta_dy) * (G4_abajo - G4) / delta_y_t;
 
             double F1_p_derecha = F1 + dF1_x * delta_x;
             double F2_p_derecha = F2 + dF2_x * delta_x;
@@ -153,10 +156,10 @@ namespace LibreriaClases
 
         public double[] Predictor_Step_Contorno_Inferior(double delta_y_t, double delta_x, double F1_arriba, double F2_arriba, double F3_arriba, double F4_arriba,  double G1_arriba, double G2_arriba, double G3_arriba, double G4_arriba)
         {
-            dF1_x = (dEta_dx) * (F1- F1_arriba) / delta_y_t + (dEta_dy) * (G1 - G1_arriba) / delta_y_t;
-            dF2_x = (dEta_dx) * (F2- F2_arriba) / delta_y_t + (dEta_dy) * (G2 - G2_arriba) / delta_y_t;
-            dF3_x = (dEta_dx) * (F3- F3_arriba) / delta_y_t + (dEta_dy) * (G3 - G3_arriba) / delta_y_t;
-            dF4_x = (dEta_dx) * (F4- F4_arriba) / delta_y_t + (dEta_dy) * (G4 - G4_arriba) / delta_y_t;
+            double dF1_x = (dEta_dx) * (F1- F1_arriba) / delta_y_t + (dEta_dy) * (G1 - G1_arriba) / delta_y_t;
+            double dF2_x = (dEta_dx) * (F2- F2_arriba) / delta_y_t + (dEta_dy) * (G2 - G2_arriba) / delta_y_t;
+            double dF3_x = (dEta_dx) * (F3- F3_arriba) / delta_y_t + (dEta_dy) * (G3 - G3_arriba) / delta_y_t;
+            double dF4_x = (dEta_dx) * (F4- F4_arriba) / delta_y_t + (dEta_dy) * (G4 - G4_arriba) / delta_y_t;
             
             double F1_p_derecha = F1 + dF1_x * delta_x;
             double F2_p_derecha = F2 + dF2_x * delta_x;
