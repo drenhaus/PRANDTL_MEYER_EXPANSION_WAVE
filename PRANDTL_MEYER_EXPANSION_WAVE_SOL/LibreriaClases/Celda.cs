@@ -59,6 +59,7 @@ namespace LibreriaClases
 
 
         public double P_p { get; set; }
+        public double Rho_p { get; set; }
 
         public double SF1 { get; set; }
         public double SF2 { get; set; }
@@ -129,11 +130,11 @@ namespace LibreriaClases
             double SF3 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F3_arriba - (2 * F3) + F3_abajo);
             double SF4 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F4_arriba - (2 * F4) + F4_abajo);
 
-            this.F1_p = F1 + dF1_x * delta_x + SF1;
-            this.F2_p = F2 + dF2_x * delta_x + SF2;
-            this.F3_p = F3 + dF3_x * delta_x + SF3;
-            this.F4_p = F4 + dF4_x * delta_x + SF4;
-            double[] F_p_derecha_vector = new double[] { F1_p, F2_p, F3_p, F4_p };
+            double F1_p_derecha = F1 + dF1_x * delta_x + SF1;
+            double F2_p_derecha = F2 + dF2_x * delta_x + SF2;
+            double F3_p_derecha = F3 + dF3_x * delta_x + SF3;
+            double F4_p_derecha = F4 + dF4_x * delta_x + SF4;
+            double[] F_p_derecha_vector = new double[] { F1_p_derecha, F2_p_derecha, F3_p_derecha, F4_p_derecha };
 
             return F_p_derecha_vector;
         }
@@ -145,11 +146,11 @@ namespace LibreriaClases
             double dF3_x = dEta_dx * (F3_abajo - F3) / delta_y_t + dEta_dy * (G3_abajo - G3) / delta_y_t;
             double dF4_x = dEta_dx * (F4_abajo - F4) / delta_y_t + dEta_dy * (G4_abajo - G4) / delta_y_t;
 
-            this.F1_p = F1 + dF1_x * delta_x;
-            this.F2_p = F2 + dF2_x * delta_x;
-            this.F3_p = F3 + dF3_x * delta_x;
-            this.F4_p = F4 + dF4_x * delta_x;
-            double[] F_p_derecha_vector = new double[] { F1_p, F2_p, F3_p, F4_p };
+            double F1_p_derecha = F1 + dF1_x * delta_x;
+            double F2_p_derecha = F2 + dF2_x * delta_x;
+            double F3_p_derecha = F3 + dF3_x * delta_x;
+            double F4_p_derecha = F4 + dF4_x * delta_x;
+            double[] F_p_derecha_vector = new double[] { F1_p_derecha, F2_p_derecha, F3_p_derecha, F4_p_derecha };
 
             return F_p_derecha_vector;
         }
@@ -161,11 +162,11 @@ namespace LibreriaClases
             double dF3_x = (dEta_dx) * (F3- F3_arriba) / delta_y_t + (dEta_dy) * (G3 - G3_arriba) / delta_y_t;
             double dF4_x = (dEta_dx) * (F4- F4_arriba) / delta_y_t + (dEta_dy) * (G4 - G4_arriba) / delta_y_t;
 
-            this.F1_p = F1 + dF1_x * delta_x;
-            this.F2_p = F2 + dF2_x * delta_x;
-            this.F3_p = F3 + dF3_x * delta_x;
-            this.F4_p = F4 + dF4_x * delta_x;
-            double[] F_p_derecha_vector = new double[] { F1_p, F2_p, F3_p, F4_p };
+            double F1_p_derecha = F1 + dF1_x * delta_x;
+            double F2_p_derecha = F2 + dF2_x * delta_x;
+            double F3_p_derecha = F3 + dF3_x * delta_x;
+            double F4_p_derecha = F4 + dF4_x * delta_x;
+            double[] F_p_derecha_vector = new double[] { F1_p_derecha, F2_p_derecha, F3_p_derecha, F4_p_derecha };
 
             return F_p_derecha_vector;
         }
@@ -176,16 +177,16 @@ namespace LibreriaClases
             double B_p=Gamma/(Gamma - 1)*F1_p_derecha*F2_p_derecha;
             double C_p=-(Gamma + 1)/(2*(Gamma - 1))*Math.Pow(F1_p_derecha,3);
             
-            double Rho_p= (-B_p + (Math.Sqrt(Math.Pow(B_p, 2) - (4 * A_p * C_p)))) / (2 * A_p);
-            this.P_p= F2_p_derecha - Math.Pow(F1_p_derecha , 2) / Rho_p;
+            double Rho_p_derecha= (-B_p + (Math.Sqrt(Math.Pow(B_p, 2) - (4 * A_p * C_p)))) / (2 * A_p);
+            double P_p_derecha= F2_p_derecha - Math.Pow(F1_p_derecha , 2) / Rho_p_derecha;
 
-            this.G1_p = Rho_p * (F3_p_derecha / F1_p_derecha);
-            this.G2_p = F3_p_derecha;
-            this.G3_p = (Rho_p *  Math.Pow(F3_p_derecha /F1_p_derecha, 2)) + F2_p_derecha - (Math.Pow(F1_p_derecha, 2) / Rho_p);
-            this.G4_p = (Gamma / (Gamma - 1) * ((F2_p_derecha) - (Math.Pow(F1_p_derecha ,2) / Rho_p)) * (F3_p_derecha / F1_p_derecha)) + Rho_p * F3_p_derecha / (2 * F1_p_derecha) * ((F1_p_derecha/ Math.Pow(Rho_p,2)) + F3_p_derecha / Math.Pow(F1_p_derecha,2));
+            double G1_p_derecha = Rho_p_derecha * (F3_p_derecha / F1_p_derecha);
+            double G2_p_derecha = F3_p_derecha;
+            double G3_p_derecha = (Rho_p_derecha *  Math.Pow(F3_p_derecha /F1_p_derecha, 2)) + F2_p_derecha - (Math.Pow(F1_p_derecha, 2) / Rho_p_derecha);
+            double G4_p_derecha = (Gamma / (Gamma - 1) * ((F2_p_derecha) - (Math.Pow(F1_p_derecha ,2) / Rho_p_derecha)) * (F3_p_derecha / F1_p_derecha)) + Rho_p_derecha * F3_p_derecha / (2 * F1_p_derecha) * ((F1_p_derecha/ Math.Pow(Rho_p_derecha, 2)) + F3_p_derecha / Math.Pow(F1_p_derecha,2));
 
 
-            double[] G_predictedValues = new double[] { G1_p, G2_p, G3_p, G4_p, Rho_p, P_p };
+            double[] G_predictedValues = new double[] { G1_p_derecha, G2_p_derecha, G3_p_derecha, G4_p_derecha, Rho_p_derecha, P_p_derecha };
 
             return G_predictedValues;
 
@@ -211,13 +212,13 @@ namespace LibreriaClases
             double dF3_x_av = 0.5*(dF3_x + dF3_p_x_derecha);
             double dF4_x_av = 0.5*(dF4_x + dF4_p_x_derecha);
 
-            this.F1_p = F1 + (dF1_x_av * delta_x) + SF1_p;
-            this.F2_p = F2 + (dF2_x_av * delta_x) + SF2_p;
-            this.F3_p = F3 + (dF3_x_av * delta_x) + SF3_p;
-            this.F4_p = F4 + (dF4_x_av * delta_x) + SF4_p;
+            double F1_derecha = F1 + (dF1_x_av * delta_x) + SF1_p;
+            double F2_derecha = F2 + (dF2_x_av * delta_x) + SF2_p;
+            double F3_derecha = F3 + (dF3_x_av * delta_x) + SF3_p;
+            double F4_derecha = F4 + (dF4_x_av * delta_x) + SF4_p;
 
-            double[] F_futuras = { F1_p, F2_p, F3_p, F4_p };
-            return F_futuras;
+            double[] F_Derecha = { F1_derecha, F2_derecha, F3_derecha, F4_derecha };
+            return F_Derecha;
 
         }
 
@@ -233,13 +234,13 @@ namespace LibreriaClases
             double dF3_x_av = 0.5 * (dF3_x + dF3_p_x_derecha);
             double dF4_x_av = 0.5 * (dF4_x + dF4_p_x_derecha);
 
-            this.F1_p = F1 + (dF1_x_av * delta_x);
-            this.F2_p = F2 + (dF2_x_av * delta_x);
-            this.F3_p = F3 + (dF3_x_av * delta_x);
-            this.F4_p = F4 + (dF4_x_av * delta_x);
+            double F1_derecha = F1 + (dF1_x_av * delta_x);
+            double F2_derecha = F2 + (dF2_x_av * delta_x);
+            double F3_derecha = F3 + (dF3_x_av * delta_x);
+            double F4_derecha = F4 + (dF4_x_av * delta_x);
 
-            double[] F_futuras = { F1_p, F2_p, F3_p, F4_p };
-            return F_futuras;
+            double[] F_Derecha = { F1_derecha, F2_derecha, F3_derecha, F4_derecha };
+            return F_Derecha;
         }
 
         public double[] Corrector_Step_Contorno_Superior(double F1_p_derecha, double F2_p_derecha, double F3_p_derecha, double F4_p_derecha, double F1_p_debajo_derecha, double F2_p_debajo_derecha, double F3_p_debajo_derecha, double F4_p_debajo_derecha, double G1_p_derecha, double G2_p_derecha, double G3_p_derecha, double G4_p_derecha, double G1_p_debajo_derecha, double G2_p_debajo_derecha, double G3_p_debajo_derecha, double G4_p_debajo_derecha, double delta_x)
@@ -254,16 +255,16 @@ namespace LibreriaClases
             double dF3_x_av = 0.5 * (dF3_x + dF3_p_x_derecha);
             double dF4_x_av = 0.5 * (dF4_x + dF4_p_x_derecha);
 
-            this.F1_p = F1 + (dF1_x_av * delta_x);
-            this.F2_p = F2 + (dF2_x_av * delta_x);
-            this.F3_p = F3 + (dF3_x_av * delta_x);
-            this.F4_p = F4 + (dF4_x_av * delta_x);
+            double F1_derecha = F1 + (dF1_x_av * delta_x);
+            double F2_derecha = F2 + (dF2_x_av * delta_x);
+            double F3_derecha = F3 + (dF3_x_av * delta_x);
+            double F4_derecha = F4 + (dF4_x_av * delta_x);
 
-            double[] F_futuras = { F1_p, F2_p, F3_p, F4_p };
-            return F_futuras;
+            double[] F_Derecha = { F1_derecha, F2_derecha, F3_derecha, F4_derecha };
+            return F_Derecha;
         }
 
-        public void Wall_Bounday_Condition(double Gamma, double R_aire, double E, double theta)
+        public double[] Wall_Bounday_Condition(double Gamma, double R_aire, double E, double theta)
         {
             double A = Math.Pow(F3, 2) / (2 * F1) - F4;
             double B = Gamma / (Gamma - 1) * F1 * F2;
@@ -313,6 +314,32 @@ namespace LibreriaClases
             G2 = F3;
             G3 = Rho * Math.Pow(F3 / F1, 2) + F2 - Math.Pow(F1, 2) / Rho;
             G4 = Gamma / (Gamma - 1) * (F2 - Math.Pow(F1, 2) / Rho) * (F3 / F1) + Rho * F3 / (2 * F1) * (Math.Pow(F1 / Rho, 2) + Math.Pow(F3 / F1, 2));
+
+            double[] resultados = { u,v,Rho,P,T,M,F1,F2,F3,F4 };
+            return resultados;
+        }
+
+
+        public double[] ComputeFinalValues(double Gamma, double R_aire)
+        {
+            double A = F3 * F3 / (2 * F1) - F4;
+            double B = Gamma / (Gamma - 1) * F1 * F2;
+            double C = -(Gamma + 1) / (2 * (Gamma - 1)) * F1 * F1 * F1;
+            Rho = (-B + Math.Sqrt(B * B - 4 * A * C)) / (2 * A);
+            u = F1 / Rho;
+            v = F3 / F1;
+            P = F2 - F1 * u;
+            T = P / (Rho * R_aire);
+            a = Math.Sqrt(Gamma * R_aire * T);
+            M = Math.Sqrt(Math.Pow(u, 2) + Math.Pow(v, 2)) / a;
+            M_angle = Math.Asin(1 / M);
+            G1 = Rho * (F3 / F1);
+            G2 = F3;
+            G3 = Rho * Math.Pow(F3 / F1, 2) + F2 - Math.Pow(F1, 2) / Rho;
+            G4 = Gamma / (Gamma - 1) * (F2 - Math.Pow(F1, 2) / Rho) * (F3 / F1) + Rho * F3 / (2 * F1) * (Math.Pow(F1 / Rho, 2) + Math.Pow(F3 / F1, 2));
+            double[] resultados = { u, v, Rho, P, T, M, F1, F2, F3, F4 };
+            return resultados;
+
 
         }
 
