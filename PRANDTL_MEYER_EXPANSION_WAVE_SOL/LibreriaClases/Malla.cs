@@ -5,7 +5,7 @@ using System.Data;
 
 namespace LibreriaClases
 {
-    class Malla
+    public class Malla
     {
         int divisiones_eta=41; // nº filas -- i
         int divisiones_xi = 81; // nº columnas -- j
@@ -16,21 +16,25 @@ namespace LibreriaClases
 
 
         //Tables with the data of all iterations
-        //DataTable Temperature_table = new DataTable("All Temperature values [K]");
-        //DataTable Mach_table = new DataTable("All Mach values");
-        //DataTable F1_table = new DataTable("All F1 values");
-            
+        DataTable Temperature_table = new DataTable("All Temperature values [K]");
+        DataTable u_table = new DataTable("All u values [m/s]");
+        DataTable v_table = new DataTable("All v values [m/s]");
+        DataTable Rho_table = new DataTable("All Rho values [kg/m3]");
+        DataTable P_table = new DataTable("All P values [N/m3]");
+        DataTable Mach_table = new DataTable("All Mach values");
+        DataTable F1_table = new DataTable("All F1 values");
+        DataTable F2_table = new DataTable("All F2 values");
+        DataTable F3_table = new DataTable("All F3 values");
+        DataTable F4_table = new DataTable("All F4 values");
+
 
         //Tables for comparing with Anderson
 
 
-        public void DefinirMatriz(int filas, int columnas)
+        public void DefinirMatriz()
         {
 
-            this.divisiones_eta = filas;
-            this.divisiones_xi = columnas;
-
-            this.matriz = new Celda[filas, columnas];
+            this.matriz = new Celda[divisiones_eta, divisiones_xi];
 
             //We fill the matrix with Cells
             for (int i = 0; i < divisiones_eta; i++)
@@ -167,7 +171,79 @@ namespace LibreriaClases
 
         }
 
+        public void Fill_DataTable()
+        {         
+            
+            for (int j=0;j<divisiones_xi; j++)
+            {
 
+                DataColumn TEMP_C = new DataColumn(); 
+                DataColumn U_C = new DataColumn();
+                DataColumn V_C = new DataColumn(); 
+                DataColumn RHO_C = new DataColumn();
+                DataColumn P_C = new DataColumn();
+                DataColumn M_C = new DataColumn();
+                DataColumn F1_C = new DataColumn();
+                DataColumn F2_C = new DataColumn();
+                DataColumn F3_C = new DataColumn();
+                DataColumn F4_C = new DataColumn();
+
+                Temperature_table.Columns.Add(TEMP_C);
+                u_table.Columns.Add(U_C);
+                v_table.Columns.Add(V_C);
+                Rho_table.Columns.Add(RHO_C);
+                P_table.Columns.Add(P_C);
+                Mach_table.Columns.Add(M_C);
+                F1_table.Columns.Add(F1_C);
+                F2_table.Columns.Add(F2_C);
+                F3_table.Columns.Add(F3_C);
+                F4_table.Columns.Add(F4_C);
+            }
+
+            for (int i=0;i<divisiones_eta;i++)
+            {
+                DataRow TEMP_R = Temperature_table.NewRow();
+                DataRow U_R = u_table.NewRow();
+                DataRow V_R = v_table.NewRow();
+                DataRow RHO_R = Rho_table.NewRow();
+                DataRow P_R = P_table.NewRow();
+                DataRow M_R = Mach_table.NewRow();
+                DataRow F1_R = F1_table.NewRow();
+                DataRow F2_R = F2_table.NewRow();
+                DataRow F3_R = F3_table.NewRow();
+                DataRow F4_R = F4_table.NewRow();
+
+                for (int j = 0; j < divisiones_xi; j++)
+                {
+                    TEMP_R[j] = matriz[i, j].T;
+                    U_R[j] = matriz[i, j].u;
+                    V_R[j] = matriz[i, j].v;
+                    RHO_R[j] = matriz[i, j].Rho;
+                    P_R[j] = matriz[i, j].P;
+                    M_R[j] = matriz[i, j].M;
+                    F1_R[j] = matriz[i, j].F1;
+                    F2_R[j] = matriz[i, j].F2;
+                    F3_R[j] = matriz[i, j].F3;
+                    F4_R[j] = matriz[i, j].F4;
+
+                }
+
+                Temperature_table.Rows.Add(TEMP_R);
+                u_table.Rows.Add(U_R);
+                v_table.Rows.Add(V_R);
+                Rho_table.Rows.Add(RHO_R);
+                P_table.Rows.Add(P_R);
+                Mach_table.Rows.Add(M_R);
+                F1_table.Rows.Add(F1_R);
+                F2_table.Rows.Add(F2_R);
+                F3_table.Rows.Add(F3_R);
+                F4_table.Rows.Add(F4_R);
+
+            }
+            
+        
+        
+        }
 
 
 
