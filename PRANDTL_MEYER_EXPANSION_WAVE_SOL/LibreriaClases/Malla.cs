@@ -130,8 +130,7 @@ namespace LibreriaClases
                     {
                         if (j < divisiones_xi - 1)
                         {
-                            double[] G1p_G2p_G3p_G4p_Rhop_Pp = new double[6];
-                            G1p_G2p_G3p_G4p_Rhop_Pp = matriz[i, j].Gp_Rhop_Pp_Predicted(norma.Gamma, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p, matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p);
+                            double[] G1p_G2p_G3p_G4p_Rhop_Pp = matriz[i, j].Gp_Rhop_Pp_Predicted(norma.Gamma, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p, matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p);
 
                             if (j < divisiones_xi - 1)
                             {
@@ -150,22 +149,22 @@ namespace LibreriaClases
                         double[] F1_F2_F3_F4_derecha_corrected = new double[4];
                         if (i == 0)
                         {
-                            F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Inferior(matriz[i, j].F1_p, matriz[i, j].F2_p, matriz[i, j].F3_p, matriz[i, j].F4_p, matriz[i + 1, j].F1_p,
-                                matriz[i + 1, j].F2_p, matriz[i + 1, j].F3_p, matriz[i + 1, j].F4_p, matriz[i, j].G1_p, matriz[i, j].G2_p, matriz[i, j].G3_p, matriz[i, j].G4_p, matriz[i + 1, j].G1_p,
-                                matriz[i + 1, j].G2_p, matriz[i + 1, j].G3_p, matriz[i + 1, j].G4_p, matriz[i, j].delta_x);
+                            F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Inferior(matriz[i, j+1].F1_p, matriz[i, j+1].F2_p, matriz[i, j+1].F3_p, matriz[i, j+1].F4_p, matriz[i + 1, j+1].F1_p,
+                                matriz[i + 1, j+1].F2_p, matriz[i + 1, j+1].F3_p, matriz[i + 1, j+1].F4_p, matriz[i, j+1].G1_p, matriz[i, j+1].G2_p, matriz[i, j+1].G3_p, matriz[i, j+1].G4_p, matriz[i + 1, j+1].G1_p,
+                                matriz[i + 1, j+1].G2_p, matriz[i + 1, j+1].G3_p, matriz[i + 1, j+1].G4_p, matriz[i, j].delta_x);
                         }
                         if (i == divisiones_eta - 1)
                         {
-                            F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Superior(matriz[i, j].F1_p, matriz[i, j].F2_p, matriz[i, j].F3_p, matriz[i, j].F4_p, matriz[i - 1, j].F1_p,
-                                matriz[i - 1, j].F2_p, matriz[i - 1, j].F3_p, matriz[i - 1, j].F4_p, matriz[i, j].G1_p, matriz[i, j].G2_p, matriz[i, j].G3_p, matriz[i, j].G4_p, matriz[i - 1, j].G1_p,
-                                matriz[i - 1, j].G2_p, matriz[i - 1, j].G3_p, matriz[i - 1, j].G4_p, matriz[i, j].delta_x);
+                            F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Superior(matriz[i, j+1].F1_p, matriz[i, j+1].F2_p, matriz[i, j+1].F3_p, matriz[i, j+1].F4_p, matriz[i - 1, j+1].F1_p,
+                                matriz[i - 1, j+1].F2_p, matriz[i - 1, j+1].F3_p, matriz[i - 1, j+1].F4_p, matriz[i, j].G1_p, matriz[i, j+1].G2_p, matriz[i, j+1].G3_p, matriz[i, j+1].G4_p, matriz[i - 1, j+1].G1_p,
+                                matriz[i - 1, j+1].G2_p, matriz[i - 1, j+1].G3_p, matriz[i - 1, j+1].G4_p, matriz[i, j].delta_x+1);
 
                         }
                         if (i > 0 && i < divisiones_eta - 1)
                         {
-                            F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, matriz[i, j].delta_x, delta_y_t, matriz[i - 1, j].F1_p, matriz[i - 1, j].F2_p, matriz[i - 1, j].F3_p, matriz[i - 1, j].F4_p, matriz[i, j].F1_p, matriz[i, j].F2_p, matriz[i, j].F3_p,
-                          matriz[i, j].F4_p, matriz[i - 1, j].G1_p, matriz[i - 1, j].G2_p, matriz[i - 1, j].G3_p, matriz[i - 1, j].G4_p, matriz[i, j].G1_p, matriz[i, j].G2_p, matriz[i, j].G3_p, matriz[i, j].G4_p,
-                          matriz[i + 1, j].F1_p, matriz[i + 1, j].F2_p, matriz[i + 1, j].F3_p, matriz[i + 1, j].F4_p, matriz[i + 1, j].P_p, matriz[i, j].P_p, matriz[i - 1, j].P_p);
+                            F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, matriz[i, j].delta_x, delta_y_t, matriz[i - 1, j+1].F1_p, matriz[i - 1, j+1].F2_p, matriz[i - 1, j+1].F3_p, matriz[i - 1, j+1].F4_p, matriz[i-1, j+1].F1_p, matriz[i, j+1].F2_p, matriz[i, j+1].F3_p,
+                          matriz[i, j+1].F4_p, matriz[i - 1, j].G1_p, matriz[i - 1, j+1].G2_p, matriz[i - 1, j+1].G3_p, matriz[i - 1, j+1].G4_p, matriz[i, j+1].G1_p, matriz[i, j].G2_p, matriz[i, j+1].G3_p, matriz[i, j+1].G4_p,
+                          matriz[i + 1, j+1].F1_p, matriz[i + 1, j+1].F2_p, matriz[i + 1, j+1].F3_p, matriz[i + 1, j].F4_p, matriz[i + 1, j].P_p, matriz[i, j].P_p, matriz[i - 1, j].P_p);
 
                         }
 
@@ -182,15 +181,14 @@ namespace LibreriaClases
 
                     for (int i = 0; i < divisiones_eta; i++)
                     {
-                        double[] resultados = new double[10];
                         if (i == 0 && j < divisiones_xi - 1)
                         {
-                            resultados = matriz[i, j + 1].Wall_Bounday_Condition(norma.Gamma, norma.R_air, norma.E, norma.Theta);
+                            matriz[i, j + 1].Wall_Bounday_Condition(norma.Gamma, norma.R_air, norma.E, norma.Theta);
                         }
 
                         if (i != 0 && j < divisiones_xi - 1)
                         {
-                            resultados = matriz[i, j + 1].ComputeFinalValues(norma.Gamma, norma.R_air);
+                            matriz[i, j + 1].ComputeFinalValues(norma.Gamma, norma.R_air);
                         }
 
                         if (j < divisiones_xi - 1)
