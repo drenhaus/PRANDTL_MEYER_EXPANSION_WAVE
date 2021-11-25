@@ -96,9 +96,9 @@ namespace LibreriaClases
                     double delta_x = 0.5 * delta_y / TanMax;
 
                     // we set all the delta_x values
-                    for (int w=0;w<divisiones_eta;w++)
+                    for (int i=0;i<divisiones_eta;i++)
                     {
-                        matriz[w, j].delta_x = delta_x;
+                        matriz[i, j].delta_x = delta_x;
                     }
 
                     for (int i = 0; i < divisiones_eta; i++)
