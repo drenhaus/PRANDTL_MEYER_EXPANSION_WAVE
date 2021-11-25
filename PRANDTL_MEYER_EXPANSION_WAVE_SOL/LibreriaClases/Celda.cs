@@ -111,7 +111,7 @@ namespace LibreriaClases
             this.dEta_dy = 1/h;       
         }
 
-        public double TanMax(double Theta, double delta_y)
+        public double TanMax(double Theta)
         {
             double tan_max = Math.Max(Math.Abs(Math.Tan(Theta + this.M_angle)), Math.Abs(Math.Tan(Theta - this.M_angle)));
             return tan_max;
