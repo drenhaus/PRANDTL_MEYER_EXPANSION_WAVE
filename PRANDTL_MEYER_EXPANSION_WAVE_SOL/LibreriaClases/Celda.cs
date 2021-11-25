@@ -53,6 +53,7 @@ namespace LibreriaClases
         public double y_t { get; set; }
         public double y_s { get; set; }
         public double h { get; set; }
+        public double delta_x { get; set; }
         public double dEta_dx { get; set; }
         public double dEta_dy { get; set; }
         public double delta_y_t { get; set; }
@@ -110,20 +111,19 @@ namespace LibreriaClases
             this.dEta_dy = 1/h;       
         }
 
-        public double[] StepSize_TanMax(double Theta, double delta_y)
+        public double TanMax(double Theta, double delta_y)
         {
             double tan_max = Math.Max(Math.Abs(Math.Tan(Theta + this.M_angle)), Math.Abs(Math.Tan(Theta - this.M_angle)));
-            double delta_x = 0.5 * delta_y / tan_max;
-            double[] values = { tan_max, delta_x };
-            return values;
+            return tan_max;
+            
         }
 
         public double[] Predictor_Step_Principal (double Cy, double delta_y_t,double delta_x, double F1_arriba, double F2_arriba,double F3_arriba, double F4_arriba, double F1_abajo,double F2_abajo, double F3_abajo, double F4_abajo ,double G1_arriba,double G2_arriba, double G3_arriba, double G4_arriba, double P_arriba, double P_abajo)
         { 
             double dF1_x = dEta_dx * (F1 - F1_arriba) / delta_y_t + dEta_dy * (G1 - G1_arriba) / delta_y_t;
-            double dF2_x = dEta_dx * (F2 - F2_arriba) / delta_y_t + (dEta_dy) * (G2 - G2_arriba) / delta_y_t;
-            double dF3_x = dEta_dx * (F3 - F3_arriba) / delta_y_t + (dEta_dy) * (G3 - G3_arriba) / delta_y_t;
-            double dF4_x = dEta_dx * (F4 - F4_arriba) / delta_y_t + (dEta_dy) * (G4 - G4_arriba) / delta_y_t;
+            double dF2_x = dEta_dx * (F2 - F2_arriba) / delta_y_t + dEta_dy * (G2 - G2_arriba) / delta_y_t;
+            double dF3_x = dEta_dx * (F3 - F3_arriba) / delta_y_t + dEta_dy * (G3 - G3_arriba) / delta_y_t;
+            double dF4_x = dEta_dx * (F4 - F4_arriba) / delta_y_t + dEta_dy * (G4 - G4_arriba) / delta_y_t;
 
             double SF1 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F1_arriba - (2 * F1) + F1_abajo);
             double SF2 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F2_arriba - (2 * F2) + F2_abajo);

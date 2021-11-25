@@ -68,6 +68,8 @@ namespace LibreriaClases
                 matriz[i, 0].Compute_G_F(norma.Gamma);
 
             }
+
+            //We define all the y_t values of the matrix
             for (int j = 0; j < divisiones_xi; j++)
             {
                 for (int i = 1; i < divisiones_eta; i++)
@@ -79,16 +81,25 @@ namespace LibreriaClases
 
             for (int j = 0; j < divisiones_xi; j++)
             {
+
                 if (matriz[0,j].x<=norma.L)
                 {
+                    double[] TanMax = new double[divisiones_eta];
                     for (int i = 0; i < divisiones_eta; i++)
                     {
                         matriz[i, j].xy_Transformation_ToEtaXi(norma.H, norma.E, norma.Theta);
-                        double[] TanMax_deltax = new double[2];
-                        TanMax_deltax = matriz[i, j].StepSize_TanMax(norma.Theta, matriz[2, j].y - matriz[2, j].y);
+                        TanMax[i]= matriz[i, j].TanMax(norma.Theta, matriz[1, j].y - matriz[0, j].y);
+                    }
 
+                    Math.Max(TanMax);
+
+                    double delta_x = 0.5 * delta_y / tan_max;
+
+
+                    for (int i = 0; i < divisiones_eta; i++)
+                    {
                         double[] F1_F2_F3_F4_p_derecha_vector = new double[4];
-                        if (i==0)
+                        if (i == 0)
                         {
                             F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Inferior(delta_y_t, TanMax_deltax[1], matriz[i + 1, j].F1, matriz[i + 1, j].F2, matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i + 1, j].G1, matriz[i + 1, j].G2, matriz[i + 1, j].G3, matriz[i + 1, j].G4);
                         }
@@ -96,23 +107,19 @@ namespace LibreriaClases
                         {
                             F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Superior(delta_y_t, TanMax_deltax[1], matriz[i - 1, j].F1, matriz[i - 1, j].F2, matriz[i - 1, j].F3, matriz[i - 1, j].F4, matriz[i - 1, j].G1, matriz[i - 1, j].G2, matriz[i - 1, j].G3, matriz[i - 1, j].G4);
                         }
-                        if (i > 0 && i < divisiones_eta-1)
+                        if (i > 0 && i < divisiones_eta - 1)
                         {
                             F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Principal(Cy, delta_y_t, TanMax_deltax[1], matriz[i + 1, j].F1, matriz[i + 1, j].F2, matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i - 1, j].F1, matriz[i - 1, j].F2, matriz[i - 1, j].F3, matriz[i - 1, j].F4, matriz[i + 1, j].G1, matriz[i + 1, j].G2, matriz[i + 1, j].G3, matriz[i + 1, j].G4, matriz[i + 1, j].P, matriz[i - 1, j].P);
                         }
 
-                        if (j<divisiones_xi-1)
+                        if (j < divisiones_xi - 1)
                         {
                             matriz[i, j + 1].F1_p = F1_F2_F3_F4_p_derecha_vector[0];
                             matriz[i, j + 1].F2_p = F1_F2_F3_F4_p_derecha_vector[1];
                             matriz[i, j + 1].F3_p = F1_F2_F3_F4_p_derecha_vector[2];
                             matriz[i, j + 1].F4_p = F1_F2_F3_F4_p_derecha_vector[3];
-
-
                         }
-                        
-
-
+                    }
                         double[] G1p_G2p_G3p_G4p_Rhop_Pp = new double[6];
                         G1p_G2p_G3p_G4p_Rhop_Pp= matriz[i, j].Gp_Rhop_Pp_Predicted(norma.Gamma, F1_F2_F3_F4_p_derecha_vector[0], F1_F2_F3_F4_p_derecha_vector[1], F1_F2_F3_F4_p_derecha_vector[2], F1_F2_F3_F4_p_derecha_vector[3]);
 
@@ -168,11 +175,14 @@ namespace LibreriaClases
                            resultados= matriz[i, j+1].ComputeFinalValues(norma.Gamma, norma.R_air);
                         }
 
-                        
+                        matriz[i, j + 1].x = matriz[i, j].x + TanMax_deltax[1];
+
+
+
 
                     }
 
-
+                    
 
                 }
 
