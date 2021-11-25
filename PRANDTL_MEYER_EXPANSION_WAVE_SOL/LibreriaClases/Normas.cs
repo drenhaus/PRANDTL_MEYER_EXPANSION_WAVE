@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LibreriaClases
 {
-    class Normas
+    public class Normas
     {
         public double H { get; set; } = 40;
         public double Theta { get; set; } = 5.352 * Math.PI / 180;
