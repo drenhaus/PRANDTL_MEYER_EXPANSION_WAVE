@@ -157,10 +157,10 @@ namespace LibreriaClases
 
         public double[] Predictor_Step_Contorno_Inferior(double delta_y_t, double delta_x, double F1_arriba, double F2_arriba, double F3_arriba, double F4_arriba,  double G1_arriba, double G2_arriba, double G3_arriba, double G4_arriba)
         {
-            dF1_x = (dEta_dx) * (F1- F1_arriba) / delta_y_t + (dEta_dy) * (G1 - G1_arriba) / delta_y_t;
-            dF2_x = (dEta_dx) * (F2- F2_arriba) / delta_y_t + (dEta_dy) * (G2 - G2_arriba) / delta_y_t;
-            dF3_x = (dEta_dx) * (F3- F3_arriba) / delta_y_t + (dEta_dy) * (G3 - G3_arriba) / delta_y_t;
-            dF4_x = (dEta_dx) * (F4- F4_arriba) / delta_y_t + (dEta_dy) * (G4 - G4_arriba) / delta_y_t;
+            dF1_x = dEta_dx * (F1- F1_arriba) / delta_y_t + dEta_dy * (G1 - G1_arriba) / delta_y_t;
+            dF2_x = dEta_dx * (F2- F2_arriba) / delta_y_t + dEta_dy * (G2 - G2_arriba) / delta_y_t;
+            dF3_x = dEta_dx * (F3- F3_arriba) / delta_y_t + dEta_dy * (G3 - G3_arriba) / delta_y_t;
+            dF4_x = dEta_dx * (F4- F4_arriba) / delta_y_t + dEta_dy * (G4 - G4_arriba) / delta_y_t;
 
             double F1_p_derecha = F1 + dF1_x * delta_x;
             double F2_p_derecha = F2 + dF2_x * delta_x;
@@ -197,10 +197,10 @@ namespace LibreriaClases
             double G1_p_derecha,   double G2_p_derecha,  double G3_p_derecha, double G4_p_derecha, double F1_p_derecha_arriba, double F2_p_derecha_arriba,double F3_p_derecha_arriba, double F4_p_derecha_arriba,
              double P_p_arriba, double P_p, double P_p_abajo)
         {
-            double dF1_p_x_derecha = (dEta_dx) * ((F1_p_debajo_derecha - F1_p_derecha) / delta_y_t) + (dEta_dy * ((G1_p_debajo_derecha - G1_p_derecha) / delta_y_t));
-            double dF2_p_x_derecha = (dEta_dx) * ((F2_p_debajo_derecha - F2_p_derecha) / delta_y_t) + (dEta_dy * ((G2_p_debajo_derecha - G2_p_derecha) / delta_y_t));
-            double dF3_p_x_derecha = (dEta_dx) * ((F3_p_debajo_derecha - F3_p_derecha) / delta_y_t) + (dEta_dy * ((G3_p_debajo_derecha - G3_p_derecha) / delta_y_t));
-            double dF4_p_x_derecha = (dEta_dx) * ((F4_p_debajo_derecha - F4_p_derecha) / delta_y_t) + (dEta_dy * ((G4_p_debajo_derecha - G4_p_derecha) / delta_y_t));
+            double dF1_p_x_derecha = dEta_dx * ((F1_p_debajo_derecha - F1_p_derecha) / delta_y_t) + dEta_dy * ((G1_p_debajo_derecha - G1_p_derecha) / delta_y_t);
+            double dF2_p_x_derecha = dEta_dx * ((F2_p_debajo_derecha - F2_p_derecha) / delta_y_t) + dEta_dy * ((G2_p_debajo_derecha - G2_p_derecha) / delta_y_t);
+            double dF3_p_x_derecha = dEta_dx * ((F3_p_debajo_derecha - F3_p_derecha) / delta_y_t) + dEta_dy * ((G3_p_debajo_derecha - G3_p_derecha) / delta_y_t);
+            double dF4_p_x_derecha = dEta_dx * ((F4_p_debajo_derecha - F4_p_derecha) / delta_y_t) + dEta_dy * ((G4_p_debajo_derecha - G4_p_derecha) / delta_y_t);
 
             double SF1_p = (((Cy * (Math.Abs(P_p_arriba) - (2 * P_p) + P_p_abajo))) / (P_p_arriba + 2 * P_p + P_p_abajo)) * (F1_p_derecha_arriba - (2 * F1_p_derecha + F1_p_debajo_derecha));
             double SF2_p = (((Cy * (Math.Abs(P_p_arriba) - (2 * P_p) + P_p_abajo))) / (P_p_arriba + 2 * P_p + P_p_abajo)) * (F2_p_derecha_arriba - (2 * F2_p_derecha + F2_p_debajo_derecha));
@@ -222,12 +222,12 @@ namespace LibreriaClases
 
         }
 
-        public double[] Corrector_Step_Contorno_Inferior (double F1_p_derecha, double F2_p_derecha, double F3_p_derecha, double F4_p_derecha, double F1_p_arriba_derecha, double F2_p_arriba_derecha, double F3_p_arriba_derecha, double F4_p_arriba_derecha, double G1_p_derecha, double G2_p_derecha, double G3_p_derecha, double G4_p_derecha, double G1_p_arriba_derecha, double G2_p_arriba_derecha, double G3_p_arriba_derecha, double G4_p_arriba_derecha, double delta_x)
+        public double[] Corrector_Step_Contorno_Inferior (double delta_y_t, double F1_p_derecha, double F2_p_derecha, double F3_p_derecha, double F4_p_derecha, double F1_p_arriba_derecha, double F2_p_arriba_derecha, double F3_p_arriba_derecha, double F4_p_arriba_derecha, double G1_p_derecha, double G2_p_derecha, double G3_p_derecha, double G4_p_derecha, double G1_p_arriba_derecha, double G2_p_arriba_derecha, double G3_p_arriba_derecha, double G4_p_arriba_derecha, double delta_x)
         {
-            double dF1_p_x_derecha = (dEta_dx) * ((F1_p_derecha - F1_p_arriba_derecha) / delta_y_t) + (dEta_dy * ((G1_p_derecha - G1_p_arriba_derecha) / delta_y_t));
-            double dF2_p_x_derecha = (dEta_dx) * ((F2_p_derecha - F2_p_arriba_derecha) / delta_y_t) + (dEta_dy * ((G2_p_derecha - G2_p_arriba_derecha) / delta_y_t));
-            double dF3_p_x_derecha = (dEta_dx) * ((F3_p_derecha - F3_p_arriba_derecha) / delta_y_t) + (dEta_dy * ((G3_p_derecha - G3_p_arriba_derecha) / delta_y_t));
-            double dF4_p_x_derecha = (dEta_dx) * ((F4_p_derecha - F4_p_arriba_derecha) / delta_y_t) + (dEta_dy * ((G4_p_derecha - G4_p_arriba_derecha) / delta_y_t));
+            double dF1_p_x_derecha = dEta_dx * ((F1_p_derecha - F1_p_arriba_derecha) / delta_y_t) + (dEta_dy * ((G1_p_derecha - G1_p_arriba_derecha) / delta_y_t));
+            double dF2_p_x_derecha = dEta_dx * ((F2_p_derecha - F2_p_arriba_derecha) / delta_y_t) + (dEta_dy * ((G2_p_derecha - G2_p_arriba_derecha) / delta_y_t));
+            double dF3_p_x_derecha = dEta_dx * ((F3_p_derecha - F3_p_arriba_derecha) / delta_y_t) + (dEta_dy * ((G3_p_derecha - G3_p_arriba_derecha) / delta_y_t));
+            double dF4_p_x_derecha = dEta_dx * ((F4_p_derecha - F4_p_arriba_derecha) / delta_y_t) + (dEta_dy * ((G4_p_derecha - G4_p_arriba_derecha) / delta_y_t));
 
             double dF1_x_av = 0.5 * (dF1_x + dF1_p_x_derecha);
             double dF2_x_av = 0.5 * (dF2_x + dF2_p_x_derecha);
@@ -243,7 +243,7 @@ namespace LibreriaClases
             return F_Derecha;
         }
 
-        public double[] Corrector_Step_Contorno_Superior(double F1_p_derecha, double F2_p_derecha, double F3_p_derecha, double F4_p_derecha, double F1_p_debajo_derecha, double F2_p_debajo_derecha, double F3_p_debajo_derecha, double F4_p_debajo_derecha, double G1_p_derecha, double G2_p_derecha, double G3_p_derecha, double G4_p_derecha, double G1_p_debajo_derecha, double G2_p_debajo_derecha, double G3_p_debajo_derecha, double G4_p_debajo_derecha, double delta_x)
+        public double[] Corrector_Step_Contorno_Superior(double delta_y_t, double F1_p_derecha, double F2_p_derecha, double F3_p_derecha, double F4_p_derecha, double F1_p_debajo_derecha, double F2_p_debajo_derecha, double F3_p_debajo_derecha, double F4_p_debajo_derecha, double G1_p_derecha, double G2_p_derecha, double G3_p_derecha, double G4_p_derecha, double G1_p_debajo_derecha, double G2_p_debajo_derecha, double G3_p_debajo_derecha, double G4_p_debajo_derecha, double delta_x)
         {
             double dF1_p_x_derecha = (dEta_dx) * ((F1_p_debajo_derecha - F1_p_derecha) / delta_y_t) + (dEta_dy * ((G1_p_debajo_derecha - G1_p_derecha) / delta_y_t));
             double dF2_p_x_derecha = (dEta_dx) * ((F2_p_debajo_derecha - F2_p_derecha) / delta_y_t) + (dEta_dy * ((G2_p_debajo_derecha - G2_p_derecha) / delta_y_t));
