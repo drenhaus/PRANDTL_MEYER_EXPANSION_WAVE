@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Loaded="Loaded">
+    <Grid x:Name="grid1" Loaded="Loaded">
+        <Grid/>
+
 
     </Grid>
 </Window>

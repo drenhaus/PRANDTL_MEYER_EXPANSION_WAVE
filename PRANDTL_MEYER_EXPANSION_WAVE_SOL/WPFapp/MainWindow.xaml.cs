@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LibreriaClases;
+using System.Data;
 
 namespace WPFapp
 {
@@ -33,9 +34,9 @@ namespace WPFapp
         {
             m.DefinirMatriz();
             m.Compute();
-            m.Fill_DataTable();
+           
+            grid1.DataContext= m.Fill_DataTable().DefaultView;
 
-            
         }
     }
 }

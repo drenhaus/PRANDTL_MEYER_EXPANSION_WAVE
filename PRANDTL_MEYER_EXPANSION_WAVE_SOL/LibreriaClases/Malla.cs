@@ -210,7 +210,7 @@ namespace LibreriaClases
 
         
 
-        public void Fill_DataTable()
+        public DataTable Fill_DataTable()
         {         
             
             for (int j=0;j<divisiones_xi; j++)
@@ -279,8 +279,8 @@ namespace LibreriaClases
                 F4_table.Rows.Add(F4_R);
 
             }
-            
-        
+
+            return Temperature_table;
         
         }
 

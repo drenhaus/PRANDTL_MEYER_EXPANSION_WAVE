@@ -73,6 +73,7 @@ namespace LibreriaClases
         public double dF3_x_av { get; set; }
         public double dF4_x_av { get; set; }
 
+        // for the initial data line
         public void Compute_G_F(double Gamma)
         {
 
