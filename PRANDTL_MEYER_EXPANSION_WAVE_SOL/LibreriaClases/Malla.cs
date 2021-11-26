@@ -8,7 +8,7 @@ namespace LibreriaClases
     public class Malla
     {
         int divisiones_eta=41; // nº filas -- i
-        int divisiones_xi = 81; // nº columnas -- j
+        int divisiones_xi = 87; // nº columnas -- j
         double delta_y_t = 0.025;
         double Cy = 0.5;
         Normas norma = new Normas();
@@ -70,9 +70,9 @@ namespace LibreriaClases
             }
 
             //We define all the y_t values of the matrix
-            for (int j = 0; j < divisiones_xi; j++)
+            for (int i = 1; i < divisiones_eta; i++)
             {
-                for (int i = 1; i < divisiones_eta; i++)
+                for (int j = 0; j < divisiones_xi; j++)
                 {
                     matriz[i, j].Compute_y_t(matriz[i - 1, j].y_t, delta_y_t);
                 }
@@ -91,7 +91,7 @@ namespace LibreriaClases
 
 
                     double TanMax=-5; // we define a negative value so any abs value would be bigger
-                for (int i = 0; i < divisiones_eta; i++)
+                    for (int i = 0; i < divisiones_eta; i++)
                     {
                         double TanMax2 = matriz[i, j].TanMax(norma.Theta);
                         if (Math.Abs(TanMax2)>TanMax )
@@ -101,7 +101,6 @@ namespace LibreriaClases
                     double delta_x = 0.5 * delta_y / TanMax;
 
                     
-
                     // we set all the delta_x values
                     for (int i=0;i<divisiones_eta;i++)
                     {
@@ -190,16 +189,16 @@ namespace LibreriaClases
 
                     }
 
-                    for (int i = 0; i < divisiones_eta; i++)
+                    for (int w = 0; w < divisiones_eta; w++)
                     {
-                        if (i == 0 && j < divisiones_xi - 1)
+                        if (w == 0 && j < divisiones_xi - 1)
                         {
-                            matriz[i, j + 1].Wall_Bounday_Condition(norma.Gamma, norma.R_air, norma.E, norma.Theta);
+                            matriz[w, j + 1].Wall_Bounday_Condition(norma.Gamma, norma.R_air, norma.E, norma.Theta);
                         }
 
-                        if (i != 0 && j < divisiones_xi - 1)
+                        if (w != 0 && j < divisiones_xi - 1)
                         {
-                            matriz[i, j + 1].ComputeFinalValues(norma.Gamma, norma.R_air);
+                            matriz[w, j + 1].ComputeFinalValues(norma.Gamma, norma.R_air);
                         }
 
                        

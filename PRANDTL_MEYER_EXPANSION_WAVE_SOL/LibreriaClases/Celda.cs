@@ -271,12 +271,12 @@ namespace LibreriaClases
             double B = Gamma / (Gamma - 1) * F1 * F2;
             double C = -(Gamma + 1) / (2 * (Gamma - 1)) * Math.Pow(F1, 3);
 
-            double Rho_cal = (-B + Math.Sqrt(Math.Pow(B, 2 - (4 * A * C)))) / (2 * A);
+            double Rho_cal = (-B + Math.Sqrt(Math.Pow(B, 2) - (4 * A * C))) / (2 * A);
             double u_cal = F1 / Rho_cal;
             double v_cal = F3 / F1;
             double P_cal = F2 - (F1 * u_cal);
             double T_cal = P_cal / (R_aire * Rho_cal);
-            double M_cal = (Math.Sqrt((Math.Pow(u_cal, 2)) + (Math.Pow(v_cal, 2)))) / Math.Sqrt(Gamma * R_aire * T_cal);
+            double M_cal = Math.Sqrt((Math.Pow(u_cal, 2)) + (Math.Pow(v_cal, 2))) / Math.Sqrt(Gamma * R_aire * T_cal);
 
             double phi;
             if (x < E)
