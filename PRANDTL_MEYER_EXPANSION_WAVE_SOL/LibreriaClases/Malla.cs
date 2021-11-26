@@ -89,7 +89,7 @@ namespace LibreriaClases
                     {
                         matriz[i, j].xy_Transformation_ToEtaXi(norma.H, norma.E, norma.Theta);
                         double TanMax2 = matriz[i, j].TanMax(norma.Theta);
-                        if (TanMax2>TanMax)
+                        if (TanMax2>=TanMax)
                         { TanMax = TanMax2; }
                     }
                     double delta_y = matriz[1, j].y - matriz[0, j].y;

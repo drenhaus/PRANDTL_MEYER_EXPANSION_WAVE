@@ -14,6 +14,8 @@ namespace LibreriaClases
         public double a { get; set; }
         public double M_angle { get; set; }
 
+        public double tan_max { get; set; }
+
 
         public double F1 { get; set; }
         public double F2 { get; set; }
@@ -115,7 +117,7 @@ namespace LibreriaClases
 
         public double TanMax(double Theta)
         {
-            double tan_max = Math.Max(Math.Abs(Math.Tan(Theta + this.M_angle)), Math.Abs(Math.Tan(Theta - this.M_angle)));
+            this.tan_max = Math.Max(Math.Abs(Math.Tan(Theta + this.M_angle)), Math.Abs(Math.Tan(Theta - this.M_angle)));
             return tan_max;
             
         }
@@ -272,7 +274,7 @@ namespace LibreriaClases
             double B = Gamma / (Gamma - 1) * F1 * F2;
             double C = -(Gamma + 1) / (2 * (Gamma - 1)) * Math.Pow(F1, 3);
 
-            double Rho_cal = (-B + Math.Sqrt(Math.Pow(B, 2 - (4 * A * C)))) / (2 * A);
+            double Rho_cal = (-B + Math.Sqrt(Math.Pow(B, 2) - (4 * A * C))) / (2 * A);
             double u_cal = F1 / Rho_cal;
             double v_cal = F3 / F1;
             double P_cal = F2 - (F1 * u_cal);
@@ -289,7 +291,12 @@ namespace LibreriaClases
                 phi = theta - Math.Atan(Math.Abs(v_cal) / u_cal);
 
             }
-            double f_cal = Math.Sqrt((Gamma + 1) / (Gamma - 1)) * Math.Atan(Math.Sqrt((Gamma - 1) / (Gamma + 1) * (Math.Pow(M_cal, 2) - 1))) - Math.Atan(Math.Sqrt(Math.Pow(M_cal, 2) - 1));
+            double patata = Math.Sqrt((Gamma + 1) / (Gamma - 1));
+            double moniato = Math.Sqrt((Gamma - 1) / (Gamma + 1) * (M_cal* M_cal - 1));
+            double pastanaga = Math.Atan(moniato);
+            double mandarina = Math.Atan(Math.Sqrt(Math.Pow(M_cal, 2) - 1));
+
+            double f_cal = patata * pastanaga - mandarina;
             double f_act = f_cal + phi;
 
 
