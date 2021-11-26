@@ -89,21 +89,22 @@ namespace LibreriaClases
 
         }
 
-
         public void Compute_y_t(double y_t_debajo, double delta_y_t)
-        { this.y_t = y_t_debajo + delta_y_t; }
+        { 
+            this.y_t = y_t_debajo + delta_y_t; 
+        }
 
         public void xy_Transformation_ToEtaXi(double H, double E, double Theta)
         { if (x < E)
             {
-                y_s = 0;
+                this.y_s = 0;
                 this.h= H;
                 this.dEta_dx = 0;
             }
             else
             {
-                y_s = -(x-E) * Math.Tan(Theta);
-                h = H+(x-E) * Math.Tan(Theta) ;
+                this.y_s = -(x-E) * Math.Tan(Theta);
+                this.h = H+((x-E) * Math.Tan(Theta)) ;
                 double Eta = (y - y_s) / h;
                 this.dEta_dx = Math.Tan(Theta) / h *(1-Eta);
             }
