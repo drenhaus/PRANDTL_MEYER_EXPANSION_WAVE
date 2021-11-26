@@ -84,21 +84,32 @@ namespace LibreriaClases
 
                 if (matriz[0,j].x<=norma.L)
                 {
-                    double TanMax = -5; // we define a negative value so any abs value would be bigger
                     for (int i = 0; i < divisiones_eta; i++)
                     {
                         matriz[i, j].xy_Transformation_ToEtaXi(norma.H, norma.E, norma.Theta);
+                    }
+
+
+                    double TanMax=-5; // we define a negative value so any abs value would be bigger
+                for (int i = 0; i < divisiones_eta; i++)
+                    {
                         double TanMax2 = matriz[i, j].TanMax(norma.Theta);
-                        if (TanMax2>TanMax)
-                        { TanMax = TanMax2; }
+                        if (Math.Abs(TanMax2)>TanMax )
+                        { TanMax = Math.Abs(TanMax2); }
                     }
                     double delta_y = matriz[1, j].y - matriz[0, j].y;
                     double delta_x = 0.5 * delta_y / TanMax;
+
+                    
 
                     // we set all the delta_x values
                     for (int i=0;i<divisiones_eta;i++)
                     {
                         matriz[i, j].delta_x = delta_x;
+                        if (j < divisiones_xi - 1)
+                        {
+                            matriz[i, j + 1].x = matriz[i, j].x + matriz[i, j].delta_x;
+                        }
                     }
 
                     for (int i = 0; i < divisiones_eta; i++)
@@ -191,10 +202,7 @@ namespace LibreriaClases
                             matriz[i, j + 1].ComputeFinalValues(norma.Gamma, norma.R_air);
                         }
 
-                        if (j < divisiones_xi - 1)
-                        {
-                            matriz[i, j + 1].x = matriz[i, j].x + matriz[i, j].delta_x;
-                        }
+                       
                     }
 
 
