@@ -60,9 +60,9 @@ namespace LibreriaClases
                 matriz[i, 0].a = norma.a_in;
                 matriz[i, 0].M = norma.M_in;
                 matriz[i, 0].u = norma.u_in;
-                matriz[i, 0].v = norma.u_in;
+                matriz[i, 0].v = norma.v_in;
                 matriz[i, 0].T = norma.T_in;
-                matriz[i, 0].P = norma.T_in;
+                matriz[i, 0].P = norma.P_in;
                 matriz[i, 0].Rho = norma.Rho_in;
                 matriz[i, 0].M_angle = norma.M_angle;
                 matriz[i, 0].Compute_G_F(norma.Gamma);
@@ -208,8 +208,6 @@ namespace LibreriaClases
             }
 
 
-        
-
         public DataTable Fill_DataTable()
         {         
             
@@ -283,8 +281,6 @@ namespace LibreriaClases
             return Temperature_table;
         
         }
-
-
 
 
     }

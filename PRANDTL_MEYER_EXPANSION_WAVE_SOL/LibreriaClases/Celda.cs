@@ -318,7 +318,6 @@ namespace LibreriaClases
 
         }
 
-
         public void ComputeFinalValues(double Gamma, double R_aire)
         {
             double A = F3 * F3 / (2 * F1) - F4;
