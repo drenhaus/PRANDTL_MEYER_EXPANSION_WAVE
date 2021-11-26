@@ -164,7 +164,7 @@ namespace LibreriaClases
                         {
                             F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, matriz[i, j].delta_x, delta_y_t, matriz[i - 1, j+1].F1_p, matriz[i - 1, j+1].F2_p, matriz[i - 1, j+1].F3_p, matriz[i - 1, j+1].F4_p, matriz[i-1, j+1].F1_p, matriz[i, j+1].F2_p, matriz[i, j+1].F3_p,
                           matriz[i, j+1].F4_p, matriz[i - 1, j].G1_p, matriz[i - 1, j+1].G2_p, matriz[i - 1, j+1].G3_p, matriz[i - 1, j+1].G4_p, matriz[i, j+1].G1_p, matriz[i, j].G2_p, matriz[i, j+1].G3_p, matriz[i, j+1].G4_p,
-                          matriz[i + 1, j+1].F1_p, matriz[i + 1, j+1].F2_p, matriz[i + 1, j+1].F3_p, matriz[i + 1, j].F4_p, matriz[i + 1, j].P_p, matriz[i, j].P_p, matriz[i - 1, j].P_p);
+                          matriz[i + 1, j+1].F1_p, matriz[i + 1, j+1].F2_p, matriz[i + 1, j+1].F3_p, matriz[i + 1, j].F4_p, matriz[i + 1, j+1].P_p, matriz[i, j+1].P_p, matriz[i - 1, j+1].P_p);
 
                         }
 
