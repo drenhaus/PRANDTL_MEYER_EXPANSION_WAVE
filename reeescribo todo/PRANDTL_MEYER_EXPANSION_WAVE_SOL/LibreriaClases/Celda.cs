@@ -309,6 +309,22 @@ namespace LibreriaClases
             double f_cal = patata * pastanaga - mandarina;
             double f_act = f_cal + phi;
 
+            //double a_int = 1.1;
+            //double b_int = 2.9;
+            //double precision = 0.0000001;
+            //double zero_f1 = Math.Sqrt((Gamma + 1) / (Gamma - 1)) * (Math.Atan(Math.Sqrt(((Gamma - 1) / (Gamma + 1)) * (Math.Pow(a_int, 2) - 1)))) - (Math.Atan(Math.Sqrt(Math.Pow(a_int, 2) - 1))) - f_act;
+            //double zero_f2 = Math.Sqrt((Gamma + 1) / (Gamma - 1)) * (Math.Atan(Math.Sqrt(((Gamma - 1) / (Gamma + 1)) * (Math.Pow(((a_int + b_int) / 2), 2) - 1)))) - (Math.Atan(Math.Sqrt(Math.Pow(((a_int + b_int) / 2), 2) - 1))) - f_act;
+            //while ((b_int - a_int) / 2 > precision)
+            //{
+            //    if (zero_f1 * zero_f2 <= 0)
+            //        b_int = (a_int + b_int) / 2;
+            //    else
+            //        a_int = (a_int + b_int) / 2;
+            //    zero_f1 = Math.Sqrt((Gamma + 1) / (Gamma - 1)) * (Math.Atan(Math.Sqrt(((Gamma - 1) / (Gamma + 1)) * (Math.Pow(a_int, 2) - 1)))) - (Math.Atan(Math.Sqrt(Math.Pow(a_int, 2) - 1))) - f_act;
+            //    zero_f2 = Math.Sqrt((Gamma + 1) / (Gamma - 1)) * (Math.Atan(Math.Sqrt(((Gamma - 1) / (Gamma + 1)) * (Math.Pow(((a_int + b_int) / 2), 2) - 1)))) - (Math.Atan(Math.Sqrt(Math.Pow(((a_int + b_int) / 2), 2) - 1))) - f_act;
+            //}
+
+            //double M_act = (a_int + b_int) / 2;
 
             double M_act = compute_M_act(Gamma, f_act); // posible lugar de fallo
 

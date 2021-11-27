@@ -8,10 +8,11 @@ namespace LibreriaClases
 {
     public class Malla
     {
-        int rows=5; //   j filas
-        int columns = 10; // i les columnas
-        double delta_y_t = 0.25;
-        double Cy = 0.5;
+        int rows=41; //   j filas
+        int columns = 120; // i les columnas
+        double delta_y_t = 0.025;
+        double Cy = 0.6;
+        double C = 0.5;
 
         double delta_x;
         double delta_y;
@@ -87,7 +88,7 @@ namespace LibreriaClases
 
                 }
                 double max_tan = max_tan_Array.Max();
-                delta_x = Cy * delta_y / max_tan;
+                delta_x = C * delta_y / max_tan;
                 delta_xi = delta_x;
                 for (int i = 0; i < rows; i++)
                 {
@@ -201,12 +202,6 @@ namespace LibreriaClases
                         }
 
                     }
-
-
-
-                    
-
-                    
 
                 }
 
