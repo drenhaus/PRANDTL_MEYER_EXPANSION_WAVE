@@ -35,6 +35,8 @@ namespace WPFapp
             m.DefinirMatriz();
             m.Compute();
 
+            DataTable temperature = m.Fill_DataTable();
+            grid2.DataContext = temperature.DefaultView;
 
         }
     }
