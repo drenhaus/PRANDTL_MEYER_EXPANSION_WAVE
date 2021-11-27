@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
+using System.Linq;
 
 namespace LibreriaClases
 {
@@ -84,16 +85,16 @@ namespace LibreriaClases
                 {
                     matriz[i, j].xy_Transformation_ToEtaXi(norma.H, norma.E, norma.Theta);
                 }
-                double TanMax = -5; // we define a negative value so any abs value would be bigger
-                
+                double[] TanMax = new double[divisiones_eta];
+
                 for (int i = 0; i < divisiones_eta; i++)
                 {
-                    double TanMax2 = matriz[i, j].TanMax(norma.Theta);
-                        if (TanMax2>=TanMax)
-                        { TanMax = TanMax2; }
+                    TanMax[i] = matriz[i, j].TanMax(norma.Theta);
+                       
                 }
+                    double tan_max1 = TanMax.Max();
                     double delta_y = matriz[2, j].y - matriz[1, j].y;
-                    double delta_x = Cy * delta_y / TanMax;
+                    double delta_x = Cy * delta_y / tan_max1;
 
                     // we set all the delta_x values
                     for (int i=0; i<divisiones_eta; i++)
@@ -156,13 +157,15 @@ namespace LibreriaClases
                         {
                             F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Superior(delta_y_t, matriz[i, j+1].F1_p, matriz[i, j+1].F2_p, matriz[i, j+1].F3_p, matriz[i, j+1].F4_p, matriz[i - 1, j+1].F1_p,
                                 matriz[i - 1, j+1].F2_p, matriz[i - 1, j+1].F3_p, matriz[i - 1, j+1].F4_p, matriz[i, j+1].G1_p, matriz[i, j+1].G2_p, matriz[i, j+1].G3_p, matriz[i, j+1].G4_p, matriz[i - 1, j+1].G1_p,
-                                matriz[i - 1, j+1].G2_p, matriz[i - 1, j+1].G3_p, matriz[i - 1, j+1].G4_p, delta_x);
+                                matriz[i - 1, j].G2_p, matriz[i - 1, j].G3_p, matriz[i - 1, j].G4_p, delta_x);
 
                         }
                         if (i > 0 && i < divisiones_eta - 1) 
                         {
-                            F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, delta_x, delta_y_t, matriz[i - 1, j+1].F1_p, matriz[i - 1, j+1].F2_p, matriz[i - 1, j+1].F3_p, matriz[i - 1, j+1].F4_p, matriz[i-1, j+1].F1_p, matriz[i, j+1].F2_p, matriz[i, j+1].F3_p,
-                          matriz[i, j+1].F4_p, matriz[i - 1, j+1].G1_p, matriz[i - 1, j+1].G2_p, matriz[i - 1, j+1].G3_p, matriz[i - 1, j+1].G4_p, matriz[i, j+1].G1_p, matriz[i, j+1].G2_p, matriz[i, j+1].G3_p, matriz[i, j+1].G4_p,
+                          F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, delta_x, delta_y_t, matriz[i - 1, j+1].F1_p, matriz[i - 1, j+1].F2_p, matriz[i - 1, j+1].F3_p, matriz[i - 1, j+1].F4_p, 
+                          matriz[i, j+1].F1_p, matriz[i, j+1].F2_p, matriz[i, j+1].F3_p,
+                          matriz[i, j+1].F4_p, matriz[i - 1, j+1].G1_p, matriz[i - 1, j+1].G2_p, matriz[i - 1, j+1].G3_p, matriz[i - 1, j+1].G4_p, matriz[i, j+1].G1_p, 
+                          matriz[i, j+1].G2_p, matriz[i, j+1].G3_p, matriz[i, j+1].G4_p,
                           matriz[i + 1, j+1].F1_p, matriz[i + 1, j+1].F2_p, matriz[i + 1, j+1].F3_p, matriz[i + 1, j+1].F4_p, matriz[i + 1, j+1].P_p, matriz[i, j+1].P_p, matriz[i - 1, j+1].P_p);
 
                         }
