@@ -7,9 +7,9 @@ namespace LibreriaClases
 {
     public class Malla
     {
-        int divisiones_eta=41; // nº filas -- i
-        int divisiones_xi = 81; // nº columnas -- j
-        double delta_y_t = 0.025;
+        int divisiones_eta=5; // nº filas -- i
+        int divisiones_xi = 10; // nº columnas -- j
+        double delta_y_t = 0.25;
         double Cy = 0.5;
         Normas norma = new Normas();
         Celda[,] matriz;
