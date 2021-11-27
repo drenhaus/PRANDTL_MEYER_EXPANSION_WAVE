@@ -134,37 +134,38 @@ namespace LibreriaClases
 
         public double[] Predictor_Step_Principal (double Cy, double delta_y_t,double delta_x, double F1_arriba, double F2_arriba,double F3_arriba, double F4_arriba, double F1_abajo,double F2_abajo, double F3_abajo, double F4_abajo ,double G1_arriba,double G2_arriba, double G3_arriba, double G4_arriba, double P_arriba, double P_abajo)
         { 
-            dF1_x = dEta_dx * (F1 - F1_arriba) / delta_y_t + dEta_dy * (G1 - G1_arriba) / delta_y_t;
-            dF2_x = dEta_dx * (F2 - F2_arriba) / delta_y_t + dEta_dy * (G2 - G2_arriba) / delta_y_t;
-            dF3_x = dEta_dx * (F3 - F3_arriba) / delta_y_t + dEta_dy * (G3 - G3_arriba) / delta_y_t;
-            dF4_x = dEta_dx * (F4 - F4_arriba) / delta_y_t + dEta_dy * (G4 - G4_arriba) / delta_y_t;
+            dF1_x = (dEta_dx * ((F1 - F1_arriba) / delta_y_t)) + (dEta_dy * ((G1 - G1_arriba) / delta_y_t));
+            dF2_x = (dEta_dx * ((F2 - F2_arriba) / delta_y_t)) + (dEta_dy * ((G2 - G2_arriba) / delta_y_t));
+            dF3_x = (dEta_dx * ((F3 - F3_arriba) / delta_y_t)) + (dEta_dy * ((G3 - G3_arriba) / delta_y_t));
+            dF4_x = (dEta_dx * ((F4 - F4_arriba) / delta_y_t)) + (dEta_dy * ((G4 - G4_arriba) / delta_y_t));
 
-            double SF1 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F1_arriba - (2 * F1) + F1_abajo);
-            double SF2 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F2_arriba - (2 * F2) + F2_abajo);
-            double SF3 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F3_arriba - (2 * F3) + F3_abajo);
-            double SF4 = Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo) / (P_arriba + 2 * P + P_abajo)) * (F4_arriba - (2 * F4) + F4_abajo);
+            double SF1 = ((Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo))) / (P_arriba + 2 * P + P_abajo)) * (F1_arriba - (2 * F1) + F1_abajo);
+            double SF2 = ((Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo))) / (P_arriba + 2 * P + P_abajo)) * (F2_arriba - (2 * F2) + F2_abajo);
+            double SF3 = ((Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo))) / (P_arriba + 2 * P + P_abajo)) * (F3_arriba - (2 * F3) + F3_abajo);
+            double SF4 = ((Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo))) / (P_arriba + 2 * P + P_abajo)) * (F4_arriba - (2 * F4) + F4_abajo);
 
-            double F1_p_derecha = F1 + dF1_x * delta_x + SF1;
-            double F2_p_derecha = F2 + dF2_x * delta_x + SF2;
-            double F3_p_derecha = F3 + dF3_x * delta_x + SF3;
-            double F4_p_derecha = F4 + dF4_x * delta_x + SF4;
-            double[] F_p_derecha_vector = new double[] { F1_p_derecha, F2_p_derecha, F3_p_derecha, F4_p_derecha };
+            double F1_p_derecha = F1 + (dF1_x * delta_x) + SF1;
+            double F2_p_derecha = F2 + (dF2_x * delta_x) + SF2;
+            double F3_p_derecha = F3 + (dF3_x * delta_x) + SF3;
+            double F4_p_derecha = F4 + (dF4_x * delta_x) + SF4;
+            double[] F_p_derecha_vector = { F1_p_derecha, F2_p_derecha, F3_p_derecha, F4_p_derecha };
 
             return F_p_derecha_vector;
         }
 
         public double[] Predictor_Step_Contorno_Superior (double delta_y_t, double delta_x, double F1_abajo, double F2_abajo, double F3_abajo, double F4_abajo, double G1_abajo, double G2_abajo, double G3_abajo, double G4_abajo)
         {
-            dF1_x = dEta_dx * (F1_abajo - F1) / delta_y_t + dEta_dy * (G1_abajo - G1) / delta_y_t;
-            dF2_x = dEta_dx * (F2_abajo - F2) / delta_y_t + dEta_dy * (G2_abajo - G2) / delta_y_t;
-            dF3_x = dEta_dx * (F3_abajo - F3) / delta_y_t + dEta_dy * (G3_abajo - G3) / delta_y_t;
-            dF4_x = dEta_dx * (F4_abajo - F4) / delta_y_t + dEta_dy * (G4_abajo - G4) / delta_y_t;
+            dF1_x = (dEta_dx * ((F1_abajo - F1) / delta_y_t)) + (dEta_dy * ((G1_abajo - G1) / delta_y_t));
+            dF2_x = (dEta_dx * ((F2_abajo - F2) / delta_y_t)) + (dEta_dy * ((G2_abajo - G2) / delta_y_t));
+            dF3_x = (dEta_dx * ((F3_abajo - F3) / delta_y_t)) + (dEta_dy * ((G3_abajo - G3) / delta_y_t));
+            dF4_x = (dEta_dx * ((F4_abajo - F4) / delta_y_t)) + (dEta_dy * ((G4_abajo - G4) / delta_y_t));
 
-            double F1_p_derecha = F1 + dF1_x * delta_x;
-            double F2_p_derecha = F2 + dF2_x * delta_x;
-            double F3_p_derecha = F3 + dF3_x * delta_x;
-            double F4_p_derecha = F4 + dF4_x * delta_x;
-            double[] F_p_derecha_vector = new double[] { F1_p_derecha, F2_p_derecha, F3_p_derecha, F4_p_derecha };
+            double F1_p_derecha = F1 + (dF1_x * delta_x);
+            double F2_p_derecha = F2 + (dF2_x * delta_x);
+            double F3_p_derecha = F3 + (dF3_x * delta_x);
+            double F4_p_derecha = F4 + (dF4_x * delta_x);
+
+            double[] F_p_derecha_vector = { F1_p_derecha, F2_p_derecha, F3_p_derecha, F4_p_derecha };
 
             return F_p_derecha_vector;
         }

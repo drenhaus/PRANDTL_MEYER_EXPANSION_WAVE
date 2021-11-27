@@ -99,44 +99,43 @@ namespace LibreriaClases
                         double[] F1_F2_F3_F4_p_derecha_vector;
                         if (i == 0)
                         {
-                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Inferior(delta_y_t, delta_x, matriz[i + 1, j].F1, matriz[i + 1, j].F2, 
+                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Inferior(delta_y_t, delta_xi, matriz[i + 1, j].F1, matriz[i + 1, j].F2, 
                                                                                                          matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i + 1, j].G1, 
                                                                                                          matriz[i + 1, j].G2, matriz[i + 1, j].G3, matriz[i + 1, j].G4);
                         }
-                        if (i == rows - 1)
+                        else if (i == rows - 1)
                         {
-                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Superior(delta_y_t, matriz[i, j].delta_x, matriz[i - 1, j].F1, matriz[i - 1, j].F2, matriz[i - 1, j].F3, matriz[i - 1, j].F4, matriz[i - 1, j].G1, matriz[i - 1, j].G2, matriz[i - 1, j].G3, matriz[i - 1, j].G4);
+                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Superior(delta_y_t, delta_xi, matriz[i - 1, j].F1, matriz[i - 1, j].F2, 
+                                                                                                         matriz[i - 1, j].F3, matriz[i - 1, j].F4, matriz[i - 1, j].G1, 
+                                                                                                         matriz[i - 1, j].G2, matriz[i - 1, j].G3, matriz[i - 1, j].G4);
                         }
-                        if (i > 0 && i < rows - 1)
+                        else
                         {
-                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Principal(Cy, delta_y_t, matriz[i, j].delta_x, matriz[i + 1, j].F1, matriz[i + 1, j].F2, matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i - 1, j].F1, matriz[i - 1, j].F2, matriz[i - 1, j].F3, matriz[i - 1, j].F4, matriz[i + 1, j].G1, matriz[i + 1, j].G2, matriz[i + 1, j].G3, matriz[i + 1, j].G4, matriz[i + 1, j].P, matriz[i - 1, j].P);
+                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Principal(Cy, delta_y_t, delta_xi, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
+                                                                                                 matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i - 1, j].F1,
+                                                                                                 matriz[i - 1, j].F2, matriz[i - 1, j].F3, matriz[i - 1, j].F4,
+                                                                                                 matriz[i + 1, j].G1, matriz[i + 1, j].G2, matriz[i + 1, j].G3,
+                                                                                                 matriz[i + 1, j].G4, matriz[i + 1, j].P, matriz[i - 1, j].P);
                         }
-
-                        if (j < columns - 1)
-                        {
-                            matriz[i, j + 1].F1_p = F1_F2_F3_F4_p_derecha_vector[0];
-                            matriz[i, j + 1].F2_p = F1_F2_F3_F4_p_derecha_vector[1];
-                            matriz[i, j + 1].F3_p = F1_F2_F3_F4_p_derecha_vector[2];
-                            matriz[i, j + 1].F4_p = F1_F2_F3_F4_p_derecha_vector[3];
-                        }
+                        matriz[i, j + 1].F1_p = F1_F2_F3_F4_p_derecha_vector[0];
+                        matriz[i, j + 1].F2_p = F1_F2_F3_F4_p_derecha_vector[1];
+                        matriz[i, j + 1].F3_p = F1_F2_F3_F4_p_derecha_vector[2];
+                        matriz[i, j + 1].F4_p = F1_F2_F3_F4_p_derecha_vector[3];
                     }
+
+
 
                     for (int i = 0; i < rows; i++)
                     {
-                        if (j < columns - 1)
-                        {
-                            double[] G1p_G2p_G3p_G4p_Rhop_Pp = matriz[i, j].Gp_Rhop_Pp_Predicted(norma.Gamma, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p, matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p);
+                        double[] G1p_G2p_G3p_G4p_Rhop_Pp = matriz[i, j].Gp_Rhop_Pp_Predicted(norma.Gamma, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p, matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p);
 
-                            if (j < columns - 1)
-                            {
-                                matriz[i, j + 1].G1_p = G1p_G2p_G3p_G4p_Rhop_Pp[0];
-                                matriz[i, j + 1].G2_p = G1p_G2p_G3p_G4p_Rhop_Pp[1];
-                                matriz[i, j + 1].G3_p = G1p_G2p_G3p_G4p_Rhop_Pp[2];
-                                matriz[i, j + 1].G4_p = G1p_G2p_G3p_G4p_Rhop_Pp[3];
-                                matriz[i, j + 1].Rho_p = G1p_G2p_G3p_G4p_Rhop_Pp[4];
-                                matriz[i, j + 1].P_p = G1p_G2p_G3p_G4p_Rhop_Pp[5];
-                            }
-                        }
+                        matriz[i, j + 1].G1_p = G1p_G2p_G3p_G4p_Rhop_Pp[0];
+                        matriz[i, j + 1].G2_p = G1p_G2p_G3p_G4p_Rhop_Pp[1];
+                        matriz[i, j + 1].G3_p = G1p_G2p_G3p_G4p_Rhop_Pp[2];
+                        matriz[i, j + 1].G4_p = G1p_G2p_G3p_G4p_Rhop_Pp[3];
+                        matriz[i, j + 1].Rho_p = G1p_G2p_G3p_G4p_Rhop_Pp[4];
+                        matriz[i, j + 1].P_p = G1p_G2p_G3p_G4p_Rhop_Pp[5];
+
                     }
                     for (int i = 0; i < rows; i++)
                     {
