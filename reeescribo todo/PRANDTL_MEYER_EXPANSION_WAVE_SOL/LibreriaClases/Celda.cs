@@ -188,20 +188,19 @@ namespace LibreriaClases
 
         public double[] Gp_Rhop_Pp_Predicted(double Gamma, double F1_p_derecha, double F2_p_derecha, double F3_p_derecha, double F4_p_derecha)
         { 
-            double A_p=Math.Pow(F3_p_derecha,2)/(2*F1_p_derecha) - F4_p_derecha;
-            double B_p=Gamma/(Gamma - 1)*F1_p_derecha*F2_p_derecha;
-            double C_p=-(Gamma + 1)/(2*(Gamma - 1))*Math.Pow(F1_p_derecha,3);
+            double A_p= ((Math.Pow(F3_p_derecha,2))/(2*F1_p_derecha)) - F4_p_derecha;
+            double B_p= (Gamma/(Gamma - 1))*F1_p_derecha*F2_p_derecha;
+            double C_p= -(((Gamma + 1)/(2*(Gamma - 1)))*(Math.Pow(F1_p_derecha,3)));
             
-            double Rho_p_derecha= (-B_p + (Math.Sqrt(Math.Pow(B_p, 2) - (4 * A_p * C_p)))) / (2 * A_p);
-            double P_p_derecha= F2_p_derecha - Math.Pow(F1_p_derecha , 2) / Rho_p_derecha;
+            double Rho_p_derecha= (-B_p + (Math.Sqrt((Math.Pow(B_p, 2)) - (4 * A_p * C_p)))) / (2 * A_p);
+            double P_p_derecha= F2_p_derecha - ((Math.Pow(F1_p_derecha, 2)) / Rho_p_derecha);
 
             double G1_p_derecha = Rho_p_derecha * (F3_p_derecha / F1_p_derecha);
             double G2_p_derecha = F3_p_derecha;
-            double G3_p_derecha = (Rho_p_derecha *  Math.Pow(F3_p_derecha /F1_p_derecha, 2)) + F2_p_derecha - (Math.Pow(F1_p_derecha, 2) / Rho_p_derecha);
-            double G4_p_derecha = (Gamma / (Gamma - 1) * ((F2_p_derecha) - (Math.Pow(F1_p_derecha ,2) / Rho_p_derecha)) * (F3_p_derecha / F1_p_derecha)) + Rho_p_derecha * F3_p_derecha / (2 * F1_p_derecha) * ((F1_p_derecha/ Math.Pow(Rho_p_derecha, 2)) + F3_p_derecha / Math.Pow(F1_p_derecha,2));
+            double G3_p_derecha = (Rho_p_derecha * (Math.Pow((F3_p_derecha / F1_p_derecha), 2))) + F2_p_derecha - ((Math.Pow(F1_p_derecha, 2)) / Rho_p_derecha);
+            double G4_p_derecha = ((Gamma / (Gamma - 1)) * ((F2_p_derecha) - ((Math.Pow(F1_p_derecha, 2)) / Rho_p_derecha)) * (F3_p_derecha / F1_p_derecha)) + (((Rho_p_derecha * F3_p_derecha) / (2 * F1_p_derecha)) * ((Math.Pow((F1_p_derecha / Rho_p_derecha), 2)) + (Math.Pow((F3_p_derecha / F1_p_derecha), 2))));
 
-
-            double[] G_predictedValues = new double[] { G1_p_derecha, G2_p_derecha, G3_p_derecha, G4_p_derecha, Rho_p_derecha, P_p_derecha };
+            double[] G_predictedValues = { G1_p_derecha, G2_p_derecha, G3_p_derecha, G4_p_derecha, Rho_p_derecha, P_p_derecha };
 
             return G_predictedValues;
 
@@ -239,10 +238,10 @@ namespace LibreriaClases
 
         public double[] Corrector_Step_Contorno_Inferior (double delta_y_t, double F1_p_derecha, double F2_p_derecha, double F3_p_derecha, double F4_p_derecha, double F1_p_arriba_derecha, double F2_p_arriba_derecha, double F3_p_arriba_derecha, double F4_p_arriba_derecha, double G1_p_derecha, double G2_p_derecha, double G3_p_derecha, double G4_p_derecha, double G1_p_arriba_derecha, double G2_p_arriba_derecha, double G3_p_arriba_derecha, double G4_p_arriba_derecha, double delta_x)
         {
-            double dF1_p_x_derecha = dEta_dx * ((F1_p_derecha - F1_p_arriba_derecha) / delta_y_t) + (dEta_dy * ((G1_p_derecha - G1_p_arriba_derecha) / delta_y_t));
-            double dF2_p_x_derecha = dEta_dx * ((F2_p_derecha - F2_p_arriba_derecha) / delta_y_t) + (dEta_dy * ((G2_p_derecha - G2_p_arriba_derecha) / delta_y_t));
-            double dF3_p_x_derecha = dEta_dx * ((F3_p_derecha - F3_p_arriba_derecha) / delta_y_t) + (dEta_dy * ((G3_p_derecha - G3_p_arriba_derecha) / delta_y_t));
-            double dF4_p_x_derecha = dEta_dx * ((F4_p_derecha - F4_p_arriba_derecha) / delta_y_t) + (dEta_dy * ((G4_p_derecha - G4_p_arriba_derecha) / delta_y_t));
+            double dF1_p_x_derecha = (dEta_dx * ((F1_p_derecha - F1_p_arriba_derecha) / delta_y_t)) + (dEta_dy * ((G1_p_derecha - G1_p_arriba_derecha) / delta_y_t));
+            double dF2_p_x_derecha = (dEta_dx * ((F2_p_derecha - F2_p_arriba_derecha) / delta_y_t)) + (dEta_dy * ((G2_p_derecha - G2_p_arriba_derecha) / delta_y_t));
+            double dF3_p_x_derecha = (dEta_dx * ((F3_p_derecha - F3_p_arriba_derecha) / delta_y_t)) + (dEta_dy * ((G3_p_derecha - G3_p_arriba_derecha) / delta_y_t));
+            double dF4_p_x_derecha = (dEta_dx * ((F4_p_derecha - F4_p_arriba_derecha) / delta_y_t)) + (dEta_dy * ((G4_p_derecha - G4_p_arriba_derecha) / delta_y_t));
 
             double dF1_x_av = 0.5 * (dF1_x + dF1_p_x_derecha);
             double dF2_x_av = 0.5 * (dF2_x + dF2_p_x_derecha);
@@ -260,10 +259,10 @@ namespace LibreriaClases
 
         public double[] Corrector_Step_Contorno_Superior(double delta_y_t, double F1_p_derecha, double F2_p_derecha, double F3_p_derecha, double F4_p_derecha, double F1_p_debajo_derecha, double F2_p_debajo_derecha, double F3_p_debajo_derecha, double F4_p_debajo_derecha, double G1_p_derecha, double G2_p_derecha, double G3_p_derecha, double G4_p_derecha, double G1_p_debajo_derecha, double G2_p_debajo_derecha, double G3_p_debajo_derecha, double G4_p_debajo_derecha, double delta_x)
         {
-            double dF1_p_x_derecha = (dEta_dx) * ((F1_p_debajo_derecha - F1_p_derecha) / delta_y_t) + (dEta_dy * ((G1_p_debajo_derecha - G1_p_derecha) / delta_y_t));
-            double dF2_p_x_derecha = (dEta_dx) * ((F2_p_debajo_derecha - F2_p_derecha) / delta_y_t) + (dEta_dy * ((G2_p_debajo_derecha - G2_p_derecha) / delta_y_t));
-            double dF3_p_x_derecha = (dEta_dx) * ((F3_p_debajo_derecha - F3_p_derecha) / delta_y_t) + (dEta_dy * ((G3_p_debajo_derecha - G3_p_derecha) / delta_y_t));
-            double dF4_p_x_derecha = (dEta_dx) * ((F4_p_debajo_derecha - F4_p_derecha) / delta_y_t) + (dEta_dy * ((G4_p_debajo_derecha - G4_p_derecha) / delta_y_t));
+            double dF1_p_x_derecha = (dEta_dx * ((F1_p_debajo_derecha - F1_p_derecha) / delta_y_t)) + (dEta_dy * ((G1_p_debajo_derecha - G1_p_derecha) / delta_y_t));
+            double dF2_p_x_derecha = (dEta_dx * ((F2_p_debajo_derecha - F2_p_derecha) / delta_y_t)) + (dEta_dy * ((G2_p_debajo_derecha - G2_p_derecha) / delta_y_t));
+            double dF3_p_x_derecha = (dEta_dx * ((F3_p_debajo_derecha - F3_p_derecha) / delta_y_t)) + (dEta_dy * ((G3_p_debajo_derecha - G3_p_derecha) / delta_y_t));
+            double dF4_p_x_derecha = (dEta_dx * ((F4_p_debajo_derecha - F4_p_derecha) / delta_y_t)) + (dEta_dy * ((G4_p_debajo_derecha - G4_p_derecha) / delta_y_t));
 
             double dF1_x_av = 0.5 * (dF1_x + dF1_p_x_derecha);
             double dF2_x_av = 0.5 * (dF2_x + dF2_p_x_derecha);
