@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LibreriaClases;
+using System.Data;
 
 namespace WPFapp
 {
@@ -21,7 +22,7 @@ namespace WPFapp
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        Malla m = new Malla();
         
 
         public MainWindow()
@@ -31,8 +32,12 @@ namespace WPFapp
 
         private void Loaded(object sender, RoutedEventArgs e)
         {
+            m.DefinirMatriz();
+            m.Compute();
 
-            
+            DataTable temperature = m.Fill_DataTable();
+            grid2.DataContext = temperature.DefaultView;
+
         }
     }
 }

@@ -8,7 +8,7 @@ namespace LibreriaClases
     {
         public double H { get; set; } = 40;
         public double Theta { get; set; } = 5.352 * Math.PI / 180;
-        public double L { get; set; } = 66.278;
+        public double L { get; set; } = 65;
         public double E { get; set; } = 10;
 
 
