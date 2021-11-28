@@ -7,12 +7,36 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid x:Name="grid1" Loaded="Loaded">
-        <Grid>
-            <DataGrid x:Name="grid2" Margin="10" ItemsSource="{Binding}" 
+        <Grid Background="#FF2D2D30" Margin="0,0,0,-242">
+            <DataGrid x:Name="grid2" Margin="165,90,60,401" ItemsSource="{Binding}" 
           AutoGenerateColumns="True"></DataGrid>
+            <Label Content="Simulation Window" Margin="0,10,0,265" FontSize="30" FontWeight="Bold" Foreground="#FFCC00FF" HorizontalAlignment="Center"/>
+            <GroupBox Header="Simulation parameters" HorizontalAlignment="Left" Height="200" Margin="165,307,0,0" VerticalAlignment="Top" Width="575" Foreground="#FFCC00FF">
+                <Button Content="Default parameters" Margin="406,0,17,0" Height="25" Foreground="Black" Background="#FFCC00FF" FontSize="15" FontWeight="Normal" FontStyle="Italic"/>
+            </GroupBox>
+            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="209,455,0,201" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.389,-0.42"/>
+            <Label Content="ρ: " Margin="182,451,0,0" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" VerticalAlignment="Top" FlowDirection="LeftToRight" Height="40"/>
+            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="209,403,0,253" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.561,-0.827"/>
+            <Label Content="T:" Margin="182,399,0,253" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
+            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="209,354,0,302" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.561,-0.827"/>
+            <Label Content="P:" Margin="182,350,0,302" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
+            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="487,435,0,221" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.561,-0.827"/>
+            <Label Content="θ: " Margin="460,433,0,219" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
+            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="487,375,0,281" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.561,-0.827"/>
+            <Label Content="E:" Margin="460,373,0,279" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" RenderTransformOrigin="0.482,-0.747"/>
+            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="348,455,0,201" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.389,-0.42"/>
+            <Label Content="ɣ: " Margin="321,451,0,185" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
+            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="348,403,0,253" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.561,-0.827"/>
+            <Label Content="R:" Margin="321,399,0,253" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
+            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="348,354,0,302" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.561,-0.827"/>
+            <Label Content="M:" Margin="321,350,0,302" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
+            <Button Content="Restart simulation" Margin="242,586,418,65" Foreground="Black" Background="#FFCC00FF" FontSize="15" FontWeight="Normal" FontStyle="Normal"/>
+            <Button Content="Save simulation" Margin="436,586,224,65" Foreground="Black" Background="#FFCC00FF" FontSize="15" FontWeight="Normal" FontStyle="Normal" IsCancel="True"/>
+            <Button Content="Open simulation" Margin="625,586,35,65" Foreground="Black" Background="#FFCC00FF" FontSize="15" FontWeight="Normal" FontStyle="Normal"/>
 
         </Grid>
-            
+        <Button Content="Calculate simulation" Margin="55,588,600,-179" Foreground="Black" Background="#FFCC00FF" FontSize="15" FontWeight="Normal" FontStyle="Normal"/>
+
 
 
     </Grid>
