@@ -164,13 +164,19 @@
         <Label Content="E:" 
                Grid.Column="1" 
                HorizontalAlignment="Left" 
-               Margin="549,20,0,0" 
+               Margin="549,10,0,0" 
                Grid.Row="1" 
                VerticalAlignment="Top"/>
         <Label Content="θ:" 
                Grid.Column="1" 
                HorizontalAlignment="Left" 
-               Margin="549,56,0,0" 
+               Margin="549,44,0,0" 
+               Grid.Row="1" 
+               VerticalAlignment="Top"/>
+        <Label Content="Cy:" 
+               Grid.Column="1" 
+               HorizontalAlignment="Left" 
+               Margin="549,74,0,0" 
                Grid.Row="1" 
                VerticalAlignment="Top"/>
 
@@ -207,7 +213,7 @@
 
         <TextBox x:Name="Phi_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="573,59,0,0" 
+                 Margin="573,47,0,0" 
                  Grid.Row="1" 
                  Text="TextBox" 
                  TextWrapping="Wrap" 
@@ -217,7 +223,7 @@
 
         <TextBox x:Name="E_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="573,24,0,0" 
+                 Margin="573,14,0,0" 
                  Grid.Row="1" 
                  Text="TextBox" 
                  TextWrapping="Wrap" 
@@ -250,6 +256,19 @@
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
                  Width="62"/>
+
+
+        <TextBox x:Name="Cy_TextBox" Grid.Column="1" 
+                 HorizontalAlignment="Left" 
+                 Margin="580,78,0,0" 
+                 Grid.Row="1" 
+                 Text="TextBox" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top"
+                 Width="62"/>
+
+
+
         <CheckBox x:Name="CheckBox_A" Content="CheckBox A" 
                   Grid.Column="1" 
                   HorizontalAlignment="Left" 
@@ -264,10 +283,13 @@
                   Grid.Row="1" 
                   VerticalAlignment="Top"/>
 
+
+
+
         <Button x:Name="LoadParametersButton" 
                 Content="Load Parameters" 
                 HorizontalAlignment="Left" 
-                Margin="573,105,0,0" 
+                Margin="573,108,0,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
