@@ -1,0 +1,58 @@
+﻿<Window x:Class="WPFapp.AdvancedStudyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFapp"
+        mc:Ignorable="d"
+        Title="AdvancedStudyWindow" Height="610" Width="900">
+    <Grid>
+        <Grid x:Name="Advanced_GridMalla" 
+              HorizontalAlignment="Left" 
+              Width="340" Margin="162,49,0,0" 
+              Height="280" 
+              VerticalAlignment="Top"
+              Background="Black"/>
+
+        <Grid x:Name="Advanced_GridMalla_2" 
+            HorizontalAlignment="Left" 
+            Width="340" Margin="539,49,0,0" 
+            Height="280" 
+            VerticalAlignment="Top"
+            Background="Black"/>
+
+        <DataGrid x:Name="Advanced_DataGridMalla" 
+                  Margin="162,339,400,21" 
+                  ItemsSource="{Binding}" 
+                    AutoGenerateColumns="True"/>
+
+        <DataGrid x:Name="Advanced_DataGridMalla_2" 
+                  Margin="539,339,23,21" 
+                  ItemsSource="{Binding}" 
+                    AutoGenerateColumns="True"/>
+        <Button x:Name="AdvStudyExplication_Button" Content="Explication of A.S" 
+                HorizontalAlignment="Left" 
+                Margin="22,73,0,0" 
+                VerticalAlignment="Top" 
+                Height="32" Width="121"/>
+
+        <Button x:Name="Load_AdSt_Button" Content="Load A.S." 
+                HorizontalAlignment="Left" 
+                Margin="22,138,0,0" 
+                VerticalAlignment="Top" 
+                Height="32" Width="121"/>
+
+        <Button x:Name="Close_Button" 
+                Content="x" 
+                HorizontalAlignment="Left" 
+                Margin="857,10,0,0" 
+                VerticalAlignment="Top" Width="33"/>
+
+        <Button x:Name="Mini_Button" 
+                Content="-" 
+                HorizontalAlignment="Left" 
+                Margin="814,10,0,0" 
+                VerticalAlignment="Top" Width="34"/>
+
+    </Grid>
+</Window>
