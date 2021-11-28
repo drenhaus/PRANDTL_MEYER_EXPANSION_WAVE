@@ -7,9 +7,48 @@
         mc:Ignorable="d"
         Title="WelcomeWindow" Height="450" Width="800">
     <Grid Background="#FF2D2D30">
-        <Label Content="Welcome to the simulation!" Margin="94,58,94,217" FontSize="50" FontWeight="Thin" Foreground="#FFCC00FF" HorizontalAlignment="Center"/>
-        <Button Content="Start" Margin="94,335,506,49" Width="200" Height="50" Foreground="Black" Background="#FFCC00FF" FontSize="30" FontWeight="Bold"/>
-        <Button Content="Exit" Margin="506,335,94,49" Width="200" Height="50" Background="#FFCC00FF" FontWeight="Bold" FontSize="30" Click="Button_Click"/>
-        <Label x:Name="label_explicacion" Content="" HorizontalAlignment="Center" Margin="0,152,0,0" VerticalAlignment="Top" Height="152" Width="611" Background="White" Visibility="Hidden"/>
+
+        <Label Content="Welcome to the simulation!" 
+               Margin="0,10,0,0" FontSize="50" 
+               FontWeight="Thin" 
+               Foreground="#FFCC00FF" 
+               HorizontalAlignment="Center" Height="101" VerticalAlignment="Top"/>
+
+        <Button x:Name="StarButton" Content="Start" 
+                Margin="85,0,0,0" 
+                Width="200" 
+                Height="50" 
+                Foreground="Black" 
+                Background="#FFCC00FF" 
+                FontSize="30" 
+                FontWeight="Bold" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Left"/>
+
+        <Button x:Name="ExitButton" Content="Exit" 
+                Margin="412,180,188,204" 
+                Width="200" Height="50" 
+                Background="#FFCC00FF" 
+                FontWeight="Bold" 
+                FontSize="30" 
+                Click="Button_Click"/>
+
+        <Button x:Name="TutorialButton" Content="Tuto" 
+            Margin="432,312,168,72" 
+            Width="200" Height="50" 
+            Background="#FFCC00FF" 
+            FontWeight="Bold" 
+            FontSize="30" 
+            Click="Button_Click"/>
+
+        <Button x:Name="CreditosButton" 
+            Content="Creditos" 
+            Margin="85,312,515,72" 
+            Width="200" Height="50" 
+            Background="#FFCC00FF" 
+            FontWeight="Bold" 
+            FontSize="30" 
+            Click="Button_Click"/>
+
     </Grid>
 </Window>
