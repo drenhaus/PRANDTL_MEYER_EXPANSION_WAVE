@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
-        Title="AdvancedStudyWindow" Height="610" Width="860">
+        Title="AdvancedStudyWindow" Height="610" Width="900">
     <Grid>
-        
+        <Grid x:Name="Advanced_GridMalla" 
+              HorizontalAlignment="Left" 
+              Width="340" Margin="162,21,0,0" 
+              Height="280" 
+              VerticalAlignment="Top"
+              Background="Black"/>
+
+        <Grid x:Name="Advanced_GridMalla_2" 
+            HorizontalAlignment="Left" 
+            Width="340" Margin="539,21,0,0" 
+            Height="280" 
+            VerticalAlignment="Top"
+            Background="Black"/>
+
+        <DataGrid x:Name="Advanced_DataGridMalla" 
+                  Margin="162,333,400,27" 
+                  ItemsSource="{Binding}" 
+                    AutoGenerateColumns="True"/>
+
+        <DataGrid x:Name="Advanced_DataGridMalla_2" 
+                  Margin="539,333,23,27" 
+                  ItemsSource="{Binding}" 
+                    AutoGenerateColumns="True"/>
+        <Button x:Name="AdvStudyExplication_Button" Content="Explication of A.S" 
+                HorizontalAlignment="Left" 
+                Margin="22,73,0,0" 
+                VerticalAlignment="Top" 
+                Height="32" Width="121"/>
+
+        <Button x:Name="Load_AdSt_Button" Content="Load A.S." 
+                HorizontalAlignment="Left" 
+                Margin="22,138,0,0" 
+                VerticalAlignment="Top" 
+                Height="32" Width="121"/>
+
     </Grid>
 </Window>
