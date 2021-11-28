@@ -121,9 +121,16 @@
                  Width="130"/>
 
 
+        <Button x:Name="Close_Button" 
+                Content="x" 
+                HorizontalAlignment="Left" 
+                Margin="804,10,0,0" 
+                VerticalAlignment="Top" Width="33"/>
 
-
-
+        <Button x:Name="Mini_Button" 
+                Content="-" 
+                Margin="759,10,67,0" 
+                VerticalAlignment="Top"/>
 
 
 
