@@ -1,0 +1,1 @@
+Mirar como poner un un barra para que se vea en que iteracion estamos i ver si flatla muchho. 
