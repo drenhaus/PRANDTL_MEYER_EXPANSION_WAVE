@@ -31,16 +31,28 @@
             <ComboBoxItem Content="F3"/>
             <ComboBoxItem Content="F4"/>
         </ComboBox>
-        
+
         <Button x:Name="ExportTable_Button" Content="Export Table" 
                 HorizontalAlignment="Left" 
-                Margin="699,30,0,0" 
+                Margin="522,34,0,0" 
                 VerticalAlignment="Top" 
                 Height="31" Width="91"/>
         <Button x:Name="InfoTables_button" Content="I" 
                 HorizontalAlignment="Left" 
-                Margin="643,35,0,0"
+                Margin="466,39,0,0"
+                
                 VerticalAlignment="Top" Height="25" Width="23"/>
+        <Button x:Name="Close_Button" 
+                Content="x" 
+                HorizontalAlignment="Left" 
+                Margin="817,10,0,0" 
+                VerticalAlignment="Top" Width="33"/>
+
+        <Button x:Name="Mini_Button" 
+                Content="-" 
+                HorizontalAlignment="Left" 
+                Margin="774,10,0,0" 
+                VerticalAlignment="Top" Width="34"/>
 
 
     </Grid>
