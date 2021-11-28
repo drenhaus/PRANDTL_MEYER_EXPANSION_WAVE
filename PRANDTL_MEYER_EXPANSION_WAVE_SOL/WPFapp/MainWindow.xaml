@@ -8,12 +8,12 @@
         Title="MainWindow" Height="690" Width="980">
     <Grid x:Name="grid1" Loaded="Loaded" Margin="0,10,0,10" HorizontalAlignment="Center" Width="960">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="13*"/>
-            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="199*"/>
+            <ColumnDefinition Width="761*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="81*"/>
-            <RowDefinition Height="574*"/>
+            <RowDefinition Height="67*"/>
+            <RowDefinition Height="587*"/>
         </Grid.RowDefinitions>
 
         <Label Content="Simulation Window" 
@@ -27,7 +27,7 @@
                VerticalAlignment="Center" 
                Width="374"/>
         <Button x:Name="WelcomeButton" Content="Back to start" 
-                HorizontalAlignment="Center" 
+                HorizontalAlignment="Right" 
                 Margin="0,10,0,0" 
                 Grid.Row="1" 
                 VerticalAlignment="Top" 
@@ -35,7 +35,7 @@
                 RenderTransformOrigin="0.477,-0.345"/>
 
         <Button x:Name="TablesButton" Content="Tables" 
-            HorizontalAlignment="Center" 
+            HorizontalAlignment="Right" 
             Margin="0,53,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" 
@@ -44,7 +44,7 @@
 
         <Button x:Name="ComparationButton" 
                 Content="Comparar con el tete Anderson" 
-            HorizontalAlignment="Center" 
+            HorizontalAlignment="Right" 
             Margin="0,96,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" 
@@ -53,7 +53,7 @@
 
         <Button x:Name="GraficButton" 
             Content="Graficos" 
-            HorizontalAlignment="Center" 
+            HorizontalAlignment="Right" 
             Margin="0,139,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" 
@@ -61,7 +61,7 @@
             RenderTransformOrigin="0.477,-0.345"/>
         <Button x:Name="AdvancedStudyButton" 
             Content="estudio avanzado" 
-            HorizontalAlignment="Center" 
+            HorizontalAlignment="Right" 
             Margin="0,182,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" 
@@ -82,11 +82,11 @@
                 RenderTransformOrigin="0.477,-0.345"/>
         <Label Content="Seleciona precision" 
                HorizontalAlignment="Right"
-               Margin="0,0,622,531" 
+               Margin="0,0,637,545" 
                Grid.Row="1" 
                VerticalAlignment="Bottom" 
                Width="114" 
-               Grid.Column="1"/>
+               Grid.Column="1" Height="26"/>
 
         <ComboBox x:Name="PresitionComboBox" 
                   HorizontalAlignment="Left" 
@@ -109,7 +109,7 @@
         <Grid x:Name="GridMalla" Grid.Column="1" 
               Grid.Row="1" 
               HorizontalAlignment="Left" 
-              Width="582" Margin="105,201,0,0" 
+              Width="582" Margin="109,215,0,0" 
               Height="362" 
               VerticalAlignment="Top"
               Background="Black"/>
@@ -128,57 +128,57 @@
                HorizontalAlignment="Left" 
                Margin="284,74,0,0" 
                Grid.Row="1" 
-               VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177"/>
+               VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="20"/>
         <Label Content="P:" 
                Grid.Column="1" 
                HorizontalAlignment="Left" 
                Margin="285,9,0,0" 
                Grid.Row="1" 
-               VerticalAlignment="Top" RenderTransformOrigin="0.168,0.491"/>
+               VerticalAlignment="Top" RenderTransformOrigin="0.168,0.491" Height="26" Width="19"/>
         <Label Content="M:" 
                Grid.Column="1" 
                HorizontalAlignment="Left" 
                Margin="423,7,0,0" 
                Grid.Row="1" 
-               VerticalAlignment="Top" RenderTransformOrigin="-0.426,-0.61"/>
+               VerticalAlignment="Top" RenderTransformOrigin="-0.426,-0.61" Height="26" Width="23"/>
         <Label Content="T:" 
                Grid.Column="1" 
                HorizontalAlignment="Left" 
                Margin="285,37,0,0" 
                Grid.Row="1" 
-               VerticalAlignment="Top"/>
+               VerticalAlignment="Top" Height="26" Width="19"/>
         <Label Content="R:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="423,46,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" 
-             RenderTransformOrigin="-0.426,-0.61"/>
+             RenderTransformOrigin="-0.426,-0.61" Height="26" Width="20"/>
         <Label Content="ɣ:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="426,74,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" 
-               RenderTransformOrigin="-0.426,-0.61" Height="26"/>
+               RenderTransformOrigin="-0.426,-0.61" Height="26" Width="18"/>
         <Label Content="E:" 
                Grid.Column="1" 
                HorizontalAlignment="Left" 
                Margin="549,10,0,0" 
                Grid.Row="1" 
-               VerticalAlignment="Top"/>
+               VerticalAlignment="Top" Height="26" Width="19"/>
         <Label Content="θ:" 
                Grid.Column="1" 
                HorizontalAlignment="Left" 
                Margin="549,44,0,0" 
                Grid.Row="1" 
-               VerticalAlignment="Top"/>
+               VerticalAlignment="Top" Height="26" Width="20"/>
         <Label Content="Cy:" 
                Grid.Column="1" 
                HorizontalAlignment="Left" 
                Margin="549,74,0,0" 
                Grid.Row="1" 
-               VerticalAlignment="Top"/>
+               VerticalAlignment="Top" Height="26" Width="26"/>
 
 
 
@@ -189,7 +189,7 @@
                  Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62"/>
+                 Width="62" Height="18"/>
 
         <TextBox x:Name="R_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
@@ -198,7 +198,7 @@
                  Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62"/>
+                 Width="62" Height="18"/>
 
 
         <TextBox x:Name="M_TextBox" Grid.Column="1" 
@@ -208,7 +208,7 @@
                  Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62"/>
+                 Width="62" Height="18"/>
 
 
         <TextBox x:Name="Phi_TextBox" Grid.Column="1" 
@@ -218,7 +218,7 @@
                  Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62"/>
+                 Width="62" Height="18"/>
 
 
         <TextBox x:Name="E_TextBox" Grid.Column="1" 
@@ -228,7 +228,7 @@
                  Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62"/>
+                 Width="62" Height="18"/>
 
         <TextBox x:Name="Rho_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
@@ -237,7 +237,7 @@
                  Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62"/>
+                 Width="62" Height="18"/>
 
         <TextBox x:Name="Gamma_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
@@ -246,7 +246,7 @@
                  Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62"/>
+                 Width="62" Height="18"/>
 
         <TextBox x:Name="T_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
@@ -255,7 +255,7 @@
                  Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62"/>
+                 Width="62" Height="18"/>
 
 
         <TextBox x:Name="Cy_TextBox" Grid.Column="1" 
@@ -265,7 +265,7 @@
                  Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62"/>
+                 Width="62" Height="18"/>
 
 
 
@@ -274,14 +274,14 @@
                   HorizontalAlignment="Left" 
                   Margin="350,112,0,0" 
                   Grid.Row="1" 
-                  VerticalAlignment="Top"/>
+                  VerticalAlignment="Top" Height="15" Width="82"/>
 
         <CheckBox x:Name="CheckBox_B" Content="CheckBox B" 
                   Grid.Column="1" 
                   HorizontalAlignment="Left" 
                   Margin="460,112,0,0" 
                   Grid.Row="1" 
-                  VerticalAlignment="Top"/>
+                  VerticalAlignment="Top" Height="15" Width="82"/>
 
 
 
@@ -298,8 +298,38 @@
 
         <Button x:Name="Simulate_Button" 
                 Content="Star Simulation" 
+                HorizontalAlignment="Right" 
+                Margin="0,163,613,0" 
+                Grid.Row="1" 
+                Grid.Column="1"
+                VerticalAlignment="Top" 
+                Height="28" Width="118" 
+                RenderTransformOrigin="0.477,-0.345"/>
+
+        <Button x:Name="SaveSim_button" 
+                Content="Save Simulation" 
                 HorizontalAlignment="Left" 
-                Margin="16,144,0,0" 
+                Margin="186,163,0,0" 
+                Grid.Row="1" 
+                Grid.Column="1"
+                VerticalAlignment="Top" 
+                Height="28" Width="118" 
+                RenderTransformOrigin="0.477,-0.345"/>
+
+        <Button x:Name="LoadSim_button" 
+                Content="Load Simulation" 
+                HorizontalAlignment="Left" 
+                Margin="325,163,0,0" 
+                Grid.Row="1" 
+                Grid.Column="1"
+                VerticalAlignment="Top" 
+                Height="28" Width="118" 
+                RenderTransformOrigin="0.477,-0.345"/>
+
+        <Button x:Name="Reset_button" 
+                Content="Reset" 
+                HorizontalAlignment="Left" 
+                Margin="325,163,0,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
