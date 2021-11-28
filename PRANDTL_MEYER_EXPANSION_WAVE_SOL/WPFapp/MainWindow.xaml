@@ -40,7 +40,7 @@
             Grid.Row="1" 
             VerticalAlignment="Top" 
             Height="38" Width="208" 
-            RenderTransformOrigin="0.477,-0.345"/>
+            RenderTransformOrigin="0.477,-0.345" Click="TablesButton_Click"/>
 
         <Button x:Name="ComparationButton" 
                 Content="Comparar con el tete Anderson" 

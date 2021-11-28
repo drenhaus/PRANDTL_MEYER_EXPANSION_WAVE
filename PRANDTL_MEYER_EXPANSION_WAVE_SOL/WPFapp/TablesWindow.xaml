@@ -18,7 +18,8 @@
                   HorizontalAlignment="Left" 
                   Margin="167,35,0,0"
                   VerticalAlignment="Top" 
-                  Width="120">
+                  Width="120"
+                  SelectionChanged="TableSetect_ComboBox_SelectionChanged">
 
             <ComboBoxItem Content="T"/>
             <ComboBoxItem Content="u"/>
