@@ -5,40 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid x:Name="grid1" Loaded="Loaded">
-        <Grid Background="#FF2D2D30" Margin="0,0,-60,-248">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="57*"/>
-                <ColumnDefinition Width="29*"/>
-            </Grid.ColumnDefinitions>
+        Title="MainWindow" Height="690" Width="980">
+    <Grid x:Name="grid1" Loaded="Loaded" Margin="0,10,0,10" HorizontalAlignment="Center" Width="960">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="13*"/>
+            <ColumnDefinition Width="47*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="81*"/>
+            <RowDefinition Height="574*"/>
+        </Grid.RowDefinitions>
 
-            <Label Content="Simulation Window" Margin="242,10,0,0" FontSize="30" FontWeight="Bold" Foreground="#FFCC00FF" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="62" VerticalAlignment="Top" Width="374"/>
-            <GroupBox Header="Simulation parameters" HorizontalAlignment="Left" Height="200" Margin="165,307,0,0" VerticalAlignment="Top" Width="575" Foreground="#FFCC00FF" Grid.ColumnSpan="2">
-                <Button Content="Default parameters" Margin="406,0,17,0" Height="25" Foreground="Black" Background="#FFCC00FF" FontSize="15" FontWeight="Normal" FontStyle="Italic"/>
-            </GroupBox>
-            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="209,455,0,201" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.389,-0.42"/>
-            <Label Content="ρ: " Margin="182,451,0,0" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" VerticalAlignment="Top" FlowDirection="LeftToRight" Height="40"/>
-            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="209,403,0,253" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.561,-0.827"/>
-            <Label Content="T:" Margin="182,399,0,253" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
-            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="209,354,0,302" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.561,-0.827"/>
-            <Label Content="P:" Margin="182,350,0,302" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
-            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="487,435,0,221" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.561,-0.827"/>
-            <Label Content="θ: " Margin="460,433,0,219" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
-            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="487,375,0,281" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.561,-0.827"/>
-            <Label Content="E:" Margin="460,373,0,279" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" RenderTransformOrigin="0.482,-0.747"/>
-            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="348,455,0,201" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.389,-0.42"/>
-            <Label Content="ɣ: " Margin="321,451,0,185" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
-            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="348,403,0,253" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.561,-0.827"/>
-            <Label Content="R:" Margin="321,399,0,253" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
-            <TextBox TextWrapping="NoWrap" Foreground="#FFCC00FF" SelectionTextBrush="White" Margin="348,354,0,302" Background="{x:Null}" Width="67" HorizontalAlignment="Left" RenderTransformOrigin="0.561,-0.827"/>
-            <Label Content="M:" Margin="321,350,0,302" Width="22" Foreground="#FFCC00FF" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
-            <Button Content="Restart simulation" Margin="242,586,128,65" Foreground="Black" Background="#FFCC00FF" FontSize="15" FontWeight="Normal" FontStyle="Normal"/>
-            <Button Content="Save simulation" Margin="436,586,224,65" Foreground="Black" Background="#FFCC00FF" FontSize="15" FontWeight="Normal" FontStyle="Normal" IsCancel="True" Grid.ColumnSpan="2"/>
-            <Button Content="Open simulation" Margin="55,586,35,65" Foreground="Black" Background="#FFCC00FF" FontSize="15" FontWeight="Normal" FontStyle="Normal" Grid.Column="1"/>
+        <Label Content="Simulation Window" 
+               Margin="10,0,0,0"
+               FontSize="30" 
+               FontWeight="Bold" 
+               Foreground="#FFCC00FF"
+               HorizontalAlignment="Left" 
+               Grid.ColumnSpan="2"
+               Height="62" 
+               VerticalAlignment="Center" 
+               Width="374"/>
+        <Button x:Name="InicioButton" Content="Inicio" 
+                HorizontalAlignment="Center" 
+                Margin="0,10,0,0" 
+                Grid.Row="1" 
+                VerticalAlignment="Top" 
+                Height="38" Width="208" 
+                RenderTransformOrigin="0.477,-0.345"/>
 
-        </Grid>
-        <Button Content="Calculate simulation" Margin="55,588,600,-179" Foreground="Black" Background="#FFCC00FF" FontSize="15" FontWeight="Normal" FontStyle="Normal"/>
+        <Button x:Name="TablesButton" Content="Tables" 
+            HorizontalAlignment="Center" 
+            Margin="0,48,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" 
+            Height="38" Width="208" 
+            RenderTransformOrigin="0.477,-0.345"/>
+        
+        <Button x:Name="ComparationButton" 
+                Content="Comparar con el tete Anderson" 
+            HorizontalAlignment="Center" 
+            Margin="0,86,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" 
+            Height="38" Width="208" 
+            RenderTransformOrigin="0.477,-0.345"/>
 
 
 
