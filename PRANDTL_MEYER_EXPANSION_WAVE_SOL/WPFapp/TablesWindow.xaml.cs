@@ -31,6 +31,8 @@ namespace WPFapp
         DataTable F3_t;
         DataTable F4_t;
 
+        bool expanded = true;
+
         public TablesWindow()
         {
             InitializeComponent();
@@ -51,109 +53,64 @@ namespace WPFapp
         }
 
 
-
-        public void T_selected()
-        {
-            grid2.Items.Clear();
-            grid2.DataContext = temperature_t.DefaultView;
-        
-        }
-        public void u_selected()
-        {
-            grid2.Items.Clear();
-            grid2.DataContext = u_t.DefaultView;
-
-        }
-        public void v_selected()
-        {
-            grid2.Items.Clear();
-            grid2.DataContext = v_t.DefaultView;
-
-        }
-        public void rho_selected()
-        {
-            grid2.Items.Clear();
-            grid2.DataContext = rho_t.DefaultView;
-
-        }
-        public void p_selected()
-        {
-            grid2.Items.Clear();
-            grid2.DataContext = p_t.DefaultView;
-
-        }
-        public void m_selected()
-        {
-            grid2.Items.Clear();
-            grid2.DataContext = M_t.DefaultView;
-
-        }
-        public void F1_selected()
-        {
-            grid2.Items.Clear();
-            grid2.DataContext = F1_t.DefaultView;
-
-        }
-        public void F2_selected()
-        {
-            grid2.Items.Clear();
-            grid2.DataContext = F2_t.DefaultView;
-
-        }
-        public void F3_selected()
-        {
-            grid2.Items.Clear();
-            grid2.DataContext = F3_t.DefaultView;
-
-        }
-        public void F4_selected()
-        {
-            grid2.Items.Clear();
-            grid2.DataContext = F4_t.DefaultView;
-
-        }
-
         private void TableSetect_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (TableSetect_ComboBox.SelectedIndex==0)
             {
-                T_selected();
+                grid2.DataContext = temperature_t.DefaultView;
             }
             if (TableSetect_ComboBox.SelectedIndex == 1)
             {
-                u_selected();
+                grid2.DataContext = u_t.DefaultView;
             }
             if (TableSetect_ComboBox.SelectedIndex == 2)
             {
-                v_selected();
+                grid2.DataContext = v_t.DefaultView;
             }
             if (TableSetect_ComboBox.SelectedIndex == 3)
             {
-                rho_selected();
+                grid2.DataContext = rho_t.DefaultView;
             }
             if (TableSetect_ComboBox.SelectedIndex == 4)
             {
-                p_selected();
+                grid2.DataContext = p_t.DefaultView;
             }
             if (TableSetect_ComboBox.SelectedIndex == 5)
             {
-                m_selected();
+                grid2.DataContext = M_t.DefaultView;
             }
             if (TableSetect_ComboBox.SelectedIndex == 6)
             {
-                F1_selected();
+                grid2.DataContext = F1_t.DefaultView;
             }
             if (TableSetect_ComboBox.SelectedIndex == 7)
             {
-                F2_selected();
+                grid2.DataContext = F2_t.DefaultView;
             }
             if (TableSetect_ComboBox.SelectedIndex == 8)
             {
-                F3_selected();
+                grid2.DataContext = F3_t.DefaultView;
             }
             if (TableSetect_ComboBox.SelectedIndex == 9)
             {
-                F4_selected();
+                grid2.DataContext = F4_t.DefaultView;
+            }
+        }
+
+
+        private void DataGridColumnHeader_Click(object sender, RoutedEventArgs e)
+        {
+            if (expanded==true)
+            {
+                for (int i = 0; i < F4_t.Columns.Count; i++)
+                { grid2.Columns[i].Width = 50; }
+                expanded = false;
+            }
+            else
+            {
+                for (int i = 0; i < F4_t.Columns.Count; i++)
+                { grid2.Columns[i].Width = 100; }
+                expanded = true;
             }
         }
     }
