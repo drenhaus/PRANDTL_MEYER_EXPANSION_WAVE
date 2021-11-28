@@ -26,7 +26,7 @@
                 HorizontalAlignment="Left"/>
 
         <Button x:Name="ExitButton" Content="Exit" 
-                Margin="412,180,188,204" 
+                Margin="471,205,129,179" 
                 Width="200" Height="50" 
                 Background="#FFCC00FF" 
                 FontWeight="Bold" 
@@ -34,7 +34,7 @@
                 Click="Button_Click"/>
 
         <Button x:Name="TutorialButton" Content="Tuto" 
-            Margin="432,312,168,72" 
+            Margin="481,337,119,47" 
             Width="200" Height="50" 
             Background="#FFCC00FF" 
             FontWeight="Bold" 
