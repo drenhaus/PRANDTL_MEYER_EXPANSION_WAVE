@@ -14,6 +14,11 @@
                     <EventSetter Event="Click" Handler="DataGridColumnHeader_Click" />
                 </Style>
             </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn  Width="50" />
+            </DataGrid.Columns>
+            
+
         </DataGrid>
         <Label Content="Select Data Type" 
                HorizontalAlignment="Left" 

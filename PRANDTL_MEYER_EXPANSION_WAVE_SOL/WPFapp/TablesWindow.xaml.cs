@@ -31,7 +31,7 @@ namespace WPFapp
         DataTable F3_t;
         DataTable F4_t;
 
-        bool expanded = true;
+        bool expanded = false;
 
         public TablesWindow()
         {
