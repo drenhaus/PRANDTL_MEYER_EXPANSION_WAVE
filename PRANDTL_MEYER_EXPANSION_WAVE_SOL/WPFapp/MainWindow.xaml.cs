@@ -45,22 +45,7 @@ namespace WPFapp
 
         private void Loaded(object sender, RoutedEventArgs e)
         {
-            m.DefinirMatriz();
-            m.Compute();
-            m.Fill_DataTable();
-            DataTable[] T_U_V_RHO_P_M_F1_F2_F3_F4 = m.GetTables();
-            temperature_table= T_U_V_RHO_P_M_F1_F2_F3_F4[0];
-            u_table= T_U_V_RHO_P_M_F1_F2_F3_F4[1];
-            v_table = T_U_V_RHO_P_M_F1_F2_F3_F4[2];
-            rho_table = T_U_V_RHO_P_M_F1_F2_F3_F4[3];
-            p_table = T_U_V_RHO_P_M_F1_F2_F3_F4[4];
-            M_table = T_U_V_RHO_P_M_F1_F2_F3_F4[5];
-            F1_table = T_U_V_RHO_P_M_F1_F2_F3_F4[6];
-            F2_table = T_U_V_RHO_P_M_F1_F2_F3_F4[7];
-            F3_table = T_U_V_RHO_P_M_F1_F2_F3_F4[8];
-            F4_table = T_U_V_RHO_P_M_F1_F2_F3_F4[9];
-            columnas = m.columns;
-            filas = m.rows;
+           
 
         }
 
@@ -76,9 +61,30 @@ namespace WPFapp
 
         private void Simulate_Button_Click(object sender, RoutedEventArgs e)
         {
-            casillas = new Polygon[filas, columnas];
+            m.DefinirMatriz();
+            m.Compute();
+            m.Fill_DataTable();
+            DataTable[] T_U_V_RHO_P_M_F1_F2_F3_F4 = m.GetTables();
+            temperature_table = T_U_V_RHO_P_M_F1_F2_F3_F4[0];
+            u_table = T_U_V_RHO_P_M_F1_F2_F3_F4[1];
+            v_table = T_U_V_RHO_P_M_F1_F2_F3_F4[2];
+            rho_table = T_U_V_RHO_P_M_F1_F2_F3_F4[3];
+            p_table = T_U_V_RHO_P_M_F1_F2_F3_F4[4];
+            M_table = T_U_V_RHO_P_M_F1_F2_F3_F4[5];
+            F1_table = T_U_V_RHO_P_M_F1_F2_F3_F4[6];
+            F2_table = T_U_V_RHO_P_M_F1_F2_F3_F4[7];
+            F3_table = T_U_V_RHO_P_M_F1_F2_F3_F4[8];
+            F4_table = T_U_V_RHO_P_M_F1_F2_F3_F4[9];
+            columnas = m.columns;
+            filas = m.rows;
+            GenerateGridPlot();
+        }
 
-            double x1= 0; // column left
+        public void GenerateGridPlot()
+        {
+            casillas = new Polygon[filas, columnas - 1];
+
+            double x1 = 0; // column left
             double x2; // column right
             double y1; // top left
             double y2; // top right
@@ -87,46 +93,76 @@ namespace WPFapp
 
             double[] delta_y = m.Vector_Delta_y();
 
-            for (int i=0; i<columnas;i++)
+            for (int i = 0; i < columnas - 1; i++)
             {
                 x2 = x1 + m.delta_x;
                 y3 = 0;
                 y4 = 0;
 
-                for (int j=0; j<filas;j++)
+                for (int j = 0; j < filas; j++)
                 {
-                    y1 = y3 + delta_y[j];
-                    y2 = y4 + delta_y[j+1];
+                    y1 = y3 + delta_y[i];
+                    y2 = y4 + delta_y[i + 1];
 
                     Polygon myPolygon = new Polygon();
-                    myPolygon.Fill = Brushes.Red;
-
-                    System.Windows.Point Point1 = new System.Windows.Point(x1*10, y1*10);
-                    System.Windows.Point Point2 = new System.Windows.Point(x2*10, y2*10);
-                    System.Windows.Point Point3 = new System.Windows.Point(x1*10, y3*10);
-                    System.Windows.Point Point4 = new System.Windows.Point(x2*10, y4*10);
+                    System.Windows.Point Point1 = new System.Windows.Point(x1 * 7, y1 * 7);
+                    System.Windows.Point Point2 = new System.Windows.Point(x2 * 7, y2 * 7);
+                    System.Windows.Point Point3 = new System.Windows.Point(x1 * 7, y3 * 7);
+                    System.Windows.Point Point4 = new System.Windows.Point(x2 * 7, y4 * 7);
                     PointCollection myPointCollection = new PointCollection();
                     myPointCollection.Add(Point1);
-                    myPointCollection.Add(Point2);
                     myPointCollection.Add(Point3);
+                    myPointCollection.Add(Point2);
                     myPointCollection.Add(Point4);
                     myPolygon.Points = myPointCollection;
                     casillas[j, i] = myPolygon;
 
                     y4 = y2;
-                    y3 = y1;                   
+                    y3 = y1;
 
 
                 }
-                x1 = x2;                
+                x1 = x2;
             }
-            for (int i = 0; i < columnas; i++)
+            for (int i = 0; i < columnas - 1; i++)
             {
                 for (int j = 0; j < filas; j++)
                 {
                     GridMalla.Children.Add(casillas[j, i]);
                 }
             }
+        }
+
+
+        private void TableSetect_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (DataGridComboBox.SelectedIndex == 0) //temperature
+            {
+                
+            }
+            if (DataGridComboBox.SelectedIndex == 1) //u
+            {
+
+            }
+            if (DataGridComboBox.SelectedIndex == 2) //v
+            {
+
+            }
+            if (DataGridComboBox.SelectedIndex == 3) //rho
+            {
+
+            }
+            if (DataGridComboBox.SelectedIndex == 4) //p
+            {
+
+            }
+            if (DataGridComboBox.SelectedIndex == 5) //Mach
+            {
+
+            }
+         
+
 
         }
     }

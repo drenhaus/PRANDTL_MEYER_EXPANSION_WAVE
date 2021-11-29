@@ -348,6 +348,27 @@
                 HorizontalAlignment="Left" 
                 Margin="615,19,0,0" 
                 VerticalAlignment="Top" Width="34"/>
+        <Label Content="Select data type:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="460,165,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="102"/>
+        <ComboBox x:Name="DataGridComboBox" 
+            HorizontalAlignment="Left" 
+            Margin="580,169,0,0"
+            VerticalAlignment="Top" 
+            Width="120"
+            SelectionChanged="TableSetect_ComboBox_SelectionChanged"  Grid.Column="1" Grid.Row="1">
+
+            <ComboBoxItem Content="T"/>
+            <ComboBoxItem Content="u"/>
+            <ComboBoxItem Content="v"/>
+            <ComboBoxItem Content="Rho"/>
+            <ComboBoxItem Content="P" />
+            <ComboBoxItem Content="Mach"/>
+            
+        </ComboBox>
 
 
 
