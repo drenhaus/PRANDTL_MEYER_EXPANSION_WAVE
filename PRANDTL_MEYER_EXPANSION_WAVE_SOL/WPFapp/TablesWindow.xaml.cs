@@ -55,6 +55,7 @@ namespace WPFapp
 
         private void TableSetect_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+         
             if (TableSetect_ComboBox.SelectedIndex==0)
             {
                 grid2.DataContext = temperature_t.DefaultView;

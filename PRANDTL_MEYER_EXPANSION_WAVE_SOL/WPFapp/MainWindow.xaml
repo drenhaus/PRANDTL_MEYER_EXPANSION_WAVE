@@ -106,13 +106,12 @@
             </ComboBox.RenderTransform>
         </ComboBox>
 
-        <Grid x:Name="GridMalla" Grid.Column="1" 
-              Grid.Row="1" 
+        <Grid x:Name="GridMalla" 
               HorizontalAlignment="Left" 
-              Width="582" Margin="109,215,0,0" 
+              Width="582" Margin="50,215,0,0" 
               Height="362" 
-              VerticalAlignment="Top"
-              Background="Black"/>
+              VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"
+              />
 
         <Button x:Name="InfoPresitionButton" Content="I" 
                 Grid.Column="1" 
@@ -304,7 +303,7 @@
                 Grid.Column="1"
                 VerticalAlignment="Top" 
                 Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345"/>
+                RenderTransformOrigin="0.477,-0.345" Click="Simulate_Button_Click"/>
 
         <Button x:Name="SaveSim_button" 
                 Content="Save Simulation" 
