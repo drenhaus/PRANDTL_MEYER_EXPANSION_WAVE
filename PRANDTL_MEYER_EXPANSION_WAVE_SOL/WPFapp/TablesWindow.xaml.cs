@@ -31,7 +31,7 @@ namespace WPFapp
         DataTable F3_t;
         DataTable F4_t;
 
-        bool expanded = false;
+        bool expanded = true;
 
         public TablesWindow()
         {
@@ -102,13 +102,13 @@ namespace WPFapp
         {
             if (expanded==true)
             {
-                for (int i = 0; i < F4_t.Columns.Count; i++)
-                { grid2.Columns[i].Width = 50; }
+                for (int i = 1; i < F4_t.Columns.Count+1; i++)
+                { grid2.Columns[i].Width = 35; }
                 expanded = false;
             }
             else
             {
-                for (int i = 0; i < F4_t.Columns.Count; i++)
+                for (int i = 1; i < F4_t.Columns.Count+1; i++)
                 { grid2.Columns[i].Width = 100; }
                 expanded = true;
             }
