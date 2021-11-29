@@ -139,27 +139,45 @@ namespace WPFapp
 
             if (DataGridComboBox.SelectedIndex == 0) //temperature
             {
-                
+                foreach (Polygon p in casillas)
+                {
+                    p.Fill = Brushes.Red;
+                }    
             }
             if (DataGridComboBox.SelectedIndex == 1) //u
             {
-
+                foreach (Polygon p in casillas)
+                {
+                    p.Fill = Brushes.Green;
+                }
             }
             if (DataGridComboBox.SelectedIndex == 2) //v
             {
-
+                foreach (Polygon p in casillas)
+                {
+                    p.Fill = Brushes.Yellow;
+                }
             }
             if (DataGridComboBox.SelectedIndex == 3) //rho
             {
-
+                foreach (Polygon p in casillas)
+                {
+                    p.Fill = Brushes.Black;
+                }
             }
             if (DataGridComboBox.SelectedIndex == 4) //p
             {
-
+                foreach (Polygon p in casillas)
+                {
+                    p.Fill = Brushes.Violet;
+                }
             }
             if (DataGridComboBox.SelectedIndex == 5) //Mach
             {
-
+                foreach (Polygon p in casillas)
+                {
+                    p.Fill = Brushes.Blue;
+                }
             }
          
 
