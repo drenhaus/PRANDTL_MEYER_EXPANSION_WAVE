@@ -9,7 +9,8 @@
         Title="TablesWindow" Height="610" Width="860">
     <Grid>
         <DataGrid x:Name="grid2" Margin="38,80,38,10" 
-          AutoGenerateColumns="True">
+          ItemsSource="{Binding}"
+                  AutoGenerateColumns="True">
             <DataGrid.Resources>
                 <Style TargetType="DataGridColumnHeader">
                     <EventSetter Event="Click" Handler="DataGridColumnHeader_Click" />
