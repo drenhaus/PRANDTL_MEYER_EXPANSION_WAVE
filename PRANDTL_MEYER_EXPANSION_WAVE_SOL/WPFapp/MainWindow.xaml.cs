@@ -43,11 +43,7 @@ namespace WPFapp
             InitializeComponent();
         }
 
-        private void Loaded(object sender, RoutedEventArgs e)
-        {
-           
-
-        }
+      
 
         //open the tables window
         private void TablesButton_Click(object sender, RoutedEventArgs e)
@@ -78,6 +74,8 @@ namespace WPFapp
             columnas = m.columns;
             filas = m.rows;
             GenerateGridPlot();
+
+            DataGridComboBox.IsEnabled = true;
         }
 
         public void GenerateGridPlot()
@@ -133,16 +131,14 @@ namespace WPFapp
             }
         }
 
-
-        private void TableSetect_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGridComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             if (DataGridComboBox.SelectedIndex == 0) //temperature
             {
                 foreach (Polygon p in casillas)
                 {
                     p.Fill = Brushes.Red;
-                }    
+                }
             }
             if (DataGridComboBox.SelectedIndex == 1) //u
             {
@@ -179,8 +175,6 @@ namespace WPFapp
                     p.Fill = Brushes.Blue;
                 }
             }
-         
-
 
         }
     }

@@ -31,7 +31,7 @@
                   Margin="167,35,0,0"
                   VerticalAlignment="Top" 
                   Width="120"
-                  SelectionChanged="TableSetect_ComboBox_SelectionChanged">
+                  SelectionChanged="TableSetect_ComboBox_SelectionChanged_1">
 
             <ComboBoxItem Content="T"/>
             <ComboBoxItem Content="u"/>

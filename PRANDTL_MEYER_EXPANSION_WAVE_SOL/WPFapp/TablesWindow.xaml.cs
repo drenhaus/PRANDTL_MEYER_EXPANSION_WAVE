@@ -53,10 +53,28 @@ namespace WPFapp
         }
 
 
-        private void TableSetect_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+      
+
+        private void DataGridColumnHeader_Click(object sender, RoutedEventArgs e)
         {
-         
-            if (TableSetect_ComboBox.SelectedIndex==0)
+            if (expanded==true)
+            {
+                for (int i = 1; i < F4_t.Columns.Count+1; i++)
+                { grid2.Columns[i].Width = 35; }
+                expanded = false;
+            }
+            else
+            {
+                for (int i = 1; i < F4_t.Columns.Count+1; i++)
+                { grid2.Columns[i].Width = 100; }
+                expanded = true;
+            }
+        }
+
+        private void TableSetect_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (TableSetect_ComboBox.SelectedIndex == 0)
             {
                 grid2.DataContext = temperature_t.DefaultView;
             }
@@ -95,23 +113,6 @@ namespace WPFapp
             if (TableSetect_ComboBox.SelectedIndex == 9)
             {
                 grid2.DataContext = F4_t.DefaultView;
-            }
-        }
-
-
-        private void DataGridColumnHeader_Click(object sender, RoutedEventArgs e)
-        {
-            if (expanded==true)
-            {
-                for (int i = 1; i < F4_t.Columns.Count+1; i++)
-                { grid2.Columns[i].Width = 35; }
-                expanded = false;
-            }
-            else
-            {
-                for (int i = 1; i < F4_t.Columns.Count+1; i++)
-                { grid2.Columns[i].Width = 100; }
-                expanded = true;
             }
         }
     }
