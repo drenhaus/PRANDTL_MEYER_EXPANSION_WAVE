@@ -160,7 +160,6 @@ namespace WPFapp
 
         }
 
-
         public double[] Max_Min_Datatables(DataTable data_t)
         {
             double max = Convert.ToDouble(data_t.Rows[0][0].ToString());
@@ -216,6 +215,15 @@ namespace WPFapp
 
         }
 
+        private void ComparationButton_Click(object sender, RoutedEventArgs e)
+        {
+            AndersonComparationWindow anderson_w = new AndersonComparationWindow();
 
+            // define the columns we want to check
+            //tables_w.SetTables(temperature_table, u_table, v_table, rho_table, p_table, M_table, F1_table, F2_table, F3_table, F4_table);
+            anderson_w.Show();
+
+
+        }
     }
 }
