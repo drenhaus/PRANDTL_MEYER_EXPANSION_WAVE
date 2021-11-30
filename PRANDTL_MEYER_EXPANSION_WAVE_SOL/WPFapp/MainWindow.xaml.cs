@@ -135,58 +135,27 @@ namespace WPFapp
         {
             if (DataGridComboBox.SelectedIndex == 0) //temperature
             {
-                double[] max_min;
-                max_min= Max_Min_Datatables(temperature_table);
-
-                for (int i = 0; i < columnas-1; i++)
-                {
-                    for (int j = 0; j < filas; j++)
-                    {
-                        byte alpha = Define_Cloroes(max_min[0], max_min[1], Convert.ToDouble(temperature_table.Rows[j][i].ToString()));
-                        casillas[j,i].Fill=  new SolidColorBrush(Color.FromArgb(alpha, 255,0,0));
-                    }
-                }
-
-                        foreach (Polygon p in casillas)
-                {
-                    p.Fill = Brushes.Red;
-                    //casillas[i, j].Fill =
-                }
+                actualizar_colores_grid(temperature_table, 255, 0, 0);                 
             }
             if (DataGridComboBox.SelectedIndex == 1) //u
             {
-                foreach (Polygon p in casillas)
-                {
-                    p.Fill = Brushes.Green;
-                }
+                actualizar_colores_grid(u_table, 0, 255, 0);
             }
             if (DataGridComboBox.SelectedIndex == 2) //v
             {
-                foreach (Polygon p in casillas)
-                {
-                    p.Fill = Brushes.Yellow;
-                }
+                actualizar_colores_grid(v_table, 255, 128, 0);
             }
             if (DataGridComboBox.SelectedIndex == 3) //rho
             {
-                foreach (Polygon p in casillas)
-                {
-                    p.Fill = Brushes.Black;
-                }
+                actualizar_colores_grid(rho_table, 0, 0, 255);
             }
             if (DataGridComboBox.SelectedIndex == 4) //p
             {
-                foreach (Polygon p in casillas)
-                {
-                    p.Fill = Brushes.Violet;
-                }
+                actualizar_colores_grid(p_table, 255, 0, 127);
             }
             if (DataGridComboBox.SelectedIndex == 5) //Mach
             {
-                foreach (Polygon p in casillas)
-                {
-                    p.Fill = Brushes.Blue;
-                }
+                actualizar_colores_grid(M_table, 96, 96, 96);
             }
 
         }
@@ -225,9 +194,25 @@ namespace WPFapp
             // min byte --25
 
             //interpolamos para sacar el parametro alpa
-            alpha = Convert.ToByte(25 + ((255 - 25) / (max - min)) * (value - min));
+            alpha = Convert.ToByte(30 + (255 - 30) / (max - min) * (value - min));
 
             return alpha;
+
+        }
+
+        public void actualizar_colores_grid(DataTable t, byte R, byte G, byte B)
+        {
+            double[] max_min;
+            max_min = Max_Min_Datatables(t);
+
+            for (int i = 0; i < columnas - 1; i++)
+            {
+                for (int j = 0; j < filas; j++)
+                {
+                    byte alpha = Define_Cloroes(max_min[0], max_min[1], Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()));
+                    casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(alpha, R, G, B));
+                }
+            }
 
         }
 
