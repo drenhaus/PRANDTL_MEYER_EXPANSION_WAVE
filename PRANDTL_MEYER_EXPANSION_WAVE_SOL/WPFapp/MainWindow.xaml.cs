@@ -135,9 +135,22 @@ namespace WPFapp
         {
             if (DataGridComboBox.SelectedIndex == 0) //temperature
             {
-                foreach (Polygon p in casillas)
+                double[] max_min;
+                max_min= Max_Min_Datatables(temperature_table);
+
+                for (int i = 0; i < columnas-1; i++)
+                {
+                    for (int j = 0; j < filas; j++)
+                    {
+                        byte alpha = Define_Cloroes(max_min[0], max_min[1], Convert.ToDouble(temperature_table.Rows[j][i].ToString()));
+                        casillas[j,i].Fill=  new SolidColorBrush(Color.FromArgb(alpha, 255,0,0));
+                    }
+                }
+
+                        foreach (Polygon p in casillas)
                 {
                     p.Fill = Brushes.Red;
+                    //casillas[i, j].Fill =
                 }
             }
             if (DataGridComboBox.SelectedIndex == 1) //u
@@ -177,5 +190,47 @@ namespace WPFapp
             }
 
         }
+
+
+        public double[] Max_Min_Datatables(DataTable data_t)
+        {
+            double max = Convert.ToDouble(data_t.Rows[0][0].ToString());
+            double min = Convert.ToDouble(data_t.Rows[0][0].ToString());
+            for (int i = 0; i < columnas; i++)
+            {
+                for (int j = 0; j < filas; j++)
+                {
+                    if (Convert.ToDouble(data_t.Rows[j][i].ToString()) < min)
+                    {
+                        min = Convert.ToDouble(data_t.Rows[j][i].ToString());
+                    }
+                    if (Convert.ToDouble(data_t.Rows[j][i].ToString()) > max)
+                    {
+                        max = Convert.ToDouble(data_t.Rows[j][i].ToString());
+                    }
+
+                }
+            }
+            double[] values = { max, min };
+            return values;
+        }
+
+        public byte Define_Cloroes(double max, double min, double value)
+        {
+            double rango = max - min;
+
+            byte alpha;
+
+            //max byte --255
+            // min byte --25
+
+            //interpolamos para sacar el parametro alpa
+            alpha = Convert.ToByte(25 + ((255 - 25) / (max - min)) * (value - min));
+
+            return alpha;
+
+        }
+
+
     }
 }
