@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
         Title="MainWindow" Height="690" Width="980">
-    <Grid x:Name="grid1" Loaded="Loaded" Margin="0,10,0,10" HorizontalAlignment="Center" Width="960">
+    <Grid x:Name="grid1" Margin="0,10,0,10" HorizontalAlignment="Center" Width="960">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="199*"/>
             <ColumnDefinition Width="761*"/>
@@ -40,7 +40,7 @@
             Grid.Row="1" 
             VerticalAlignment="Top" 
             Height="38" Width="208" 
-            RenderTransformOrigin="0.477,-0.345"/>
+            RenderTransformOrigin="0.477,-0.345" Click="TablesButton_Click"/>
 
         <Button x:Name="ComparationButton" 
                 Content="Comparar con el tete Anderson" 
@@ -49,7 +49,7 @@
             Grid.Row="1" 
             VerticalAlignment="Top" 
             Height="38" Width="208" 
-            RenderTransformOrigin="0.477,-0.345"/>
+            RenderTransformOrigin="0.477,-0.345" Click="ComparationButton_Click"/>
 
         <Button x:Name="GraficButton" 
             Content="Graficos" 
@@ -106,13 +106,12 @@
             </ComboBox.RenderTransform>
         </ComboBox>
 
-        <Grid x:Name="GridMalla" Grid.Column="1" 
-              Grid.Row="1" 
+        <Grid x:Name="GridMalla" 
               HorizontalAlignment="Left" 
-              Width="582" Margin="109,215,0,0" 
+              Width="582" Margin="50,215,0,0" 
               Height="362" 
-              VerticalAlignment="Top"
-              Background="Black"/>
+              VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"
+              />
 
         <Button x:Name="InfoPresitionButton" Content="I" 
                 Grid.Column="1" 
@@ -269,19 +268,12 @@
 
 
 
-        <CheckBox x:Name="CheckBox_A" Content="CheckBox A" 
+        <CheckBox x:Name="CheckBox_A" Content="Defaul parameters" 
                   Grid.Column="1" 
                   HorizontalAlignment="Left" 
-                  Margin="350,112,0,0" 
+                  Margin="407,119,0,0" 
                   Grid.Row="1" 
-                  VerticalAlignment="Top" Height="15" Width="82"/>
-
-        <CheckBox x:Name="CheckBox_B" Content="CheckBox B" 
-                  Grid.Column="1" 
-                  HorizontalAlignment="Left" 
-                  Margin="460,112,0,0" 
-                  Grid.Row="1" 
-                  VerticalAlignment="Top" Height="15" Width="82"/>
+                  VerticalAlignment="Top" Height="15" Width="135"/>
 
 
 
@@ -289,7 +281,7 @@
         <Button x:Name="LoadParametersButton" 
                 Content="Load Parameters" 
                 HorizontalAlignment="Left" 
-                Margin="573,108,0,0" 
+                Margin="50,161,0,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
@@ -299,12 +291,12 @@
         <Button x:Name="Simulate_Button" 
                 Content="Star Simulation" 
                 HorizontalAlignment="Right" 
-                Margin="0,163,613,0" 
+                Margin="0,108,62,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
                 Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345"/>
+                RenderTransformOrigin="0.477,-0.345" Click="Simulate_Button_Click"/>
 
         <Button x:Name="SaveSim_button" 
                 Content="Save Simulation" 
@@ -349,6 +341,28 @@
                 HorizontalAlignment="Left" 
                 Margin="615,19,0,0" 
                 VerticalAlignment="Top" Width="34"/>
+        <Label Content="Select data type:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="467,165,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="102"/>
+        <ComboBox x:Name="DataGridComboBox" 
+            HorizontalAlignment="Left" 
+            Margin="580,169,0,0"
+            VerticalAlignment="Top" 
+            Width="120"
+            IsEnabled="False"   
+            SelectionChanged="DataGridComboBox_SelectionChanged"  Grid.Column="1" Grid.Row="1">
+
+            <ComboBoxItem Content="T"/>
+            <ComboBoxItem Content="u"/>
+            <ComboBoxItem Content="v"/>
+            <ComboBoxItem Content="Rho"/>
+            <ComboBoxItem Content="P" />
+            <ComboBoxItem Content="Mach"/>
+
+        </ComboBox>
 
 
 

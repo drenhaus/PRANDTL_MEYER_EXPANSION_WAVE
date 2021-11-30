@@ -8,16 +8,18 @@ namespace LibreriaClases
 {
     public class Malla
     {
-        int rows=41; //   j filas
-        int columns = 120; // i les columnas
+        public int rows { get; set; } = 41; //   j filas
+        public int columns { get; set; } = 89; // i les columnas
         double delta_y_t = 0.025;
         double Cy = 0.6;
         double C = 0.5;
 
-        double delta_x;
+        public double delta_x { get; set; }
         double delta_y;
 
         double delta_xi;
+
+        public double[] delta_y_array { get; set; }
 
         Normas norma = new Normas();
         Celda[,] matriz;
@@ -35,11 +37,18 @@ namespace LibreriaClases
         DataTable F3_table = new DataTable("All F3 values");
         DataTable F4_table = new DataTable("All F4 values");
 
+        //We compute the delta_y values
+        public double[] Vector_Delta_y()
+        {
+            delta_y_array  = new double[columns];
+            for (int i = 0; i < columns; i++)
+            {
+                delta_y_array[i] = matriz[1, i].y-matriz[0,i].y;
+            }
+            return delta_y_array;
+        }
 
-
-
-
-        public void DefinirMatriz()
+    public void DefinirMatriz()
         {
 
             this.matriz = new Celda[rows, columns];
@@ -224,7 +233,7 @@ namespace LibreriaClases
 
             }
 
-        public DataTable Fill_DataTable()
+        public void Fill_DataTable()
         {
 
             for (int j = 0; j < columns; j++)
@@ -294,8 +303,13 @@ namespace LibreriaClases
 
             }
 
-            return Mach_table;
 
+        }
+
+        public DataTable [] GetTables()
+        {
+            DataTable [] T_U_V_RHO_P_M_F1_F2_F3_F4 = new DataTable[] {Temperature_table,u_table,v_table,Rho_table,P_table,Mach_table,F1_table,F2_table,F3_table,F4_table};
+            return T_U_V_RHO_P_M_F1_F2_F3_F4;
         }
 
 

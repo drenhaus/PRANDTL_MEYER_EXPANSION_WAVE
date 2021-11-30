@@ -5,10 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
+        xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"  
         Title="TablesWindow" Height="610" Width="860">
     <Grid>
-        <DataGrid x:Name="grid2" Margin="38,80,38,10" ItemsSource="{Binding}" 
-          AutoGenerateColumns="True"/>
+        <DataGrid x:Name="grid2" Margin="38,80,38,10" 
+          ItemsSource="{Binding}"
+                  AutoGenerateColumns="True">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <EventSetter Event="Click" Handler="DataGridColumnHeader_Click" />
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn  Width="30" />
+            </DataGrid.Columns>
+
+        </DataGrid>
+
         <Label Content="Select Data Type" 
                HorizontalAlignment="Left" 
                Margin="60,31,0,0"
@@ -18,7 +31,8 @@
                   HorizontalAlignment="Left" 
                   Margin="167,35,0,0"
                   VerticalAlignment="Top" 
-                  Width="120">
+                  Width="120"
+                  SelectionChanged="TableSetect_ComboBox_SelectionChanged_1">
 
             <ComboBoxItem Content="T"/>
             <ComboBoxItem Content="u"/>
@@ -54,6 +68,6 @@
                 Margin="774,10,0,0" 
                 VerticalAlignment="Top" Width="34"/>
 
-
     </Grid>
+
 </Window>
