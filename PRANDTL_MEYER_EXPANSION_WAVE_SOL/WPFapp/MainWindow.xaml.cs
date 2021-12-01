@@ -126,9 +126,9 @@ namespace WPFapp
                     System.Windows.Point Point4 = new System.Windows.Point(x2 * dimension_scale, y4 * dimension_scale);
                     PointCollection myPointCollection = new PointCollection();
                     myPointCollection.Add(Point1);
-                    myPointCollection.Add(Point3);
                     myPointCollection.Add(Point2);
                     myPointCollection.Add(Point4);
+                    myPointCollection.Add(Point3);
                     myPolygon.Points = myPointCollection;
                     casillas[j, i] = myPolygon;
 
