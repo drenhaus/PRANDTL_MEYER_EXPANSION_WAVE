@@ -8,8 +8,8 @@ namespace LibreriaClases
 {
     public class Malla
     {
-        public int rows { get; set; } = 41; //   j filas
-        public int columns { get; set; } = 89; // i les columnas
+        public int rows { get; set; }  //   j filas
+        public int columns { get; set; }  // i les columnas
         double delta_y_t = 0.025;
         double Cy = 0.6;
         double C = 0.5;

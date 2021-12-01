@@ -23,8 +23,8 @@ namespace WPFapp
     public partial class MainWindow : Window
     {
         Malla m = new Malla();
-        int columnas;
-        int filas;
+        int columnas=89;
+        int filas=41;
         Polygon[,] casillas;
 
         DataTable temperature_table;
@@ -57,7 +57,9 @@ namespace WPFapp
 
         private void Simulate_Button_Click(object sender, RoutedEventArgs e)
         {
-          
+            m.rows = filas;
+            m.columns = columnas;
+            
             m.DefinirMatriz();
             m.Compute();
             m.Fill_DataTable();
@@ -72,8 +74,6 @@ namespace WPFapp
             F2_table = T_U_V_RHO_P_M_F1_F2_F3_F4[7];
             F3_table = T_U_V_RHO_P_M_F1_F2_F3_F4[8];
             F4_table = T_U_V_RHO_P_M_F1_F2_F3_F4[9];
-            columnas = m.columns;
-            filas = m.rows;
             GenerateGridPlot();
 
             DataGridComboBox.IsEnabled = true;
@@ -264,11 +264,6 @@ namespace WPFapp
         private void Reset_button_Click(object sender, RoutedEventArgs e)
         {
 
-            Reset();
-        }
-
-        public void Reset()
-        {
             m = new Malla();
             casillas = null;
             temperature_table = null;
@@ -283,8 +278,12 @@ namespace WPFapp
             F4_table = null;
             DataGridComboBox.IsEnabled = false;
             GridMalla.Children.Clear();
-
         }
 
+        private void AdvancedStudyButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdvancedStudyWindow ad_w = new AdvancedStudyWindow();
+            ad_w.Show();
+        }
     }
 }
