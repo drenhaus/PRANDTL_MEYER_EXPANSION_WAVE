@@ -111,7 +111,7 @@
 
         <Grid x:Name="GridMalla" 
               HorizontalAlignment="Left" 
-              Width="703" Margin="31,215,0,0" 
+              Width="601" Margin="31,215,0,0" 
               Height="362" 
               VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"
               />
@@ -302,6 +302,44 @@
             <ComboBoxItem Content="Mach"/>
 
         </ComboBox>
+        <Label Content="T:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="645,234,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="30"/>
+        <Label Content="M:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="645,276,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="30"/>
+        <Label Content="P:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="645,325,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="30"/>
+        <Label Content="Rho:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="645,356,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="46"/>
+        <Label Content="v:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="646,396,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="46"/>
+        <Label Content="u:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="647,453,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="46"/>
+        <Label x:Name="temeprature_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="691,234,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label x:Name="mach_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="680,276,0,0" Grid.Row="1" VerticalAlignment="Top"/>
 
 
 

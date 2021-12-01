@@ -22,7 +22,7 @@ namespace LibreriaClases
         public double[] delta_y_array { get; set; }
 
         public Normas norma { get; set; } = new Normas();
-        Celda[,] matriz;
+        public Celda[,] matriz { get; set; }
 
 
         //Tables with the data of all iterations

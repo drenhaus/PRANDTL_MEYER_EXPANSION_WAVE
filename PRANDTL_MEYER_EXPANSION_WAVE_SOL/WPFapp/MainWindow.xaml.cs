@@ -134,6 +134,8 @@ namespace WPFapp
                     myPolygon.Points = myPointCollection;
                     casillas[j, i] = myPolygon;
 
+                    myPolygon.MouseEnter += new System.Windows.Input.MouseEventHandler(polygon_enter);
+
                     y4 = y2;
                     y3 = y1;
 
@@ -348,5 +350,33 @@ namespace WPFapp
             Graphics gr = new Graphics();
             gr.Show();
         }
+
+        private void polygon_enter(object sender, EventArgs e)
+        {
+            Polygon poly = (Polygon)sender;
+            Point p = (Point)poly.Tag;
+
+            int i = 0;
+            int j = 0;
+            for ( i = 0; i < columnas; i++)
+            {
+                for ( j = 0; j < filas; j++)
+                {
+                    if (m.matriz[j,i].x==Convert.ToDouble(p.X) && m.matriz[j, i].y == Convert.ToDouble(p.Y))
+                    { break; }
+                }
+            }
+
+                    // we need to make the transformation from the physical to computational
+
+            
+                 m.matriz[j,i].
+
+            // labelFase.Text = Convert.ToString(matriz_celdas.DameFASEde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1)); // valor de fase
+
+
+        }
     }
+
+
 }
