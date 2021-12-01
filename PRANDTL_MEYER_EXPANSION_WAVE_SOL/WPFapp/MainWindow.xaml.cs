@@ -57,19 +57,8 @@ namespace WPFapp
 
         private void Simulate_Button_Click(object sender, RoutedEventArgs e)
         {
+          
             m.DefinirMatriz();
-
-            m.norma.v_in = Convert.ToDouble(v_TextBox.Text);
-            m.norma.Rho_in = Convert.ToDouble(Rho_TextBox.Text);
-            m.norma.P_in = Convert.ToDouble(P_TextBox.Text);
-            m.norma.M_in = Convert.ToDouble(M_TextBox.Text);
-            m.norma.T_in = Convert.ToDouble(T_TextBox.Text);
-
-            m.norma.Compute_a();
-            m.norma.Compute_M_angle();
-            m.norma.Compute_u();
-
-            
             m.Compute();
             m.Fill_DataTable();
             DataTable[] T_U_V_RHO_P_M_F1_F2_F3_F4 = m.GetTables();
@@ -147,7 +136,7 @@ namespace WPFapp
         {
             if (DataGridComboBox.SelectedIndex == 0) //temperature
             {
-                actualizar_colores_grid(temperature_table, 255, 0, 0);                 
+                actualizar_colores_grid(temperature_table, 255, 0, 0);  
             }
             if (DataGridComboBox.SelectedIndex == 1) //u
             {
@@ -246,5 +235,56 @@ namespace WPFapp
             M_TextBox.Text = Convert.ToString(2.0);
             T_TextBox.Text = Convert.ToString(286.1);
         }
+
+        private void LoadParametersButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                m.norma.v_in = Convert.ToDouble(v_TextBox.Text);
+                m.norma.Rho_in = Convert.ToDouble(Rho_TextBox.Text);
+                m.norma.P_in = Convert.ToDouble(P_TextBox.Text);
+                m.norma.M_in = Convert.ToDouble(M_TextBox.Text);
+                m.norma.T_in = Convert.ToDouble(T_TextBox.Text);
+
+                m.norma.Compute_a();
+                m.norma.Compute_M_angle();
+                m.norma.Compute_u();
+
+                MessageBox.Show("Parameters defined");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+        private void Reset_button_Click(object sender, RoutedEventArgs e)
+        {
+
+            Reset();
+        }
+
+        public void Reset()
+        {
+            m = new Malla();
+            casillas = null;
+            temperature_table = null;
+            u_table = null;
+            v_table = null;
+            rho_table = null;
+            p_table = null;
+            M_table = null;
+            F1_table = null;
+            F2_table = null;
+            F3_table = null;
+            F4_table = null;
+            DataGridComboBox.IsEnabled = false;
+            GridMalla.Children.Clear();
+
+        }
+
     }
 }

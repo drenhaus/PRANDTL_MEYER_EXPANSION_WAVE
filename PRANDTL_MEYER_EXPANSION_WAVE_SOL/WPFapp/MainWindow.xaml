@@ -108,7 +108,7 @@
 
         <Grid x:Name="GridMalla" 
               HorizontalAlignment="Left" 
-              Width="582" Margin="50,215,0,0" 
+              Width="703" Margin="31,215,0,0" 
               Height="362" 
               VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"
               />
@@ -214,17 +214,17 @@
         <Button x:Name="LoadParametersButton" 
                 Content="Load Parameters" 
                 HorizontalAlignment="Left" 
-                Margin="31,152,0,0" 
+                Margin="587,63,0,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
                 Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345"/>
+                RenderTransformOrigin="0.477,-0.345" Click="LoadParametersButton_Click"/>
 
         <Button x:Name="Simulate_Button" 
                 Content="Star Simulation" 
                 HorizontalAlignment="Right" 
-                Margin="0,65,61,0" 
+                Margin="0,128,203,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
@@ -244,7 +244,7 @@
         <Button x:Name="LoadSim_button" 
                 Content="Load Simulation" 
                 HorizontalAlignment="Left" 
-                Margin="325,163,0,0" 
+                Margin="31,152,0,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
@@ -254,12 +254,12 @@
         <Button x:Name="Reset_button" 
                 Content="Reset" 
                 HorizontalAlignment="Left" 
-                Margin="161,150,0,0" 
+                Margin="587,130,0,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
                 Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345"/>
+                RenderTransformOrigin="0.477,-0.345" Click="Reset_button_Click"/>
 
         <Button x:Name="Close_Button" 
                 Content="x" 
@@ -277,12 +277,12 @@
         <Label Content="Select data type:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
-            Margin="467,165,0,0" 
+            Margin="447,162,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="102"/>
         <ComboBox x:Name="DataGridComboBox" 
             HorizontalAlignment="Left" 
-            Margin="580,169,0,0"
+            Margin="585,166,0,0"
             VerticalAlignment="Top" 
             Width="120"
             IsEnabled="False"   
