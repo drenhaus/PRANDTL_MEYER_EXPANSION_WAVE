@@ -102,9 +102,80 @@ namespace WPFapp
                              0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),
                              0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),
                              0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9)};
-    
 
-        // COMPLETAR TABLAS CON VALORES DEL ANDERSON
+        double[] A_u_66 = {0.705 * Math.Pow(10, 3),0.710 * Math.Pow(10, 3),0.711 * Math.Pow(10, 3), 0.711 * Math.Pow(10, 3), 0.711 * Math.Pow(10, 3), 0.711 * Math.Pow(10, 3), 0.711 * Math.Pow(10, 3),
+                            0.711 * Math.Pow(10, 3),0.711 * Math.Pow(10, 3),0.711 * Math.Pow(10, 3),0.711 * Math.Pow(10, 3),0.711 * Math.Pow(10, 3),0.711 * Math.Pow(10, 3),0.711 * Math.Pow(10, 3),
+                            0.711 * Math.Pow(10, 3),0.711 * Math.Pow(10, 3),0.711 * Math.Pow(10, 3),0.711 * Math.Pow(10, 3),0.712 * Math.Pow(10, 3),0.713 * Math.Pow(10, 3),0.713 * Math.Pow(10, 3),
+                            0.713 * Math.Pow(10, 3),0.711 * Math.Pow(10, 3),0.709 * Math.Pow(10, 3),0.707 * Math.Pow(10, 3),0.705 * Math.Pow(10, 3),0.702 * Math.Pow(10, 3),0.699 * Math.Pow(10, 3),
+                            0.696 * Math.Pow(10, 3),0.693* Math.Pow(10, 3),0.69* Math.Pow(10, 3),0.688* Math.Pow(10, 3),0.685* Math.Pow(10, 3),0.683* Math.Pow(10, 3),0.681* Math.Pow(10, 3),0.68* Math.Pow(10, 3),
+                            0.679* Math.Pow(10, 3),0.679* Math.Pow(10, 3),0.678* Math.Pow(10, 3),0.678* Math.Pow(10, 3),0.678* Math.Pow(10, 3)};
+        double[] A_v_66 = { };
+        double[] A_rho_66 = { };
+        double[] A_p_66 = { };
+        double[] A_T_66 = { };
+        double[] A_M_66 = { };
+        double[] A_F1_66 = { };
+        double[] A_F2_66 = { };
+        double[] A_F3_66 = { };
+        double[] A_F4_66 = { };
+
+        private void Compare_btn_Click(object sender, RoutedEventArgs e)
+        {
+            if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex==0) //T AND 12
+            {
+                
+
+            }
+            if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex == 1) //T AND 66
+            { }
+
+            if (Setect_Parameter_ComboBox.SelectedIndex == 1 && Setect_X_ComboBox.SelectedIndex == 0) //u AND 12
+            { }
+            if (Setect_Parameter_ComboBox.SelectedIndex == 1 && Setect_X_ComboBox.SelectedIndex == 1) //u AND 66
+            { }
+
+            if (Setect_Parameter_ComboBox.SelectedIndex == 2 && Setect_X_ComboBox.SelectedIndex == 0) //v AND 12
+            { }
+            if (Setect_Parameter_ComboBox.SelectedIndex == 2 && Setect_X_ComboBox.SelectedIndex == 1) //v AND 66
+            { }
+
+            if (Setect_Parameter_ComboBox.SelectedIndex == 3 && Setect_X_ComboBox.SelectedIndex == 0) //rho AND 12
+            { }
+            if (Setect_Parameter_ComboBox.SelectedIndex == 3 && Setect_X_ComboBox.SelectedIndex == 1) //rho AND 66
+            { }
+
+            if (Setect_Parameter_ComboBox.SelectedIndex == 4 && Setect_X_ComboBox.SelectedIndex == 0) //p AND 12
+            { }
+            if (Setect_Parameter_ComboBox.SelectedIndex == 4 && Setect_X_ComboBox.SelectedIndex == 1) //p AND 66
+            { }
+
+            if (Setect_Parameter_ComboBox.SelectedIndex == 5 && Setect_X_ComboBox.SelectedIndex == 0) //M AND 12
+            { }
+            if (Setect_Parameter_ComboBox.SelectedIndex == 5 && Setect_X_ComboBox.SelectedIndex == 1) //M AND 66
+            { }
+
+            if (Setect_Parameter_ComboBox.SelectedIndex == 6 && Setect_X_ComboBox.SelectedIndex == 0) //F1 AND 12
+            { }
+            if (Setect_Parameter_ComboBox.SelectedIndex == 6 && Setect_X_ComboBox.SelectedIndex == 1) //F1 AND 66
+            { }
+
+            if (Setect_Parameter_ComboBox.SelectedIndex == 7 && Setect_X_ComboBox.SelectedIndex == 0) //F2 AND 12
+            { }
+            if (Setect_Parameter_ComboBox.SelectedIndex == 7 && Setect_X_ComboBox.SelectedIndex == 1) //F2 AND 66
+            { }
+
+            if (Setect_Parameter_ComboBox.SelectedIndex == 8 && Setect_X_ComboBox.SelectedIndex == 0) //F3 AND 12
+            { }
+            if (Setect_Parameter_ComboBox.SelectedIndex == 8 && Setect_X_ComboBox.SelectedIndex == 1) //F3 AND 66
+            { }
+
+            if (Setect_Parameter_ComboBox.SelectedIndex == 9 && Setect_X_ComboBox.SelectedIndex == 0) //F4 AND 12
+            { }
+            if (Setect_Parameter_ComboBox.SelectedIndex == 9 && Setect_X_ComboBox.SelectedIndex == 1) //F4 AND 66
+            { }
+        }
+
+
 
     }
 }

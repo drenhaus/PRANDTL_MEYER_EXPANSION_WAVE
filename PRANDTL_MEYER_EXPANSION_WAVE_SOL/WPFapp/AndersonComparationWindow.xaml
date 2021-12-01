@@ -8,7 +8,7 @@
         Title="AndersonComparationWindow" Height="610" Width="860">
     <Grid>
         <Grid x:Name="AndersonGrid" 
-              Background="Black" 
+            
               RenderTransformOrigin="0.5,0.5" 
               Margin="213,97,510,10">
 
@@ -131,6 +131,7 @@
                 Content="-" 
                 Margin="759,10,67,0" 
                 VerticalAlignment="Top"/>
+        <Button x:Name="Compare_btn" Content="Compare" HorizontalAlignment="Left" Margin="74,254,0,0" VerticalAlignment="Top" Click="Compare_btn_Click"/>
 
 
 
