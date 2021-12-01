@@ -342,5 +342,11 @@ namespace WPFapp
 
             
         }
+
+        private void GraficButton_Click(object sender, RoutedEventArgs e)
+        {
+            Graphics gr = new Graphics();
+            gr.Show();
+        }
     }
 }
