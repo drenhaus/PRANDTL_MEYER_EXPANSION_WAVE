@@ -13,13 +13,13 @@ namespace LibreriaClases
 
 
 
-        public double M_in { get; set; } = 2;
-        public double P_in { get; set; } = 101000;
-        public double Rho_in { get; set; } = 1.23;
+        public double M_in { get; set; } 
+        public double P_in { get; set; } 
+        public double Rho_in { get; set; }
         public double R_air { get; set; } = 287;
         public double Gamma { get; set; } = 1.4;
-        public double T_in { get; set; } = 286.1;
-        public double v_in { get; set; } = 0;
+        public double T_in { get; set; } 
+        public double v_in { get; set; }
         public double u_in { get; set; }
         public double M_angle { get; set; }
         public double a_in { get; set; }

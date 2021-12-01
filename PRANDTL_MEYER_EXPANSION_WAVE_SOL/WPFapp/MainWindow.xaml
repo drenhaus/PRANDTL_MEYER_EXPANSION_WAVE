@@ -116,7 +116,7 @@
         <Button x:Name="InfoPresitionButton" Content="I" 
                 Grid.Column="1" 
                 HorizontalAlignment="Left" 
-                Margin="168,51,0,0" 
+                Margin="207,53,0,0" 
                 Grid.Row="1"
                 VerticalAlignment="Top" 
                 RenderTransformOrigin="-0.074,-0.171" 
@@ -125,76 +125,41 @@
         <Label Content="ρ:" 
                Grid.Column="1" 
                HorizontalAlignment="Left" 
-               Margin="284,74,0,0" 
+               Margin="332,82,0,0" 
                Grid.Row="1" 
                VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="20"/>
         <Label Content="P:" 
                Grid.Column="1" 
                HorizontalAlignment="Left" 
-               Margin="285,9,0,0" 
+               Margin="333,15,0,0" 
                Grid.Row="1" 
                VerticalAlignment="Top" RenderTransformOrigin="0.168,0.491" Height="26" Width="19"/>
         <Label Content="M:" 
                Grid.Column="1" 
                HorizontalAlignment="Left" 
-               Margin="423,7,0,0" 
+               Margin="459,36,0,0" 
                Grid.Row="1" 
                VerticalAlignment="Top" RenderTransformOrigin="-0.426,-0.61" Height="26" Width="23"/>
         <Label Content="T:" 
                Grid.Column="1" 
                HorizontalAlignment="Left" 
-               Margin="285,37,0,0" 
+               Margin="333,43,0,0" 
                Grid.Row="1" 
                VerticalAlignment="Top" Height="26" Width="19"/>
-        <Label Content="R:" 
+        <Label Content="v:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
-            Margin="423,46,0,0" 
-            Grid.Row="1" 
-            VerticalAlignment="Top" 
-             RenderTransformOrigin="-0.426,-0.61" Height="26" Width="20"/>
-        <Label Content="ɣ:" 
-            Grid.Column="1" 
-            HorizontalAlignment="Left" 
-            Margin="426,74,0,0" 
+            Margin="462,78,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" 
                RenderTransformOrigin="-0.426,-0.61" Height="26" Width="18"/>
-        <Label Content="E:" 
-               Grid.Column="1" 
-               HorizontalAlignment="Left" 
-               Margin="549,10,0,0" 
-               Grid.Row="1" 
-               VerticalAlignment="Top" Height="26" Width="19"/>
-        <Label Content="θ:" 
-               Grid.Column="1" 
-               HorizontalAlignment="Left" 
-               Margin="549,44,0,0" 
-               Grid.Row="1" 
-               VerticalAlignment="Top" Height="26" Width="20"/>
-        <Label Content="Cy:" 
-               Grid.Column="1" 
-               HorizontalAlignment="Left" 
-               Margin="549,74,0,0" 
-               Grid.Row="1" 
-               VerticalAlignment="Top" Height="26" Width="26"/>
 
 
 
         <TextBox x:Name="P_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="318,17,0,0" 
+                 Margin="366,23,0,0" 
                  Grid.Row="1" 
-                 Text="TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top"
-                 Width="62" Height="18"/>
-
-        <TextBox x:Name="R_TextBox" Grid.Column="1" 
-                 HorizontalAlignment="Left" 
-                 Margin="460,46,0,0" 
-                 Grid.Row="1" 
-                 Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
                  Width="62" Height="18"/>
@@ -202,66 +167,32 @@
 
         <TextBox x:Name="M_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="460,14,0,0" 
+                 Margin="496,43,0,0" 
                  Grid.Row="1" 
-                 Text="TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top"
-                 Width="62" Height="18"/>
-
-
-        <TextBox x:Name="Phi_TextBox" Grid.Column="1" 
-                 HorizontalAlignment="Left" 
-                 Margin="573,47,0,0" 
-                 Grid.Row="1" 
-                 Text="TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top"
-                 Width="62" Height="18"/>
-
-
-        <TextBox x:Name="E_TextBox" Grid.Column="1" 
-                 HorizontalAlignment="Left" 
-                 Margin="573,14,0,0" 
-                 Grid.Row="1" 
-                 Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
                  Width="62" Height="18"/>
 
         <TextBox x:Name="Rho_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="318,78,0,0" 
+                 Margin="366,90,0,0" 
                  Grid.Row="1" 
-                 Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
                  Width="62" Height="18"/>
 
-        <TextBox x:Name="Gamma_TextBox" Grid.Column="1" 
+        <TextBox x:Name="v_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="460,78,0,0" 
+                 Margin="496,82,0,0" 
                  Grid.Row="1" 
-                 Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
                  Width="62" Height="18"/>
 
         <TextBox x:Name="T_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="318,50,0,0" 
+                 Margin="366,56,0,0" 
                  Grid.Row="1" 
-                 Text="TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top"
-                 Width="62" Height="18"/>
-
-
-        <TextBox x:Name="Cy_TextBox" Grid.Column="1" 
-                 HorizontalAlignment="Left" 
-                 Margin="580,78,0,0" 
-                 Grid.Row="1" 
-                 Text="TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
                  Width="62" Height="18"/>
@@ -271,9 +202,11 @@
         <CheckBox x:Name="CheckBox_A" Content="Defaul parameters" 
                   Grid.Column="1" 
                   HorizontalAlignment="Left" 
-                  Margin="407,119,0,0" 
+                  Margin="580,25,0,0" 
                   Grid.Row="1" 
-                  VerticalAlignment="Top" Height="15" Width="135"/>
+                  Checked="CheckBox_A_Checked"
+                  VerticalAlignment="Top" Height="15" Width="135"
+                  />
 
 
 
@@ -281,7 +214,7 @@
         <Button x:Name="LoadParametersButton" 
                 Content="Load Parameters" 
                 HorizontalAlignment="Left" 
-                Margin="50,161,0,0" 
+                Margin="31,152,0,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
@@ -291,17 +224,17 @@
         <Button x:Name="Simulate_Button" 
                 Content="Star Simulation" 
                 HorizontalAlignment="Right" 
-                Margin="0,108,62,0" 
+                Margin="0,65,61,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
-                Height="28" Width="118" 
+                Height="28" Width="120" 
                 RenderTransformOrigin="0.477,-0.345" Click="Simulate_Button_Click"/>
 
         <Button x:Name="SaveSim_button" 
                 Content="Save Simulation" 
                 HorizontalAlignment="Left" 
-                Margin="186,163,0,0" 
+                Margin="31,115,0,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
@@ -321,7 +254,7 @@
         <Button x:Name="Reset_button" 
                 Content="Reset" 
                 HorizontalAlignment="Left" 
-                Margin="325,163,0,0" 
+                Margin="161,150,0,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 

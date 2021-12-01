@@ -21,7 +21,7 @@ namespace LibreriaClases
 
         public double[] delta_y_array { get; set; }
 
-        Normas norma = new Normas();
+        public Normas norma { get; set; } = new Normas();
         Celda[,] matriz;
 
 
@@ -66,9 +66,6 @@ namespace LibreriaClases
 
         public void Compute()
         {
-            norma.Compute_a();
-            norma.Compute_M_angle();
-            norma.Compute_u();
 
             // We define the initial line conditions
             for (int j = 0; j < rows; j++)

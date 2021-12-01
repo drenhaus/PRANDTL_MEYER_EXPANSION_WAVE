@@ -58,6 +58,18 @@ namespace WPFapp
         private void Simulate_Button_Click(object sender, RoutedEventArgs e)
         {
             m.DefinirMatriz();
+
+            m.norma.v_in = Convert.ToDouble(v_TextBox.Text);
+            m.norma.Rho_in = Convert.ToDouble(Rho_TextBox.Text);
+            m.norma.P_in = Convert.ToDouble(P_TextBox.Text);
+            m.norma.M_in = Convert.ToDouble(M_TextBox.Text);
+            m.norma.T_in = Convert.ToDouble(T_TextBox.Text);
+
+            m.norma.Compute_a();
+            m.norma.Compute_M_angle();
+            m.norma.Compute_u();
+
+            
             m.Compute();
             m.Fill_DataTable();
             DataTable[] T_U_V_RHO_P_M_F1_F2_F3_F4 = m.GetTables();
@@ -224,6 +236,15 @@ namespace WPFapp
             anderson_w.Show();
 
 
+        }
+
+        private void CheckBox_A_Checked(object sender, RoutedEventArgs e)
+        {
+            v_TextBox.Text = Convert.ToString(0.0);
+            Rho_TextBox.Text = Convert.ToString(1.23);
+            P_TextBox.Text = Convert.ToString(101000);
+            M_TextBox.Text = Convert.ToString(2.0);
+            T_TextBox.Text = Convert.ToString(286.1);
         }
     }
 }
