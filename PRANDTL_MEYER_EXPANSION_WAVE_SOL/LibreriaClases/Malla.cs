@@ -10,7 +10,7 @@ namespace LibreriaClases
     {
         public int rows { get; set; }  //   j filas
         public int columns { get; set; }  // i les columnas
-        double delta_y_t = 0.025;
+        public double delta_y_t { get; set; }
         double Cy = 0.6;
         double C = 0.5;
 

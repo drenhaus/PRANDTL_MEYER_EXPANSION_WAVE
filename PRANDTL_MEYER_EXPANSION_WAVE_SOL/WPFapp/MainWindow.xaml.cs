@@ -25,6 +25,9 @@ namespace WPFapp
         Malla m = new Malla();
         int columnas=89;
         int filas=41;
+        int dimension_scale=7;
+        double delta_y_t;
+
         Polygon[,] casillas;
 
         DataTable temperature_table;
@@ -59,6 +62,7 @@ namespace WPFapp
         {
             m.rows = filas;
             m.columns = columnas;
+            m.delta_y_t = this.delta_y_t;
             
             m.DefinirMatriz();
             m.Compute();
@@ -76,7 +80,19 @@ namespace WPFapp
             F4_table = T_U_V_RHO_P_M_F1_F2_F3_F4[9];
             GenerateGridPlot();
 
+            if (DataGridComboBox.SelectedIndex == 0)
+            {
+                actualizar_colores_grid(temperature_table, 255, 0, 0);
+            }
+            
+            LoadParametersButton.IsEnabled = false;
             DataGridComboBox.IsEnabled = true;
+            Simulate_Button.IsEnabled = false;
+            Reset_button.IsEnabled = true;
+
+            MessageBox.Show("Please select the data you want to show or reset for any change");
+
+
         }
 
         public void GenerateGridPlot()
@@ -104,10 +120,10 @@ namespace WPFapp
                     y2 = y4 + delta_y[i + 1];
 
                     Polygon myPolygon = new Polygon();
-                    System.Windows.Point Point1 = new System.Windows.Point(x1 * 7, y1 * 7);
-                    System.Windows.Point Point2 = new System.Windows.Point(x2 * 7, y2 * 7);
-                    System.Windows.Point Point3 = new System.Windows.Point(x1 * 7, y3 * 7);
-                    System.Windows.Point Point4 = new System.Windows.Point(x2 * 7, y4 * 7);
+                    System.Windows.Point Point1 = new System.Windows.Point(x1 * dimension_scale, y1 * dimension_scale);
+                    System.Windows.Point Point2 = new System.Windows.Point(x2 * dimension_scale, y2 * dimension_scale);
+                    System.Windows.Point Point3 = new System.Windows.Point(x1 * dimension_scale, y3 * dimension_scale);
+                    System.Windows.Point Point4 = new System.Windows.Point(x2 * dimension_scale, y4 * dimension_scale);
                     PointCollection myPointCollection = new PointCollection();
                     myPointCollection.Add(Point1);
                     myPointCollection.Add(Point3);
@@ -251,6 +267,8 @@ namespace WPFapp
                 m.norma.Compute_M_angle();
                 m.norma.Compute_u();
 
+                Simulate_Button.IsEnabled = true;
+
                 MessageBox.Show("Parameters defined");
             }
             catch (Exception ex)
@@ -278,12 +296,46 @@ namespace WPFapp
             F4_table = null;
             DataGridComboBox.IsEnabled = false;
             GridMalla.Children.Clear();
+
+            DataGridComboBox.SelectedItem = null;
+
+            Simulate_Button.IsEnabled = false;
+            Reset_button.IsEnabled = false;
+            LoadParametersButton.IsEnabled = true;
         }
 
         private void AdvancedStudyButton_Click(object sender, RoutedEventArgs e)
         {
             AdvancedStudyWindow ad_w = new AdvancedStudyWindow();
             ad_w.Show();
+        }
+
+        private void LoadPresitionButton_Click(object sender, RoutedEventArgs e)
+        {
+           if (PresitionComboBox.SelectedIndex==0) //small
+            {
+                columnas = 23;
+                filas = 11;
+                delta_y_t = 0.1;
+
+            }
+            if (PresitionComboBox.SelectedIndex == 1) // normal
+            {
+                columnas = 89;
+                filas = 41;
+                delta_y_t = 0.025;
+
+            }
+            if (PresitionComboBox.SelectedIndex == 2) //high
+            {
+                columnas = 440;
+                filas = 201;
+                delta_y_t = 0.005;
+
+            }
+
+
+            
         }
     }
 }
