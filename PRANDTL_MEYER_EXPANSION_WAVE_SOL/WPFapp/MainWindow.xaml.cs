@@ -23,8 +23,11 @@ namespace WPFapp
     public partial class MainWindow : Window
     {
         Malla m = new Malla();
-        int columnas;
-        int filas;
+        int columnas=89;
+        int filas=41;
+        int dimension_scale=7;
+        double delta_y_t;
+
         Polygon[,] casillas;
 
         DataTable temperature_table;
@@ -57,6 +60,10 @@ namespace WPFapp
 
         private void Simulate_Button_Click(object sender, RoutedEventArgs e)
         {
+            m.rows = filas;
+            m.columns = columnas;
+            m.delta_y_t = this.delta_y_t;
+            
             m.DefinirMatriz();
             m.Compute();
             m.Fill_DataTable();
@@ -71,11 +78,22 @@ namespace WPFapp
             F2_table = T_U_V_RHO_P_M_F1_F2_F3_F4[7];
             F3_table = T_U_V_RHO_P_M_F1_F2_F3_F4[8];
             F4_table = T_U_V_RHO_P_M_F1_F2_F3_F4[9];
-            columnas = m.columns;
-            filas = m.rows;
             GenerateGridPlot();
 
+            if (DataGridComboBox.SelectedIndex == 0)
+            {
+                actualizar_colores_grid(temperature_table, 255, 0, 0);
+            }
+            
+            LoadParametersButton.IsEnabled = false;
+            LoadPresitionButton.IsEnabled = false;
             DataGridComboBox.IsEnabled = true;
+            Simulate_Button.IsEnabled = false;
+            Reset_button.IsEnabled = true;
+
+            MessageBox.Show("Please select the data you want to show or reset for any change");
+
+
         }
 
         public void GenerateGridPlot()
@@ -103,15 +121,16 @@ namespace WPFapp
                     y2 = y4 + delta_y[i + 1];
 
                     Polygon myPolygon = new Polygon();
-                    System.Windows.Point Point1 = new System.Windows.Point(x1 * 7, y1 * 7);
-                    System.Windows.Point Point2 = new System.Windows.Point(x2 * 7, y2 * 7);
-                    System.Windows.Point Point3 = new System.Windows.Point(x1 * 7, y3 * 7);
-                    System.Windows.Point Point4 = new System.Windows.Point(x2 * 7, y4 * 7);
+                    System.Windows.Point Point1 = new System.Windows.Point(x1 * dimension_scale, y1 * dimension_scale);
+                    System.Windows.Point Point2 = new System.Windows.Point(x2 * dimension_scale, y2 * dimension_scale);
+                    System.Windows.Point Point3 = new System.Windows.Point(x1 * dimension_scale, y3 * dimension_scale);
+                    System.Windows.Point Point4 = new System.Windows.Point(x2 * dimension_scale, y4 * dimension_scale);
+                    myPolygon.StrokeThickness = 0;
                     PointCollection myPointCollection = new PointCollection();
                     myPointCollection.Add(Point1);
-                    myPointCollection.Add(Point3);
                     myPointCollection.Add(Point2);
                     myPointCollection.Add(Point4);
+                    myPointCollection.Add(Point3);
                     myPolygon.Points = myPointCollection;
                     casillas[j, i] = myPolygon;
 
@@ -135,7 +154,7 @@ namespace WPFapp
         {
             if (DataGridComboBox.SelectedIndex == 0) //temperature
             {
-                actualizar_colores_grid(temperature_table, 255, 0, 0);                 
+                actualizar_colores_grid(temperature_table, 255, 0, 0);  
             }
             if (DataGridComboBox.SelectedIndex == 1) //u
             {
@@ -224,6 +243,104 @@ namespace WPFapp
             anderson_w.Show();
 
 
+        }
+
+        private void CheckBox_A_Checked(object sender, RoutedEventArgs e)
+        {
+            v_TextBox.Text = Convert.ToString(0.0);
+            Rho_TextBox.Text = Convert.ToString(1.23);
+            P_TextBox.Text = Convert.ToString(101000);
+            M_TextBox.Text = Convert.ToString(2.0);
+            T_TextBox.Text = Convert.ToString(286.1);
+        }
+
+        private void LoadParametersButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                m.norma.v_in = Convert.ToDouble(v_TextBox.Text);
+                m.norma.Rho_in = Convert.ToDouble(Rho_TextBox.Text);
+                m.norma.P_in = Convert.ToDouble(P_TextBox.Text);
+                m.norma.M_in = Convert.ToDouble(M_TextBox.Text);
+                m.norma.T_in = Convert.ToDouble(T_TextBox.Text);
+
+                m.norma.Compute_a();
+                m.norma.Compute_M_angle();
+                m.norma.Compute_u();
+
+                Simulate_Button.IsEnabled = true;
+
+                MessageBox.Show("Parameters defined");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+        private void Reset_button_Click(object sender, RoutedEventArgs e)
+        {
+
+            m = new Malla();
+            casillas = null;
+            temperature_table = null;
+            u_table = null;
+            v_table = null;
+            rho_table = null;
+            p_table = null;
+            M_table = null;
+            F1_table = null;
+            F2_table = null;
+            F3_table = null;
+            F4_table = null;
+            DataGridComboBox.IsEnabled = false;
+            GridMalla.Children.Clear();
+
+            DataGridComboBox.SelectedItem = null;
+
+            Simulate_Button.IsEnabled = false;
+            Reset_button.IsEnabled = false;
+            LoadParametersButton.IsEnabled = false;
+            LoadPresitionButton.IsEnabled = true;
+        }
+
+        private void AdvancedStudyButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdvancedStudyWindow ad_w = new AdvancedStudyWindow();
+            ad_w.Show();
+        }
+
+        private void LoadPresitionButton_Click(object sender, RoutedEventArgs e)
+        {
+           if (PresitionComboBox.SelectedIndex==0) //small
+            {
+                columnas = 23;
+                filas = 11;
+                delta_y_t = 0.1;
+
+            }
+            if (PresitionComboBox.SelectedIndex == 1) // normal
+            {
+                columnas = 89;
+                filas = 41;
+                delta_y_t = 0.025;
+
+            }
+            if (PresitionComboBox.SelectedIndex == 2) //high
+            {
+                columnas = 440;
+                filas = 201;
+                delta_y_t = 0.005;
+
+            }
+            LoadParametersButton.IsEnabled = true;
+            MessageBox.Show("Precision selected successfully");
+
+
+            
         }
     }
 }
