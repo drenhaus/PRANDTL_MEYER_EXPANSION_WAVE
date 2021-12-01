@@ -222,6 +222,7 @@
                 Grid.Column="1"
                 VerticalAlignment="Top" 
                 Height="28" Width="118" 
+                IsEnabled="False"
                 RenderTransformOrigin="0.477,-0.345" Click="LoadParametersButton_Click"/>
 
         <Button x:Name="Simulate_Button" 

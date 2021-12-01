@@ -86,6 +86,7 @@ namespace WPFapp
             }
             
             LoadParametersButton.IsEnabled = false;
+            LoadPresitionButton.IsEnabled = false;
             DataGridComboBox.IsEnabled = true;
             Simulate_Button.IsEnabled = false;
             Reset_button.IsEnabled = true;
@@ -124,6 +125,7 @@ namespace WPFapp
                     System.Windows.Point Point2 = new System.Windows.Point(x2 * dimension_scale, y2 * dimension_scale);
                     System.Windows.Point Point3 = new System.Windows.Point(x1 * dimension_scale, y3 * dimension_scale);
                     System.Windows.Point Point4 = new System.Windows.Point(x2 * dimension_scale, y4 * dimension_scale);
+                    myPolygon.StrokeThickness = 0;
                     PointCollection myPointCollection = new PointCollection();
                     myPointCollection.Add(Point1);
                     myPointCollection.Add(Point2);
@@ -301,7 +303,8 @@ namespace WPFapp
 
             Simulate_Button.IsEnabled = false;
             Reset_button.IsEnabled = false;
-            LoadParametersButton.IsEnabled = true;
+            LoadParametersButton.IsEnabled = false;
+            LoadPresitionButton.IsEnabled = true;
         }
 
         private void AdvancedStudyButton_Click(object sender, RoutedEventArgs e)
@@ -333,6 +336,8 @@ namespace WPFapp
                 delta_y_t = 0.005;
 
             }
+            LoadParametersButton.IsEnabled = true;
+            MessageBox.Show("Precision selected successfully");
 
 
             
