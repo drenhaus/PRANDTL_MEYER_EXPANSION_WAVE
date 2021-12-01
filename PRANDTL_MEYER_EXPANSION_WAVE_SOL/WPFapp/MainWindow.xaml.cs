@@ -354,25 +354,29 @@ namespace WPFapp
         private void polygon_enter(object sender, EventArgs e)
         {
             Polygon poly = (Polygon)sender;
-            Point p = (Point)poly.Tag;
 
             int i = 0;
             int j = 0;
-            for ( i = 0; i < columnas; i++)
+            int w = 0;
+
+            for (i = 0; i < columnas-1; i++)
             {
-                for ( j = 0; j < filas; j++)
+                for (j = 0; j < filas; j++)
                 {
-                    if (m.matriz[j,i].x==Convert.ToDouble(p.X) && m.matriz[j, i].y == Convert.ToDouble(p.Y))
-                    { break; }
+                    if (poly==casillas[j,i])
+                    {
+                        w = 1;
+                        break; }
                 }
             }
 
-                    // we need to make the transformation from the physical to computational
+            u_label.Content = Convert.ToString(m.matriz[filas-j, columnas-i-1].u);
+            v_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].v);
+            rho_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].Rho);
+            p_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].P);
+            temeprature_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].T);
+            mach_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].M);
 
-            
-                 m.matriz[j,i].
-
-            // labelFase.Text = Convert.ToString(matriz_celdas.DameFASEde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1)); // valor de fase
 
 
         }
