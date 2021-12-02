@@ -26,7 +26,8 @@ namespace WPFapp
         Generadora generador;
         int numDeCOLUMNAS;
 
-        List<double> listaTEMPxColumna = new List<double>();
+
+        public List<double> listaTEMPxColumna { get; set; }
 
         public List<double> listaMachxColumna { get; set; }
 
@@ -54,7 +55,7 @@ namespace WPFapp
             labelmedio2.Visibility = Visibility.Hidden;
 
             //definimos las listas
-            generador.SetListaTEMPxColumna(listaTEMPxColumna);
+            generador.listaTEMPxColumna_G = listaTEMPxColumna;
             generador.GenerarDatosTEMP(Convert.ToDouble(numDeCOLUMNAS-1));
 
             PlotModel model = new PlotModel();

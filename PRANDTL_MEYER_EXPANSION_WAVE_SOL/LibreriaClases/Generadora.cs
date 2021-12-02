@@ -8,13 +8,13 @@ namespace LibreriaClases
     {
         public List<Punto> Puntos { get; set; } //generamos una lista de puntos
 
-        List<double> listaTEMPxColumna = new List<double>();
+        
+        public List<double> listaTEMPxColumna_G { get; set; }
+
 
         public List<double> listaMachxColumna_G { get; set; }
 
-        //SET de las listas
-        public void SetListaTEMPxColumna(List<double> B)
-        { this.listaTEMPxColumna = B; }
+
 
 
         //GENERAMOS EL GRÁFICO DE LA TEMPERATURA
@@ -53,7 +53,7 @@ namespace LibreriaClases
         // dada una iteración, nos devuelve el valor de la temperatura media en esa iteración
         private double EvaluarTEMP(double x)
         {
-            return listaTEMPxColumna[Convert.ToInt32(x)]; // hace la busqueda en la lista
+            return listaTEMPxColumna_G[Convert.ToInt32(x)]; // hace la busqueda en la lista
         }
 
         private double EvaluarMACH(double x)
