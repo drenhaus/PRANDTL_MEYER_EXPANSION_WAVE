@@ -111,8 +111,12 @@
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
-                Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345" Click="LoadPresitionButton_Click"/>
+                Height="28" Width="147" 
+                RenderTransformOrigin="0.477,-0.345" 
+                    Click="LoadPresitionButton_Click"
+                    Foreground="White" 
+                    FontFamily="/Fonts/#Poppins"
+                    Style="{DynamicResource RoundCorner}"/>
 
             <Label Content="Seleciona precision"
                    HorizontalAlignment="Right"
@@ -166,7 +170,10 @@
                 Grid.Row="1"
                 VerticalAlignment="Top" 
                 RenderTransformOrigin="-0.074,-0.171" 
-                Height="24" Width="27"/>
+                Height="24" Width="27"
+                    Foreground="White" 
+                    FontFamily="/Fonts/#Poppins"
+                    Style="{DynamicResource RoundCorner}"/>
 
             <Label Content="ρ:" 
                    Grid.Column="1" 
@@ -287,7 +294,10 @@
                 VerticalAlignment="Top" 
                 Height="28" Width="118" 
                 IsEnabled="False"
-                RenderTransformOrigin="0.477,-0.345" Click="LoadParametersButton_Click"/>
+                RenderTransformOrigin="0.477,-0.345" Click="LoadParametersButton_Click"
+                    Foreground="White" 
+                    FontFamily="/Fonts/#Poppins"
+                    Style="{DynamicResource RoundCorner}"/>
 
             <Button x:Name="Simulate_Button" 
                 IsEnabled="false"
@@ -298,7 +308,11 @@
                 Grid.Column="1"
                 VerticalAlignment="Top" 
                 Height="28" Width="120" 
-                RenderTransformOrigin="0.477,-0.345" Click="Simulate_Button_Click"/>
+                RenderTransformOrigin="0.477,-0.345" 
+                    Click="Simulate_Button_Click"
+                    Foreground="White" 
+                    FontFamily="/Fonts/#Poppins"
+                    Style="{DynamicResource RoundCorner}"/>
 
             <Button x:Name="SaveSim_button" 
                 Content="Save Simulation" 
@@ -308,7 +322,10 @@
                 Grid.Column="1"
                 VerticalAlignment="Top" 
                 Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345"/>
+                RenderTransformOrigin="0.477,-0.345"
+                    Foreground="White" 
+                    FontFamily="/Fonts/#Poppins"
+                    Style="{DynamicResource RoundCorner}"/>
 
             <Button x:Name="LoadSim_button" 
                 Content="Load Simulation" 
@@ -318,7 +335,10 @@
                 Grid.Column="1"
                 VerticalAlignment="Top" 
                 Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345"/>
+                RenderTransformOrigin="0.477,-0.345"
+                    Foreground="White" 
+                    FontFamily="/Fonts/#Poppins"
+                    Style="{DynamicResource RoundCorner}"/>
 
             <Button x:Name="Reset_button" 
                 Content="Reset" 
@@ -329,7 +349,11 @@
                 Grid.Column="1"
                 VerticalAlignment="Top" 
                 Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345" Click="Reset_button_Click"/>
+                RenderTransformOrigin="0.477,-0.345" 
+                    Click="Reset_button_Click"
+                    Foreground="White" 
+                    FontFamily="/Fonts/#Poppins"
+                    Style="{DynamicResource RoundCorner}"/>
 
             <Button x:Name="Close_Button" 
                 Content="x" 
@@ -360,14 +384,42 @@
             VerticalAlignment="Top" 
             Width="120"
             IsEnabled="False"   
-            SelectionChanged="DataGridComboBox_SelectionChanged"  Grid.Column="1" Grid.Row="1">
+            SelectionChanged="DataGridComboBox_SelectionChanged"  
+                      Grid.Column="1" 
+                      Grid.Row="1"
+                      Style="{DynamicResource theComboBox}" 
+                  ItemContainerStyle="{DynamicResource theComboBoxItem}">
 
-                <ComboBoxItem Content="T"/>
-                <ComboBoxItem Content="u"/>
-                <ComboBoxItem Content="v"/>
-                <ComboBoxItem Content="Rho"/>
-                <ComboBoxItem Content="P" />
-                <ComboBoxItem Content="Mach"/>
+                <ComboBoxItem Content="T"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="u"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="v"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="Rho"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="P" 
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="Mach"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
 
             </ComboBox>
 
