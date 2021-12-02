@@ -354,10 +354,19 @@ namespace WPFapp
             m.CrearListade("v");
             gr.Show();
 
-
-            gr.listaMachxColumna = m.listaMachxColumna;
-            gr.listaTEMPxColumna = m.listaTemperaturaxColumna;
             gr.SetnumdeCOLUMNAS(m.columns);
+
+            gr.listaTEMPxColumna = m.listaTemperaturaxColumna;
+            gr.listaMachxColumna = m.listaMachxColumna;
+            gr.listaDensidadxColumna = m.listaDensidadxColumna;
+            gr.listaPresurexColumna = m.listaPresurexColumna;
+            gr.listaUxColumna = m.listaU_velxColumna;
+            gr.listaVxColumna = m.listaV_velxColumna;
+
+
+
+
+
 
 
 
