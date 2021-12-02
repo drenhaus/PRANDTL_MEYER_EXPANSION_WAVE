@@ -14,12 +14,12 @@
 
         </DataGrid>
 
-        <Grid x:Name="SimulationGrid" 
-              Background="Black" 
+        <DataGrid x:Name="SimulationGrid" 
               RenderTransformOrigin="0.5,0.5" 
+              ItemsSource="{Binding}"
               Margin="430,97,293,10">
 
-        </Grid>
+        </DataGrid>
         <Label Content="Compare the:" 
                HorizontalAlignment="Left" 
                Margin="43,44,0,0" 
