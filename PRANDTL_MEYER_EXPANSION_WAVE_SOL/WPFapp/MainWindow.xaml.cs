@@ -356,7 +356,7 @@ namespace WPFapp
 
 
             gr.listaMachxColumna = m.listaMachxColumna;
-            gr.SetListaTEMPxColumna(m.listaTemperaturaxColumna);
+            gr.listaTEMPxColumna = m.listaTemperaturaxColumna;
             gr.SetnumdeCOLUMNAS(m.columns);
 
 
