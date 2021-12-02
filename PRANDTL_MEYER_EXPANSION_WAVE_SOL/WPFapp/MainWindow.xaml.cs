@@ -239,7 +239,7 @@ namespace WPFapp
         private void ComparationButton_Click(object sender, RoutedEventArgs e)
         {
             AndersonComparationWindow anderson_w = new AndersonComparationWindow();
-
+            anderson_w.m = this.m;
             anderson_w.filas = this.filas;
             // define the columns we want to check
             //tables_w.SetTables(temperature_table, u_table, v_table, rho_table, p_table, M_table, F1_table, F2_table, F3_table, F4_table);
