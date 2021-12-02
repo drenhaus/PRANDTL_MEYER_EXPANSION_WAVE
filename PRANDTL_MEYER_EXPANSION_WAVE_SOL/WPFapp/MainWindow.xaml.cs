@@ -346,7 +346,33 @@ namespace WPFapp
         private void GraficButton_Click(object sender, RoutedEventArgs e)
         {
             Graphics gr = new Graphics();
+            m.CrearListade("T");
+            m.CrearListade("M");
+            m.CrearListade("Rho");
+            m.CrearListade("P");
+            m.CrearListade("u");
+            m.CrearListade("v");
             gr.Show();
+
+            gr.SetnumdeCOLUMNAS(m.columns);
+
+            gr.listaTEMPxColumna = m.listaTemperaturaxColumna;
+            gr.listaMachxColumna = m.listaMachxColumna;
+            gr.listaDensidadxColumna = m.listaDensidadxColumna;
+            gr.listaPresurexColumna = m.listaPresurexColumna;
+            gr.listaUxColumna = m.listaU_velxColumna;
+            gr.listaVxColumna = m.listaV_velxColumna;
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 }

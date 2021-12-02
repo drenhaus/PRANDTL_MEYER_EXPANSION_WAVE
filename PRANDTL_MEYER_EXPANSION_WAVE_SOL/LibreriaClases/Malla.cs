@@ -24,6 +24,13 @@ namespace LibreriaClases
         public Normas norma { get; set; } = new Normas();
         Celda[,] matriz;
 
+        public List<double> listaTemperaturaxColumna = new List<double>();
+        public List<double> listaMachxColumna = new List<double>();
+        public List<double> listaDensidadxColumna = new List<double>();
+        public List<double> listaPresurexColumna = new List<double>();
+        public List<double> listaU_velxColumna = new List<double>();
+        public List<double> listaV_velxColumna = new List<double>();
+
 
         //Tables with the data of all iterations
         DataTable Temperature_table = new DataTable("All Temperature values [K]");
@@ -48,7 +55,7 @@ namespace LibreriaClases
             return delta_y_array;
         }
 
-    public void DefinirMatriz()
+        public void DefinirMatriz()
         {
 
             this.matriz = new Celda[rows, columns];
@@ -309,7 +316,98 @@ namespace LibreriaClases
             return T_U_V_RHO_P_M_F1_F2_F3_F4;
         }
 
+        public void CrearListade(string attribute)
+        {
+            if (attribute == "T")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    double suma_en_columna = 0;
 
+                    for (int j = 0; j < rows; j++)
+                    {
+                        suma_en_columna = suma_en_columna + matriz[j, i].T;
+                    }
+                    suma_en_columna = suma_en_columna / rows;
+                    listaTemperaturaxColumna.Add(suma_en_columna);
+                }
+            }
+
+            if (attribute == "M")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    double suma_en_columna = 0;
+
+                    for (int j = 0; j < rows; j++)
+                    {
+                        suma_en_columna = suma_en_columna + matriz[j, i].M;
+                    }
+                    suma_en_columna = suma_en_columna / rows;
+                    listaMachxColumna.Add(suma_en_columna);
+                }
+            }
+
+            if (attribute == "Rho")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    double suma_en_columna = 0;
+
+                    for (int j = 0; j < rows; j++)
+                    {
+                        suma_en_columna = suma_en_columna + matriz[j, i].Rho;
+                    }
+                    suma_en_columna = suma_en_columna / rows;
+                    listaDensidadxColumna.Add(suma_en_columna);
+                }
+            }
+
+            if (attribute == "P")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    double suma_en_columna = 0;
+
+                    for (int j = 0; j < rows; j++)
+                    {
+                        suma_en_columna = suma_en_columna + matriz[j, i].P;
+                    }
+                    suma_en_columna = suma_en_columna / rows;
+                    listaPresurexColumna.Add(suma_en_columna);
+                }
+            }
+
+            if (attribute == "u")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    double suma_en_columna = 0;
+
+                    for (int j = 0; j < rows; j++)
+                    {
+                        suma_en_columna = suma_en_columna + matriz[j, i].u;
+                    }
+                    suma_en_columna = suma_en_columna / rows;
+                    listaU_velxColumna.Add(suma_en_columna);
+                }
+            }
+
+            if (attribute == "v")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    double suma_en_columna = 0;
+
+                    for (int j = 0; j < rows; j++)
+                    {
+                        suma_en_columna = suma_en_columna + matriz[j, i].v;
+                    }
+                    suma_en_columna = suma_en_columna / rows;
+                    listaV_velxColumna.Add(suma_en_columna);
+                }
+            }
+        }
 
     }
 }
