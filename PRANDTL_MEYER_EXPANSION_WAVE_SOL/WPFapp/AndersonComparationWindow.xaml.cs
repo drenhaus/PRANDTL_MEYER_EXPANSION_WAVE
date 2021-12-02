@@ -23,16 +23,18 @@ namespace WPFapp
             InitializeComponent();
         }
 
-        DataTable Anderson_u_12;
-        DataTable Anderson_v_12;
-        DataTable Anderson_rho_12;
-        DataTable Anderson_p_12;
-        DataTable Anderson_T_12;
-        DataTable Anderson_M_12;
-        DataTable Anderson_F1_12;
-        DataTable Anderson_F2_12;
-        DataTable Anderson_F3_12;
-        DataTable Anderson_F4_12;
+        public int filas { get; set; }
+
+        DataTable Anderson_u_12 = new DataTable();
+        DataTable Anderson_v_12 = new DataTable();
+        DataTable Anderson_rho_12 = new DataTable();
+        DataTable Anderson_p_12 = new DataTable();
+        DataTable Anderson_T_12 = new DataTable();
+        DataTable Anderson_M_12 = new DataTable();
+        DataTable Anderson_F1_12 = new DataTable();
+        DataTable Anderson_F2_12 = new DataTable();
+        DataTable Anderson_F3_12 = new DataTable();
+        DataTable Anderson_F4_12 = new DataTable();
 
         DataTable Anderson_u_66;
         DataTable Anderson_v_66;
@@ -119,11 +121,79 @@ namespace WPFapp
         double[] A_F3_66 = { };
         double[] A_F4_66 = { };
 
+
+        public void Fill_Anderson_Tables()
+        {
+                DataColumn TEMP_C = new DataColumn();
+                DataColumn U_C = new DataColumn();
+                DataColumn V_C = new DataColumn();
+                DataColumn RHO_C = new DataColumn();
+                DataColumn P_C = new DataColumn();
+                DataColumn M_C = new DataColumn();
+                DataColumn F1_C = new DataColumn();
+                DataColumn F2_C = new DataColumn();
+                DataColumn F3_C = new DataColumn();
+                DataColumn F4_C = new DataColumn();
+
+                Anderson_T_12.Columns.Add(TEMP_C);
+                Anderson_u_12.Columns.Add(U_C);
+                Anderson_v_12.Columns.Add(V_C);
+                Anderson_rho_12.Columns.Add(RHO_C);
+                Anderson_p_12.Columns.Add(P_C);
+                Anderson_M_12.Columns.Add(M_C);
+                Anderson_F1_12.Columns.Add(F1_C);
+                Anderson_F2_12.Columns.Add(F2_C);
+                Anderson_F3_12.Columns.Add(F3_C);
+                Anderson_F4_12.Columns.Add(F4_C);
+            
+            for (int i = 0; i < filas; i++)
+            {
+                DataRow TEMP_R = Anderson_T_12.NewRow();
+                DataRow U_R = Anderson_u_12.NewRow();
+                DataRow V_R = Anderson_v_12.NewRow();
+                DataRow RHO_R = Anderson_rho_12.NewRow();
+                DataRow P_R = Anderson_p_12.NewRow();
+                DataRow M_R = Anderson_M_12.NewRow();
+                DataRow F1_R = Anderson_F1_12.NewRow();
+                DataRow F2_R = Anderson_F2_12.NewRow();
+                DataRow F3_R = Anderson_F3_12.NewRow();
+                DataRow F4_R = Anderson_F4_12.NewRow();
+
+                TEMP_R[0] = A_T_12[i];
+                U_R[0] = A_u_12[i];
+                V_R[0] = A_v_12[i];
+                RHO_R[0] = A_rho_12[i];
+                P_R[0] = A_P_12[i];
+                M_R[0] = A_M_12[i];
+                F1_R[0] = A_F1_12[i];
+                F2_R[0] = A_F2_12[i];
+                F3_R[0] = A_F3_12[i];
+                F4_R[0] = A_F4_12[i];
+
+                Anderson_T_12.Rows.Add(TEMP_R);
+                Anderson_u_12.Rows.Add(U_R);
+                Anderson_v_12.Rows.Add(V_R);
+                Anderson_rho_12.Rows.Add(RHO_R);
+                Anderson_p_12.Rows.Add(P_R);
+                Anderson_M_12.Rows.Add(M_R);
+                Anderson_F1_12.Rows.Add(F1_R);
+                Anderson_F2_12.Rows.Add(F2_R);
+                Anderson_F3_12.Rows.Add(F3_R);
+                Anderson_F4_12.Rows.Add(F4_R);
+
+            }
+        }
+       
+
+
+
+
         private void Compare_btn_Click(object sender, RoutedEventArgs e)
         {
             if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex==0) //T AND 12
             {
-                
+                Fill_Anderson_Tables();
+                AndersonGridData.DataContext = Anderson_T_12.DefaultView;
 
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex == 1) //T AND 66

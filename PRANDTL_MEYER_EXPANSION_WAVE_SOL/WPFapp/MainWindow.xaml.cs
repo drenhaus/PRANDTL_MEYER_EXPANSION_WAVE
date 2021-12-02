@@ -240,6 +240,7 @@ namespace WPFapp
         {
             AndersonComparationWindow anderson_w = new AndersonComparationWindow();
 
+            anderson_w.filas = this.filas;
             // define the columns we want to check
             //tables_w.SetTables(temperature_table, u_table, v_table, rho_table, p_table, M_table, F1_table, F2_table, F3_table, F4_table);
             anderson_w.Show();
@@ -368,16 +369,16 @@ namespace WPFapp
                         w = 1;
                         break; }
                 }
+
+                // u_label.Content = Convert.ToString(m.matriz[filas-j, columnas-i-1].u);
+                // v_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].v);
+                // rho_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].Rho);
+                // p_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].P);
+                // temeprature_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].T);
+                // mach_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].M);
+
+                
             }
-
-            u_label.Content = Convert.ToString(m.matriz[filas-j, columnas-i-1].u);
-            v_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].v);
-            rho_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].Rho);
-            p_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].P);
-            temeprature_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].T);
-            mach_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].M);
-
-
 
         }
     }

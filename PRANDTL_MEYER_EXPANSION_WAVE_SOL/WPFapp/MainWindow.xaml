@@ -43,7 +43,7 @@
             RenderTransformOrigin="0.477,-0.345" Click="TablesButton_Click"/>
 
         <Button x:Name="ComparationButton" 
-                Content="Comparar con el tete Anderson" 
+                Content="Comparar con el Anderson" 
             HorizontalAlignment="Right" 
             Margin="0,96,0,0" 
             Grid.Row="1" 

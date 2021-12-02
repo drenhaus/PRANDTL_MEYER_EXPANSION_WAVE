@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="AndersonComparationWindow" Height="610" Width="860">
     <Grid>
-        <Grid x:Name="AndersonGrid" 
-            
+        <DataGrid x:Name="AndersonGridData" 
+              ItemsSource="{Binding}"    
               RenderTransformOrigin="0.5,0.5" 
-              Margin="213,97,510,10">
+              Margin="231,92,492,15">
 
-        </Grid>
+        </DataGrid>
 
         <Grid x:Name="SimulationGrid" 
               Background="Black" 
