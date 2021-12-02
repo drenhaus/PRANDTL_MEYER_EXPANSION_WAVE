@@ -155,11 +155,38 @@ namespace WPFapp
                             0.277* Math.Pow(10, 3),0.279* Math.Pow(10, 3),0.281* Math.Pow(10, 3),0.283* Math.Pow(10, 3),0.284* Math.Pow(10, 3),
                             0.285* Math.Pow(10, 3),0.285* Math.Pow(10, 3),0.286* Math.Pow(10, 3),0.286* Math.Pow(10, 3),0.286* Math.Pow(10, 3),0.286* Math.Pow(10, 3)};
         double[] A_M_66 = {2.31,2.31,2.2,2.21,2.21,2.21,2.21,2.21,2.21,2.21,2.21,2.21,2.21,2.21,2.21,2.2,2.2,2.21,2.21,2.22,2.22,2.22,2.21,2.19,2.18,2.16,2.14,2.12,2.1,2.09,2.07,2.05,2.04,2.03,2.02,2.01,2.01,2,2,2,2};
-        double[] A_F1_66 = { 0.769 * Math.Pow(10, 3) ,0.76 * Math.Pow(10, 3) ,0.689 * Math.Pow(10, 3) ,0.694 * Math.Pow(10, 3), 0.694 * Math.Pow(10, 3),
-                            };
-        double[] A_F2_66 = { };
-        double[] A_F3_66 = { };
-        double[] A_F4_66 = { };
+        double[] A_F1_66 = { 0.769 * Math.Pow(10, 3) ,0.76 * Math.Pow(10, 3) ,0.689 * Math.Pow(10, 3) ,0.694 * Math.Pow(10, 3), 0.694 * Math.Pow(10, 3),0.694 * Math.Pow(10, 3),
+                            0.694 * Math.Pow(10, 3),0.694 * Math.Pow(10, 3),0.694 * Math.Pow(10, 3),0.694 * Math.Pow(10, 3),0.695 * Math.Pow(10, 3),0.695 * Math.Pow(10, 3),
+                            0.693 * Math.Pow(10, 3),0.693 * Math.Pow(10, 3),0.694 * Math.Pow(10, 3),0.697 * Math.Pow(10, 3),0.698* Math.Pow(10, 3),
+                            0.696* Math.Pow(10, 3),0.691* Math.Pow(10, 3),0.686* Math.Pow(10, 3),0.685* Math.Pow(10, 3),0.687* Math.Pow(10, 3),
+                            0.694* Math.Pow(10, 3),0.703* Math.Pow(10, 3),0.713* Math.Pow(10, 3),0.725* Math.Pow(10, 3),0.737* Math.Pow(10, 3),0.75* Math.Pow(10, 3),
+                            0.763* Math.Pow(10, 3),0.775* Math.Pow(10, 3),0.786* Math.Pow(10, 3),0.797* Math.Pow(10, 3),0.807* Math.Pow(10, 3),0.815* Math.Pow(10, 3),
+                            0.822* Math.Pow(10, 3),0.826* Math.Pow(10, 3),0.830* Math.Pow(10, 3),0.832* Math.Pow(10, 3),0.833* Math.Pow(10, 3),0.834* Math.Pow(10, 3),
+                            0.834* Math.Pow(10, 3)};
+        double[] A_F2_66 = {0.616 * Math.Pow(10, 6), 0.612 * Math.Pow(10, 6), 0.563 * Math.Pow(10, 6), 0.567 * Math.Pow(10, 6), 0.567 * Math.Pow(10, 6),
+                            0.567 * Math.Pow(10, 6),0.567 * Math.Pow(10, 6),0.567 * Math.Pow(10, 6),0.567 * Math.Pow(10, 6),0.567 * Math.Pow(10, 6),
+                            0.567 * Math.Pow(10, 6),0.567 * Math.Pow(10, 6),0.566 * Math.Pow(10, 6),0.566 * Math.Pow(10, 6),0.567 * Math.Pow(10, 6),
+                            0.569 * Math.Pow(10, 6),0.569 * Math.Pow(10, 6),0.568 * Math.Pow(10, 6),0.564 * Math.Pow(10, 6),0.561 * Math.Pow(10, 6),
+                            0.560 * Math.Pow(10, 6),0.562 * Math.Pow(10, 6),0.566 * Math.Pow(10, 6),0.573 * Math.Pow(10, 6),0.581 * Math.Pow(10, 6),
+                            0.590 * Math.Pow(10, 6),0.599 * Math.Pow(10, 6),0.608 * Math.Pow(10, 6),0.617 * Math.Pow(10, 6),0.625 * Math.Pow(10, 6),
+                            0.634 * Math.Pow(10, 6),0.641 * Math.Pow(10, 6),0.648 * Math.Pow(10, 6),0.654 * Math.Pow(10, 6),0.658 * Math.Pow(10, 6),
+                            0.661 * Math.Pow(10, 6),0.664 * Math.Pow(10, 6),0.665 * Math.Pow(10, 6),0.666* Math.Pow(10, 6),0.66 * Math.Pow(10, 6),0.667 * Math.Pow(10, 6),};
+        double[] A_F3_66 = { -0.508 * Math.Pow(10, 5), -0.519 * Math.Pow(10, 5), -0.475 * Math.Pow(10, 5), -0.478 * Math.Pow(10, 5), -0.478 * Math.Pow(10, 5),
+                              -0.478 * Math.Pow(10, 5),-0.478 * Math.Pow(10, 5),-0.479 * Math.Pow(10, 5),-0.479 * Math.Pow(10, 5),-0.478 * Math.Pow(10, 5),
+                                -0.477 * Math.Pow(10, 5),-0.478 * Math.Pow(10, 5),-0.481 * Math.Pow(10, 5),-0.483 * Math.Pow(10, 5),-0.479 * Math.Pow(10, 5),
+                                -0.472 * Math.Pow(10, 5),-0.469 * Math.Pow(10, 5),-0.475 * Math.Pow(10, 5),-0.489 * Math.Pow(10, 5),-0.502 * Math.Pow(10, 5),
+                                -0.506 * Math.Pow(10, 5),-0.499 * Math.Pow(10, 5),-0.481 * Math.Pow(10, 5),-0.454 * Math.Pow(10, 5),-0.422 * Math.Pow(10, 5),
+                                -0.385 * Math.Pow(10, 5),-0.345 * Math.Pow(10, 5),-0.304 * Math.Pow(10, 5),-0.262 * Math.Pow(10, 5),-0.220 * Math.Pow(10, 5),
+                                -0.178 * Math.Pow(10, 5),-0.139 * Math.Pow(10, 5),-0.104 * Math.Pow(10, 5),-0.734 * Math.Pow(10, 4),-0.485 * Math.Pow(10, 4),
+                                -0.298 * Math.Pow(10, 4),-0.169 * Math.Pow(10, 4),-0.877 * Math.Pow(10, 3),-0.416 * Math.Pow(10, 3),-0.191 * Math.Pow(10, 3),0};
+        double[] A_F4_66 = {0.374 * Math.Pow(10, 9), 0.374 * Math.Pow(10, 9), 0.358 * Math.Pow(10, 9), 0.359 * Math.Pow(10, 9), 0.359 * Math.Pow(10, 9),
+                            0.359 * Math.Pow(10, 9),0.359 * Math.Pow(10, 9),0.359 * Math.Pow(10, 9),0.359 * Math.Pow(10, 9),0.359 * Math.Pow(10, 9),
+                            0.359 * Math.Pow(10, 9),0.359 * Math.Pow(10, 9),0.359 * Math.Pow(10, 9),0.358 * Math.Pow(10, 9),0.359 * Math.Pow(10, 9),
+                            0.360 * Math.Pow(10, 9),0.361 * Math.Pow(10, 9),0.360 * Math.Pow(10, 9),0.357 * Math.Pow(10, 9),0.355 * Math.Pow(10, 9),
+                            0.354 * Math.Pow(10, 9),0.356 * Math.Pow(10, 9),0.359 * Math.Pow(10, 9),0.363 * Math.Pow(10, 9),0.369 * Math.Pow(10, 9),
+                            0.375 * Math.Pow(10, 9),0.382 * Math.Pow(10, 9),0.388 * Math.Pow(10, 9),0.394 * Math.Pow(10, 9),0.401 * Math.Pow(10, 9),
+                            407 * Math.Pow(10, 9),0.412 * Math.Pow(10, 9),0.417 * Math.Pow(10, 9),0.422 * Math.Pow(10, 9),0.425 * Math.Pow(10, 9),
+                            0.428 * Math.Pow(10, 9),0.429 * Math.Pow(10, 9),0.430 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9)};
 
 
         public void Fill_Anderson_Tables()
