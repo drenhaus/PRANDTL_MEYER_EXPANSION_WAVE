@@ -231,7 +231,10 @@
                  Grid.Row="1" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62" Height="18"/>
+                 Width="62" 
+                     Height="30"
+                     Style="{StaticResource TextboxINPUT2}"
+                     FontFamily="/Fonts/#Poppins"/>
 
 
             <TextBox x:Name="M_TextBox" Grid.Column="1" 
@@ -240,7 +243,9 @@
                  Grid.Row="1" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62" Height="18"/>
+                 Width="62" Height="30"
+                     Style="{StaticResource TextboxINPUT2}"
+                     FontFamily="/Fonts/#Poppins"/>
 
             <TextBox x:Name="Rho_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
@@ -248,7 +253,10 @@
                  Grid.Row="1" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62" Height="18"/>
+                 Width="62" 
+                     Height="30"
+                     Style="{StaticResource TextboxINPUT2}"
+                     FontFamily="/Fonts/#Poppins"/>
 
             <TextBox x:Name="v_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
@@ -256,7 +264,9 @@
                  Grid.Row="1" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62" Height="18"/>
+                 Width="62" Height="30"
+                     Style="{StaticResource TextboxINPUT2}"
+                     FontFamily="/Fonts/#Poppins"/>
 
             <TextBox x:Name="T_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
@@ -264,7 +274,10 @@
                  Grid.Row="1" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62" Height="18"/>
+                 Width="62" 
+                     Height="30"
+                     Style="{StaticResource TextboxINPUT2}"
+                     FontFamily="/Fonts/#Poppins"/>
 
 
 
