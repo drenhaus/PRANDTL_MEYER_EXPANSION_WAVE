@@ -247,7 +247,48 @@ namespace WPFapp
 
             }
         }
-       
+
+        public void Our_results()
+        {
+            
+
+        }
+
+
+        public void Interpolate_our_results(double x_choosen)
+        {
+            double[] valores1;
+            double[] valores2;
+            double[] valores;
+
+            int j = 0;
+            bool valor_exacto = false;
+
+            for (j=0; m.matriz[0, j].x <= x_choosen; j++)
+            {
+
+                if (m.matriz[0, j].x == x_choosen)
+                {
+                    valor_exacto = true;
+                }
+
+            }
+
+            if (valor_exacto == false)
+            {
+                double last_j = j - 1; //last value checked with x smaller that the choosen x 
+
+                // we interpolate between values at j and values at j-1
+                for (int i=0; i<m.rows;i++)
+                {
+
+
+
+
+                }
+            }
+
+        }
 
         private void Compare_btn_Click(object sender, RoutedEventArgs e)
         {
