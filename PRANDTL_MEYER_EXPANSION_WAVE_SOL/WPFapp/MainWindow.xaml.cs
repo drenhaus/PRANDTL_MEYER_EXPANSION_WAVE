@@ -346,7 +346,15 @@ namespace WPFapp
         private void GraficButton_Click(object sender, RoutedEventArgs e)
         {
             Graphics gr = new Graphics();
+            m.CrearLISTATemperaturaEnColumna();
+            gr.SetListaTEMPxColumna(m.listaTemperaturaxColumna);
+            gr.SetnumdeCOLUMNAS(m.columns);
+
+
+
             gr.Show();
+
+
         }
     }
 }

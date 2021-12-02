@@ -24,6 +24,8 @@ namespace LibreriaClases
         public Normas norma { get; set; } = new Normas();
         Celda[,] matriz;
 
+        public List<double> listaTemperaturaxColumna = new List<double>();
+
 
         //Tables with the data of all iterations
         DataTable Temperature_table = new DataTable("All Temperature values [K]");
@@ -310,6 +312,23 @@ namespace LibreriaClases
         }
 
 
+        public void CrearLISTATemperaturaEnColumna()
+        {
+            
+
+            for (int i = 0; i < columns; i++)
+            {
+                double suma_de_TEMP_en_columna = 0;
+
+                for (int j = 0; j < rows; j++)
+                {
+                    suma_de_TEMP_en_columna = suma_de_TEMP_en_columna + matriz[j, i].T;
+                }
+                suma_de_TEMP_en_columna = suma_de_TEMP_en_columna / rows;
+                listaTemperaturaxColumna.Add(suma_de_TEMP_en_columna);
+            }
+
+        }
 
     }
 }
