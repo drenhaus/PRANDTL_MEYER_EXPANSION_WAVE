@@ -22,38 +22,56 @@
                 Width="34"/>
         <Button x:Name="Graf_Temperatura_Butt" Content="Temperatura" 
                 HorizontalAlignment="Left" 
-                Margin="148,74,0,0" 
+                Margin="172,50,0,0" 
                 VerticalAlignment="Top" 
                 Height="31" Width="90" Click="Graf_Temperatura_Butt_Click"/>
-        <Button x:Name="Graf_Mach" Content="Mach" 
+        <Button x:Name="Graf_Mach_Butt" Content="Mach" 
                 HorizontalAlignment="Left" 
-                Margin="243,74,0,0" 
+                Margin="267,50,0,0" 
                 VerticalAlignment="Top" 
-                Height="31" Width="90"/>
-        <Button x:Name="Graf_Densidad" Content="Densidad" 
+                Height="31" Width="90" Click="Graf_Mach_Butt_Click"/>
+        <Button x:Name="Graf_Densidad_Butt" Content="Densidad" 
                 HorizontalAlignment="Left" 
-                Margin="338,74,0,0" 
+                Margin="362,50,0,0" 
                 VerticalAlignment="Top" 
-                Height="31" Width="90"/>
-        <Button x:Name="Graf_Presure" Content="Presure" 
+                Height="31" Width="90" Click="Graf_Densidad_Butt_Click"/>
+        <Button x:Name="Graf_Presure_Butt" Content="Presure" 
                 HorizontalAlignment="Left" 
-                Margin="433,74,0,0" 
+                Margin="457,50,0,0" 
                 VerticalAlignment="Top" 
-                Height="31" Width="90"/>
-        <Button x:Name="Graf_U_vel" Content="U vel" 
+                Height="31" Width="90" Click="Graf_Presure_Butt_Click"/>
+        <Button x:Name="Graf_U_vel_Butt" Content="U vel" 
                 HorizontalAlignment="Left" 
-                Margin="528,74,0,0" 
+                Margin="552,50,0,0" 
                 VerticalAlignment="Top" 
-                Height="31" Width="90"/>
-        <Button x:Name="Graf_V_vel" Content="V vel" 
+                Height="31" Width="90" Click="Graf_U_vel_Butt_Click"/>
+        <Button x:Name="Graf_V_vel_Butt" Content="V vel" 
                 HorizontalAlignment="Left" 
-                Margin="623,74,0,0" 
+                Margin="647,50,0,0" 
                 VerticalAlignment="Top" 
-                Height="31" Width="90"/>
+                Height="31" Width="90" Click="Graf_V_vel_Butt_Click"/>
 
         <oxyPlot:PlotView x:Name="Grafica" 
-                          Margin="124,165,124,107"/>
-
+                          Margin="81,114,69,28"/>
+        <Label Content="· Haz clic en algun parámetro·" 
+                   HorizontalAlignment="Center" 
+                   Height="64" 
+                   Margin="0,255,0,0" 
+                   VerticalAlignment="Top" 
+                   Width="423"
+                   FontSize="30"
+                   Opacity="0.5"
+                   x:Name="labelmedio"/>
+        <Label Content="· Permite visualizar los datos al clicar ·" 
+                   HorizontalAlignment="Left" 
+                   Height="64" 
+                   Margin="114,308,0,0" 
+                   VerticalAlignment="Top" 
+                   Width="586"
+                   FontSize="25"
+                   HorizontalContentAlignment="Center"
+                   Opacity="0.5"
+                   x:Name="labelmedio2"/>
 
     </Grid>
 </Window>
