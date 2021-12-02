@@ -146,9 +146,17 @@ namespace WPFapp
                             0.787* Math.Pow(10, 5),0.810* Math.Pow(10, 5),0.834* Math.Pow(10, 5),0.859* Math.Pow(10, 5),0.883* Math.Pow(10, 5),
                             0.907* Math.Pow(10, 5),0.930* Math.Pow(10, 5),0.95* Math.Pow(10, 5),0.968* Math.Pow(10, 5),0.982* Math.Pow(10, 5),
                             0.993* Math.Pow(10, 5),0.1* Math.Pow(10, 6),0.1* Math.Pow(10, 6),0.1* Math.Pow(10, 6),0.1* Math.Pow(10, 6),0.1* Math.Pow(10, 6)};
-        double[] A_T_66 = { };
-        double[] A_M_66 = { };
-        double[] A_F1_66 = { };
+        double[] A_T_66 = { 0.233 * Math.Pow(10, 3),0.237 * Math.Pow(10, 3) ,0.263 * Math.Pow(10, 3) ,0.261 * Math.Pow(10, 3), 0.261 * Math.Pow(10, 3) ,
+                            0.261 * Math.Pow(10, 3),0.261 * Math.Pow(10, 3),0.261 * Math.Pow(10, 3),0.261 * Math.Pow(10, 3),0.261 * Math.Pow(10, 3),
+                            0.261 * Math.Pow(10, 3),0.261 * Math.Pow(10, 3),0.261 * Math.Pow(10, 3),0.261 * Math.Pow(10, 3),0.261 * Math.Pow(10, 3),
+                            0.261 * Math.Pow(10, 3),0.261 * Math.Pow(10, 3),0.261 * Math.Pow(10, 3),0.260 * Math.Pow(10, 3),0.259 * Math.Pow(10, 3),
+                            0.259* Math.Pow(10, 3),0.26* Math.Pow(10, 3),0.261* Math.Pow(10, 3),0.262* Math.Pow(10, 3),0.264* Math.Pow(10, 3),
+                            0.266* Math.Pow(10, 3),0.269* Math.Pow(10, 3),0.271* Math.Pow(10, 3),0.273* Math.Pow(10, 3),0.275* Math.Pow(10, 3),
+                            0.277* Math.Pow(10, 3),0.279* Math.Pow(10, 3),0.281* Math.Pow(10, 3),0.283* Math.Pow(10, 3),0.284* Math.Pow(10, 3),
+                            0.285* Math.Pow(10, 3),0.285* Math.Pow(10, 3),0.286* Math.Pow(10, 3),0.286* Math.Pow(10, 3),0.286* Math.Pow(10, 3),0.286* Math.Pow(10, 3)};
+        double[] A_M_66 = {2.31,2.31,2.2,2.21,2.21,2.21,2.21,2.21,2.21,2.21,2.21,2.21,2.21,2.21,2.21,2.2,2.2,2.21,2.21,2.22,2.22,2.22,2.21,2.19,2.18,2.16,2.14,2.12,2.1,2.09,2.07,2.05,2.04,2.03,2.02,2.01,2.01,2,2,2,2};
+        double[] A_F1_66 = { 0.769 * Math.Pow(10, 3) ,0.76 * Math.Pow(10, 3) ,0.689 * Math.Pow(10, 3) ,0.694 * Math.Pow(10, 3), 0.694 * Math.Pow(10, 3),
+                            };
         double[] A_F2_66 = { };
         double[] A_F3_66 = { };
         double[] A_F4_66 = { };
