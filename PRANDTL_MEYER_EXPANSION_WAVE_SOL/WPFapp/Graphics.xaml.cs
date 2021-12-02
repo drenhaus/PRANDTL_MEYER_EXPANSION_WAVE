@@ -71,8 +71,8 @@ namespace WPFapp
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
-            ejeY.Minimum = 0;
-            ejeY.Maximum = 300;
+            ejeY.Minimum = 267;
+            ejeY.Maximum = 287;
             ejeY.Position = AxisPosition.Left;
 
             model.Axes.Add(ejeY);
@@ -107,13 +107,13 @@ namespace WPFapp
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
-            ejeY.Minimum = 1;
-            ejeY.Maximum = 3;
+            ejeY.Minimum = 1.99;
+            ejeY.Maximum = 2.15;
             ejeY.Position = AxisPosition.Left;
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
-            model.Title = "Evolución de la Temperatura media";
+            model.Title = "Evolución del Mach medio";
             LineSeries linea = new LineSeries();
 
             foreach (var item in generador.Puntos)
@@ -143,13 +143,13 @@ namespace WPFapp
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
-            ejeY.Minimum = 0.8;
-            ejeY.Maximum = 1.5;
+            ejeY.Minimum = 1;
+            ejeY.Maximum = 1.24;
             ejeY.Position = AxisPosition.Left;
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
-            model.Title = "Evolución de la Temperatura media";
+            model.Title = "Evolución de la Densidad media";
             LineSeries linea = new LineSeries();
 
             foreach (var item in generador.Puntos)
@@ -181,13 +181,13 @@ namespace WPFapp
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
-            ejeY.Minimum = 20000;
-            ejeY.Maximum = 100000;
+            ejeY.Minimum = 80000;
+            ejeY.Maximum = 102000;
             ejeY.Position = AxisPosition.Left;
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
-            model.Title = "Evolución de la Temperatura media";
+            model.Title = "Evolución de la Presión media";
             LineSeries linea = new LineSeries();
 
             foreach (var item in generador.Puntos)
@@ -217,13 +217,13 @@ namespace WPFapp
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
-            ejeY.Minimum = 500;
-            ejeY.Maximum = 1000;
+            ejeY.Minimum = 677;
+            ejeY.Maximum = 702;
             ejeY.Position = AxisPosition.Left;
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
-            model.Title = "Evolución de la Temperatura media";
+            model.Title = "Evolución de la velocidad U media";
             LineSeries linea = new LineSeries();
 
             foreach (var item in generador.Puntos)
@@ -253,13 +253,13 @@ namespace WPFapp
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
-            ejeY.Minimum = -90;
-            ejeY.Maximum = 1000;
+            ejeY.Minimum = -50;
+            ejeY.Maximum = 1;
             ejeY.Position = AxisPosition.Left;
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
-            model.Title = "Evolución de la Temperatura media";
+            model.Title = "Evolución de la velocidad V media";
             LineSeries linea = new LineSeries();
 
             foreach (var item in generador.Puntos)
