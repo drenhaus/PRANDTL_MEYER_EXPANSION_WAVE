@@ -132,17 +132,7 @@
                   Width="107" 
                   Height="26" 
                   Grid.Column="1" RenderTransformOrigin="0.5,0.5">
-                <ComboBoxItem Content="Small"/>
-                <ComboBoxItem Content="Normal"/>
-                <ComboBoxItem Content="High"/>
-                <ComboBox.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-0.51"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </ComboBox.RenderTransform>
+
             </ComboBox>
 
             <Grid x:Name="GridMalla" 
@@ -254,14 +244,19 @@
 
 
 
-            <CheckBox x:Name="CheckBox_A" Content="Defaul parameters" 
-                  Grid.Column="1" 
-                  HorizontalAlignment="Left" 
-                  Margin="580,25,0,0" 
-                  Grid.Row="1" 
-                  Checked="CheckBox_A_Checked"
-                  VerticalAlignment="Top" Height="15" Width="135"
-                  />
+            <CheckBox x:Name="CheckBox_A" 
+                      Content="Defaul parameters" 
+                      Grid.Column="1" 
+                      HorizontalAlignment="Left" 
+                      Margin="572,26,0,0" 
+                      Checked="CheckBox_A_Checked"
+                      VerticalAlignment="Top" Height="22" Width="148"
+                      FontFamily="/Fonts/#Poppins"
+                      Foreground="White" RenderTransformOrigin="0.475,0.608"
+                      Canvas.Left="36" 
+                      Canvas.Top="373" Grid.Row="1"
+                     />
+
 
 
 
