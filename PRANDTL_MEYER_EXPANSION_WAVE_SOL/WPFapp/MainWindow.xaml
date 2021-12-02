@@ -372,7 +372,7 @@
                 Content="x" 
                 Grid.Column="1" 
                 HorizontalAlignment="Left" 
-                Margin="657,19,0,0" 
+                Margin="735,10,0,0" 
                 VerticalAlignment="Top" FontSize="55"
                     Click="CloseButton_Click"
                     Style="{DynamicResource closebutton}" Height="16" Width="16"/>
@@ -381,7 +381,7 @@
                 Content="-" 
                 Grid.Column="1" 
                 HorizontalAlignment="Left" 
-                Margin="633,19,0,0" 
+                Margin="714,10,0,0" 
                 VerticalAlignment="Top" Width="16"
                     FontSize="55"
                     Click="MiniButton_Click"
