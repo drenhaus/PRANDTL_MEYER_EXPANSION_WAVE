@@ -36,16 +36,16 @@ namespace WPFapp
         DataTable Anderson_F3_12 = new DataTable();
         DataTable Anderson_F4_12 = new DataTable();
 
-        DataTable Anderson_u_66;
-        DataTable Anderson_v_66;
-        DataTable Anderson_rho_66;
-        DataTable Anderson_p_66;
-        DataTable Anderson_T_66;
-        DataTable Anderson_M_66;
-        DataTable Anderson_F1_66;
-        DataTable Anderson_F2_66;
-        DataTable Anderson_F3_66;
-        DataTable Anderson_F4_66;
+        DataTable Anderson_u_66 = new DataTable();
+        DataTable Anderson_v_66 = new DataTable();
+        DataTable Anderson_rho_66 = new DataTable();
+        DataTable Anderson_p_66 = new DataTable();
+        DataTable Anderson_T_66 = new DataTable();
+        DataTable Anderson_M_66 = new DataTable();
+        DataTable Anderson_F1_66 = new DataTable();
+        DataTable Anderson_F2_66 = new DataTable();
+        DataTable Anderson_F3_66 = new DataTable();
+        DataTable Anderson_F4_66 = new DataTable();
 
         double[] A_u_12 = {707,701,691,683,679,678,678,678,678,678,
                             678,678,678,678,678,678,678,678,678,678,
@@ -124,28 +124,50 @@ namespace WPFapp
 
         public void Fill_Anderson_Tables()
         {
-                DataColumn TEMP_C = new DataColumn();
-                DataColumn U_C = new DataColumn();
-                DataColumn V_C = new DataColumn();
-                DataColumn RHO_C = new DataColumn();
-                DataColumn P_C = new DataColumn();
-                DataColumn M_C = new DataColumn();
-                DataColumn F1_C = new DataColumn();
-                DataColumn F2_C = new DataColumn();
-                DataColumn F3_C = new DataColumn();
-                DataColumn F4_C = new DataColumn();
+            DataColumn TEMP_C = new DataColumn();
+            DataColumn U_C = new DataColumn();
+            DataColumn V_C = new DataColumn();
+            DataColumn RHO_C = new DataColumn();
+            DataColumn P_C = new DataColumn();
+            DataColumn M_C = new DataColumn();
+            DataColumn F1_C = new DataColumn();
+            DataColumn F2_C = new DataColumn();
+            DataColumn F3_C = new DataColumn();
+            DataColumn F4_C = new DataColumn();
 
-                Anderson_T_12.Columns.Add(TEMP_C);
-                Anderson_u_12.Columns.Add(U_C);
-                Anderson_v_12.Columns.Add(V_C);
-                Anderson_rho_12.Columns.Add(RHO_C);
-                Anderson_p_12.Columns.Add(P_C);
-                Anderson_M_12.Columns.Add(M_C);
-                Anderson_F1_12.Columns.Add(F1_C);
-                Anderson_F2_12.Columns.Add(F2_C);
-                Anderson_F3_12.Columns.Add(F3_C);
-                Anderson_F4_12.Columns.Add(F4_C);
-            
+            DataColumn TEMP_C2 = new DataColumn();
+            DataColumn U_C2 = new DataColumn();
+            DataColumn V_C2 = new DataColumn();
+            DataColumn RHO_C2 = new DataColumn();
+            DataColumn P_C2 = new DataColumn();
+            DataColumn M_C2 = new DataColumn();
+            DataColumn F1_C2 = new DataColumn();
+            DataColumn F2_C2 = new DataColumn();
+            DataColumn F3_C2 = new DataColumn();
+            DataColumn F4_C2 = new DataColumn();
+
+            Anderson_T_12.Columns.Add(TEMP_C);
+            Anderson_u_12.Columns.Add(U_C);
+            Anderson_v_12.Columns.Add(V_C);
+            Anderson_rho_12.Columns.Add(RHO_C);
+            Anderson_p_12.Columns.Add(P_C);
+            Anderson_M_12.Columns.Add(M_C);
+            Anderson_F1_12.Columns.Add(F1_C);
+            Anderson_F2_12.Columns.Add(F2_C);
+            Anderson_F3_12.Columns.Add(F3_C);
+            Anderson_F4_12.Columns.Add(F4_C);
+
+            Anderson_T_66.Columns.Add(TEMP_C2);
+            Anderson_u_66.Columns.Add(U_C2);
+            Anderson_v_66.Columns.Add(V_C2);
+            Anderson_rho_66.Columns.Add(RHO_C2);
+            Anderson_p_66.Columns.Add(P_C2);
+            Anderson_M_66.Columns.Add(M_C2);
+            Anderson_F1_66.Columns.Add(F1_C2);
+            Anderson_F2_66.Columns.Add(F2_C2);
+            Anderson_F3_66.Columns.Add(F3_C2);
+            Anderson_F4_66.Columns.Add(F4_C2);
+
             for (int i = 0; i < filas; i++)
             {
                 DataRow TEMP_R = Anderson_T_12.NewRow();
@@ -159,6 +181,17 @@ namespace WPFapp
                 DataRow F3_R = Anderson_F3_12.NewRow();
                 DataRow F4_R = Anderson_F4_12.NewRow();
 
+                DataRow TEMP_R2 = Anderson_T_66.NewRow();
+                DataRow U_R2 = Anderson_u_66.NewRow();
+                DataRow V_R2 = Anderson_v_66.NewRow();
+                DataRow RHO_R2 = Anderson_rho_66.NewRow();
+                DataRow P_R2 = Anderson_p_66.NewRow();
+                DataRow M_R2 = Anderson_M_66.NewRow();
+                DataRow F1_R2 = Anderson_F1_66.NewRow();
+                DataRow F2_R2 = Anderson_F2_66.NewRow();
+                DataRow F3_R2 = Anderson_F3_66.NewRow();
+                DataRow F4_R2 = Anderson_F4_66.NewRow();
+
                 TEMP_R[0] = A_T_12[i];
                 U_R[0] = A_u_12[i];
                 V_R[0] = A_v_12[i];
@@ -169,6 +202,17 @@ namespace WPFapp
                 F2_R[0] = A_F2_12[i];
                 F3_R[0] = A_F3_12[i];
                 F4_R[0] = A_F4_12[i];
+
+                TEMP_R2[0] = A_T_66[i];
+                U_R2[0] = A_u_66[i];
+                V_R2[0] = A_v_66[i];
+                RHO_R2[0] = A_rho_66[i];
+                P_R2[0] = A_p_66[i];
+                M_R2[0] = A_M_66[i];
+                F1_R2[0] = A_F1_66[i];
+                F2_R2[0] = A_F2_66[i];
+                F3_R2[0] = A_F3_66[i];
+                F4_R2[0] = A_F4_66[i];
 
                 Anderson_T_12.Rows.Add(TEMP_R);
                 Anderson_u_12.Rows.Add(U_R);
@@ -181,68 +225,73 @@ namespace WPFapp
                 Anderson_F3_12.Rows.Add(F3_R);
                 Anderson_F4_12.Rows.Add(F4_R);
 
+                Anderson_T_66.Rows.Add(TEMP_R2);
+                Anderson_u_66.Rows.Add(U_R2);
+                Anderson_v_66.Rows.Add(V_R2);
+                Anderson_rho_66.Rows.Add(RHO_R2);
+                Anderson_p_66.Rows.Add(P_R2);
+                Anderson_M_66.Rows.Add(M_R2);
+                Anderson_F1_66.Rows.Add(F1_R2);
+                Anderson_F2_66.Rows.Add(F2_R2);
+                Anderson_F3_66.Rows.Add(F3_R2);
+                Anderson_F4_66.Rows.Add(F4_R2);
+
             }
         }
        
 
-
-
-
         private void Compare_btn_Click(object sender, RoutedEventArgs e)
         {
+            Fill_Anderson_Tables();
+
             if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex==0) //T AND 12
-            {
-                Fill_Anderson_Tables();
-                AndersonGridData.DataContext = Anderson_T_12.DefaultView;
-
-            }
+            {AndersonGridData.DataContext = Anderson_T_12.DefaultView;}
             if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex == 1) //T AND 66
-            { }
-
+            {AndersonGridData.DataContext = Anderson_T_66.DefaultView;}
             if (Setect_Parameter_ComboBox.SelectedIndex == 1 && Setect_X_ComboBox.SelectedIndex == 0) //u AND 12
-            { }
+            { AndersonGridData.DataContext = Anderson_u_12.DefaultView; }
             if (Setect_Parameter_ComboBox.SelectedIndex == 1 && Setect_X_ComboBox.SelectedIndex == 1) //u AND 66
-            { }
+            { AndersonGridData.DataContext = Anderson_u_66.DefaultView; }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 2 && Setect_X_ComboBox.SelectedIndex == 0) //v AND 12
-            { }
+            { AndersonGridData.DataContext = Anderson_v_12.DefaultView; }
             if (Setect_Parameter_ComboBox.SelectedIndex == 2 && Setect_X_ComboBox.SelectedIndex == 1) //v AND 66
-            { }
+            { AndersonGridData.DataContext = Anderson_v_66.DefaultView; }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 3 && Setect_X_ComboBox.SelectedIndex == 0) //rho AND 12
-            { }
+            { AndersonGridData.DataContext = Anderson_rho_12.DefaultView; }
             if (Setect_Parameter_ComboBox.SelectedIndex == 3 && Setect_X_ComboBox.SelectedIndex == 1) //rho AND 66
-            { }
+            { AndersonGridData.DataContext = Anderson_rho_66.DefaultView; }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 4 && Setect_X_ComboBox.SelectedIndex == 0) //p AND 12
-            { }
+            { AndersonGridData.DataContext = Anderson_p_12.DefaultView; }
             if (Setect_Parameter_ComboBox.SelectedIndex == 4 && Setect_X_ComboBox.SelectedIndex == 1) //p AND 66
-            { }
+            { AndersonGridData.DataContext = Anderson_p_66.DefaultView; }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 5 && Setect_X_ComboBox.SelectedIndex == 0) //M AND 12
-            { }
+            { AndersonGridData.DataContext = Anderson_M_12.DefaultView; }
             if (Setect_Parameter_ComboBox.SelectedIndex == 5 && Setect_X_ComboBox.SelectedIndex == 1) //M AND 66
-            { }
+            { AndersonGridData.DataContext = Anderson_M_66.DefaultView; }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 6 && Setect_X_ComboBox.SelectedIndex == 0) //F1 AND 12
-            { }
+            { AndersonGridData.DataContext = Anderson_F1_12.DefaultView; }
             if (Setect_Parameter_ComboBox.SelectedIndex == 6 && Setect_X_ComboBox.SelectedIndex == 1) //F1 AND 66
-            { }
+            { AndersonGridData.DataContext = Anderson_F1_66.DefaultView; }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 7 && Setect_X_ComboBox.SelectedIndex == 0) //F2 AND 12
-            { }
+            { AndersonGridData.DataContext = Anderson_F2_12.DefaultView; }
             if (Setect_Parameter_ComboBox.SelectedIndex == 7 && Setect_X_ComboBox.SelectedIndex == 1) //F2 AND 66
-            { }
+            { AndersonGridData.DataContext = Anderson_F2_66.DefaultView; }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 8 && Setect_X_ComboBox.SelectedIndex == 0) //F3 AND 12
-            { }
+            { AndersonGridData.DataContext = Anderson_F3_12.DefaultView; }
             if (Setect_Parameter_ComboBox.SelectedIndex == 8 && Setect_X_ComboBox.SelectedIndex == 1) //F3 AND 66
-            { }
+            { AndersonGridData.DataContext = Anderson_F3_66.DefaultView; }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 9 && Setect_X_ComboBox.SelectedIndex == 0) //F4 AND 12
-            { }
+            { AndersonGridData.DataContext = Anderson_F4_12.DefaultView; }
             if (Setect_Parameter_ComboBox.SelectedIndex == 9 && Setect_X_ComboBox.SelectedIndex == 1) //F4 AND 66
-            { }
+            { AndersonGridData.DataContext = Anderson_F4_66.DefaultView; }
         }
 
 
