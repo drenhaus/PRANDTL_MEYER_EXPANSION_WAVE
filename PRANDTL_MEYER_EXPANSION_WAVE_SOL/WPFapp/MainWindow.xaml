@@ -372,15 +372,21 @@
                 Content="x" 
                 Grid.Column="1" 
                 HorizontalAlignment="Left" 
-                Margin="658,19,0,0" 
-                VerticalAlignment="Top" Width="33"/>
+                Margin="657,19,0,0" 
+                VerticalAlignment="Top" FontSize="55"
+                    Click="CloseButton_Click"
+                    Style="{DynamicResource closebutton}" Height="16" Width="16"/>
 
             <Button x:Name="Mini_Button" 
                 Content="-" 
                 Grid.Column="1" 
                 HorizontalAlignment="Left" 
-                Margin="615,19,0,0" 
-                VerticalAlignment="Top" Width="34"/>
+                Margin="633,19,0,0" 
+                VerticalAlignment="Top" Width="16"
+                    FontSize="55"
+                    Click="MiniButton_Click"
+                    Style="{DynamicResource minimizebutton}"
+                    Height="16" RenderTransformOrigin="3.613,0.613"/>
             <Label Content="Select data type:" 
                    Grid.Column="1" 
                    HorizontalAlignment="Left" 
@@ -405,9 +411,10 @@
 
                 <ComboBoxItem Content="T"
                               FontFamily="/Fonts/#Poppins"
-                                  Background="AliceBlue"
-                                  HorizontalAlignment="Center"
-                                  FontSize="10"/>
+                              Background="AliceBlue"
+                              HorizontalAlignment="Center"
+                              FontSize="10"
+                              Width="120"/>
                 <ComboBoxItem Content="u"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
