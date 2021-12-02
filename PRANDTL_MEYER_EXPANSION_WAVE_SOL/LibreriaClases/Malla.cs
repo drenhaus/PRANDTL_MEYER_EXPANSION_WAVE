@@ -22,7 +22,7 @@ namespace LibreriaClases
         public double[] delta_y_array { get; set; }
 
         public Normas norma { get; set; } = new Normas();
-        Celda[,] matriz;
+        public Celda[,] matriz { get; set; }
 
         public List<double> listaTemperaturaxColumna = new List<double>();
         public List<double> listaMachxColumna = new List<double>();
@@ -308,6 +308,83 @@ namespace LibreriaClases
             }
 
 
+        }
+
+        public double[] GetColumnData_array(string data, int columna_int)
+        {
+            double[] valores= new double[rows-1];
+            if (data=="t")
+            { 
+                for (int j=0;j<rows-1;j++)
+                {
+                    valores[j] = matriz[j, columna_int].T;
+                }
+            }
+            else if (data == "u")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].u;
+                }
+            }
+            else if (data == "v")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].v;
+                }
+            }
+            else if (data == "m")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].M;
+                }
+            }
+            else if (data == "p")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].P;
+                }
+            }
+            else if (data == "rho")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].Rho;
+                }
+            }
+            else if (data == "f1")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].F1;
+                }
+            }
+            else if (data == "f2")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].F2;
+                }
+            }
+            else if (data == "f3")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].F3;
+                }
+            }
+            else if (data == "f4")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].F4;
+                }
+            }
+
+            return valores;
         }
 
         public DataTable [] GetTables()
