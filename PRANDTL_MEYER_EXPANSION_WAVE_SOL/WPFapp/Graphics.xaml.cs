@@ -55,8 +55,8 @@ namespace WPFapp
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
-            ejeY.Minimum = 100;
-            ejeY.Maximum = 0;
+            ejeY.Minimum = 0;
+            ejeY.Maximum = 300;
             ejeY.Position = AxisPosition.Left;
 
             model.Axes.Add(ejeY);
