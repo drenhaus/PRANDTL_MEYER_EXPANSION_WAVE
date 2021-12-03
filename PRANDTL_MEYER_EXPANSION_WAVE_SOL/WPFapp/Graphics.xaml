@@ -24,12 +24,14 @@
                 HorizontalAlignment="Left" 
                 Margin="172,50,0,0" 
                 VerticalAlignment="Top" 
-                Height="31" Width="90" Click="Graf_Temperatura_Butt_Click"/>
+                Height="31" Width="90" Click="Graf_Temperatura_Butt_Click"
+                Style="{DynamicResource grafTempeBut}"/>
         <Button x:Name="Graf_Mach_Butt" Content="Mach" 
                 HorizontalAlignment="Left" 
                 Margin="267,50,0,0" 
                 VerticalAlignment="Top" 
-                Height="31" Width="90" Click="Graf_Mach_Butt_Click"/>
+                Height="31" Width="90" Click="Graf_Mach_Butt_Click"
+                Style="{DynamicResource grafFaseBut}"/>
         <Button x:Name="Graf_Densidad_Butt" Content="Densidad" 
                 HorizontalAlignment="Left" 
                 Margin="362,50,0,0" 
