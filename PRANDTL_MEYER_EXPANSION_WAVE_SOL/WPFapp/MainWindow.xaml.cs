@@ -24,9 +24,9 @@ namespace WPFapp
     public partial class MainWindow : Window
     {
         Malla m = new Malla();
-        int columnas=89;
-        int filas=41;
-        int dimension_scale=7;
+        int columnas = 89;
+        int filas = 41;
+        int dimension_scale = 7;
         double delta_y_t;
 
         Polygon[,] casillas;
@@ -47,7 +47,7 @@ namespace WPFapp
             InitializeComponent();
         }
 
-      
+
 
         //open the tables window
         private void TablesButton_Click(object sender, RoutedEventArgs e)
@@ -58,16 +58,17 @@ namespace WPFapp
 
 
         }
-
+        
         private void Simulate_Button_Click(object sender, RoutedEventArgs e)
         {
             m.rows = filas;
             m.columns = columnas;
             m.delta_y_t = this.delta_y_t;
-            
+
             m.DefinirMatriz();
             m.Compute();
             m.Fill_DataTable();
+
             DataTable[] T_U_V_RHO_P_M_F1_F2_F3_F4 = m.GetTables();
             temperature_table = T_U_V_RHO_P_M_F1_F2_F3_F4[0];
             u_table = T_U_V_RHO_P_M_F1_F2_F3_F4[1];
@@ -85,7 +86,7 @@ namespace WPFapp
             {
                 actualizar_colores_grid(temperature_table, 255, 0, 0);
             }
-            
+
             LoadParametersButton.IsEnabled = false;
             LoadPresitionButton.IsEnabled = false;
             DataGridComboBox.IsEnabled = true;
@@ -157,7 +158,7 @@ namespace WPFapp
         {
             if (DataGridComboBox.SelectedIndex == 0) //temperature
             {
-                actualizar_colores_grid(temperature_table, 255, 0, 0);  
+                actualizar_colores_grid(temperature_table, 255, 0, 0);
             }
             if (DataGridComboBox.SelectedIndex == 1) //u
             {
@@ -315,11 +316,40 @@ namespace WPFapp
         {
             AdvancedStudyWindow ad_w = new AdvancedStudyWindow();
             ad_w.Show();
+
+            Malla m2 = new Malla();
+
+            columnas = 89;
+            filas = 41;
+            delta_y_t = 0.025;
+
+            m2.rows = filas;
+            m2.columns = columnas;
+            m2.delta_y_t = this.delta_y_t;
+
+
+            m2.normaAD1.v_in = 0;
+            m2.normaAD1.Rho_in = 1.23;
+            m2.normaAD1.P_in = 101000;
+            m2.normaAD1.M_in = 2;
+            m2.normaAD1.T_in = 286.1;
+
+            m2.normaAD1.Compute_a();
+            m2.normaAD1.Compute_M_angle();
+            m2.normaAD1.Compute_u();
+
+
+            m2.DefinirMatriz();
+            m2.Compute();
+            m2.Fill_DataTable();
+
+
+
         }
 
         private void LoadPresitionButton_Click(object sender, RoutedEventArgs e)
         {
-           if (PresitionComboBox.SelectedIndex==0) //small
+            if (PresitionComboBox.SelectedIndex == 0) //small
             {
                 columnas = 23;
                 filas = 11;
@@ -344,7 +374,7 @@ namespace WPFapp
             MessageBox.Show("Precision selected successfully");
 
 
-            
+
         }
 
         private void GraficButton_Click(object sender, RoutedEventArgs e)
@@ -368,17 +398,7 @@ namespace WPFapp
             gr.listaVxColumna = m.listaV_velxColumna;
 
 
-
-
-
-
-
-
-
-
-
         }
-
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -396,6 +416,7 @@ namespace WPFapp
             {
                 this.DragMove();
             }
+        }
 
         private void polygon_enter(object sender, EventArgs e)
         {
@@ -405,14 +426,15 @@ namespace WPFapp
             int j = 0;
             int w = 0;
 
-            for (i = 0; i < columnas-1; i++)
+            for (i = 0; i < columnas - 1; i++)
             {
                 for (j = 0; j < filas; j++)
                 {
-                    if (poly==casillas[j,i])
+                    if (poly == casillas[j, i])
                     {
                         w = 1;
-                        break; }
+                        break;
+                    }
                 }
 
                 // u_label.Content = Convert.ToString(m.matriz[filas-j, columnas-i-1].u);
@@ -422,11 +444,13 @@ namespace WPFapp
                 // temeprature_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].T);
                 // mach_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].M);
 
-                
+
             }
 
         }
-    }
 
+
+
+    }
 
 }

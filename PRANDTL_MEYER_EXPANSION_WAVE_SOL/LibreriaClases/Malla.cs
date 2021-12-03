@@ -22,6 +22,8 @@ namespace LibreriaClases
         public double[] delta_y_array { get; set; }
 
         public Normas norma { get; set; } = new Normas();
+
+        public Normas normaAD1 { get; set; } = new Normas(); // Normas para la primera matriz del Ad St
         public Celda[,] matriz { get; set; }
 
         public List<double> listaTemperaturaxColumna = new List<double>();
