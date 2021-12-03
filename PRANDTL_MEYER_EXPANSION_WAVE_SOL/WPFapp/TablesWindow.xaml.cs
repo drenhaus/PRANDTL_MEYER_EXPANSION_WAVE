@@ -115,5 +115,15 @@ namespace WPFapp
                 grid2.DataContext = F4_t.DefaultView;
             }
         }
+
+        private void Mini_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
