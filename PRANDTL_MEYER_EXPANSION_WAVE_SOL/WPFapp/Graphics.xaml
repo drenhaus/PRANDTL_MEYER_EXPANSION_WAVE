@@ -36,22 +36,27 @@
                 HorizontalAlignment="Left" 
                 Margin="362,50,0,0" 
                 VerticalAlignment="Top" 
-                Height="31" Width="90" Click="Graf_Densidad_Butt_Click"/>
+                Height="31" Width="90" Click="Graf_Densidad_Butt_Click"
+                Style="{DynamicResource grafDensidadBut}"/>
         <Button x:Name="Graf_Presure_Butt" Content="Presure" 
                 HorizontalAlignment="Left" 
                 Margin="457,50,0,0" 
                 VerticalAlignment="Top" 
-                Height="31" Width="90" Click="Graf_Presure_Butt_Click"/>
+                Height="31" Width="90" Click="Graf_Presure_Butt_Click"
+                Style="{DynamicResource grafPresureBut}"/>
         <Button x:Name="Graf_U_vel_Butt" Content="U vel" 
                 HorizontalAlignment="Left" 
                 Margin="552,50,0,0" 
                 VerticalAlignment="Top" 
-                Height="31" Width="90" Click="Graf_U_vel_Butt_Click"/>
+                Height="31" Width="90" Click="Graf_U_vel_Butt_Click"
+                Style="{DynamicResource grafUButt}"
+                />
         <Button x:Name="Graf_V_vel_Butt" Content="V vel" 
                 HorizontalAlignment="Left" 
                 Margin="647,50,0,0" 
                 VerticalAlignment="Top" 
-                Height="31" Width="90" Click="Graf_V_vel_Butt_Click"/>
+                Height="31" Width="90" Click="Graf_V_vel_Butt_Click"
+                Style="{DynamicResource grafVButt}"/>
 
         <oxyPlot:PlotView x:Name="Grafica" 
                           Margin="81,114,69,28"/>
