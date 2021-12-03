@@ -14,4 +14,20 @@
     <ProjectReference Include="..\LibreriaClases\LibreriaClases.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Theme\grafVButtTheme.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Theme\grafUButtTheme.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Theme\grafPresureTheme.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Theme\grafDesnsidadTheme.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
 </Project>

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using LibreriaClases;
 using System.Data;
 
+
 namespace WPFapp
 {
     /// <summary>
@@ -377,6 +378,24 @@ namespace WPFapp
 
 
         }
+
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void MiniButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
 
         private void polygon_enter(object sender, EventArgs e)
         {
