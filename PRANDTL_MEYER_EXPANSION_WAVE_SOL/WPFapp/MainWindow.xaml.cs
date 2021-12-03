@@ -347,6 +347,22 @@ namespace WPFapp
 
         }
 
+        public List<Celda> GetLastColumOfMatriz(Malla Nmalla) 
+        {
+            List<Celda> lista = new List<Celda>();
+
+            int col = Nmalla.columns;
+            int row = Nmalla.rows;
+            
+            for (int nrow = 0; nrow <= row; nrow++)
+            {
+                lista.Add(Nmalla.matriz[nrow, col]);
+            }
+
+            return lista;
+
+        }
+
         private void LoadPresitionButton_Click(object sender, RoutedEventArgs e)
         {
             if (PresitionComboBox.SelectedIndex == 0) //small
