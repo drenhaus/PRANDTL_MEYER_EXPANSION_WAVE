@@ -6,61 +6,78 @@
         xmlns:local="clr-namespace:WPFapp"
         xmlns:oxyPlot="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-        Title="Graphics" Height="610" Width="860">
-    <Grid>
-        <Button x:Name="Close_Button" 
-                Content="x" 
+        Title="Graphics" Height="610" Width="860"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseMove="Window_MouseMove">
+    <Border Background="#3a3752"
+            CornerRadius="20">
+        <Grid>
+            <TextBlock Text="Crear Gráficas"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Foreground="White"
+                       FontSize="22"
+                       FontFamily="/Fonts/#Poppins" 
+                       Height="33" 
+                       Width="223" Margin="10,11,0,0"/>
+            <Button x:Name="Close_Button" 
+                Content="" 
                 HorizontalAlignment="Left" 
-                Margin="817,10,0,0" 
-                VerticalAlignment="Top" Width="33"/>
+                Margin="831,10,0,0" 
+                VerticalAlignment="Top" Width="16"
+                Style="{DynamicResource closebutton}" Height="16" Click="Close_Button_Click"/>
 
-        <Button x:Name="Mini_Button" 
-                Content="-" 
+            <Button x:Name="Mini_Button" 
+                Content="" 
                 HorizontalAlignment="Left" 
-                Margin="774,10,0,0" 
+                Margin="810,10,0,0" 
                 VerticalAlignment="Top" 
-                Width="34"/>
-        <Button x:Name="Graf_Temperatura_Butt" Content="Temperatura" 
+                Width="16"
+                Style="{DynamicResource minimizebutton}" Height="16" Click="Mini_Button_Click"/>
+            <Button x:Name="Graf_Temperatura_Butt" Content="Temperatura" 
                 HorizontalAlignment="Left" 
-                Margin="172,50,0,0" 
+                Margin="237,75,0,0" 
                 VerticalAlignment="Top" 
                 Height="31" Width="90" Click="Graf_Temperatura_Butt_Click"
                 Style="{DynamicResource grafTempeBut}"/>
-        <Button x:Name="Graf_Mach_Butt" Content="Mach" 
+            <Button x:Name="Graf_Mach_Butt" Content="Mach" 
                 HorizontalAlignment="Left" 
-                Margin="267,50,0,0" 
+                Margin="332,75,0,0" 
                 VerticalAlignment="Top" 
                 Height="31" Width="90" Click="Graf_Mach_Butt_Click"
                 Style="{DynamicResource grafFaseBut}"/>
-        <Button x:Name="Graf_Densidad_Butt" Content="Densidad" 
+            <Button x:Name="Graf_Densidad_Butt" Content="Densidad" 
                 HorizontalAlignment="Left" 
-                Margin="362,50,0,0" 
+                Margin="427,75,0,0" 
                 VerticalAlignment="Top" 
                 Height="31" Width="90" Click="Graf_Densidad_Butt_Click"
                 Style="{DynamicResource grafDensidadBut}"/>
-        <Button x:Name="Graf_Presure_Butt" Content="Presure" 
+            <Button x:Name="Graf_Presure_Butt" Content="Presure" 
                 HorizontalAlignment="Left" 
-                Margin="457,50,0,0" 
+                Margin="522,75,0,0" 
                 VerticalAlignment="Top" 
                 Height="31" Width="90" Click="Graf_Presure_Butt_Click"
                 Style="{DynamicResource grafPresureBut}"/>
-        <Button x:Name="Graf_U_vel_Butt" Content="U vel" 
+            <Button x:Name="Graf_U_vel_Butt" Content="U vel" 
                 HorizontalAlignment="Left" 
-                Margin="552,50,0,0" 
+                Margin="617,75,0,0" 
                 VerticalAlignment="Top" 
                 Height="31" Width="90" Click="Graf_U_vel_Butt_Click"
                 Style="{DynamicResource grafUButt}"
                 />
-        <Button x:Name="Graf_V_vel_Butt" Content="V vel" 
+            <Button x:Name="Graf_V_vel_Butt" Content="V vel" 
                 HorizontalAlignment="Left" 
-                Margin="647,50,0,0" 
+                Margin="712,75,0,0" 
                 VerticalAlignment="Top" 
                 Height="31" Width="90" Click="Graf_V_vel_Butt_Click"
                 Style="{DynamicResource grafVButt}"/>
 
-        <oxyPlot:PlotView x:Name="Grafica" 
-                          Margin="81,114,69,28"/>
-        <Label Content="· Haz clic en algun parámetro·" 
+            <oxyPlot:PlotView x:Name="Grafica" 
+                          Margin="15,115,15,15"/>
+            <Label Content="· Haz clic en algun parámetro·" 
                    HorizontalAlignment="Center" 
                    Height="64" 
                    Margin="0,255,0,0" 
@@ -69,7 +86,7 @@
                    FontSize="30"
                    Opacity="0.5"
                    x:Name="labelmedio"/>
-        <Label Content="· Permite visualizar los datos al clicar ·" 
+            <Label Content="· Permite visualizar los datos al clicar ·" 
                    HorizontalAlignment="Left" 
                    Height="64" 
                    Margin="114,308,0,0" 
@@ -80,5 +97,7 @@
                    Opacity="0.5"
                    x:Name="labelmedio2"/>
 
-    </Grid>
+        </Grid>
+
+    </Border>
 </Window>

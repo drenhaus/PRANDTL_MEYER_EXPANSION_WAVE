@@ -10,7 +10,7 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
-        >
+        MouseMove="Window_MouseMove">
 
 
 
