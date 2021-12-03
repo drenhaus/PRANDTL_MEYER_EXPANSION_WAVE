@@ -325,18 +325,18 @@ namespace WPFapp
 
             m2.rows = filas;
             m2.columns = columnas;
-            m2.delta_y_t = this.delta_y_t;
+            m2.delta_y_t = delta_y_t;
 
 
-            m2.normaAD1.v_in = 0;
-            m2.normaAD1.Rho_in = 1.23;
-            m2.normaAD1.P_in = 101000;
-            m2.normaAD1.M_in = 2;
-            m2.normaAD1.T_in = 286.1;
+            m2.norma.v_in = 0;
+            m2.norma.Rho_in = 1.23;
+            m2.norma.P_in = 101000;
+            m2.norma.M_in = 2;
+            m2.norma.T_in = 286.1;
 
-            m2.normaAD1.Compute_a();
-            m2.normaAD1.Compute_M_angle();
-            m2.normaAD1.Compute_u();
+            m2.norma.Compute_a();
+            m2.norma.Compute_M_angle();
+            m2.norma.Compute_u();
 
 
             m2.DefinirMatriz();
