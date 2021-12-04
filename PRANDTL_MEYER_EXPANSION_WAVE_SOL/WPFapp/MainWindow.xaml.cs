@@ -324,10 +324,17 @@ namespace WPFapp
             filas = 41;
             delta_y_t = 0.025;
 
+            double sumaTheta = (10 * (Math.PI) / 180);
+
             m2.rows = filas;
             m2.columns = columnas;
             m2.delta_y_t = delta_y_t;
 
+            m2.norma.L = 55;
+            m2.norma.E = 10;
+            m2.norma.H = 40;
+
+            m2.norma.Theta = sumaTheta *(1 / 3);
 
             m2.norma.v_in = 0;
             m2.norma.Rho_in = 1.23;
@@ -342,9 +349,31 @@ namespace WPFapp
 
             m2.DefinirMatriz();
             m2.Compute();
-            m2.Fill_DataTable();
+            //m2.Fill_DataTable();
 
             List<Celda> ListadeUltimaColumnadeCeldas = GetLastColumOfMatriz(m2);
+
+            //Empezamos con la segunda malla que empieza con los ultimos datos d ela anterior matriz. 
+            
+            Malla m3 = new Malla();
+
+            columnas = 92;
+            filas = 41;
+            delta_y_t = 0.025;
+
+            m3.rows = filas;
+            m3.columns = columnas;
+            m3.delta_y_t = delta_y_t;
+
+            m3.rows = filas;
+            m3.columns = columnas;
+            m3.delta_y_t = delta_y_t;
+
+
+            m3.DefinirMatriz();
+            m3.Compute2(ListadeUltimaColumnadeCeldas);
+
+
 
 
             double a = 2;
