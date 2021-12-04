@@ -387,7 +387,7 @@ namespace WPFapp
             Malla m4 = new Malla();
 
             m4.rows = 41;
-            m4.columns = 72;
+            m4.columns = 53;
             m4.delta_y_t = 0.025;
 
             m4.norma.L = 40;
@@ -422,15 +422,15 @@ namespace WPFapp
             m5.norma.Theta = ((2 * sumaTheta) / 3);
 
             m5.rows = 41;
-            m5.columns = 61;
+            m5.columns = 91;
             m5.delta_y_t = 0.025;
 
 
             m5.DefinirMatriz();
-            m5.Compute2(ListadeUltimaColumnadeCeldas_caso1);
+            m5.Compute2(ListadeUltimaColumnadeCeldas_caso2);
 
 
-
+            double b = 2;
 
 
         }
