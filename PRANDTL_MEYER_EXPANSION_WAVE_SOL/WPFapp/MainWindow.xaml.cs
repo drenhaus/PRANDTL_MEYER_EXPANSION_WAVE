@@ -326,7 +326,7 @@ namespace WPFapp
 
 
             m2.rows = 41;
-            m2.columns = 89;
+            m2.columns = 72;
             m2.delta_y_t = 0.025;
 
             m2.norma.L = 55;
@@ -349,33 +349,86 @@ namespace WPFapp
             m2.DefinirMatriz();
             m2.Compute();
 
-            List<Celda> ListadeUltimaColumnadeCeldas = GetLastColumOfMatriz(m2);
+            List<Celda> ListadeUltimaColumnadeCeldas_caso1 = GetLastColumOfMatriz(m2);
 
             //Empezamos con la segunda malla que empieza con los ultimos datos d ela anterior matriz. 
             
             Malla m3 = new Malla();
 
-            m3.rows = 41;
-            m3.columns = 92;
-            m3.delta_y_t = 0.025;
-
-            double incrementoDeXenPrimerPendiente = m2.norma.L - m2.norma.E;
-            double difrenciadeAltura = incrementoDeXenPrimerPendiente * Math.Tan(m2.norma.Theta);
-
-
-
-
             m3.norma.L = 45;
             m3.norma.E = 1;
-            m3.norma.H = 40+ difrenciadeAltura;
+            m3.norma.H = 40;
+
+            m2.norma.Theta = ((2*sumaTheta) / 3);
+
+            m3.rows = 41;
+            m3.columns = 61;
+            m3.delta_y_t = 0.025;
+
 
             m3.DefinirMatriz();
-            m3.Compute2(ListadeUltimaColumnadeCeldas);
+            m3.Compute2(ListadeUltimaColumnadeCeldas_caso1);
 
 
 
 
             double a = 2;
+
+
+            //CASO 2!!
+
+            // Caso dos, tenemos dos pendientes eparadas por superficie plana
+
+
+            //10 m llegamos a E, 30 M llegamos a final, 30 metros de estaviliadad, y repetimops pero con
+            // angulo dos
+
+
+            Malla m4 = new Malla();
+
+            m4.rows = 41;
+            m4.columns = 72;
+            m4.delta_y_t = 0.025;
+
+            m4.norma.L = 40;
+            m4.norma.E = 10;
+            m4.norma.H = 40;
+
+            m4.norma.Theta = sumaTheta / 3;
+
+            m4.norma.v_in = 0;
+            m4.norma.Rho_in = 1.23;
+            m4.norma.P_in = 101000;
+            m4.norma.M_in = 2;
+            m4.norma.T_in = 286.1;
+
+            m4.norma.Compute_a();
+            m4.norma.Compute_M_angle();
+            m4.norma.Compute_u();
+
+
+            m4.DefinirMatriz();
+            m4.Compute();
+
+            List<Celda> ListadeUltimaColumnadeCeldas_caso2 = GetLastColumOfMatriz(m2);
+
+            Malla m5 = new Malla();
+
+
+            m5.norma.L = 60;
+            m5.norma.E = 30;
+            m5.norma.H = 40;
+
+            m5.norma.Theta = ((2 * sumaTheta) / 3);
+
+            m5.rows = 41;
+            m5.columns = 61;
+            m5.delta_y_t = 0.025;
+
+
+            m5.DefinirMatriz();
+            m5.Compute2(ListadeUltimaColumnadeCeldas_caso1);
+
 
 
 
