@@ -12,6 +12,9 @@ using System.Windows.Shapes;
 using System.Linq;
 using LibreriaClases;
 using System.Data;
+using Excel = Microsoft.Office.Interop.Excel;
+
+
 
 namespace WPFapp
 {
@@ -51,9 +54,6 @@ namespace WPFapp
             this.F3_t=f3;
             this.F4_t=f4;
         }
-
-
-      
 
         private void DataGridColumnHeader_Click(object sender, RoutedEventArgs e)
         {
@@ -132,5 +132,12 @@ namespace WPFapp
                 this.DragMove();
             }
         }
+
+        private void ExportTable_Button_Click(object sender, RoutedEventArgs e)
+        {
+            temperature_t.ExportToExcel();
+        }
+
+   
     }
 }
