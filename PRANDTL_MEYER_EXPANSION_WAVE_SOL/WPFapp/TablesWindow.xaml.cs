@@ -34,6 +34,7 @@ namespace WPFapp
         DataTable F3_t;
         DataTable F4_t;
 
+        DataTable table_to_Export;
         bool expanded = true;
 
         public TablesWindow()
@@ -73,46 +74,63 @@ namespace WPFapp
 
         private void TableSetect_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+            try
+            {
 
-            if (TableSetect_ComboBox.SelectedIndex == 0)
-            {
-                grid2.DataContext = temperature_t.DefaultView;
+                if (TableSetect_ComboBox.SelectedIndex == 0)
+                {
+                    grid2.DataContext = temperature_t.DefaultView;
+                    table_to_Export = temperature_t;
+                }
+                if (TableSetect_ComboBox.SelectedIndex == 1)
+                {
+                    grid2.DataContext = u_t.DefaultView;
+                    table_to_Export = u_t;
+                }
+                if (TableSetect_ComboBox.SelectedIndex == 2)
+                {
+                    grid2.DataContext = v_t.DefaultView;
+                    table_to_Export = v_t;
+                }
+                if (TableSetect_ComboBox.SelectedIndex == 3)
+                {
+                    grid2.DataContext = rho_t.DefaultView;
+                    table_to_Export = rho_t;
+                }
+                if (TableSetect_ComboBox.SelectedIndex == 4)
+                {
+                    grid2.DataContext = p_t.DefaultView;
+                    table_to_Export = p_t;
+                }
+                if (TableSetect_ComboBox.SelectedIndex == 5)
+                {
+                    grid2.DataContext = M_t.DefaultView;
+                    table_to_Export = M_t;
+                }
+                if (TableSetect_ComboBox.SelectedIndex == 6)
+                {
+                    grid2.DataContext = F1_t.DefaultView;
+                    table_to_Export = F1_t;
+                }
+                if (TableSetect_ComboBox.SelectedIndex == 7)
+                {
+                    grid2.DataContext = F2_t.DefaultView;
+                    table_to_Export = F2_t;
+                }
+                if (TableSetect_ComboBox.SelectedIndex == 8)
+                {
+                    grid2.DataContext = F3_t.DefaultView;
+                    table_to_Export = F3_t;
+                }
+                if (TableSetect_ComboBox.SelectedIndex == 9)
+                {
+                    grid2.DataContext = F4_t.DefaultView;
+                    table_to_Export = F4_t;
+                }
             }
-            if (TableSetect_ComboBox.SelectedIndex == 1)
+            catch (Exception ex)
             {
-                grid2.DataContext = u_t.DefaultView;
-            }
-            if (TableSetect_ComboBox.SelectedIndex == 2)
-            {
-                grid2.DataContext = v_t.DefaultView;
-            }
-            if (TableSetect_ComboBox.SelectedIndex == 3)
-            {
-                grid2.DataContext = rho_t.DefaultView;
-            }
-            if (TableSetect_ComboBox.SelectedIndex == 4)
-            {
-                grid2.DataContext = p_t.DefaultView;
-            }
-            if (TableSetect_ComboBox.SelectedIndex == 5)
-            {
-                grid2.DataContext = M_t.DefaultView;
-            }
-            if (TableSetect_ComboBox.SelectedIndex == 6)
-            {
-                grid2.DataContext = F1_t.DefaultView;
-            }
-            if (TableSetect_ComboBox.SelectedIndex == 7)
-            {
-                grid2.DataContext = F2_t.DefaultView;
-            }
-            if (TableSetect_ComboBox.SelectedIndex == 8)
-            {
-                grid2.DataContext = F3_t.DefaultView;
-            }
-            if (TableSetect_ComboBox.SelectedIndex == 9)
-            {
-                grid2.DataContext = F4_t.DefaultView;
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -135,7 +153,14 @@ namespace WPFapp
 
         private void ExportTable_Button_Click(object sender, RoutedEventArgs e)
         {
-            temperature_t.ExportToExcel();
+            try
+            {
+                table_to_Export.ExportToExcel();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
    
