@@ -317,7 +317,8 @@ namespace WPFapp
             AdvancedStudyWindow ad_w = new AdvancedStudyWindow();
             ad_w.Show();
 
-            Malla m2 = new Malla();
+            Malla m2 = new Malla(); // Parimos de cero, es decir, nueva malla y reacemos el calculo de una matriz en resolucion media
+            //la idea es hacer otra matriz con los datos recogidos de la ultima columna de la simulacion.
 
             columnas = 89;
             filas = 41;
@@ -343,6 +344,12 @@ namespace WPFapp
             m2.Compute();
             m2.Fill_DataTable();
 
+            List<Celda> ListadeUltimaColumnadeCeldas = GetLastColumOfMatriz(m2);
+
+
+            double a = 2;
+
+
 
 
         }
@@ -354,9 +361,9 @@ namespace WPFapp
             int col = Nmalla.columns;
             int row = Nmalla.rows;
             
-            for (int nrow = 0; nrow <= row; nrow++)
+            for (int nrow = 0; nrow < row; nrow++)
             {
-                lista.Add(Nmalla.matriz[nrow, col]);
+                lista.Add(Nmalla.matriz[nrow, col-1]);
             }
 
             return lista;
