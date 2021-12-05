@@ -24,9 +24,9 @@ namespace WPFapp
     public partial class MainWindow : Window
     {
         Malla m = new Malla();
-        int columnas=89;
-        int filas=41;
-        int dimension_scale=7;
+        int columnas = 89;
+        int filas = 41;
+        int dimension_scale = 7;
         double delta_y_t;
 
         Polygon[,] casillas;
@@ -47,7 +47,7 @@ namespace WPFapp
             InitializeComponent();
         }
 
-      
+
 
         //open the tables window
         private void TablesButton_Click(object sender, RoutedEventArgs e)
@@ -64,7 +64,7 @@ namespace WPFapp
             m.rows = filas;
             m.columns = columnas;
             m.delta_y_t = this.delta_y_t;
-            
+
             m.DefinirMatriz();
             m.Compute();
             m.Fill_DataTable();
@@ -85,7 +85,7 @@ namespace WPFapp
             {
                 actualizar_colores_grid(temperature_table, 255, 0, 0);
             }
-            
+
             LoadParametersButton.IsEnabled = false;
             LoadPresitionButton.IsEnabled = false;
             DataGridComboBox.IsEnabled = true;
@@ -157,7 +157,7 @@ namespace WPFapp
         {
             if (DataGridComboBox.SelectedIndex == 0) //temperature
             {
-                actualizar_colores_grid(temperature_table, 255, 0, 0);  
+                actualizar_colores_grid(temperature_table, 255, 0, 0);
             }
             if (DataGridComboBox.SelectedIndex == 1) //u
             {
@@ -319,7 +319,7 @@ namespace WPFapp
 
         private void LoadPresitionButton_Click(object sender, RoutedEventArgs e)
         {
-           if (PresitionComboBox.SelectedIndex==0) //small
+            if (PresitionComboBox.SelectedIndex == 0) //small
             {
                 columnas = 23;
                 filas = 11;
@@ -344,7 +344,7 @@ namespace WPFapp
             MessageBox.Show("Precision selected successfully");
 
 
-            
+
         }
 
         private void GraficButton_Click(object sender, RoutedEventArgs e)
@@ -397,6 +397,9 @@ namespace WPFapp
                 this.DragMove();
             }
 
+
+        }
+
         private void polygon_enter(object sender, EventArgs e)
         {
             Polygon poly = (Polygon)sender;
@@ -405,14 +408,15 @@ namespace WPFapp
             int j = 0;
             int w = 0;
 
-            for (i = 0; i < columnas-1; i++)
+            for (i = 0; i < columnas - 1; i++)
             {
                 for (j = 0; j < filas; j++)
                 {
-                    if (poly==casillas[j,i])
+                    if (poly == casillas[j, i])
                     {
                         w = 1;
-                        break; }
+                        break;
+                    }
                 }
 
                 // u_label.Content = Convert.ToString(m.matriz[filas-j, columnas-i-1].u);
@@ -422,11 +426,9 @@ namespace WPFapp
                 // temeprature_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].T);
                 // mach_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].M);
 
-                
+
             }
 
         }
     }
-
-
 }
