@@ -19,18 +19,44 @@ namespace WPFapp
     /// </summary>
     public partial class AdvancedStudyWindow : Window
     {
-        
+        GridPlotGenerate GPG = new GridPlotGenerate();
+
+        DataTable temperature_table_1;
+        DataTable u_table_1;
+        DataTable v_table_1;
+        DataTable rho_table_1;
+        DataTable p_table_1;
+        DataTable M_table_1;
+        DataTable F1_table_1;
+        DataTable F2_table_1;
+        DataTable F3_table_1;
+        DataTable F4_table_1;
+
+        DataTable temperature_table_2;
+        DataTable u_table_2;
+        DataTable v_table_2;
+        DataTable rho_table_2;
+        DataTable p_table_2;
+        DataTable M_table_2;
+        DataTable F1_table_2;
+        DataTable F2_table_2;
+        DataTable F3_table_2;
+        DataTable F4_table_2;
+
+        Polygon[,] casillas2;
+        Polygon[,] casillas3;
+        Polygon[,] casillas4;
+        Polygon[,] casillas5;
+
+        DataTable[] tablesM2;
+        DataTable[] tablesM3;
+        DataTable[] tablesM4;
+        DataTable[] tablesM5;
+
         public AdvancedStudyWindow()
         {
             InitializeComponent();
 
-        }
-        private void CheckBox_A_Checked(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void LoadParametersButton_Click(object sender, RoutedEventArgs e)
-        {
             // m2 sera la primera malla del caso 1 (caso 1 el de dos pendientes de angulo distinto juntas)
             double sumaTheta = (10 * (Math.PI) / 180);
 
@@ -62,6 +88,8 @@ namespace WPFapp
 
             m2.DefinirMatriz();
             m2.Compute();
+            m2.Fill_DataTable();
+            tablesM2 = m2.GetTables();
 
             List<Celda> ListadeUltimaColumnadeCeldas_caso1 = GetLastColumOfMatriz(m2);
 
@@ -82,7 +110,10 @@ namespace WPFapp
 
             m3.DefinirMatriz();
             m3.Compute2(ListadeUltimaColumnadeCeldas_caso1);
+            m3.Fill_DataTable();
+            tablesM3 = m3.GetTables();
 
+          
 
             //CASO 2!!
 
@@ -118,6 +149,8 @@ namespace WPFapp
 
             m4.DefinirMatriz();
             m4.Compute();
+            m4.Fill_DataTable();
+            tablesM4 = m4.GetTables();
 
             List<Celda> ListadeUltimaColumnadeCeldas_caso2 = GetLastColumOfMatriz(m4);
 
@@ -137,7 +170,55 @@ namespace WPFapp
 
             m5.DefinirMatriz();
             m5.Compute2(ListadeUltimaColumnadeCeldas_caso2);
+            m5.Fill_DataTable();
+            tablesM5 = m5.GetTables();
 
+            casillas2 = GPG.GenerateGridPlot(m2.rows, m2.columns, m2);
+            casillas3 = GPG.GenerateGridPlot(m3.rows, m3.columns, m3);
+            casillas4 = GPG.GenerateGridPlot(m4.rows, m4.columns, m4);
+            casillas5 = GPG.GenerateGridPlot(m5.rows, m5.columns, m5);
+
+            // CASO 1, Advanced_GridMalla_CASO1 y Advanced_GridMalla_2_CASO1
+
+            for (int i = 0; i < m2.columns - 1; i++)
+            {
+                for (int j = 0; j < m2.rows; j++)
+                {
+                    Advanced_GridMalla_CASO1.Children.Add(casillas2[j, i]);
+                }
+            }
+
+            for (int i = 0; i < m3.columns - 1; i++)
+            {
+                for (int j = 0; j < m3.rows; j++)
+                {
+                    Advanced_GridMalla_2_CASO1.Children.Add(casillas3[j, i]);
+                }
+            }
+            // CASO 3, Advanced_GridMalla_CASO2 y Advanced_GridMalla_2_CASO2
+
+            for (int i = 0; i < m4.columns - 1; i++)
+            {
+                for (int j = 0; j < m4.rows; j++)
+                {
+                    Advanced_GridMalla_CASO2.Children.Add(casillas4[j, i]);
+                }
+            }
+            for (int i = 0; i < m5.columns - 1; i++)
+            {
+                for (int j = 0; j < m5.rows; j++)
+                {
+                    Advanced_GridMalla_2_CASO2.Children.Add(casillas4[j, i]);
+                }
+            }
+
+            if (DataGridComboBox_AS.SelectedIndex == 0)
+            {
+                casillas2 = GPG.actualizar_colores_grid(tablesM2[0], 255, 0, 0);
+                casillas3 = GPG.actualizar_colores_grid(tablesM3[0], 255, 0, 0);
+                casillas4 = GPG.actualizar_colores_grid(tablesM4[0], 255, 0, 0);
+                casillas5 = GPG.actualizar_colores_grid(tablesM5[0], 255, 0, 0);
+            }
 
         }
 
@@ -156,8 +237,52 @@ namespace WPFapp
             return lista;
 
         }
-        private void Simulate_Button_Click(object sender, RoutedEventArgs e)
+
+
+        private void DataGridComboBox_AS_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (DataGridComboBox_AS.SelectedIndex == 0) //temperature
+            {
+                casillas2 = GPG.actualizar_colores_grid(tablesM2[0], 255, 0, 0);
+                casillas3 = GPG.actualizar_colores_grid(tablesM3[0], 255, 0, 0);
+                casillas4 = GPG.actualizar_colores_grid(tablesM4[0], 255, 0, 0);
+                casillas5 = GPG.actualizar_colores_grid(tablesM5[0], 255, 0, 0);
+            }
+            if (DataGridComboBox_AS.SelectedIndex == 1) //u
+            {
+                casillas2 = GPG.actualizar_colores_grid(tablesM2[1], 0, 255, 0);
+                casillas3 = GPG.actualizar_colores_grid(tablesM3[1], 0, 255, 0);
+                casillas4 = GPG.actualizar_colores_grid(tablesM4[1], 0, 255, 0);
+                casillas5 = GPG.actualizar_colores_grid(tablesM5[1], 0, 255, 0);
+            }
+            if (DataGridComboBox_AS.SelectedIndex == 2) //v
+            {
+                casillas2 = GPG.actualizar_colores_grid(tablesM2[2], 255, 128, 0);
+                casillas3 = GPG.actualizar_colores_grid(tablesM3[2], 255, 128, 0);
+                casillas4 = GPG.actualizar_colores_grid(tablesM4[2], 255, 128, 0);
+                casillas5 = GPG.actualizar_colores_grid(tablesM5[2], 255, 128, 0);
+            }
+            if (DataGridComboBox_AS.SelectedIndex == 3) //rho
+            {
+                casillas2 = GPG.actualizar_colores_grid(tablesM2[3], 0, 0, 255);
+                casillas3 = GPG.actualizar_colores_grid(tablesM3[3], 0, 0, 255);
+                casillas4 = GPG.actualizar_colores_grid(tablesM4[3], 0, 0, 255);
+                casillas5 = GPG.actualizar_colores_grid(tablesM5[3], 0, 0, 255);
+            }
+            if (DataGridComboBox_AS.SelectedIndex == 4) //p
+            {
+                casillas2 = GPG.actualizar_colores_grid(tablesM2[4], 255, 0, 127);
+                casillas3 = GPG.actualizar_colores_grid(tablesM3[4], 255, 0, 127);
+                casillas4 = GPG.actualizar_colores_grid(tablesM4[4], 255, 0, 127);
+                casillas5 = GPG.actualizar_colores_grid(tablesM5[4], 255, 0, 127);
+            }
+            if (DataGridComboBox_AS.SelectedIndex == 5) //Mach
+            {
+                casillas2 = GPG.actualizar_colores_grid(tablesM2[5], 96, 96, 96);
+                casillas3 = GPG.actualizar_colores_grid(tablesM3[5], 96, 96, 96);
+                casillas4 = GPG.actualizar_colores_grid(tablesM4[5], 96, 96, 96);
+                casillas5 = GPG.actualizar_colores_grid(tablesM5[5], 96, 96, 96);
+            }
         }
     }
 

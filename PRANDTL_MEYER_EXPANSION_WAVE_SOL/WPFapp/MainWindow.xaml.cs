@@ -95,7 +95,7 @@ namespace WPFapp
 
             if (DataGridComboBox.SelectedIndex == 0)
             {
-                GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
+                casillas = GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
             }
 
             LoadParametersButton.IsEnabled = false;
@@ -113,27 +113,27 @@ namespace WPFapp
         {
             if (DataGridComboBox.SelectedIndex == 0) //temperature
             {
-                GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
+                casillas=GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
             }
             if (DataGridComboBox.SelectedIndex == 1) //u
             {
-                GPG.actualizar_colores_grid(u_table, 0, 255, 0);
+                casillas = GPG.actualizar_colores_grid(u_table, 0, 255, 0);
             }
             if (DataGridComboBox.SelectedIndex == 2) //v
             {
-                GPG.actualizar_colores_grid(v_table, 255, 128, 0);
+                casillas = GPG.actualizar_colores_grid(v_table, 255, 128, 0);
             }
             if (DataGridComboBox.SelectedIndex == 3) //rho
             {
-                GPG.actualizar_colores_grid(rho_table, 0, 0, 255);
+                casillas = GPG.actualizar_colores_grid(rho_table, 0, 0, 255);
             }
             if (DataGridComboBox.SelectedIndex == 4) //p
             {
-                GPG.actualizar_colores_grid(p_table, 255, 0, 127);
+                casillas = GPG.actualizar_colores_grid(p_table, 255, 0, 127);
             }
             if (DataGridComboBox.SelectedIndex == 5) //Mach
             {
-                GPG.actualizar_colores_grid(M_table, 96, 96, 96);
+                casillas = GPG.actualizar_colores_grid(M_table, 96, 96, 96);
             }
 
         }

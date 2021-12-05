@@ -12,14 +12,19 @@
               Width="197" Margin="162,49,0,0" 
               Height="200" 
               VerticalAlignment="Top"
-              Background="Black"/>
+              />
 
         <Grid x:Name="Advanced_GridMalla_2_CASO1" 
             HorizontalAlignment="Left" 
             Width="197" Margin="359,70,0,0" 
             Height="197" 
             VerticalAlignment="Top"
-            Background="Black"/>
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64*"/>
+                <RowDefinition Height="133*"/>
+            </Grid.RowDefinitions>
+        </Grid>
 
 
         <Grid x:Name="Advanced_GridMalla_CASO2" 
@@ -27,14 +32,14 @@
             Width="197" Margin="162,316,0,0" 
             Height="200" 
             VerticalAlignment="Top"
-            Background="Black"/>
+            />
 
         <Grid x:Name="Advanced_GridMalla_2_CASO2" 
             HorizontalAlignment="Left" 
             Width="197" Margin="359,356,0,0" 
             Height="200" 
             VerticalAlignment="Top"
-            Background="Black"/>
+            />
 
 
 
@@ -53,12 +58,6 @@
                 VerticalAlignment="Top" 
                 Height="32" Width="121"/>
 
-        <Button x:Name="Load_AdSt_Button" Content="Load A.S." 
-                HorizontalAlignment="Left" 
-                Margin="22,138,0,0" 
-                VerticalAlignment="Top" 
-                Height="32" Width="121"/>
-
         <Button x:Name="Close_Button" 
                 Content="x" 
                 HorizontalAlignment="Left" 
@@ -70,79 +69,55 @@
                 HorizontalAlignment="Left" 
                 Margin="814,10,0,0" 
                 VerticalAlignment="Top" Width="34"/>
-        <Label Content="ρ:" 
-            HorizontalAlignment="Left" 
-            Margin="33,275,0,0" 
-            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="20"/>
-        <Label Content="P:" 
-            HorizontalAlignment="Left" 
-            Margin="34,208,0,0" 
-            VerticalAlignment="Top" RenderTransformOrigin="0.168,0.491" Height="26" Width="19"/>
-        <Label Content="M:" 
-            HorizontalAlignment="Left" 
-            Margin="30,316,0,0" 
-            VerticalAlignment="Top" RenderTransformOrigin="-0.426,-0.61" Height="26" Width="23"/>
-        <Label Content="T:" 
-            HorizontalAlignment="Left" 
-            Margin="34,236,0,0" 
-            VerticalAlignment="Top" Height="26" Width="19"/>
-        <Label Content="v:" 
-            HorizontalAlignment="Left" 
-            Margin="33,358,0,0" 
-            VerticalAlignment="Top" 
-            RenderTransformOrigin="-0.426,-0.61" Height="26" Width="18"/>
-        <TextBox x:Name="P_TextBox" 
-            HorizontalAlignment="Left" 
-            Margin="67,216,0,0" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top"
-            Width="62" Height="18"/>
-        <TextBox x:Name="M_TextBox" 
-            HorizontalAlignment="Left" 
-            Margin="67,323,0,0" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top"
-            Width="62" Height="18"/>
-        <TextBox x:Name="Rho_TextBox" 
-            HorizontalAlignment="Left" 
-            Margin="67,283,0,0" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top"
-            Width="62" Height="18"/>
-        <TextBox x:Name="v_TextBox" 
-            HorizontalAlignment="Left" 
-            Margin="67,362,0,0" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top"
-            Width="62" Height="18"/>
-        <TextBox x:Name="T_TextBox" 
-            HorizontalAlignment="Left" 
-            Margin="67,249,0,0" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top"
-            Width="62" Height="18"/>
-        <CheckBox x:Name="CheckBox_A" Content="Defaul parameters" 
-            HorizontalAlignment="Left" 
-            Margin="16,390,0,0" 
-            Checked="CheckBox_A_Checked"
-           
-            VerticalAlignment="Top" Height="15" Width="136"
-                  />
-        <Button x:Name="LoadParametersButton" 
-            Content="Load Parameters" 
-            HorizontalAlignment="Left" 
-            Margin="24,428,0,0"
-            VerticalAlignment="Top" 
-            Height="28" Width="118" 
-            RenderTransformOrigin="0.477,-0.345" Click="LoadParametersButton_Click"/>
         <Button x:Name="Simulate_Button" 
             Content="Simulate" 
             HorizontalAlignment="Right" 
-            Margin="0,486,757,0"
+            Margin="0,397,757,0"
             VerticalAlignment="Top" 
             Height="28" Width="120" 
-            RenderTransformOrigin="0.477,-0.345" Click="Simulate_Button_Click"/>
+            RenderTransformOrigin="0.477,-0.345"/>
+        <ComboBox x:Name="DataGridComboBox_AS" 
+                    HorizontalAlignment="Left" 
+                    Margin="23,321,0,0"
+                    VerticalAlignment="Top" 
+                    Width="120"                     
+            SelectionChanged="DataGridComboBox_AS_SelectionChanged"
+                      Style="{DynamicResource theComboBox}" 
+                  ItemContainerStyle="{DynamicResource theComboBoxItem}">
 
+            <ComboBoxItem Content="T"
+                              FontFamily="/Fonts/#Poppins"
+                              Background="AliceBlue"
+                              HorizontalAlignment="Center"
+                              FontSize="10"
+                              Width="120"/>
+            <ComboBoxItem Content="u"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+            <ComboBoxItem Content="v"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+            <ComboBoxItem Content="Rho"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+            <ComboBoxItem Content="P" 
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+            <ComboBoxItem Content="Mach"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+
+        </ComboBox>
 
     </Grid>
 </Window>
