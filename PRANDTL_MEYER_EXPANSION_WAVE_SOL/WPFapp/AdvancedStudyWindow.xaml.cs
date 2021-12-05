@@ -139,12 +139,6 @@ namespace WPFapp
             m5.Compute2(ListadeUltimaColumnadeCeldas_caso2);
 
 
-
-
-
-
-
-
         }
 
         public List<Celda> GetLastColumOfMatriz(Malla Nmalla)

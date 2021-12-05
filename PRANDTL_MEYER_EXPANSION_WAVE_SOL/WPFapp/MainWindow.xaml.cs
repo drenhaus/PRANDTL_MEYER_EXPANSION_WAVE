@@ -26,10 +26,11 @@ namespace WPFapp
         Malla m = new Malla();
         int columnas = 89;
         int filas = 41;
-        int dimension_scale = 7;
         double delta_y_t;
 
         Polygon[,] casillas;
+        GridPlotGenerate GPG = new GridPlotGenerate();
+        
 
         DataTable temperature_table;
         DataTable u_table;
@@ -80,7 +81,17 @@ namespace WPFapp
             F2_table = T_U_V_RHO_P_M_F1_F2_F3_F4[7];
             F3_table = T_U_V_RHO_P_M_F1_F2_F3_F4[8];
             F4_table = T_U_V_RHO_P_M_F1_F2_F3_F4[9];
-            GenerateGridPlot();
+
+
+            casillas = GPG.GenerateGridPlot(filas, columnas,m);
+
+            for (int i = 0; i < columnas - 1; i++)
+            {
+                for (int j = 0; j < filas; j++)
+                {
+                    GridMalla.Children.Add(casillas[j, i]);
+                }
+            }
 
             if (DataGridComboBox.SelectedIndex == 0)
             {
@@ -96,62 +107,6 @@ namespace WPFapp
             MessageBox.Show("Please select the data you want to show or reset for any change");
 
 
-        }
-
-        public void GenerateGridPlot()
-        {
-            casillas = new Polygon[filas, columnas - 1];
-
-            double x1 = 0; // column left
-            double x2; // column right
-            double y1; // top left
-            double y2; // top right
-            double y3; // down left
-            double y4; // down right
-
-            double[] delta_y = m.Vector_Delta_y();
-
-            for (int i = 0; i < columnas - 1; i++)
-            {
-                x2 = x1 + m.delta_x;
-                y3 = 0;
-                y4 = 0;
-
-                for (int j = 0; j < filas; j++)
-                {
-                    y1 = y3 + delta_y[i];
-                    y2 = y4 + delta_y[i + 1];
-
-                    Polygon myPolygon = new Polygon();
-                    System.Windows.Point Point1 = new System.Windows.Point(x1 * dimension_scale, y1 * dimension_scale);
-                    System.Windows.Point Point2 = new System.Windows.Point(x2 * dimension_scale, y2 * dimension_scale);
-                    System.Windows.Point Point3 = new System.Windows.Point(x1 * dimension_scale, y3 * dimension_scale);
-                    System.Windows.Point Point4 = new System.Windows.Point(x2 * dimension_scale, y4 * dimension_scale);
-                    myPolygon.StrokeThickness = 0;
-                    PointCollection myPointCollection = new PointCollection();
-                    myPointCollection.Add(Point1);
-                    myPointCollection.Add(Point2);
-                    myPointCollection.Add(Point4);
-                    myPointCollection.Add(Point3);
-                    myPolygon.Points = myPointCollection;
-                    casillas[j, i] = myPolygon;
-
-                    myPolygon.MouseEnter += new System.Windows.Input.MouseEventHandler(polygon_enter);
-
-                    y4 = y2;
-                    y3 = y1;
-
-
-                }
-                x1 = x2;
-            }
-            for (int i = 0; i < columnas - 1; i++)
-            {
-                for (int j = 0; j < filas; j++)
-                {
-                    GridMalla.Children.Add(casillas[j, i]);
-                }
-            }
         }
 
         private void DataGridComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
