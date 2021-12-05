@@ -9,14 +9,14 @@
     <Grid>
         <Grid x:Name="Advanced_GridMalla_CASO1" 
               HorizontalAlignment="Left" 
-              Width="197" Margin="162,49,0,0" 
-              Height="200" 
+              Width="411" Margin="162,49,0,0" 
+              Height="289" 
               VerticalAlignment="Top"
               />
 
         <Grid x:Name="Advanced_GridMalla_2_CASO1" 
             HorizontalAlignment="Left" 
-            Width="197" Margin="359,70,0,0" 
+            Width="197" Margin="420,154,0,0" 
             Height="197" 
             VerticalAlignment="Top"
             >
