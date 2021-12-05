@@ -95,7 +95,7 @@ namespace WPFapp
 
             if (DataGridComboBox.SelectedIndex == 0)
             {
-                actualizar_colores_grid(temperature_table, 255, 0, 0);
+                GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
             }
 
             LoadParametersButton.IsEnabled = false;
@@ -113,82 +113,27 @@ namespace WPFapp
         {
             if (DataGridComboBox.SelectedIndex == 0) //temperature
             {
-                actualizar_colores_grid(temperature_table, 255, 0, 0);
+                GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
             }
             if (DataGridComboBox.SelectedIndex == 1) //u
             {
-                actualizar_colores_grid(u_table, 0, 255, 0);
+                GPG.actualizar_colores_grid(u_table, 0, 255, 0);
             }
             if (DataGridComboBox.SelectedIndex == 2) //v
             {
-                actualizar_colores_grid(v_table, 255, 128, 0);
+                GPG.actualizar_colores_grid(v_table, 255, 128, 0);
             }
             if (DataGridComboBox.SelectedIndex == 3) //rho
             {
-                actualizar_colores_grid(rho_table, 0, 0, 255);
+                GPG.actualizar_colores_grid(rho_table, 0, 0, 255);
             }
             if (DataGridComboBox.SelectedIndex == 4) //p
             {
-                actualizar_colores_grid(p_table, 255, 0, 127);
+                GPG.actualizar_colores_grid(p_table, 255, 0, 127);
             }
             if (DataGridComboBox.SelectedIndex == 5) //Mach
             {
-                actualizar_colores_grid(M_table, 96, 96, 96);
-            }
-
-        }
-
-        public double[] Max_Min_Datatables(DataTable data_t)
-        {
-            double max = Convert.ToDouble(data_t.Rows[0][0].ToString());
-            double min = Convert.ToDouble(data_t.Rows[0][0].ToString());
-            for (int i = 0; i < columnas; i++)
-            {
-                for (int j = 0; j < filas; j++)
-                {
-                    if (Convert.ToDouble(data_t.Rows[j][i].ToString()) < min)
-                    {
-                        min = Convert.ToDouble(data_t.Rows[j][i].ToString());
-                    }
-                    if (Convert.ToDouble(data_t.Rows[j][i].ToString()) > max)
-                    {
-                        max = Convert.ToDouble(data_t.Rows[j][i].ToString());
-                    }
-
-                }
-            }
-            double[] values = { max, min };
-            return values;
-        }
-
-        public byte Define_Cloroes(double max, double min, double value)
-        {
-            double rango = max - min;
-
-            byte alpha;
-
-            //max byte --255
-            // min byte --25
-
-            //interpolamos para sacar el parametro alpa
-            alpha = Convert.ToByte(30 + (255 - 30) / (max - min) * (value - min));
-
-            return alpha;
-
-        }
-
-        public void actualizar_colores_grid(DataTable t, byte R, byte G, byte B)
-        {
-            double[] max_min;
-            max_min = Max_Min_Datatables(t);
-
-            for (int i = 0; i < columnas - 1; i++)
-            {
-                for (int j = 0; j < filas; j++)
-                {
-                    byte alpha = Define_Cloroes(max_min[0], max_min[1], Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()));
-                    casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(alpha, R, G, B));
-                }
+                GPG.actualizar_colores_grid(M_table, 96, 96, 96);
             }
 
         }

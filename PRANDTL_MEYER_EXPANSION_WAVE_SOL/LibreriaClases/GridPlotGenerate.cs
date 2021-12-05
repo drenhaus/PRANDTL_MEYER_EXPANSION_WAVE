@@ -21,8 +21,15 @@ namespace LibreriaClases
     {
         Polygon[,] casillas;
         int dimension_scale = 7;
+
+        int filas;
+        int columnas;
+        
         public Polygon[,] GenerateGridPlot(int filas, int columnas, Malla m)
         {
+            this.filas = filas;
+            this.columnas = columnas;
+
             casillas = new Polygon[filas, columnas - 1];
 
             double x1 = 0; // column left
@@ -70,5 +77,59 @@ namespace LibreriaClases
             }
             return casillas;
         }
+        public Polygon[,] actualizar_colores_grid(DataTable t, byte R, byte G, byte B)
+        {
+            double[] max_min;
+            max_min = Max_Min_Datatables(t);
+
+            for (int i = 0; i < columnas - 1; i++)
+            {
+                for (int j = 0; j < filas; j++)
+                {
+                    byte alpha = Define_Cloroes(max_min[0], max_min[1], Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()));
+                    casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(alpha, R, G, B));
+                }
+            }
+            return casillas;
+
+        }
+        public double[] Max_Min_Datatables(DataTable data_t)
+        {
+            double max = Convert.ToDouble(data_t.Rows[0][0].ToString());
+            double min = Convert.ToDouble(data_t.Rows[0][0].ToString());
+            for (int i = 0; i < columnas; i++)
+            {
+                for (int j = 0; j < filas; j++)
+                {
+                    if (Convert.ToDouble(data_t.Rows[j][i].ToString()) < min)
+                    {
+                        min = Convert.ToDouble(data_t.Rows[j][i].ToString());
+                    }
+                    if (Convert.ToDouble(data_t.Rows[j][i].ToString()) > max)
+                    {
+                        max = Convert.ToDouble(data_t.Rows[j][i].ToString());
+                    }
+
+                }
+            }
+            double[] values = { max, min };
+            return values;
+        }
+        public byte Define_Cloroes(double max, double min, double value)
+        {
+            double rango = max - min;
+
+            byte alpha;
+
+            //max byte --255
+            // min byte --30
+
+            //interpolamos para sacar el parametro alpa
+            alpha = Convert.ToByte(30 + (255 - 30) / (max - min) * (value - min));
+
+            return alpha;
+
+        }
+
     }
 }
