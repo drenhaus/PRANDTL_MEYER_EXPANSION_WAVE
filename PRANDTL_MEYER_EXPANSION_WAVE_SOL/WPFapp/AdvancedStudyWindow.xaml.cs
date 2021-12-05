@@ -214,113 +214,24 @@ namespace WPFapp
                 }
             }
 
-
             // Unimos las tablas de m2 con m3 
-
-
             temperature_table_1 = JuntarTablas(tablesM2[0], tablesM3[0]);
-            Advanced_DataGridMalla.DataContext = temperature_table_1.DefaultView;
-
-            u_table_1 = tablesM2[1];
-            DataTable dt2 = new DataTable();
-            dt2 = tablesM3[1].Clone();
-            foreach (DataColumn col in dt2.Columns)
-            {
-                string name = Convert.ToString(u_table_1.Columns.Count + 1);
-                u_table_1.Columns.Add(name, col.DataType);  
-            }
-
-            v_table_1 = tablesM2[2];
-            DataTable dt3 = new DataTable();
-            dt3 = tablesM3[2].Clone();
-            foreach (DataColumn col in dt3.Columns)
-            {
-                string name = Convert.ToString(v_table_1.Columns.Count + 1);
-                v_table_1.Columns.Add(name, col.DataType);
-            }
-
-            rho_table_1 = tablesM2[3];
-            DataTable dt4 = new DataTable();
-            dt4 = tablesM3[3].Clone();
-            foreach (DataColumn col in dt4.Columns)
-            {
-                string name = Convert.ToString(rho_table_1.Columns.Count + 1);
-                rho_table_1.Columns.Add(name, col.DataType);
-            }
-
-            p_table_1 = tablesM2[4];
-            DataTable dt5 = new DataTable();
-            dt5 = tablesM3[4].Clone();
-            foreach (DataColumn col in dt5.Columns)
-            {
-                string name = Convert.ToString(p_table_1.Columns.Count + 1);
-                p_table_1.Columns.Add(name, col.DataType);
-            }
-
-            M_table_1 = tablesM2[5];
-            DataTable dt6 = new DataTable();
-            dt6 = tablesM3[5].Clone();
-            foreach (DataColumn col in dt6.Columns)
-            {
-                string name = Convert.ToString(M_table_1.Columns.Count + 1);
-                M_table_1.Columns.Add(name, col.DataType);
-            }
-
+            u_table_1 = JuntarTablas(tablesM2[1], tablesM3[1]);
+            v_table_1 = JuntarTablas(tablesM2[2], tablesM3[2]);
+            rho_table_1 = JuntarTablas(tablesM2[3], tablesM3[3]);
+            p_table_1 = JuntarTablas(tablesM2[4], tablesM3[4]);
+            M_table_1 = JuntarTablas(tablesM2[5], tablesM3[5]);
 
             // Unimos las tablas m4 con m5
-            temperature_table_2 = tablesM4[0];
-            DataTable dt7 = new DataTable();
-            dt7 = tablesM5[0].Clone();
-            foreach (DataColumn col in dt7.Columns)
-            {
-                string name = Convert.ToString(temperature_table_2.Columns.Count + 1);
-                temperature_table_2.Columns.Add(name, col.DataType);
-            }
+            temperature_table_2 = JuntarTablas(tablesM4[0], tablesM5[0]);
+            u_table_2 = JuntarTablas(tablesM4[1], tablesM5[1]);
+            v_table_2 = JuntarTablas(tablesM4[2], tablesM5[2]);
+            rho_table_2 = JuntarTablas(tablesM4[3], tablesM5[3]);
+            p_table_2 = JuntarTablas(tablesM4[4], tablesM5[4]);
+            M_table_2 = JuntarTablas(tablesM4[5], tablesM5[5]);
 
-            u_table_2 = tablesM4[1];
-            DataTable dt8 = new DataTable();
-            dt8 = tablesM5[1].Clone();
-            foreach (DataColumn col in dt8.Columns)
-            {
-                string name = Convert.ToString(u_table_2.Columns.Count + 1);
-                u_table_2.Columns.Add(name, col.DataType);
-            }
 
-            v_table_2 = tablesM4[2];
-            DataTable dt9 = new DataTable();
-            dt9 = tablesM5[2].Clone();
-            foreach (DataColumn col in dt9.Columns)
-            {
-                string name = Convert.ToString(v_table_2.Columns.Count + 1);
-                v_table_2.Columns.Add(name, col.DataType);
-            }
 
-            rho_table_2 = tablesM4[3];
-            DataTable dt10 = new DataTable();
-            dt10 = tablesM5[3].Clone();
-            foreach (DataColumn col in dt10.Columns)
-            {
-                string name = Convert.ToString(rho_table_2.Columns.Count + 1);
-                rho_table_2.Columns.Add(name, col.DataType);
-            }
-
-            p_table_2 = tablesM4[4];
-            DataTable dt11 = new DataTable();
-            dt11 = tablesM5[4].Clone();
-            foreach (DataColumn col in tablesM5[4].Columns)
-            {
-                string name = Convert.ToString(p_table_2.Columns.Count + 1);
-                p_table_2.Columns.Add(name, col.DataType);
-            }
-
-            M_table_2 = tablesM4[5];
-            DataTable dt12 = new DataTable();
-            dt12 = tablesM5[5].Clone();
-            foreach (DataColumn col in tablesM5[5].Columns)
-            {
-                string name = Convert.ToString(M_table_2.Columns.Count + 1);
-                M_table_2.Columns.Add(name, col.DataType);
-            }
 
             if (DataGridComboBox_AS.SelectedIndex == 0)
             {
@@ -328,6 +239,8 @@ namespace WPFapp
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[0], 255, 0, 0, temperature_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[0], 255, 0, 0,temperature_table_2, m4.rows+m5.rows,m4.columns+m5.columns);
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[0], 255, 0, 0,temperature_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                Advanced_DataGridMalla.DataContext = temperature_table_1.DefaultView;
+                Advanced_DataGridMalla_2.DataContext = temperature_table_2.DefaultView;
             }
 
         }
@@ -357,6 +270,8 @@ namespace WPFapp
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[0], 255, 0, 0, temperature_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[0], 255, 0, 0, temperature_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[0], 255, 0, 0, temperature_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                Advanced_DataGridMalla.DataContext = temperature_table_1.DefaultView;
+                Advanced_DataGridMalla_2.DataContext = temperature_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 1) //u
             {
@@ -364,6 +279,8 @@ namespace WPFapp
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[1], 0, 255, 0, u_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[1], 0, 255, 0, u_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[1], 0, 255, 0, u_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                Advanced_DataGridMalla.DataContext = u_table_1.DefaultView;
+                Advanced_DataGridMalla_2.DataContext = u_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 2) //v
             {
@@ -371,6 +288,8 @@ namespace WPFapp
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[2], 255, 128, 0, v_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[2], 255, 128, 0, v_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[2], 255, 128, 0, v_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                Advanced_DataGridMalla.DataContext = v_table_1.DefaultView;
+                Advanced_DataGridMalla_2.DataContext = v_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 3) //rho
             {
@@ -378,6 +297,8 @@ namespace WPFapp
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[3], 0, 0, 255, rho_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[3], 0, 0, 255,rho_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[3], 0, 0, 255, rho_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                Advanced_DataGridMalla.DataContext = rho_table_1.DefaultView;
+                Advanced_DataGridMalla_2.DataContext = rho_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 4) //p
             {
@@ -385,6 +306,8 @@ namespace WPFapp
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[4], 255, 0, 127,p_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[4], 255, 0, 127,p_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[4], 255, 0, 127, p_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                Advanced_DataGridMalla.DataContext = p_table_1.DefaultView;
+                Advanced_DataGridMalla_2.DataContext = p_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 5) //Mach
             {
@@ -392,6 +315,8 @@ namespace WPFapp
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[5], 96, 96, 96, M_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[5], 96, 96, 96, M_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[5], 96, 96, 96, M_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                Advanced_DataGridMalla.DataContext = M_table_1.DefaultView;
+                Advanced_DataGridMalla_2.DataContext = M_table_2.DefaultView;
             }
         }
 
