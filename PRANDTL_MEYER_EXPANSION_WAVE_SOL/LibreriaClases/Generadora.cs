@@ -7,6 +7,8 @@ namespace LibreriaClases
     public class Generadora
     {
         public List<Punto> Puntos { get; set; } //generamos una lista de puntos  
+
+        public List<double> listaDeXColumna_G { get; set; }
         public List<double> listaTEMPxColumna_G { get; set; }
         public List<double> listaMachxColumna_G { get; set; }
         public List<double> listaDensidadxColumna_G { get; set; }
@@ -27,7 +29,7 @@ namespace LibreriaClases
             Puntos = new List<Punto>();
             for (double x = limiteInferior; x <= limiteSuperior; x += incremento)
             {
-                Puntos.Add(new Punto(x, EvaluarTEMP(x)));
+                Puntos.Add(new Punto(EvaluarX(x), EvaluarTEMP(x)));
             }
 
             return Puntos;
@@ -40,7 +42,7 @@ namespace LibreriaClases
             Puntos = new List<Punto>();
             for (double x = limiteInferior; x <= limiteSuperior; x += incremento)
             {
-                Puntos.Add(new Punto(x, EvaluarMACH(x)));
+                Puntos.Add(new Punto(EvaluarX(x), EvaluarMACH(x)));
             }
 
             return Puntos;
@@ -53,7 +55,7 @@ namespace LibreriaClases
             Puntos = new List<Punto>();
             for (double x = limiteInferior; x <= limiteSuperior; x += incremento)
             {
-                Puntos.Add(new Punto(x, EvaluarDensidad(x)));
+                Puntos.Add(new Punto(EvaluarX(x), EvaluarDensidad(x)));
             }
 
             return Puntos;
@@ -66,7 +68,7 @@ namespace LibreriaClases
             Puntos = new List<Punto>();
             for (double x = limiteInferior; x <= limiteSuperior; x += incremento)
             {
-                Puntos.Add(new Punto(x, EvaluarPresure(x)));
+                Puntos.Add(new Punto(EvaluarX(x), EvaluarPresure(x)));
             }
 
             return Puntos;
@@ -79,7 +81,7 @@ namespace LibreriaClases
             Puntos = new List<Punto>();
             for (double x = limiteInferior; x <= limiteSuperior; x += incremento)
             {
-                Puntos.Add(new Punto(x, EvaluarU(x)));
+                Puntos.Add(new Punto(EvaluarX(x), EvaluarU(x)));
             }
 
             return Puntos;
@@ -92,7 +94,7 @@ namespace LibreriaClases
             Puntos = new List<Punto>();
             for (double x = limiteInferior; x <= limiteSuperior; x += incremento)
             {
-                Puntos.Add(new Punto(x, EvaluarV(x)));
+                Puntos.Add(new Punto(EvaluarX(x), EvaluarV(x)));
             }
 
             return Puntos;
@@ -103,6 +105,10 @@ namespace LibreriaClases
 
         //GENERAMOS LAS FUNCIONES QUE VAMOS A PLOTEAR
         // dada una iteración, nos devuelve el valor de la temperatura media en esa iteración
+        private double EvaluarX(double x)
+        {
+            return listaDeXColumna_G[Convert.ToInt32(x)];
+        }
         private double EvaluarTEMP(double x)
         {
             return listaTEMPxColumna_G[Convert.ToInt32(x)]; // hace la busqueda en la lista
