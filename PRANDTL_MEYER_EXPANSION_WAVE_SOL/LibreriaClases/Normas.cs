@@ -13,6 +13,7 @@ namespace LibreriaClases
 
 
 
+
         public double M_in { get; set; } 
         public double P_in { get; set; } 
         public double Rho_in { get; set; }

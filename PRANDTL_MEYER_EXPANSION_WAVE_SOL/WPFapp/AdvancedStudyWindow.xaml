@@ -5,126 +5,262 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
-        Title="AdvancedStudyWindow" Height="610" Width="900">
-    <Grid>
-        <Grid x:Name="Advanced_GridMalla" 
+        Title="AdvancedStudyWindow" Height="813" Width="1244"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseMove="Window_MouseMove">
+
+
+    <Border  Background="#302e5e"
+            CornerRadius="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="403*"/>
+                <RowDefinition Height="394*"/>
+            </Grid.RowDefinitions>
+
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Margin="17,60,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="367" 
+                    Width="779"
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"
+                    IsEnabled="False"/>
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Margin="17,60,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="367" 
+                    Width="779"
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"
+                    IsEnabled="False"/>
+            <Button 
+                    HorizontalAlignment="Left" 
+                    Margin="17,58,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="367" 
+                    Width="779"
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"
+                    IsEnabled="False">
+            </Button>
+
+
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Margin="17,30,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="362" 
+                    Width="779"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False" Grid.Row="1"/>
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Margin="17,30,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="362" 
+                    Width="779"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False" Grid.Row="1"/>
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Margin="17,30,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="362" 
+                    Width="779"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False" Grid.Row="1"/>
+
+
+
+
+            <TextBlock Text="Advanced Study :"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Foreground="White"
+                       FontSize="30"
+                       FontFamily="/Fonts/#Poppins" 
+                       Height="60" 
+                       Margin="28,15,0,0" 
+                       Width="299"/>
+
+
+
+
+
+            <Grid x:Name="Advanced_GridMalla_CASO1" 
               HorizontalAlignment="Left" 
-              Width="340" Margin="162,49,0,0" 
-              Height="280" 
+              Width="547" Margin="28,68,0,0" 
+              Height="336" 
               VerticalAlignment="Top"
-              Background="Black"/>
+              />
 
-        <Grid x:Name="Advanced_GridMalla_2" 
+            <Grid x:Name="Advanced_GridMalla_2_CASO1" 
             HorizontalAlignment="Left" 
-            Width="340" Margin="539,49,0,0" 
-            Height="280" 
+            Width="350" Margin="424,87,0,0" 
+            Height="315" 
             VerticalAlignment="Top"
-            Background="Black"/>
+            />
 
-        <DataGrid x:Name="Advanced_DataGridMalla" 
-                  Margin="162,339,400,21" 
+
+            <Grid x:Name="Advanced_GridMalla_CASO2" 
+            HorizontalAlignment="Left" 
+            Width="358" Margin="28,53,0,0" 
+            Height="357" 
+            VerticalAlignment="Top" Grid.Row="1"
+            />
+
+            <Grid x:Name="Advanced_GridMalla_2_CASO2" 
+            HorizontalAlignment="Left" 
+            Width="462" Margin="312,65,0,0" 
+            Height="360" 
+            VerticalAlignment="Top" Grid.Row="1"
+            />
+
+
+
+            <DataGrid x:Name="Advanced_DataGridMalla" 
+                  Margin="819,142,0,0" 
                   ItemsSource="{Binding}" 
-                    AutoGenerateColumns="True"/>
+                    AutoGenerateColumns="True" HorizontalAlignment="Left" Width="385" Height="268" VerticalAlignment="Top"/>
 
-        <DataGrid x:Name="Advanced_DataGridMalla_2" 
-                  Margin="539,339,23,21" 
+            <DataGrid x:Name="Advanced_DataGridMalla_2" 
+                  Margin="0,0,28,31" 
                   ItemsSource="{Binding}" 
-                    AutoGenerateColumns="True"/>
-        <Button x:Name="AdvStudyExplication_Button" Content="Explication of A.S" 
+                    AutoGenerateColumns="True" RenderTransformOrigin="0.61,-0.682" Height="268" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="385" Grid.Row="1"/>
+            <Button x:Name="AdvStudyExplication_Button" Content="Explication of A.S" 
                 HorizontalAlignment="Left" 
-                Margin="22,73,0,0" 
+                Margin="850,53,0,0" 
                 VerticalAlignment="Top" 
-                Height="32" Width="121"/>
+                Height="32" Width="127"
+                    Foreground="White" 
+                    FontFamily="/Fonts/#Poppins"
+                    Style="{DynamicResource RoundCorner}"/>
 
-        <Button x:Name="Load_AdSt_Button" Content="Load A.S." 
+            <Button x:Name="Close_Button" 
+                Content="" 
                 HorizontalAlignment="Left" 
-                Margin="22,138,0,0" 
+                Margin="1213,15,0,0" 
+                VerticalAlignment="Top"
+                     Style="{DynamicResource closebutton}" Height="16" Width="16" Click="Close_Button_Click"/>
+
+            <Button x:Name="Mini_Button" 
+                Content="" 
+                HorizontalAlignment="Left" 
+                Margin="1192,15,0,0" 
                 VerticalAlignment="Top" 
-                Height="32" Width="121"/>
+                     Style="{DynamicResource minimizebutton}" Height="16" Width="16" Click="Mini_Button_Click"/>
+            <ComboBox x:Name="DataGridComboBox_AS" 
+                    HorizontalAlignment="Left" 
+                    Margin="1024,53,0,0"
+                    VerticalAlignment="Top" 
+                    Width="120"                     
+            SelectionChanged="DataGridComboBox_AS_SelectionChanged"
+                      Style="{DynamicResource theComboBox}" 
+                  ItemContainerStyle="{DynamicResource theComboBoxItem}" Height="35">
 
-        <Button x:Name="Close_Button" 
-                Content="x" 
-                HorizontalAlignment="Left" 
-                Margin="857,10,0,0" 
-                VerticalAlignment="Top" Width="33"/>
+                <ComboBoxItem Content="T"
+                              FontFamily="/Fonts/#Poppins"
+                              Background="AliceBlue"
+                              HorizontalAlignment="Center"
+                              FontSize="10"
+                              Width="120"/>
+                <ComboBoxItem Content="u"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="v"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="Rho"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="P" 
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="Mach"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
 
-        <Button x:Name="Mini_Button" 
-                Content="-" 
-                HorizontalAlignment="Left" 
-                Margin="814,10,0,0" 
-                VerticalAlignment="Top" Width="34"/>
-        <Label Content="ρ:" 
-            HorizontalAlignment="Left" 
-            Margin="33,275,0,0" 
-            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="20"/>
-        <Label Content="P:" 
-            HorizontalAlignment="Left" 
-            Margin="34,208,0,0" 
-            VerticalAlignment="Top" RenderTransformOrigin="0.168,0.491" Height="26" Width="19"/>
-        <Label Content="M:" 
-            HorizontalAlignment="Left" 
-            Margin="30,316,0,0" 
-            VerticalAlignment="Top" RenderTransformOrigin="-0.426,-0.61" Height="26" Width="23"/>
-        <Label Content="T:" 
-            HorizontalAlignment="Left" 
-            Margin="34,236,0,0" 
-            VerticalAlignment="Top" Height="26" Width="19"/>
-        <Label Content="v:" 
-            HorizontalAlignment="Left" 
-            Margin="33,358,0,0" 
-            VerticalAlignment="Top" 
-            RenderTransformOrigin="-0.426,-0.61" Height="26" Width="18"/>
-        <TextBox x:Name="P_TextBox" 
-            HorizontalAlignment="Left" 
-            Margin="67,216,0,0" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top"
-            Width="62" Height="18"/>
-        <TextBox x:Name="M_TextBox" 
-            HorizontalAlignment="Left" 
-            Margin="67,323,0,0" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top"
-            Width="62" Height="18"/>
-        <TextBox x:Name="Rho_TextBox" 
-            HorizontalAlignment="Left" 
-            Margin="67,283,0,0" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top"
-            Width="62" Height="18"/>
-        <TextBox x:Name="v_TextBox" 
-            HorizontalAlignment="Left" 
-            Margin="67,362,0,0" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top"
-            Width="62" Height="18"/>
-        <TextBox x:Name="T_TextBox" 
-            HorizontalAlignment="Left" 
-            Margin="67,249,0,0" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top"
-            Width="62" Height="18"/>
-        <CheckBox x:Name="CheckBox_A" Content="Defaul parameters" 
-            HorizontalAlignment="Left" 
-            Margin="16,390,0,0" 
-            Checked="CheckBox_A_Checked"
-           
-            VerticalAlignment="Top" Height="15" Width="136"
-                  />
-        <Button x:Name="LoadParametersButton" 
-            Content="Load Parameters" 
-            HorizontalAlignment="Left" 
-            Margin="24,428,0,0"
-            VerticalAlignment="Top" 
-            Height="28" Width="118" 
-            RenderTransformOrigin="0.477,-0.345" Click="LoadParametersButton_Click"/>
-        <Button x:Name="Simulate_Button" 
-            Content="Simulate" 
-            HorizontalAlignment="Right" 
-            Margin="0,486,757,0"
-            VerticalAlignment="Top" 
-            Height="28" Width="120" 
-            RenderTransformOrigin="0.477,-0.345" Click="Simulate_Button_Click"/>
+            </ComboBox>
+            <Calendar HorizontalAlignment="Left" Margin="327,460,0,0" Grid.Row="1" VerticalAlignment="Top"/>
 
-    </Grid>
+
+            <Button  Margin="108,358,821,0" VerticalAlignment="Top"
+                     Background="Black" Height="10"
+                     BorderThickness="0" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="3.333"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button  Margin="27,349,1134,0" VerticalAlignment="Top"
+                     Background="Black" Height="10"
+                     BorderThickness="0"/>
+            <Button  Margin="419,385,474,0" VerticalAlignment="Top"
+                     Background="Black" Height="10"
+                     BorderThickness="0" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="6"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+
+
+            <Button  Margin="103,345,924,0" VerticalAlignment="Top"
+                     Background="Black" Height="10"
+                     BorderThickness="0" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="3.333"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button  Margin="25,339,1140,0" VerticalAlignment="Top"
+                     Background="Black" Height="10"
+                     BorderThickness="0" Grid.Row="1"/>
+            <Button  Margin="539,362,488,0" VerticalAlignment="Top"
+                     Background="Black" Height="10"
+                     BorderThickness="0" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="6"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button  Margin="318,351,704,0" VerticalAlignment="Top"
+                Background="Black" Height="10"
+                BorderThickness="0" Grid.Row="1"/>
+
+
+
+
+        </Grid>
+    </Border>
+
 </Window>
