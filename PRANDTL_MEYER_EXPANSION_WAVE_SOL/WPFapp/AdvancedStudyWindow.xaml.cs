@@ -19,32 +19,31 @@ namespace WPFapp
     /// </summary>
     public partial class AdvancedStudyWindow : Window
     {
+        Malla m2 = new Malla();
+        Malla m3 = new Malla();
+        Malla m4 = new Malla();
+        Malla m5 = new Malla();
+
         GridPlotGenerate GPG2 = new GridPlotGenerate();
         GridPlotGenerate GPG3 = new GridPlotGenerate();
         GridPlotGenerate GPG4 = new GridPlotGenerate();
         GridPlotGenerate GPG5 = new GridPlotGenerate();
 
-        DataTable temperature_table_1;
-        DataTable u_table_1;
-        DataTable v_table_1;
-        DataTable rho_table_1;
-        DataTable p_table_1;
-        DataTable M_table_1;
-        DataTable F1_table_1;
-        DataTable F2_table_1;
-        DataTable F3_table_1;
-        DataTable F4_table_1;
+        DataTable temperature_table_1= new DataTable();
+        DataTable u_table_1 = new DataTable();
+        DataTable v_table_1 = new DataTable();
+        DataTable rho_table_1 = new DataTable();
+        DataTable p_table_1 = new DataTable();
+        DataTable M_table_1 = new DataTable();
 
-        DataTable temperature_table_2;
-        DataTable u_table_2;
-        DataTable v_table_2;
-        DataTable rho_table_2;
-        DataTable p_table_2;
-        DataTable M_table_2;
-        DataTable F1_table_2;
-        DataTable F2_table_2;
-        DataTable F3_table_2;
-        DataTable F4_table_2;
+        DataTable temperature_table_2 = new DataTable();
+        DataTable u_table_2 = new DataTable();
+        DataTable v_table_2 = new DataTable();
+        DataTable rho_table_2 = new DataTable();
+        DataTable p_table_2 = new DataTable();
+        DataTable M_table_2 = new DataTable();
+
+
 
         Polygon[,] casillas2;
         Polygon[,] casillas3;
@@ -64,7 +63,7 @@ namespace WPFapp
             double sumaTheta = (10 * (Math.PI) / 180);
 
 
-            Malla m2 = new Malla(); // Parimos de cero, es decir, nueva malla y reacemos el calculo de una matriz en resolucion media
+            // Parimos de cero, es decir, nueva malla y reacemos el calculo de una matriz en resolucion media
             //la idea es hacer otra matriz con los datos recogidos de la ultima columna de la simulacion.
 
 
@@ -98,7 +97,7 @@ namespace WPFapp
 
             //Empezamos con la segunda malla que empieza con los ultimos datos d ela anterior matriz. 
 
-            Malla m3 = new Malla();
+           
 
             m3.norma.L = 45;
             m3.norma.E = 1;
@@ -127,7 +126,7 @@ namespace WPFapp
             // angulo dos
 
 
-            Malla m4 = new Malla();
+            
 
             m4.rows = 41;
             m4.columns = 53;
@@ -157,7 +156,7 @@ namespace WPFapp
 
             List<Celda> ListadeUltimaColumnadeCeldas_caso2 = GetLastColumOfMatriz(m4);
 
-            Malla m5 = new Malla();
+           
 
 
             m5.norma.L = 60;
@@ -215,12 +214,126 @@ namespace WPFapp
                 }
             }
 
+
+            // Unimos las tablas de m2 con m3 
+
+
+            temperature_table_1 = tablesM2[0];
+            DataTable dt = new DataTable();
+            dt=tablesM3[0].Clone();
+            foreach (DataColumn col in dt.Columns)
+            {
+                string name = Convert.ToString(temperature_table_1.Columns.Count+1);
+                temperature_table_1.Columns.Add(name, col.DataType);
+            }
+
+            u_table_1 = tablesM2[1];
+            DataTable dt2 = new DataTable();
+            dt2 = tablesM3[1].Clone();
+            foreach (DataColumn col in dt2.Columns)
+            {
+                string name = Convert.ToString(u_table_1.Columns.Count + 1);
+                u_table_1.Columns.Add(name, col.DataType);  
+            }
+
+            v_table_1 = tablesM2[2];
+            DataTable dt3 = new DataTable();
+            dt3 = tablesM3[2].Clone();
+            foreach (DataColumn col in dt3.Columns)
+            {
+                string name = Convert.ToString(v_table_1.Columns.Count + 1);
+                v_table_1.Columns.Add(name, col.DataType);
+            }
+
+            rho_table_1 = tablesM2[3];
+            DataTable dt4 = new DataTable();
+            dt4 = tablesM3[3].Clone();
+            foreach (DataColumn col in dt4.Columns)
+            {
+                string name = Convert.ToString(rho_table_1.Columns.Count + 1);
+                rho_table_1.Columns.Add(name, col.DataType);
+            }
+
+            p_table_1 = tablesM2[4];
+            DataTable dt5 = new DataTable();
+            dt5 = tablesM3[4].Clone();
+            foreach (DataColumn col in dt5.Columns)
+            {
+                string name = Convert.ToString(p_table_1.Columns.Count + 1);
+                p_table_1.Columns.Add(name, col.DataType);
+            }
+
+            M_table_1 = tablesM2[5];
+            DataTable dt6 = new DataTable();
+            dt6 = tablesM3[5].Clone();
+            foreach (DataColumn col in dt6.Columns)
+            {
+                string name = Convert.ToString(M_table_1.Columns.Count + 1);
+                M_table_1.Columns.Add(name, col.DataType);
+            }
+
+
+            // Unimos las tablas m4 con m5
+            temperature_table_2 = tablesM4[0];
+            DataTable dt7 = new DataTable();
+            dt7 = tablesM5[0].Clone();
+            foreach (DataColumn col in dt7.Columns)
+            {
+                string name = Convert.ToString(temperature_table_2.Columns.Count + 1);
+                temperature_table_2.Columns.Add(name, col.DataType);
+            }
+
+            u_table_2 = tablesM4[1];
+            DataTable dt8 = new DataTable();
+            dt8 = tablesM5[1].Clone();
+            foreach (DataColumn col in dt8.Columns)
+            {
+                string name = Convert.ToString(u_table_2.Columns.Count + 1);
+                u_table_2.Columns.Add(name, col.DataType);
+            }
+
+            v_table_2 = tablesM4[2];
+            DataTable dt9 = new DataTable();
+            dt9 = tablesM5[2].Clone();
+            foreach (DataColumn col in dt9.Columns)
+            {
+                string name = Convert.ToString(v_table_2.Columns.Count + 1);
+                v_table_2.Columns.Add(name, col.DataType);
+            }
+
+            rho_table_2 = tablesM4[3];
+            DataTable dt10 = new DataTable();
+            dt10 = tablesM5[3].Clone();
+            foreach (DataColumn col in dt10.Columns)
+            {
+                string name = Convert.ToString(rho_table_2.Columns.Count + 1);
+                rho_table_2.Columns.Add(name, col.DataType);
+            }
+
+            p_table_2 = tablesM4[4];
+            DataTable dt11 = new DataTable();
+            dt11 = tablesM5[4].Clone();
+            foreach (DataColumn col in tablesM5[4].Columns)
+            {
+                string name = Convert.ToString(p_table_2.Columns.Count + 1);
+                p_table_2.Columns.Add(name, col.DataType);
+            }
+
+            M_table_2 = tablesM4[5];
+            DataTable dt12 = new DataTable();
+            dt12 = tablesM5[5].Clone();
+            foreach (DataColumn col in tablesM5[5].Columns)
+            {
+                string name = Convert.ToString(M_table_2.Columns.Count + 1);
+                M_table_2.Columns.Add(name, col.DataType);
+            }
+
             if (DataGridComboBox_AS.SelectedIndex == 0)
             {
-                casillas2 = GPG2.actualizar_colores_grid(tablesM2[0], 255, 0, 0);
-                casillas3 = GPG3.actualizar_colores_grid(tablesM3[0], 255, 0, 0);
-                casillas4 = GPG4.actualizar_colores_grid(tablesM4[0], 255, 0, 0);
-                casillas5 = GPG5.actualizar_colores_grid(tablesM5[0], 255, 0, 0);
+                casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[0], 255, 0, 0,temperature_table_1,m2.rows+m3.rows,m2.columns+m3.columns);
+                casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[0], 255, 0, 0, temperature_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[0], 255, 0, 0,temperature_table_2, m4.rows+m5.rows,m4.columns+m5.columns);
+                casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[0], 255, 0, 0,temperature_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
             }
 
         }
@@ -246,45 +359,45 @@ namespace WPFapp
         {
             if (DataGridComboBox_AS.SelectedIndex == 0) //temperature
             {
-                casillas2 = GPG2.actualizar_colores_grid(tablesM2[0], 255, 0, 0);
-                casillas3 = GPG3.actualizar_colores_grid(tablesM3[0], 255, 0, 0);
-                casillas4 = GPG4.actualizar_colores_grid(tablesM4[0], 255, 0, 0);
-                casillas5 = GPG5.actualizar_colores_grid(tablesM5[0], 255, 0, 0);
+                casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[0], 255, 0, 0,temperature_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[0], 255, 0, 0, temperature_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[0], 255, 0, 0, temperature_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[0], 255, 0, 0, temperature_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
             }
             if (DataGridComboBox_AS.SelectedIndex == 1) //u
             {
-                casillas2 = GPG2.actualizar_colores_grid(tablesM2[1], 0, 255, 0);
-                casillas3 = GPG3.actualizar_colores_grid(tablesM3[1], 0, 255, 0);
-                casillas4 = GPG4.actualizar_colores_grid(tablesM4[1], 0, 255, 0);
-                casillas5 = GPG5.actualizar_colores_grid(tablesM5[1], 0, 255, 0);
+                casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[1], 0, 255, 0,u_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[1], 0, 255, 0, u_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[1], 0, 255, 0, u_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[1], 0, 255, 0, u_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
             }
             if (DataGridComboBox_AS.SelectedIndex == 2) //v
             {
-                casillas2 = GPG2.actualizar_colores_grid(tablesM2[2], 255, 128, 0);
-                casillas3 = GPG3.actualizar_colores_grid(tablesM3[2], 255, 128, 0);
-                casillas4 = GPG4.actualizar_colores_grid(tablesM4[2], 255, 128, 0);
-                casillas5 = GPG5.actualizar_colores_grid(tablesM5[2], 255, 128, 0);
+                casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[2], 255, 128, 0, v_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[2], 255, 128, 0, v_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[2], 255, 128, 0, v_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[2], 255, 128, 0, v_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
             }
             if (DataGridComboBox_AS.SelectedIndex == 3) //rho
             {
-                casillas2 = GPG2.actualizar_colores_grid(tablesM2[3], 0, 0, 255);
-                casillas3 = GPG3.actualizar_colores_grid(tablesM3[3], 0, 0, 255);
-                casillas4 = GPG4.actualizar_colores_grid(tablesM4[3], 0, 0, 255);
-                casillas5 = GPG5.actualizar_colores_grid(tablesM5[3], 0, 0, 255);
+                casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[3], 0, 0, 255, rho_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[3], 0, 0, 255, rho_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[3], 0, 0, 255,rho_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[3], 0, 0, 255, rho_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
             }
             if (DataGridComboBox_AS.SelectedIndex == 4) //p
             {
-                casillas2 = GPG2.actualizar_colores_grid(tablesM2[4], 255, 0, 127);
-                casillas3 = GPG3.actualizar_colores_grid(tablesM3[4], 255, 0, 127);
-                casillas4 = GPG4.actualizar_colores_grid(tablesM4[4], 255, 0, 127);
-                casillas5 = GPG5.actualizar_colores_grid(tablesM5[4], 255, 0, 127);
+                casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[4], 255, 0, 127,p_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[4], 255, 0, 127,p_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[4], 255, 0, 127,p_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[4], 255, 0, 127, p_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
             }
             if (DataGridComboBox_AS.SelectedIndex == 5) //Mach
             {
-                casillas2 = GPG2.actualizar_colores_grid(tablesM2[5], 96, 96, 96);
-                casillas3 = GPG3.actualizar_colores_grid(tablesM3[5], 96, 96, 96);
-                casillas4 = GPG4.actualizar_colores_grid(tablesM4[5], 96, 96, 96);
-                casillas5 = GPG5.actualizar_colores_grid(tablesM5[5], 96, 96, 96);
+                casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[5], 96, 96, 96,M_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[5], 96, 96, 96, M_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[5], 96, 96, 96, M_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[5], 96, 96, 96, M_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
             }
         }
     }

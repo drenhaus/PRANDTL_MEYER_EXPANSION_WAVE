@@ -77,10 +77,28 @@ namespace LibreriaClases
             }
             return casillas;
         }
+
         public Polygon[,] actualizar_colores_grid(DataTable t, byte R, byte G, byte B)
         {
             double[] max_min;
             max_min = Max_Min_Datatables(t);
+
+            for (int i = 0; i < columnas - 1; i++)
+            {
+                for (int j = 0; j < filas; j++)
+                {
+                    byte alpha = Define_Cloroes(max_min[0], max_min[1], Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()));
+                    casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(alpha, R, G, B));
+                }
+            }
+            return casillas;
+
+        }
+
+        public Polygon[,] actualizar_colores_grid_AS(DataTable t, byte R, byte G, byte B, DataTable t_minmax, int filas_t, int columnas_t)
+        {
+            double[] max_min;
+            max_min = Max_Min_Datatables_AS(t_minmax);
 
             for (int i = 0; i < columnas - 1; i++)
             {
@@ -115,6 +133,33 @@ namespace LibreriaClases
             double[] values = { max, min };
             return values;
         }
+
+        public double[] Max_Min_Datatables_AS(DataTable data_t)
+        {
+            int columnas_C = data_t.Columns.Count;
+            int filas_C = data_t.Rows.Count;
+            double max = Convert.ToDouble(data_t.Rows[0][0].ToString());
+            double min = Convert.ToDouble(data_t.Rows[0][0].ToString());
+            for (int i = 0; i < columnas_C; i++)
+            {
+                for (int j = 0; j < filas_C; j++)
+                {
+                    if (Convert.ToDouble(data_t.Rows[j][i].ToString()) < min)
+                    {
+                        min = Convert.ToDouble(data_t.Rows[j][i].ToString());
+                    }
+                    if (Convert.ToDouble(data_t.Rows[j][i].ToString()) > max)
+                    {
+                        max = Convert.ToDouble(data_t.Rows[j][i].ToString());
+                    }
+
+                }
+            }
+            double[] values = { max, min };
+            return values;
+        }
+
+
         public byte Define_Cloroes(double max, double min, double value)
         {
             double rango = max - min;
