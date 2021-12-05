@@ -100,7 +100,7 @@ namespace WPFapp
            
 
             m3.norma.L = 45;
-            m3.norma.E = 1;
+            m3.norma.E = 0.1;
             m3.norma.H = 40;
 
             m2.norma.Theta = ((2 * sumaTheta) / 3);
@@ -357,6 +357,25 @@ namespace WPFapp
             return Unida;
 
 
+        }
+
+
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Mini_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
         }
 
     }
