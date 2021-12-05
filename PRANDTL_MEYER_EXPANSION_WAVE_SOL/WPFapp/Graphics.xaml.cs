@@ -27,7 +27,7 @@ namespace WPFapp
 
         int numDeCOLUMNAS;
 
-
+        public List<double> listaDeXColumna { get; set; }
         public List<double> listaTEMPxColumna { get; set; }
         public List<double> listaMachxColumna { get; set; }
         public List<double> listaDensidadxColumna { get; set; }
@@ -51,6 +51,8 @@ namespace WPFapp
 
             generador = new LibreriaClases.Generadora(); // generamos una clase Generadora cuando inicializamos
 
+            
+
         }
 
         private void Graf_Temperatura_Butt_Click(object sender, RoutedEventArgs e)
@@ -61,6 +63,7 @@ namespace WPFapp
 
             //definimos las listas
             generador.listaTEMPxColumna_G = listaTEMPxColumna;
+            generador.listaDeXColumna_G = listaDeXColumna;
             generador.GenerarDatosTEMP(Convert.ToDouble(numDeCOLUMNAS-1));
 
             PlotModel model = new PlotModel();
@@ -97,6 +100,7 @@ namespace WPFapp
 
             //definimos las listas
             generador.listaMachxColumna_G = listaMachxColumna;
+            generador.listaDeXColumna_G = listaDeXColumna;
             generador.GenerarDatosMACH(Convert.ToDouble(numDeCOLUMNAS - 1));
 
             PlotModel model = new PlotModel();
@@ -133,6 +137,7 @@ namespace WPFapp
 
             //definimos las listas
             generador.listaDensidadxColumna_G = listaDensidadxColumna;
+            generador.listaDeXColumna_G = listaDeXColumna;
             generador.GenerarDatosDensidad(Convert.ToDouble(numDeCOLUMNAS - 1));
 
             PlotModel model = new PlotModel();
@@ -171,6 +176,7 @@ namespace WPFapp
 
             //definimos las listas
             generador.listaPresurexColumna_G = listaPresurexColumna;
+            generador.listaDeXColumna_G = listaDeXColumna;
             generador.GenerarDatosPresure(Convert.ToDouble(numDeCOLUMNAS - 1));
 
             PlotModel model = new PlotModel();
@@ -207,6 +213,7 @@ namespace WPFapp
 
             //definimos las listas
             generador.listaUxColumna_G = listaUxColumna;
+            generador.listaDeXColumna_G = listaDeXColumna;
             generador.GenerarDatosU(Convert.ToDouble(numDeCOLUMNAS - 1));
 
             PlotModel model = new PlotModel();
@@ -243,6 +250,7 @@ namespace WPFapp
 
             //definimos las listas
             generador.listaVxColumna_G = listaVxColumna;
+            generador.listaDeXColumna_G = listaDeXColumna;
             generador.GenerarDatosV(Convert.ToDouble(numDeCOLUMNAS - 1));
 
             PlotModel model = new PlotModel();
@@ -272,6 +280,7 @@ namespace WPFapp
 
 
         }
+
         public void SetnumdeCOLUMNAS(int count)
         {
             this.numDeCOLUMNAS = count;

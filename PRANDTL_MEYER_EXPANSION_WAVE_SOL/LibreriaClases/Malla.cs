@@ -24,6 +24,7 @@ namespace LibreriaClases
         public Normas norma { get; set; } = new Normas();
         public Celda[,] matriz { get; set; }
 
+        public List<double> listaDeXColumna = new List<double>();
         public List<double> listaTemperaturaxColumna = new List<double>();
         public List<double> listaMachxColumna = new List<double>();
         public List<double> listaDensidadxColumna = new List<double>();
@@ -395,6 +396,13 @@ namespace LibreriaClases
 
         public void CrearListade(string attribute)
         {
+            if (attribute == "x")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    listaDeXColumna.Add(matriz[0,i].x);
+                }
+            }
             if (attribute == "T")
             {
                 for (int i = 0; i < columns; i++)
