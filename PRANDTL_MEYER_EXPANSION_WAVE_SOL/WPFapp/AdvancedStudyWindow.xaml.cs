@@ -101,7 +101,7 @@ namespace WPFapp
             Malla m3 = new Malla();
 
             m3.norma.L = 45;
-            m3.norma.E = 1;
+            m3.norma.E = 0.1;
             m3.norma.H = 40;
 
             m2.norma.Theta = ((2 * sumaTheta) / 3);

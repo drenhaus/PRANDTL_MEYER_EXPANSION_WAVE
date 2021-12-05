@@ -13,14 +13,14 @@
         </Grid.RowDefinitions>
         <Grid x:Name="Advanced_GridMalla_CASO1" 
               HorizontalAlignment="Left" 
-              Width="547" Margin="29,21,0,0" 
+              Width="547" Margin="128,36,0,0" 
               Height="336" 
               VerticalAlignment="Top"
               />
 
         <Grid x:Name="Advanced_GridMalla_2_CASO1" 
             HorizontalAlignment="Left" 
-            Width="464" Margin="426,38,0,0" 
+            Width="350" Margin="524,53,0,0" 
             Height="315" 
             VerticalAlignment="Top"
             />
@@ -28,14 +28,14 @@
 
         <Grid x:Name="Advanced_GridMalla_CASO2" 
             HorizontalAlignment="Left" 
-            Width="547" Margin="10,0,0,0" 
+            Width="358" Margin="129,389,0,0" 
             Height="357" 
-            VerticalAlignment="Center" Grid.Row="1"
+            VerticalAlignment="Top" Grid.RowSpan="2"
             />
 
         <Grid x:Name="Advanced_GridMalla_2_CASO2" 
             HorizontalAlignment="Left" 
-            Width="464" Margin="557,19,0,0" 
+            Width="462" Margin="412,10,0,0" 
             Height="360" 
             VerticalAlignment="Top" Grid.Row="1"
             />
