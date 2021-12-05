@@ -218,14 +218,8 @@ namespace WPFapp
             // Unimos las tablas de m2 con m3 
 
 
-            temperature_table_1 = tablesM2[0];
-            DataTable dt = new DataTable();
-            dt=tablesM3[0].Clone();
-            foreach (DataColumn col in dt.Columns)
-            {
-                string name = Convert.ToString(temperature_table_1.Columns.Count+1);
-                temperature_table_1.Columns.Add(name, col.DataType);
-            }
+            temperature_table_1 = JuntarTablas(tablesM2[0], tablesM3[0]);
+            Advanced_DataGridMalla.DataContext = temperature_table_1.DefaultView;
 
             u_table_1 = tablesM2[1];
             DataTable dt2 = new DataTable();
@@ -400,6 +394,46 @@ namespace WPFapp
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[5], 96, 96, 96, M_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
             }
         }
+
+        public DataTable JuntarTablas(DataTable dt1, DataTable dt2)
+        {
+            DataTable Unida = new DataTable();
+            int dt1_rows = dt1.Rows.Count;
+            int dt1_columns = dt1.Columns.Count;
+            int dt2_columns = dt2.Columns.Count;
+                        
+            for (int i = 0; i < dt1_columns+dt2_columns; i++)
+            {
+                DataColumn dc = new DataColumn();
+                Unida.Columns.Add(dc);
+            }
+
+            for (int j = 0; j < dt1_rows; j++)
+            {
+                DataRow dr = Unida.NewRow();
+           
+                for (int i = 0; i < dt1_columns + dt2_columns; i++)
+                {
+                    if (i < dt1_columns)
+                    {
+                        dr[i] = Convert.ToDouble(dt1.Rows[j][i].ToString());
+                    }
+                    else
+                    {
+                        dr[i] = Convert.ToDouble(dt2.Rows[j][i - dt1_columns].ToString());
+                    }
+                    
+                }
+
+                Unida.Rows.Add(dr);
+              
+            }
+
+            return Unida;
+
+
+        }
+
     }
 
    
