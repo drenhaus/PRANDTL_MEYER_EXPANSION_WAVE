@@ -5,111 +5,139 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
-        Title="AdvancedStudyWindow" Height="813" Width="1320">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="403*"/>
-            <RowDefinition Height="394*"/>
-        </Grid.RowDefinitions>
-        <Grid x:Name="Advanced_GridMalla_CASO1" 
+        Title="AdvancedStudyWindow" Height="813" Width="1244"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseMove="Window_MouseMove">
+
+
+    <Border  Background="#302e5e"
+            CornerRadius="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="403*"/>
+                <RowDefinition Height="394*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Advanced Study :"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Foreground="White"
+                       FontSize="30"
+                       FontFamily="/Fonts/#Poppins" 
+                       Height="60" 
+                       Margin="24,10,0,0" 
+                       Width="299" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
+            <Grid x:Name="Advanced_GridMalla_CASO1" 
               HorizontalAlignment="Left" 
-              Width="547" Margin="128,36,0,0" 
+              Width="547" Margin="28,96,0,0" 
               Height="336" 
-              VerticalAlignment="Top"
+              VerticalAlignment="Top" Grid.RowSpan="2"
               />
 
-        <Grid x:Name="Advanced_GridMalla_2_CASO1" 
+            <Grid x:Name="Advanced_GridMalla_2_CASO1" 
             HorizontalAlignment="Left" 
-            Width="350" Margin="524,53,0,0" 
+            Width="350" Margin="424,115,0,0" 
             Height="315" 
-            VerticalAlignment="Top"
-            />
-
-
-        <Grid x:Name="Advanced_GridMalla_CASO2" 
-            HorizontalAlignment="Left" 
-            Width="358" Margin="129,389,0,0" 
-            Height="357" 
             VerticalAlignment="Top" Grid.RowSpan="2"
+            >
+            </Grid>
+
+
+            <Grid x:Name="Advanced_GridMalla_CASO2" 
+            HorizontalAlignment="Left" 
+            Width="358" Margin="28,56,0,0" 
+            Height="357" 
+            VerticalAlignment="Top" Grid.Row="1"
             />
 
-        <Grid x:Name="Advanced_GridMalla_2_CASO2" 
+            <Grid x:Name="Advanced_GridMalla_2_CASO2" 
             HorizontalAlignment="Left" 
-            Width="462" Margin="412,10,0,0" 
+            Width="462" Margin="312,68,0,0" 
             Height="360" 
             VerticalAlignment="Top" Grid.Row="1"
             />
 
 
 
-        <DataGrid x:Name="Advanced_DataGridMalla" 
-                  Margin="1082,0,0,0" 
+            <DataGrid x:Name="Advanced_DataGridMalla" 
+                  Margin="819,142,0,0" 
                   ItemsSource="{Binding}" 
-                    AutoGenerateColumns="True" HorizontalAlignment="Left" Width="212" Height="220" VerticalAlignment="Center"/>
+                    AutoGenerateColumns="True" HorizontalAlignment="Left" Width="385" Height="268" VerticalAlignment="Top"/>
 
-        <DataGrid x:Name="Advanced_DataGridMalla_2" 
-                  Margin="0,0,26,156" 
+            <DataGrid x:Name="Advanced_DataGridMalla_2" 
+                  Margin="0,0,28,31" 
                   ItemsSource="{Binding}" 
-                    AutoGenerateColumns="True" RenderTransformOrigin="0.61,-0.682" Grid.Row="1" Height="185" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="192"/>
-        <Button x:Name="AdvStudyExplication_Button" Content="Explication of A.S" 
+                    AutoGenerateColumns="True" RenderTransformOrigin="0.61,-0.682" Height="268" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="385" Grid.Row="1"/>
+            <Button x:Name="AdvStudyExplication_Button" Content="Explication of A.S" 
                 HorizontalAlignment="Left" 
-                Margin="1128,20,0,0" 
+                Margin="850,53,0,0" 
                 VerticalAlignment="Top" 
-                Height="32" Width="120"/>
+                Height="32" Width="127"
+                    Foreground="White" 
+                    FontFamily="/Fonts/#Poppins"
+                    Style="{DynamicResource RoundCorner}"/>
 
-        <Button x:Name="Close_Button" 
-                Content="x" 
+            <Button x:Name="Close_Button" 
+                Content="" 
                 HorizontalAlignment="Left" 
-                Margin="857,10,0,0" 
-                VerticalAlignment="Top" Width="33" Height="20"/>
+                Margin="1213,15,0,0" 
+                VerticalAlignment="Top"
+                     Style="{DynamicResource closebutton}" Height="16" Width="16" Click="Close_Button_Click"/>
 
-        <Button x:Name="Mini_Button" 
-                Content="-" 
+            <Button x:Name="Mini_Button" 
+                Content="" 
                 HorizontalAlignment="Left" 
-                Margin="814,10,0,0" 
-                VerticalAlignment="Top" Width="34" Height="20"/>
-        <ComboBox x:Name="DataGridComboBox_AS" 
+                Margin="1192,15,0,0" 
+                VerticalAlignment="Top" 
+                     Style="{DynamicResource minimizebutton}" Height="16" Width="16" Click="Mini_Button_Click"/>
+            <ComboBox x:Name="DataGridComboBox_AS" 
                     HorizontalAlignment="Left" 
-                    Margin="1138,272,0,0"
+                    Margin="1024,53,0,0"
                     VerticalAlignment="Top" 
                     Width="120"                     
             SelectionChanged="DataGridComboBox_AS_SelectionChanged"
                       Style="{DynamicResource theComboBox}" 
-                  ItemContainerStyle="{DynamicResource theComboBoxItem}" Grid.Row="1" Height="35">
+                  ItemContainerStyle="{DynamicResource theComboBoxItem}" Height="35">
 
-            <ComboBoxItem Content="T"
+                <ComboBoxItem Content="T"
                               FontFamily="/Fonts/#Poppins"
                               Background="AliceBlue"
                               HorizontalAlignment="Center"
                               FontSize="10"
                               Width="120"/>
-            <ComboBoxItem Content="u"
+                <ComboBoxItem Content="u"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
                                   HorizontalAlignment="Center"
                                   FontSize="10"/>
-            <ComboBoxItem Content="v"
+                <ComboBoxItem Content="v"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
                                   HorizontalAlignment="Center"
                                   FontSize="10"/>
-            <ComboBoxItem Content="Rho"
+                <ComboBoxItem Content="Rho"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
                                   HorizontalAlignment="Center"
                                   FontSize="10"/>
-            <ComboBoxItem Content="P" 
+                <ComboBoxItem Content="P" 
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
                                   HorizontalAlignment="Center"
                                   FontSize="10"/>
-            <ComboBoxItem Content="Mach"
+                <ComboBoxItem Content="Mach"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
                                   HorizontalAlignment="Center"
                                   FontSize="10"/>
 
-        </ComboBox>
+            </ComboBox>
 
-    </Grid>
+        </Grid>
+    </Border>
+
 </Window>
