@@ -410,7 +410,7 @@ namespace WPFapp
             m4.DefinirMatriz();
             m4.Compute();
 
-            List<Celda> ListadeUltimaColumnadeCeldas_caso2 = GetLastColumOfMatriz(m2);
+            List<Celda> ListadeUltimaColumnadeCeldas_caso2 = GetLastColumOfMatriz(m4);
 
             Malla m5 = new Malla();
 
