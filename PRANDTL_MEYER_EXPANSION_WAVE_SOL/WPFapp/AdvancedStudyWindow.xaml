@@ -24,10 +24,6 @@
             Height="315" 
             VerticalAlignment="Top" Grid.RowSpan="2"
             >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="64*"/>
-                <RowDefinition Height="133*"/>
-            </Grid.RowDefinitions>
         </Grid>
 
 
