@@ -27,6 +27,7 @@ namespace WPFapp
         public int filas { get; set; }
         public Malla m { get; set; }
 
+        // ANDERSON TABLES
         DataTable Anderson_u_12 = new DataTable();
         DataTable Anderson_v_12 = new DataTable();
         DataTable Anderson_rho_12 = new DataTable();
@@ -49,6 +50,7 @@ namespace WPFapp
         DataTable Anderson_F3_66 = new DataTable();
         DataTable Anderson_F4_66 = new DataTable();
 
+        //OUR TABLES
         DataTable our_u_12 = new DataTable();
         DataTable our_v_12 = new DataTable();
         DataTable our_rho_12 = new DataTable();
@@ -71,7 +73,7 @@ namespace WPFapp
         DataTable our_F3_66 = new DataTable();
         DataTable our_F4_66 = new DataTable();
 
-
+        // vectors with the data of Anderson
         double[] A_u_12 = {707,701,691,683,679,678,678,678,678,678,678,678,678,678,678,678,678,678,678,678, 678,678,678,678,678,678,678,678,678,678,678};
         double[] A_v_12 = {-66.2,-49.4,-26.6,-8.69,-1.31,-1.48,0.326 * Math.Pow(10, -5),-0.167 * Math.Pow(10, -3),0.472 * Math.Pow(10, -4), -0.702 * Math.Pow(10, -4),-0.195* Math.Pow(10, -4),0.18* Math.Pow(10, -4),-0.598* Math.Pow(10, -4),-0.642* Math.Pow(10, -4),-0.325* Math.Pow(10, -13),0,0,0,0,0,0,0,0,0,
                             0.217* Math.Pow(10, -10),0.118* Math.Pow(10, -3),0.12* Math.Pow(10, -3),0.354* Math.Pow(10, -5),0.125* Math.Pow(10, -3),-0.193* Math.Pow(10, -4),-0.617* Math.Pow(10, -4),0.242* Math.Pow(10, -3),0.16* Math.Pow(10, -3),0.161* Math.Pow(10, -3),0.401* Math.Pow(10, -4),-0.848* Math.Pow(10, -4),-0.128* Math.Pow(10, -3),
@@ -332,16 +334,16 @@ namespace WPFapp
             double[] O_F4_66;
 
             x = 12.928;
-              O_T_12 = Interpolate_our_results(x, "t");
-              O_V_12 = Interpolate_our_results(x, "v");
-              O_U_12 = Interpolate_our_results(x, "u");
-              O_RHO_12 = Interpolate_our_results(x, "rho");
-              O_P_12 = Interpolate_our_results(x, "p");
-              O_M_12 = Interpolate_our_results(x, "m");
-              O_F1_12 = Interpolate_our_results(x, "f1");
-              O_F2_12= Interpolate_our_results(x, "f2");
-              O_F3_12= Interpolate_our_results(x, "f3");
-              O_F4_12= Interpolate_our_results(x, "f4");
+            O_T_12 = Interpolate_our_results(x, "t");
+            O_V_12 = Interpolate_our_results(x, "v");
+            O_U_12 = Interpolate_our_results(x, "u");
+            O_RHO_12 = Interpolate_our_results(x, "rho");
+            O_P_12 = Interpolate_our_results(x, "p");
+            O_M_12 = Interpolate_our_results(x, "m");
+            O_F1_12 = Interpolate_our_results(x, "f1");
+            O_F2_12= Interpolate_our_results(x, "f2");
+            O_F3_12= Interpolate_our_results(x, "f3");
+            O_F4_12= Interpolate_our_results(x, "f4");
             
             x = 66.278;
                 O_T_66 = Interpolate_our_results(x, "t");
