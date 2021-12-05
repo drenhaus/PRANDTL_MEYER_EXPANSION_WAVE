@@ -26,6 +26,7 @@ namespace WPFapp
         Generadora generador;
 
         int numDeCOLUMNAS;
+        public double valorMaximdeX { get; set; }
 
         public List<double> listaDeXColumna { get; set; }
         public List<double> listaTEMPxColumna { get; set; }
@@ -70,7 +71,7 @@ namespace WPFapp
 
             LinearAxis ejeX = new LinearAxis(); //generamos los ejes
             ejeX.Minimum = 0;
-            ejeX.Maximum = numDeCOLUMNAS;  //número  de iteraciones
+            ejeX.Maximum = valorMaximdeX;  //número  de iteraciones
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
@@ -107,7 +108,7 @@ namespace WPFapp
 
             LinearAxis ejeX = new LinearAxis(); //generamos los ejes
             ejeX.Minimum = 0;
-            ejeX.Maximum = numDeCOLUMNAS;  //número  de iteraciones
+            ejeX.Maximum = valorMaximdeX;  //número  de iteraciones
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
@@ -144,7 +145,7 @@ namespace WPFapp
 
             LinearAxis ejeX = new LinearAxis(); //generamos los ejes
             ejeX.Minimum = 0;
-            ejeX.Maximum = numDeCOLUMNAS;  //número  de iteraciones
+            ejeX.Maximum = valorMaximdeX;  //número  de iteraciones
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
@@ -183,7 +184,7 @@ namespace WPFapp
 
             LinearAxis ejeX = new LinearAxis(); //generamos los ejes
             ejeX.Minimum = 0;
-            ejeX.Maximum = numDeCOLUMNAS;  //número  de iteraciones
+            ejeX.Maximum = valorMaximdeX;  //número  de iteraciones
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
@@ -220,7 +221,7 @@ namespace WPFapp
 
             LinearAxis ejeX = new LinearAxis(); //generamos los ejes
             ejeX.Minimum = 0;
-            ejeX.Maximum = numDeCOLUMNAS;  //número  de iteraciones
+            ejeX.Maximum = valorMaximdeX;  //número  de iteraciones
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
@@ -257,7 +258,7 @@ namespace WPFapp
 
             LinearAxis ejeX = new LinearAxis(); //generamos los ejes
             ejeX.Minimum = 0;
-            ejeX.Maximum = numDeCOLUMNAS;  //número  de iteraciones
+            ejeX.Maximum = valorMaximdeX;  //número  de iteraciones
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
@@ -281,6 +282,7 @@ namespace WPFapp
 
         }
 
+        
         public void SetnumdeCOLUMNAS(int count)
         {
             this.numDeCOLUMNAS = count;
@@ -303,5 +305,6 @@ namespace WPFapp
                 this.DragMove();
             }
         }
+
     }
 }

@@ -361,8 +361,8 @@ namespace WPFapp
 
             gr.Show();
 
-            gr.SetnumdeCOLUMNAS(m.norma.L);
-
+            gr.SetnumdeCOLUMNAS(m.columns);
+            gr.valorMaximdeX = m.norma.L;
             gr.listaDeXColumna = m.listaDeXColumna;
             gr.listaTEMPxColumna = m.listaTemperaturaxColumna;
             gr.listaMachxColumna = m.listaMachxColumna;
