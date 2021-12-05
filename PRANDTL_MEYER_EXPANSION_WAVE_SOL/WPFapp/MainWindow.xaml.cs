@@ -318,8 +318,6 @@ namespace WPFapp
             ad_w.Show();
         }
 
-
-
         private void LoadPresitionButton_Click(object sender, RoutedEventArgs e)
         {
             if (PresitionComboBox.SelectedIndex == 0) //small
