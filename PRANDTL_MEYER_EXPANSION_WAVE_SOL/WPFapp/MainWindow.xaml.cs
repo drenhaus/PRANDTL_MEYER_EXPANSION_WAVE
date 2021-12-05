@@ -26,6 +26,7 @@ namespace WPFapp
         Malla m = new Malla();
         int columnas = 89;
         int filas = 41;
+
         double delta_y_t;
 
         Polygon[,] casillas;
@@ -289,6 +290,9 @@ namespace WPFapp
             }
         }
 
+
+        }
+
         private void polygon_enter(object sender, EventArgs e)
         {
             Polygon poly = (Polygon)sender;
@@ -314,14 +318,7 @@ namespace WPFapp
                 // p_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].P);
                 // temeprature_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].T);
                 // mach_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].M);
-
-
             }
-
         }
-
-
-
     }
-
 }
