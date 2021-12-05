@@ -24,12 +24,14 @@ namespace WPFapp
     public partial class MainWindow : Window
     {
         Malla m = new Malla();
-        int columnas=89;
-        int filas=41;
-        int dimension_scale=7;
+        int columnas = 89;
+        int filas = 41;
+
         double delta_y_t;
 
         Polygon[,] casillas;
+        GridPlotGenerate GPG = new GridPlotGenerate();
+        
 
         DataTable temperature_table;
         DataTable u_table;
@@ -47,7 +49,7 @@ namespace WPFapp
             InitializeComponent();
         }
 
-      
+
 
         //open the tables window
         private void TablesButton_Click(object sender, RoutedEventArgs e)
@@ -58,16 +60,17 @@ namespace WPFapp
 
 
         }
-
+        
         private void Simulate_Button_Click(object sender, RoutedEventArgs e)
         {
             m.rows = filas;
             m.columns = columnas;
             m.delta_y_t = this.delta_y_t;
-            
+
             m.DefinirMatriz();
             m.Compute();
             m.Fill_DataTable();
+
             DataTable[] T_U_V_RHO_P_M_F1_F2_F3_F4 = m.GetTables();
             temperature_table = T_U_V_RHO_P_M_F1_F2_F3_F4[0];
             u_table = T_U_V_RHO_P_M_F1_F2_F3_F4[1];
@@ -79,13 +82,23 @@ namespace WPFapp
             F2_table = T_U_V_RHO_P_M_F1_F2_F3_F4[7];
             F3_table = T_U_V_RHO_P_M_F1_F2_F3_F4[8];
             F4_table = T_U_V_RHO_P_M_F1_F2_F3_F4[9];
-            GenerateGridPlot();
+
+
+            casillas = GPG.GenerateGridPlot(filas, columnas,m);
+
+            for (int i = 0; i < columnas - 1; i++)
+            {
+                for (int j = 0; j < filas; j++)
+                {
+                    GridMalla.Children.Add(casillas[j, i]);
+                }
+            }
 
             if (DataGridComboBox.SelectedIndex == 0)
             {
-                actualizar_colores_grid(temperature_table, 255, 0, 0);
+                casillas = GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
             }
-            
+
             LoadParametersButton.IsEnabled = false;
             LoadPresitionButton.IsEnabled = false;
             DataGridComboBox.IsEnabled = true;
@@ -97,142 +110,31 @@ namespace WPFapp
 
         }
 
-        public void GenerateGridPlot()
-        {
-            casillas = new Polygon[filas, columnas - 1];
-
-            double x1 = 0; // column left
-            double x2; // column right
-            double y1; // top left
-            double y2; // top right
-            double y3; // down left
-            double y4; // down right
-
-            double[] delta_y = m.Vector_Delta_y();
-
-            for (int i = 0; i < columnas - 1; i++)
-            {
-                x2 = x1 + m.delta_x;
-                y3 = 0;
-                y4 = 0;
-
-                for (int j = 0; j < filas; j++)
-                {
-                    y1 = y3 + delta_y[i];
-                    y2 = y4 + delta_y[i + 1];
-
-                    Polygon myPolygon = new Polygon();
-                    System.Windows.Point Point1 = new System.Windows.Point(x1 * dimension_scale, y1 * dimension_scale);
-                    System.Windows.Point Point2 = new System.Windows.Point(x2 * dimension_scale, y2 * dimension_scale);
-                    System.Windows.Point Point3 = new System.Windows.Point(x1 * dimension_scale, y3 * dimension_scale);
-                    System.Windows.Point Point4 = new System.Windows.Point(x2 * dimension_scale, y4 * dimension_scale);
-                    myPolygon.StrokeThickness = 0;
-                    PointCollection myPointCollection = new PointCollection();
-                    myPointCollection.Add(Point1);
-                    myPointCollection.Add(Point2);
-                    myPointCollection.Add(Point4);
-                    myPointCollection.Add(Point3);
-                    myPolygon.Points = myPointCollection;
-                    casillas[j, i] = myPolygon;
-
-                    myPolygon.MouseEnter += new System.Windows.Input.MouseEventHandler(polygon_enter);
-
-                    y4 = y2;
-                    y3 = y1;
-
-
-                }
-                x1 = x2;
-            }
-            for (int i = 0; i < columnas - 1; i++)
-            {
-                for (int j = 0; j < filas; j++)
-                {
-                    GridMalla.Children.Add(casillas[j, i]);
-                }
-            }
-        }
-
         private void DataGridComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataGridComboBox.SelectedIndex == 0) //temperature
             {
-                actualizar_colores_grid(temperature_table, 255, 0, 0);  
+                casillas=GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
             }
             if (DataGridComboBox.SelectedIndex == 1) //u
             {
-                actualizar_colores_grid(u_table, 0, 255, 0);
+                casillas = GPG.actualizar_colores_grid(u_table, 0, 255, 0);
             }
             if (DataGridComboBox.SelectedIndex == 2) //v
             {
-                actualizar_colores_grid(v_table, 255, 128, 0);
+                casillas = GPG.actualizar_colores_grid(v_table, 255, 128, 0);
             }
             if (DataGridComboBox.SelectedIndex == 3) //rho
             {
-                actualizar_colores_grid(rho_table, 0, 0, 255);
+                casillas = GPG.actualizar_colores_grid(rho_table, 0, 0, 255);
             }
             if (DataGridComboBox.SelectedIndex == 4) //p
             {
-                actualizar_colores_grid(p_table, 255, 0, 127);
+                casillas = GPG.actualizar_colores_grid(p_table, 255, 0, 127);
             }
             if (DataGridComboBox.SelectedIndex == 5) //Mach
             {
-                actualizar_colores_grid(M_table, 96, 96, 96);
-            }
-
-        }
-
-        public double[] Max_Min_Datatables(DataTable data_t)
-        {
-            double max = Convert.ToDouble(data_t.Rows[0][0].ToString());
-            double min = Convert.ToDouble(data_t.Rows[0][0].ToString());
-            for (int i = 0; i < columnas; i++)
-            {
-                for (int j = 0; j < filas; j++)
-                {
-                    if (Convert.ToDouble(data_t.Rows[j][i].ToString()) < min)
-                    {
-                        min = Convert.ToDouble(data_t.Rows[j][i].ToString());
-                    }
-                    if (Convert.ToDouble(data_t.Rows[j][i].ToString()) > max)
-                    {
-                        max = Convert.ToDouble(data_t.Rows[j][i].ToString());
-                    }
-
-                }
-            }
-            double[] values = { max, min };
-            return values;
-        }
-
-        public byte Define_Cloroes(double max, double min, double value)
-        {
-            double rango = max - min;
-
-            byte alpha;
-
-            //max byte --255
-            // min byte --25
-
-            //interpolamos para sacar el parametro alpa
-            alpha = Convert.ToByte(30 + (255 - 30) / (max - min) * (value - min));
-
-            return alpha;
-
-        }
-
-        public void actualizar_colores_grid(DataTable t, byte R, byte G, byte B)
-        {
-            double[] max_min;
-            max_min = Max_Min_Datatables(t);
-
-            for (int i = 0; i < columnas - 1; i++)
-            {
-                for (int j = 0; j < filas; j++)
-                {
-                    byte alpha = Define_Cloroes(max_min[0], max_min[1], Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()));
-                    casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(alpha, R, G, B));
-                }
+                casillas = GPG.actualizar_colores_grid(M_table, 96, 96, 96);
             }
 
         }
@@ -319,7 +221,7 @@ namespace WPFapp
 
         private void LoadPresitionButton_Click(object sender, RoutedEventArgs e)
         {
-           if (PresitionComboBox.SelectedIndex==0) //small
+            if (PresitionComboBox.SelectedIndex == 0) //small
             {
                 columnas = 23;
                 filas = 11;
@@ -344,7 +246,7 @@ namespace WPFapp
             MessageBox.Show("Precision selected successfully");
 
 
-            
+
         }
 
         private void GraficButton_Click(object sender, RoutedEventArgs e)
@@ -372,17 +274,7 @@ namespace WPFapp
             gr.listaVxColumna = m.listaV_velxColumna;
 
 
-
-
-
-
-
-
-
-
-
         }
-
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -410,14 +302,15 @@ namespace WPFapp
             int j = 0;
             int w = 0;
 
-            for (i = 0; i < columnas-1; i++)
+            for (i = 0; i < columnas - 1; i++)
             {
                 for (j = 0; j < filas; j++)
                 {
-                    if (poly==casillas[j,i])
+                    if (poly == casillas[j, i])
                     {
                         w = 1;
-                        break; }
+                        break;
+                    }
                 }
 
                 // u_label.Content = Convert.ToString(m.matriz[filas-j, columnas-i-1].u);
@@ -426,12 +319,7 @@ namespace WPFapp
                 // p_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].P);
                 // temeprature_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].T);
                 // mach_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].M);
-
-                
             }
-
         }
     }
-
-
 }
