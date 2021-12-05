@@ -21,6 +21,59 @@
                 <RowDefinition Height="394*"/>
             </Grid.RowDefinitions>
 
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Margin="17,63,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="367" 
+                    Width="779"
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"
+                    IsEnabled="False"/>
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Margin="17,63,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="367" 
+                    Width="779"
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"
+                    IsEnabled="False"/>
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Margin="17,63,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="367" 
+                    Width="779"
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"
+                    IsEnabled="False"/>
+
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Margin="17,30,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="362" 
+                    Width="779"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False" Grid.Row="1"/>
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Margin="17,30,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="362" 
+                    Width="779"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False" Grid.Row="1"/>
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Margin="17,30,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="362" 
+                    Width="779"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False" Grid.Row="1"/>
+
+
+
+
             <TextBlock Text="Advanced Study :"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
@@ -28,19 +81,19 @@
                        FontSize="30"
                        FontFamily="/Fonts/#Poppins" 
                        Height="60" 
-                       Margin="24,10,0,0" 
-                       Width="299" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                       Margin="28,10,0,0" 
+                       Width="299"/>
 
             <Grid x:Name="Advanced_GridMalla_CASO1" 
               HorizontalAlignment="Left" 
-              Width="547" Margin="28,96,0,0" 
+              Width="547" Margin="28,80,0,0" 
               Height="336" 
               VerticalAlignment="Top" Grid.RowSpan="2"
               />
 
             <Grid x:Name="Advanced_GridMalla_2_CASO1" 
             HorizontalAlignment="Left" 
-            Width="350" Margin="424,115,0,0" 
+            Width="350" Margin="424,99,0,0" 
             Height="315" 
             VerticalAlignment="Top" Grid.RowSpan="2"
             >
@@ -136,6 +189,11 @@
                                   FontSize="10"/>
 
             </ComboBox>
+            <Calendar HorizontalAlignment="Left" Margin="327,460,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+
+
+
 
         </Grid>
     </Border>
