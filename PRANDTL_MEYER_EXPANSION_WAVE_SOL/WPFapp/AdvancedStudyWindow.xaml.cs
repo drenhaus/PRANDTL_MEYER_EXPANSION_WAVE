@@ -287,6 +287,7 @@ namespace WPFapp
                 casillas5 = GPG5.actualizar_colores_grid(tablesM5[5], 96, 96, 96);
             }
         }
+
     }
 
    
