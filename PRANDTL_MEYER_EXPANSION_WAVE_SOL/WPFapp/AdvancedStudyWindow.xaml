@@ -107,14 +107,14 @@
 
             <Grid x:Name="Advanced_GridMalla_CASO2" 
             HorizontalAlignment="Left" 
-            Width="358" Margin="28,56,0,0" 
+            Width="358" Margin="28,53,0,0" 
             Height="357" 
             VerticalAlignment="Top" Grid.Row="1"
             />
 
             <Grid x:Name="Advanced_GridMalla_2_CASO2" 
             HorizontalAlignment="Left" 
-            Width="462" Margin="312,68,0,0" 
+            Width="462" Margin="312,65,0,0" 
             Height="360" 
             VerticalAlignment="Top" Grid.Row="1"
             />
@@ -225,6 +225,37 @@
                 </Button.RenderTransform>
             </Button>
 
+
+            <Button  Margin="103,345,924,0" VerticalAlignment="Top"
+                     Background="Black" Height="10"
+                     BorderThickness="0" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="3.333"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button  Margin="25,339,1140,0" VerticalAlignment="Top"
+                     Background="Black" Height="10"
+                     BorderThickness="0" Grid.Row="1"/>
+            <Button  Margin="539,362,488,0" VerticalAlignment="Top"
+                     Background="Black" Height="10"
+                     BorderThickness="0" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="6"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button  Margin="318,351,704,0" VerticalAlignment="Top"
+                Background="Black" Height="10"
+                BorderThickness="0" Grid.Row="1"/>
 
 
 
