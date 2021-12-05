@@ -7,29 +7,46 @@
         mc:Ignorable="d"
         Title="AdvancedStudyWindow" Height="610" Width="900">
     <Grid>
-        <Grid x:Name="Advanced_GridMalla" 
+        <Grid x:Name="Advanced_GridMalla_CASO1" 
               HorizontalAlignment="Left" 
-              Width="340" Margin="162,49,0,0" 
-              Height="280" 
+              Width="197" Margin="162,49,0,0" 
+              Height="200" 
               VerticalAlignment="Top"
               Background="Black"/>
 
-        <Grid x:Name="Advanced_GridMalla_2" 
+        <Grid x:Name="Advanced_GridMalla_2_CASO1" 
             HorizontalAlignment="Left" 
-            Width="340" Margin="539,49,0,0" 
-            Height="280" 
+            Width="197" Margin="359,70,0,0" 
+            Height="197" 
             VerticalAlignment="Top"
             Background="Black"/>
 
+
+        <Grid x:Name="Advanced_GridMalla_CASO2" 
+            HorizontalAlignment="Left" 
+            Width="197" Margin="162,316,0,0" 
+            Height="200" 
+            VerticalAlignment="Top"
+            Background="Black"/>
+
+        <Grid x:Name="Advanced_GridMalla_2_CASO2" 
+            HorizontalAlignment="Left" 
+            Width="197" Margin="359,356,0,0" 
+            Height="200" 
+            VerticalAlignment="Top"
+            Background="Black"/>
+
+
+
         <DataGrid x:Name="Advanced_DataGridMalla" 
-                  Margin="162,339,400,21" 
+                  Margin="617,63,10,297" 
                   ItemsSource="{Binding}" 
                     AutoGenerateColumns="True"/>
 
         <DataGrid x:Name="Advanced_DataGridMalla_2" 
-                  Margin="539,339,23,21" 
+                  Margin="617,339,10,21" 
                   ItemsSource="{Binding}" 
-                    AutoGenerateColumns="True"/>
+                    AutoGenerateColumns="True" RenderTransformOrigin="0.61,-0.682"/>
         <Button x:Name="AdvStudyExplication_Button" Content="Explication of A.S" 
                 HorizontalAlignment="Left" 
                 Margin="22,73,0,0" 
@@ -125,6 +142,7 @@
             VerticalAlignment="Top" 
             Height="28" Width="120" 
             RenderTransformOrigin="0.477,-0.345" Click="Simulate_Button_Click"/>
+
 
     </Grid>
 </Window>
