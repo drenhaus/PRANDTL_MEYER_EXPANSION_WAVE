@@ -23,7 +23,7 @@
 
             <Button Content="" 
                     HorizontalAlignment="Left" 
-                    Margin="17,63,0,0" 
+                    Margin="17,60,0,0" 
                     VerticalAlignment="Top" 
                     Height="367" 
                     Width="779"
@@ -31,20 +31,22 @@
                     IsEnabled="False"/>
             <Button Content="" 
                     HorizontalAlignment="Left" 
-                    Margin="17,63,0,0" 
+                    Margin="17,60,0,0" 
                     VerticalAlignment="Top" 
                     Height="367" 
                     Width="779"
                     Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"
                     IsEnabled="False"/>
-            <Button Content="" 
+            <Button 
                     HorizontalAlignment="Left" 
-                    Margin="17,63,0,0" 
+                    Margin="17,58,0,0" 
                     VerticalAlignment="Top" 
                     Height="367" 
                     Width="779"
                     Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"
-                    IsEnabled="False"/>
+                    IsEnabled="False">
+            </Button>
+
 
             <Button Content="" 
                     HorizontalAlignment="Left" 
@@ -81,23 +83,26 @@
                        FontSize="30"
                        FontFamily="/Fonts/#Poppins" 
                        Height="60" 
-                       Margin="28,10,0,0" 
+                       Margin="28,15,0,0" 
                        Width="299"/>
+
+
+
+
 
             <Grid x:Name="Advanced_GridMalla_CASO1" 
               HorizontalAlignment="Left" 
-              Width="547" Margin="28,80,0,0" 
+              Width="547" Margin="28,68,0,0" 
               Height="336" 
-              VerticalAlignment="Top" Grid.RowSpan="2"
+              VerticalAlignment="Top"
               />
 
             <Grid x:Name="Advanced_GridMalla_2_CASO1" 
             HorizontalAlignment="Left" 
-            Width="350" Margin="424,99,0,0" 
+            Width="350" Margin="424,87,0,0" 
             Height="315" 
-            VerticalAlignment="Top" Grid.RowSpan="2"
-            >
-            </Grid>
+            VerticalAlignment="Top"
+            />
 
 
             <Grid x:Name="Advanced_GridMalla_CASO2" 
@@ -190,6 +195,35 @@
 
             </ComboBox>
             <Calendar HorizontalAlignment="Left" Margin="327,460,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+
+            <Button  Margin="108,358,821,0" VerticalAlignment="Top"
+                     Background="Black" Height="10"
+                     BorderThickness="0" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="3.333"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button  Margin="27,349,1134,0" VerticalAlignment="Top"
+                     Background="Black" Height="10"
+                     BorderThickness="0"/>
+            <Button  Margin="419,385,474,0" VerticalAlignment="Top"
+                     Background="Black" Height="10"
+                     BorderThickness="0" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="6"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
 
 
 
