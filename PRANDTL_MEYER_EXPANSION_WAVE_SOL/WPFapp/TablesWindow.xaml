@@ -19,7 +19,7 @@
             CornerRadius="20">
         <Grid>
             <DataGrid x:Name="grid2" Margin="15,80,15,15" 
-          ItemsSource="{Binding}"
+          ItemsSource="{Binding}" 
                   AutoGenerateColumns="True">
                 <DataGrid.Resources>
                     <Style TargetType="DataGridColumnHeader">

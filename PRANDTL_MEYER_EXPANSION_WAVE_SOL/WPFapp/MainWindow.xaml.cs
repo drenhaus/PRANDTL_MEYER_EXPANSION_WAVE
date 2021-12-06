@@ -236,7 +236,7 @@ namespace WPFapp
             }
             if (PresitionComboBox.SelectedIndex == 2) //high
             {
-                columnas = 440;
+                columnas = 452;
                 filas = 201;
                 delta_y_t = 0.005;
 
