@@ -126,7 +126,7 @@ namespace WPFapp
             }
             if (DataGridComboBox.SelectedIndex == 3) //rho
             {
-                casillas = GPG.actualizar_colores_grid(rho_table, 0, 0, 255);
+                casillas = GPG.actualizar_colores_grid(rho_table, 18, 184, 255);
             }
             if (DataGridComboBox.SelectedIndex == 4) //p
             {
@@ -134,7 +134,7 @@ namespace WPFapp
             }
             if (DataGridComboBox.SelectedIndex == 5) //Mach
             {
-                casillas = GPG.actualizar_colores_grid(M_table, 96, 96, 96);
+                casillas = GPG.actualizar_colores_grid(M_table, 255, 255, 255);
             }
 
         }
