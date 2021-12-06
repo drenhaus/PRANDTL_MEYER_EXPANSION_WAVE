@@ -71,22 +71,22 @@
                Margin="430,47,0,0" 
                VerticalAlignment="Top"/>
         <TextBox x:Name="anderson_error" HorizontalAlignment="Left" 
-                 Margin="744,233,0,0" 
+                 Margin="776,233,0,0" 
                  Text="Rel_error_TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
-                 Width="93" Height="26"/>
-        <Label Content="Anderson Relative Error:" 
+                 Width="50" Height="26"/>
+        <Label x:Name="anderson_label" Content="Anderson Relative Error (%):" 
                HorizontalAlignment="Left" 
                Margin="588,233,0,0" 
-               VerticalAlignment="Top" Width="138"/>
+               VerticalAlignment="Top" Width="169"/>
 
         <TextBox x:Name="our_error" HorizontalAlignment="Left" 
-                 Margin="744,315,0,0" 
+                 Margin="776,315,0,0" 
                  Text="Rel_error_SELECTED_TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
-                 Width="93" Height="26"/>
+                 Width="50" Height="26"/>
 
 
         <Button x:Name="Close_Button" 
@@ -100,10 +100,11 @@
                 Margin="759,10,67,0" 
                 VerticalAlignment="Top"/>
         <Button x:Name="Compare_btn" Content="Compare" HorizontalAlignment="Left" Margin="74,254,0,0" VerticalAlignment="Top" Click="Compare_btn_Click"/>
-        <Label Content="Computetd Relative Error:" 
+        <Label x:Name="computed_label" Content="Computetd Relative Error (%):" 
             HorizontalAlignment="Left" 
             Margin="588,315,0,0" 
-            VerticalAlignment="Top" Width="155"/>
+               
+            VerticalAlignment="Top" Width="169"/>
 
 
 
