@@ -302,10 +302,10 @@ namespace WPFapp
             }
             if (DataGridComboBox_AS.SelectedIndex == 3) //rho
             {
-                casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[3], 0, 0, 255, rho_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
-                casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[3], 0, 0, 255, rho_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
-                casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[3], 0, 0, 255,rho_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
-                casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[3], 0, 0, 255, rho_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[3], 18, 184, 255, rho_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[3], 18, 184, 255, rho_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[3], 18, 184, 255, rho_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[3], 18, 184, 255, rho_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 //Advanced_DataGridMalla.DataContext = rho_table_1.DefaultView;
                // Advanced_DataGridMalla_2.DataContext = rho_table_2.DefaultView;
             }
@@ -320,10 +320,10 @@ namespace WPFapp
             }
             if (DataGridComboBox_AS.SelectedIndex == 5) //Mach
             {
-                casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[5], 96, 96, 96,M_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
-                casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[5], 96, 96, 96, M_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
-                casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[5], 96, 96, 96, M_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
-                casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[5], 96, 96, 96, M_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[5], 255, 255, 255, M_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[5], 255, 255, 255, M_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
+                casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[5], 255, 255, 255, M_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
+                casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[5], 255, 255, 255, M_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 //Advanced_DataGridMalla.DataContext = M_table_1.DefaultView;
                 //DataContext = M_table_2.DefaultView;
             }
@@ -387,6 +387,44 @@ namespace WPFapp
             }
         }
 
+        private void Load_tables_butt_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGridComboBox_AS.SelectedIndex == 0) //temperature
+            {
+                Advanced_DataGridMalla.DataContext = temperature_table_1.DefaultView;
+                Advanced_DataGridMalla_2.DataContext = temperature_table_2.DefaultView;
+            }
+            if (DataGridComboBox_AS.SelectedIndex == 1) //u
+            {
+
+                Advanced_DataGridMalla.DataContext = u_table_1.DefaultView;
+                Advanced_DataGridMalla_2.DataContext = u_table_2.DefaultView;
+            }
+            if (DataGridComboBox_AS.SelectedIndex == 2) //v
+            {
+
+                Advanced_DataGridMalla.DataContext = v_table_1.DefaultView;
+                Advanced_DataGridMalla_2.DataContext = v_table_2.DefaultView;
+            }
+            if (DataGridComboBox_AS.SelectedIndex == 3) //rho
+            {
+
+                Advanced_DataGridMalla.DataContext = rho_table_1.DefaultView;
+                Advanced_DataGridMalla_2.DataContext = rho_table_2.DefaultView;
+            }
+            if (DataGridComboBox_AS.SelectedIndex == 4) //p
+            {
+
+                Advanced_DataGridMalla.DataContext = p_table_1.DefaultView;
+                Advanced_DataGridMalla_2.DataContext = p_table_2.DefaultView;
+            }
+            if (DataGridComboBox_AS.SelectedIndex == 5) //Mach
+            {
+
+                Advanced_DataGridMalla.DataContext = M_table_1.DefaultView;
+                DataContext = M_table_2.DefaultView;
+            }
+        }
     }
 
    

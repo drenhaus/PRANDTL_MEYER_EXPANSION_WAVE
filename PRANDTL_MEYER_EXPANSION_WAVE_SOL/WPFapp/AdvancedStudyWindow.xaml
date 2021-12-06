@@ -108,7 +108,7 @@
 
 
             <DataGrid x:Name="Advanced_DataGridMalla" 
-                  Margin="782,152,42,308" 
+                  Margin="782,172,42,288" 
                   ItemsSource="{Binding}" 
                     AutoGenerateColumns="True" Grid.RowSpan="2"/>
 
@@ -310,7 +310,15 @@
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
-            
+            <Button x:Name="Load_tables_butt" Content="Load tables" 
+                HorizontalAlignment="Left" 
+                Margin="782,125,0,0" 
+                VerticalAlignment="Top" 
+                Height="32" Width="127"
+                Foreground="White" 
+                FontFamily="/Fonts/#Poppins"
+                Style="{DynamicResource RoundCorner}" Click="Load_tables_butt_Click"/>
+
 
 
 
