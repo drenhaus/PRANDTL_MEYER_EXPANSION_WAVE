@@ -41,11 +41,14 @@ namespace LibreriaClases
 
             double[] delta_y = m.Vector_Delta_y();
 
+
             for (int i = 0; i < columnas - 1; i++)
             {
                 x2 = x1 + m.delta_x;
                 y3 = 0;
                 y4 = 0;
+
+                
 
                 for (int j = 0; j < filas; j++)
                 {
@@ -75,6 +78,8 @@ namespace LibreriaClases
                 }
                 x1 = x2;
             }
+            
+
             return casillas;
         }
 

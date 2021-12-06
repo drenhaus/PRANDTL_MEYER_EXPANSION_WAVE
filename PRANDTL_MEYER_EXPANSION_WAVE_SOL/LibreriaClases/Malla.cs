@@ -52,6 +52,10 @@ namespace LibreriaClases
             for (int i = 0; i < columns; i++)
             {
                 delta_y_array[i] = matriz[1, i].y-matriz[0,i].y;
+                if (i == columns - 1)
+                {
+                    delta_y_array[i] = delta_y_array[i - 1];
+                }
             }
             return delta_y_array;
         }

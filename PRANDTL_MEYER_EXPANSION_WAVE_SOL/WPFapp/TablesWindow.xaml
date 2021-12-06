@@ -18,9 +18,11 @@
     <Border Background="#3a3752" 
             CornerRadius="20">
         <Grid>
-            <DataGrid x:Name="grid2" Margin="15,80,15,15" 
-          ItemsSource="{Binding}"
-                  AutoGenerateColumns="True">
+            <DataGrid x:Name="grid2" 
+                      Margin="15,80,15,15" 
+                      ItemsSource="{Binding}"
+                      AutoGenerateColumns="True">
+                
                 <DataGrid.Resources>
                     <Style TargetType="DataGridColumnHeader">
                         <EventSetter Event="Click" Handler="DataGridColumnHeader_Click" />
@@ -31,6 +33,8 @@
                 </DataGrid.Columns>
 
             </DataGrid>
+            
+            
             <TextBlock Text="Ver los datos en Tablas"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
@@ -41,7 +45,6 @@
                        Margin="15,18,0,0" 
                        Width="275" 
                        Grid.Row="0"/>
-
             <Label Content="Select Data Type" 
                HorizontalAlignment="Center" 
                Margin="0,38,0,0"
@@ -109,7 +112,6 @@
                                   HorizontalAlignment="Center"
                                   FontSize="14"/>
             </ComboBox>
-
             <Button x:Name="ExportTable_Button" Content="Export current table" 
                 HorizontalAlignment="Left" 
                 Margin="623,34,0,0" 
@@ -130,7 +132,6 @@
                 VerticalAlignment="Top"
                      Style="{DynamicResource closebutton}"
                     Width="16" Height="16" Click="Close_Button_Click"/>
-
             <Button x:Name="Mini_Button" 
                 Content="" 
                     Style="{DynamicResource minimizebutton}"
