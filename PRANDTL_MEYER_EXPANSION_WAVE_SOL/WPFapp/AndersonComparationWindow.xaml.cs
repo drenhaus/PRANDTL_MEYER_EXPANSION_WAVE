@@ -353,7 +353,7 @@ namespace WPFapp
             O_F3_12 = Interpolate_our_results(x, "f3");
             O_F4_12 = Interpolate_our_results(x, "f4");
 
-            x = 64; //
+            x = 66.278; //
             O_T_66 = Interpolate_our_results(x, "t");
             O_V_66 = Interpolate_our_results(x, "v");
             O_U_66 = Interpolate_our_results(x, "u");
