@@ -49,7 +49,7 @@
                        FontSize="30"
                        FontFamily="/Fonts/#Poppins" 
                        Height="60" 
-                       Margin="762,18,0,0" 
+                       Margin="782,18,0,0" 
                        Width="299"/>
 
             <TextBlock Text="- Case 1: -"
@@ -59,7 +59,7 @@
                        FontSize="24"
                        FontFamily="/Fonts/#Poppins" 
                        Height="33" 
-                       Margin="539,20,0,0" 
+                       Margin="454,20,0,0" 
                        Width="128"/>
 
             <TextBlock Text="- Case 2: -"
@@ -69,7 +69,7 @@
                        FontSize="24"
                        FontFamily="/Fonts/#Poppins" 
                        Height="33" 
-                       Margin="539,20,0,0" 
+                       Margin="454,20,0,0" 
                        Width="128" Grid.Row="1"/>
 
 
@@ -208,6 +208,49 @@
                 VerticalAlignment="Top" 
                 Width="309"
                 BorderThickness="0" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="5.4"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Background="Black"
+                HorizontalAlignment="Left" 
+                Height="8" Margin="91,289,0,0" 
+                VerticalAlignment="Top" 
+                Width="73"
+                BorderThickness="0" Grid.Row="1"/>
+            <Button Background="Black"
+                HorizontalAlignment="Left" 
+                Height="8" Margin="164,294,0,0" 
+                VerticalAlignment="Top" 
+                Width="169"
+                BorderThickness="0" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="3.3333"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Background="Black"
+                HorizontalAlignment="Left" 
+                Height="8" Margin="331,299,0,0" 
+                VerticalAlignment="Top" 
+                Width="193"
+                BorderThickness="0" Grid.Row="1"/>
+            <Button Background="Black"
+                HorizontalAlignment="Left" 
+                Height="8" Margin="522,307,0,0" 
+                VerticalAlignment="Top" 
+                Width="166"
+                BorderThickness="0" RenderTransformOrigin="0.5,0.5" Grid.Row="1"
+                   >
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
