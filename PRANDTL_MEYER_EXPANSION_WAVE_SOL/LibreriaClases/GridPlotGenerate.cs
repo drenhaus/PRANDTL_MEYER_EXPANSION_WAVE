@@ -20,11 +20,13 @@ namespace LibreriaClases
     public class GridPlotGenerate
     {
         Polygon[,] casillas;
-        int dimension_scale = 7;
+        
 
         int filas;
         int columnas;
-        
+
+        public int dimension_scale { get; set; } = 7;
+
         public Polygon[,] GenerateGridPlot(int filas, int columnas, Malla m)
         {
             this.filas = filas;
