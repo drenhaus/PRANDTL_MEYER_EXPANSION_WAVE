@@ -229,7 +229,7 @@ namespace WPFapp
             }
             if (PresitionComboBox.SelectedIndex == 1) // normal
             {
-                columnas = 89;
+                columnas = 92;
                 filas = 41;
                 delta_y_t = 0.025;
 
