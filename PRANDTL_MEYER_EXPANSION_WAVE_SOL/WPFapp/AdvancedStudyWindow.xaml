@@ -181,6 +181,54 @@
 
             </ComboBox>
             <Calendar HorizontalAlignment="Left" Margin="327,460,0,0" Grid.Row="1" VerticalAlignment="Top" Height="0" Width="179"/>
+
+
+
+            <Canvas IsEnabled="False"
+                    Background="#6a59ff" Margin="56,288,932,5"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="141,288,847,5"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="228,293,760,5"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="331,299,704,5"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="384,303,651,5"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="446,306,606,5"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="476,309,576,5"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="518,314,534,5"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="560,318,492,5"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="608,322,444,5"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="648,327,404,5"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="656,327,396,5"/>
+
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="91,293,938,15" Grid.Row="1"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="162,297,868,15" Grid.Row="1"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="231,299,799,15" Grid.Row="1"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="272,303,758,15" Grid.Row="1"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="338,303,553,15" Grid.Row="1"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="542,309,490,15" Grid.Row="1"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="597,315,435,15" Grid.Row="1"/>
+            <Canvas IsEnabled="False"
+                Background="#6a59ff" Margin="620,317,412,15" Grid.Row="1"/>
+
+
+
+
             <Button Background="Black"
                     HorizontalAlignment="Left" 
                     Height="8" Margin="56,280,0,0" 
@@ -225,9 +273,9 @@
                 BorderThickness="0" Grid.Row="1"/>
             <Button Background="Black"
                 HorizontalAlignment="Left" 
-                Height="8" Margin="164,294,0,0" 
+                Height="8" Margin="163,294,0,0" 
                 VerticalAlignment="Top" 
-                Width="169"
+                Width="170"
                 BorderThickness="0" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
                 <Button.RenderTransform>
                     <TransformGroup>
@@ -260,31 +308,7 @@
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
-            
-            <Canvas IsEnabled="False"
-                    Background="Black" Margin="56,288,932,5"/>
-            <Canvas IsEnabled="False"
-                Background="Black" Margin="141,288,847,5"/>
-            <Canvas IsEnabled="False"
-                Background="Black" Margin="228,293,760,5"/>
-            <Canvas IsEnabled="False"
-                Background="Black" Margin="331,299,704,5"/>
-            <Canvas IsEnabled="False"
-                Background="Black" Margin="384,303,651,5"/>
-            <Canvas IsEnabled="False"
-                Background="Black" Margin="446,306,606,5"/>
-            <Canvas IsEnabled="False"
-                Background="Black" Margin="476,309,576,5"/>
-            <Canvas IsEnabled="False"
-                Background="Black" Margin="518,314,534,5"/>
-            <Canvas IsEnabled="False"
-                Background="Black" Margin="560,318,492,5"/>
-            <Canvas IsEnabled="False"
-                Background="Black" Margin="608,322,444,5"/>
-            <Canvas IsEnabled="False"
-                Background="Black" Margin="648,327,404,5"/>
-            <Canvas IsEnabled="False"
-                Background="Black" Margin="656,327,396,5"/>
+           
 
 
 
