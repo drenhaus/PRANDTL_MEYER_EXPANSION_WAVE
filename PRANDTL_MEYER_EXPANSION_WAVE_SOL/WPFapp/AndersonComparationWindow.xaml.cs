@@ -441,7 +441,7 @@ namespace WPFapp
             our_F3_66.Columns.Add(F3_C2);
             our_F4_66.Columns.Add(F4_C2);
 
-            for (int i = 0; i < m.rows; i++)
+            for (int i = 0; i < A_F4_66.Length; i++)
             {
                 DataRow TEMP_R = our_T_12.NewRow();
                 DataRow U_R = our_u_12.NewRow();
