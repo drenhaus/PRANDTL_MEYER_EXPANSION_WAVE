@@ -24,6 +24,20 @@ namespace WPFapp
             InitializeComponent();
         }
 
+        double Anderson_M_error;
+        double Anderson_p_error;
+        double Anderson_rho_error;
+        double Anderson_t_error;
+        double Anderson_u_error;
+        double Anderson_v_error;
+
+        double our_M_error;
+        double our_p_error;
+        double our_rho_error;
+        double our_t_error;
+        double our_u_error;
+        double our_v_error;
+
         public Malla m { get; set; }
         public int p { get; set; } // indicates the precision. if p=0 low. p=1 medium. p=2 high
 
@@ -654,11 +668,42 @@ namespace WPFapp
             return valores_low;
         }
 
+        public void Compute_Errors()
+        {
+            Anderson_M_error = 100 * Math.Abs(0.45 - MeanValue(Anderson_M_66)) / 0.45;    
+            Anderson_p_error = 100 * Math.Abs(0.739*Math.Pow(10,5) - MeanValue(Anderson_p_66)) / (0.739 * Math.Pow(10, 5));
+            Anderson_rho_error = 100 * Math.Abs(0.984 - MeanValue(Anderson_rho_66)) / 0.984;
+            Anderson_t_error = 100 * Math.Abs(262 - MeanValue(Anderson_T_66)) / 262;
+            Anderson_u_error = 100 * Math.Abs(710 - MeanValue(Anderson_u_66)) / 710;
+            Anderson_v_error = 100 * Math.Abs(-66.5 - MeanValue(Anderson_v_66)) / -66.5;
+            
+            our_M_error= 100 * Math.Abs(0.45 - MeanValue(our_M_66)) / 0.45;
+            our_p_error= 100 * Math.Abs(0.739 * Math.Pow(10, 5) - MeanValue(our_p_66)) / (0.739 * Math.Pow(10, 5));
+            our_rho_error= 100 * Math.Abs(0.984 - MeanValue(our_rho_66)) / 0.984;
+            our_t_error= 100 * Math.Abs(262 - MeanValue(our_T_66)) / 262;
+            our_u_error= 100 * Math.Abs(710 - MeanValue(our_u_66)) / 710;
+            our_v_error= 100 * Math.Abs(-66.5 - MeanValue(our_v_66)) / -66.5;
+
+        }
+
+        public double MeanValue(DataTable dt)
+        {
+            double accomulated = 0;
+
+            for (int i = 1; i <= 22; i++)
+            {
+                accomulated = accomulated + Convert.ToDouble(dt.Rows[i][0].ToString());
+            }
+            double mean = accomulated / 22;
+
+            return mean;
+        }
 
         private void Compare_btn_Click(object sender, RoutedEventArgs e)
         {
            Fill_Anderson_Tables();
            Fill_Our_Tables();
+           Compute_Errors();
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex==0) //T AND 12
             { AndersonGridData.DataContext = Anderson_T_12.DefaultView;
@@ -667,6 +712,7 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex == 1) //T AND 66
             {AndersonGridData.DataContext = Anderson_T_66.DefaultView;
              SimulationGrid.DataContext = our_T_66.DefaultView;
+                anderson_error.Text = "0.038";
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 1 && Setect_X_ComboBox.SelectedIndex == 0) //u AND 12
             { AndersonGridData.DataContext = Anderson_u_12.DefaultView;

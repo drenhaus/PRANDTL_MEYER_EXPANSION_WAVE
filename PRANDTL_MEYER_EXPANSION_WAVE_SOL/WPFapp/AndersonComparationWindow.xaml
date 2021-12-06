@@ -10,14 +10,14 @@
         <DataGrid x:Name="AndersonGridData" 
               ItemsSource="{Binding}"    
               RenderTransformOrigin="0.5,0.5" 
-              Margin="231,92,492,15">
+              Margin="231,84,506,56">
 
         </DataGrid>
 
         <DataGrid x:Name="SimulationGrid" 
               RenderTransformOrigin="0.5,0.5" 
               ItemsSource="{Binding}"
-              Margin="430,97,293,10">
+              Margin="430,83,310,56">
 
         </DataGrid>
         <Label Content="Compare the:" 
@@ -63,62 +63,30 @@
 
         <Label Content="Anderson Table" 
                HorizontalAlignment="Left" 
-               Margin="213,48,0,0" 
+               Margin="247,47,0,0" 
                VerticalAlignment="Top"/>
 
         <Label Content="Our Simulation Table" 
                HorizontalAlignment="Left" 
-               Margin="430,52,0,0" 
+               Margin="430,47,0,0" 
                VerticalAlignment="Top"/>
-        <TextBox x:Name="Rel_error_TextBox" HorizontalAlignment="Left" 
-                 Margin="650,141,0,0" 
+        <TextBox x:Name="anderson_error" HorizontalAlignment="Left" 
+                 Margin="744,233,0,0" 
                  Text="Rel_error_TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
-                 Width="120"/>
-        <TextBox x:Name="Abs_error_TextBox" HorizontalAlignment="Left" 
-                 Margin="649,211,0,0" 
-                 Text="Abs_error_TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top" 
-                 Width="120"/>
-        <Label Content="Relative Error" 
+                 Width="93" Height="26"/>
+        <Label Content="Anderson Relative Error:" 
                HorizontalAlignment="Left" 
-               Margin="668,110,0,0" 
-               VerticalAlignment="Top" Width="82"/>
+               Margin="588,233,0,0" 
+               VerticalAlignment="Top" Width="138"/>
 
-        <Label Content="Absolute Error" 
-               HorizontalAlignment="Left" 
-               Margin="658,180,0,0" 
-               VerticalAlignment="Top" Width="112"/>
-
-
-        <Label Content="Selected Relative Error" 
-               HorizontalAlignment="Left" 
-               Margin="658,297,0,0" 
-               VerticalAlignment="Top" Width="135"/>
-
-        <TextBox x:Name="Rel_error_SELECTED_TextBox" HorizontalAlignment="Left" 
-                 Margin="650,341,0,0" 
+        <TextBox x:Name="our_error" HorizontalAlignment="Left" 
+                 Margin="744,315,0,0" 
                  Text="Rel_error_SELECTED_TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
-                 Width="130"/>
-
-
-        <Label Content="Selected Absolute Error" 
-               HorizontalAlignment="Left" 
-               Margin="658,406,0,0" 
-               VerticalAlignment="Top" 
-               Width="135" 
-               RenderTransformOrigin="0.409,1.32"/>
-
-        <TextBox x:Name="Abs_error_SELECTED_TextBox" HorizontalAlignment="Left" 
-                 Margin="650,437,0,0" 
-                 Text="Abs_error_SELECTED_TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top" 
-                 Width="130"/>
+                 Width="93" Height="26"/>
 
 
         <Button x:Name="Close_Button" 
@@ -132,6 +100,10 @@
                 Margin="759,10,67,0" 
                 VerticalAlignment="Top"/>
         <Button x:Name="Compare_btn" Content="Compare" HorizontalAlignment="Left" Margin="74,254,0,0" VerticalAlignment="Top" Click="Compare_btn_Click"/>
+        <Label Content="Computetd Relative Error:" 
+            HorizontalAlignment="Left" 
+            Margin="588,315,0,0" 
+            VerticalAlignment="Top" Width="155"/>
 
 
 
