@@ -522,6 +522,46 @@ namespace WPFapp
 
         }
 
+        public double[] Interpolate_our_results_different_precision(double x_choosen, string data)
+        {
+            double[] valores1;
+            double[] valores2;
+            double[] valores = new double[m.rows];
+
+            int j = 0;
+            bool valor_exacto = false;
+
+            for (j = 0; m.matriz[0, j].x <= x_choosen; j++)
+            {
+
+                if (m.matriz[0, j].x == x_choosen)
+                {
+                    valor_exacto = true;
+                }
+            }
+
+            if (valor_exacto == false)
+            {
+                // we interpolate between values at j and values at j-1
+                valores1 = m.GetColumnData_array(data, j);
+                valores2 = m.GetColumnData_array(data, j - 1); //last value checked with x smaller that the choosen x 
+
+                for (int i = 0; i < valores1.Length; i++)
+                {
+                    //Interpolacion lineal
+                    valores[i] = valores2[i] + (valores1[i] - valores2[i]) / (m.matriz[0, j].x - m.matriz[0, j - 1].x) * (x_choosen - m.matriz[0, j - 1].x);
+                }
+            }
+            else if (valor_exacto == true)
+            {
+                valores = m.GetColumnData_array(data, j - 1);
+            }
+
+            return valores;
+
+        }
+
+
         private void Compare_btn_Click(object sender, RoutedEventArgs e)
         {
            Fill_Anderson_Tables();
