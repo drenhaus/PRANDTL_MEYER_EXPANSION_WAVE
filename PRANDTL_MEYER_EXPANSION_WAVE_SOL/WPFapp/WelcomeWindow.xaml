@@ -23,10 +23,10 @@
                 FontSize="30" 
                 FontWeight="Bold" 
                 VerticalAlignment="Center" 
-                HorizontalAlignment="Left"/>
+                HorizontalAlignment="Left" Click="StarButton_Click"/>
 
         <Button x:Name="ExitButton" Content="Exit" 
-                Margin="471,205,129,179" 
+                Margin="400,192,200,192" 
                 Width="200" Height="50" 
                 Background="#FFCC00FF" 
                 FontWeight="Bold" 
@@ -34,7 +34,7 @@
                 Click="Button_Click"/>
 
         <Button x:Name="TutorialButton" Content="Tuto" 
-            Margin="481,337,119,47" 
+            Margin="371,312,229,72" 
             Width="200" Height="50" 
             Background="#FFCC00FF" 
             FontWeight="Bold" 

@@ -32,5 +32,14 @@ namespace WPFapp
         {
             Close();
         }
+
+        private void StarButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            MainWindow MW = new MainWindow();
+
+            MW.Show();
+            Close();
+        }
     }
 }
