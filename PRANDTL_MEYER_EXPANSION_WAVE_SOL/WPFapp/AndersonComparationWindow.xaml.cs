@@ -369,7 +369,7 @@ namespace WPFapp
                 O_F4_66 = Interpolate_our_results(x, "f4");
             }
 
-            if (p == 0)
+            if (p == 0 || p==2)
             {
                 x = 12.928;
                 O_T_12 = Interpolate_our_results_different_precision(x, "t");
@@ -643,6 +643,13 @@ namespace WPFapp
                 valores_low[37] = valores_low[36] + (valores_low[36] - valores_low[40]) / (36 - 40) * (37 - 36);
                 valores_low[38] = valores_low[36] + (valores_low[36] - valores_low[40]) / (36 - 40) * (38 - 36);
                 valores_low[39] = valores_low[36] + (valores_low[36] - valores_low[40]) / (36 - 40) * (39- 36);
+            }
+            if (p == 2)
+            {
+                for (int y=0; y< A_u_12.Length; y++)
+                {
+                    valores_low[y] = valores[y*5];
+                }
             }
             return valores_low;
         }
