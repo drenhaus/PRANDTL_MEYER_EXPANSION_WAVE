@@ -401,7 +401,7 @@
             HorizontalAlignment="Left" 
             Margin="585,166,0,0"
             VerticalAlignment="Top" 
-            Width="120"
+            Width="108"
             IsEnabled="False"   
             SelectionChanged="DataGridComboBox_SelectionChanged"  
                       Grid.Column="1" 
@@ -409,82 +409,83 @@
                       Style="{DynamicResource theComboBox}" 
                   ItemContainerStyle="{DynamicResource theComboBoxItem}">
 
-                <ComboBoxItem Content="T"
+                <ComboBoxItem Content="T: Temperature"
                               FontFamily="/Fonts/#Poppins"
                               Background="AliceBlue"
-                              HorizontalAlignment="Center"
+                              HorizontalAlignment="Left"
                               FontSize="10"
                               Width="120"/>
-                <ComboBoxItem Content="u"
+                <ComboBoxItem Content="u: Horizontal velocity"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
-                                  HorizontalAlignment="Center"
+                                  HorizontalAlignment="Left"
                                   FontSize="10"/>
-                <ComboBoxItem Content="v"
+                <ComboBoxItem Content="v: Vertical velocity"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
-                                  HorizontalAlignment="Center"
+                                  HorizontalAlignment="Left"
                                   FontSize="10"/>
-                <ComboBoxItem Content="Rho"
+                <ComboBoxItem Content="Rho: Density"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
-                                  HorizontalAlignment="Center"
+                                  HorizontalAlignment="Left"
                                   FontSize="10"/>
-                <ComboBoxItem Content="P" 
+                <ComboBoxItem Content="P: Pressure" 
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
-                                  HorizontalAlignment="Center"
+                                  HorizontalAlignment="Left"
                                   FontSize="10"/>
-                <ComboBoxItem Content="Mach"
+                <ComboBoxItem Content="M: Mach"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
-                                  HorizontalAlignment="Center"
+                                  HorizontalAlignment="Left"
                                   FontSize="10"/>
 
             </ComboBox>
 
-        <Label Content="T:" 
+            <Label Content="T:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="645,234,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="30"/>
-        <Label Content="M:" 
+            <Label Content="M:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="645,276,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="30"/>
-        <Label Content="P:" 
+            <Label Content="P:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="645,325,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="30"/>
-        <Label Content="Rho:" 
+            <Label Content="Rho:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="645,356,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="46"/>
-        <Label Content="v:" 
+            <Label Content="v:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="646,396,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="46"/>
-        <Label Content="u:" 
+            <Label Content="u:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="647,453,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="46"/>
-        <Label x:Name="temeprature_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="691,234,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label x:Name="mach_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="691,276,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label x:Name="p_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="693,325,0,0" Grid.Row="1" VerticalAlignment="Top" Width="36"/>
-        <Label x:Name="rho_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Height="27" Margin="696,369,0,0" Grid.Row="1" VerticalAlignment="Top" Width="33"/>
-        <Label x:Name="v_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Height="33" Margin="705,409,0,0" Grid.Row="1" VerticalAlignment="Top" Width="24"/>
-        <Label x:Name="u_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="698,466,0,0" Grid.Row="1" VerticalAlignment="Top" Width="43"/>
+            <Label x:Name="temeprature_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="691,234,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <Label x:Name="mach_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="691,276,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <Label x:Name="p_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="693,325,0,0" Grid.Row="1" VerticalAlignment="Top" Width="36"/>
+            <Label x:Name="rho_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Height="27" Margin="696,369,0,0" Grid.Row="1" VerticalAlignment="Top" Width="33"/>
+            <Label x:Name="v_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Height="33" Margin="705,409,0,0" Grid.Row="1" VerticalAlignment="Top" Width="24"/>
+            <Label x:Name="u_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="698,466,0,0" Grid.Row="1" VerticalAlignment="Top" Width="43"/>
+
         </Grid>
     </Border>
 </Window>

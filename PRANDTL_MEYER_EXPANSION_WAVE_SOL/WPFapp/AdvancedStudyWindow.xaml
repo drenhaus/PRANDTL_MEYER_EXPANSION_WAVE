@@ -147,36 +147,36 @@
                       Style="{DynamicResource theComboBox}" 
                   ItemContainerStyle="{DynamicResource theComboBoxItem}" Height="35">
 
-                <ComboBoxItem Content="T"
+                <ComboBoxItem Content="T: Temperature"
                               FontFamily="/Fonts/#Poppins"
                               Background="AliceBlue"
-                              HorizontalAlignment="Center"
+                              HorizontalAlignment="Left"
                               FontSize="10"
                               Width="120"/>
-                <ComboBoxItem Content="u"
+                <ComboBoxItem Content="u: Horizontal velocity"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
-                                  HorizontalAlignment="Center"
+                                  HorizontalAlignment="Left"
                                   FontSize="10"/>
-                <ComboBoxItem Content="v"
+                <ComboBoxItem Content="v: Vertical velocity"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
-                                  HorizontalAlignment="Center"
+                                  HorizontalAlignment="Left"
                                   FontSize="10"/>
-                <ComboBoxItem Content="Rho"
+                <ComboBoxItem Content="Rho: Density"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
-                                  HorizontalAlignment="Center"
+                                  HorizontalAlignment="Left"
                                   FontSize="10"/>
-                <ComboBoxItem Content="P" 
+                <ComboBoxItem Content="P: Pressure" 
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
-                                  HorizontalAlignment="Center"
+                                  HorizontalAlignment="Left"
                                   FontSize="10"/>
-                <ComboBoxItem Content="Mach"
+                <ComboBoxItem Content="M: Mach"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
-                                  HorizontalAlignment="Center"
+                                  HorizontalAlignment="Left"
                                   FontSize="10"/>
 
             </ComboBox>
