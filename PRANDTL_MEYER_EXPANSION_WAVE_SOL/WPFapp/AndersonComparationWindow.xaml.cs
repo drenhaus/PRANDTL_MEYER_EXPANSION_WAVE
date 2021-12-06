@@ -46,50 +46,50 @@ namespace WPFapp
         public int p { get; set; } // indicates the precision. if p=0 low. p=1 medium. p=2 high
 
         // ANDERSON TABLES
-        DataTable Anderson_u_12 = new DataTable();
-        DataTable Anderson_v_12 = new DataTable();
-        DataTable Anderson_rho_12 = new DataTable();
-        DataTable Anderson_p_12 = new DataTable();
-        DataTable Anderson_T_12 = new DataTable();
-        DataTable Anderson_M_12 = new DataTable();
-        DataTable Anderson_F1_12 = new DataTable();
-        DataTable Anderson_F2_12 = new DataTable();
-        DataTable Anderson_F3_12 = new DataTable();
-        DataTable Anderson_F4_12 = new DataTable();
+        DataTable Anderson_u_12;
+        DataTable Anderson_v_12;
+        DataTable Anderson_rho_12;
+        DataTable Anderson_p_12;
+        DataTable Anderson_T_12;
+        DataTable Anderson_M_12;
+        DataTable Anderson_F1_12;
+        DataTable Anderson_F2_12;
+        DataTable Anderson_F3_12;
+        DataTable Anderson_F4_12;
 
-        DataTable Anderson_u_66 = new DataTable();
-        DataTable Anderson_v_66 = new DataTable();
-        DataTable Anderson_rho_66 = new DataTable();
-        DataTable Anderson_p_66 = new DataTable();
-        DataTable Anderson_T_66 = new DataTable();
-        DataTable Anderson_M_66 = new DataTable();
-        DataTable Anderson_F1_66 = new DataTable();
-        DataTable Anderson_F2_66 = new DataTable();
-        DataTable Anderson_F3_66 = new DataTable();
-        DataTable Anderson_F4_66 = new DataTable();
+        DataTable Anderson_u_66;
+        DataTable Anderson_v_66 ;
+        DataTable Anderson_rho_66;
+        DataTable Anderson_p_66;
+        DataTable Anderson_T_66;
+        DataTable Anderson_M_66;
+        DataTable Anderson_F1_66;
+        DataTable Anderson_F2_66;
+        DataTable Anderson_F3_66;
+        DataTable Anderson_F4_66;
 
         //OUR TABLES
-        DataTable our_u_12 = new DataTable();
-        DataTable our_v_12 = new DataTable();
-        DataTable our_rho_12 = new DataTable();
-        DataTable our_p_12 = new DataTable();
-        DataTable our_T_12 = new DataTable();
-        DataTable our_M_12 = new DataTable();
-        DataTable our_F1_12 = new DataTable();
-        DataTable our_F2_12 = new DataTable();
-        DataTable our_F3_12 = new DataTable();
-        DataTable our_F4_12 = new DataTable();
+        DataTable our_u_12;
+        DataTable our_v_12;
+        DataTable our_rho_12;
+        DataTable our_p_12;
+        DataTable our_T_12;
+        DataTable our_M_12;
+        DataTable our_F1_12 ;
+        DataTable our_F2_12;
+        DataTable our_F3_12;
+        DataTable our_F4_12;
 
-        DataTable our_u_66 = new DataTable();
-        DataTable our_v_66 = new DataTable();
-        DataTable our_rho_66 = new DataTable();
-        DataTable our_p_66 = new DataTable();
-        DataTable our_T_66 = new DataTable();
-        DataTable our_M_66 = new DataTable();
-        DataTable our_F1_66 = new DataTable();
-        DataTable our_F2_66 = new DataTable();
-        DataTable our_F3_66 = new DataTable();
-        DataTable our_F4_66 = new DataTable();
+        DataTable our_u_66;
+        DataTable our_v_66 ;
+        DataTable our_rho_66;
+        DataTable our_p_66;
+        DataTable our_T_66;
+        DataTable our_M_66;
+        DataTable our_F1_66;
+        DataTable our_F2_66;
+        DataTable our_F3_66;
+        DataTable our_F4_66;
 
         // vectors with the data of Anderson
         double[] A_u_12 = {707,701,691,683,679,
@@ -705,7 +705,48 @@ namespace WPFapp
 
         private void Compare_btn_Click(object sender, RoutedEventArgs e)
         {
-           Fill_Anderson_Tables();
+             Anderson_u_12 = new DataTable();
+             Anderson_v_12 = new DataTable();
+             Anderson_rho_12 = new DataTable();
+             Anderson_p_12 = new DataTable();
+             Anderson_T_12 = new DataTable();
+             Anderson_M_12 = new DataTable();
+             Anderson_F1_12 = new DataTable();
+             Anderson_F2_12 = new DataTable();
+             Anderson_F3_12 = new DataTable();
+             Anderson_F4_12 = new DataTable();
+             Anderson_u_66 = new DataTable();
+             Anderson_v_66 = new DataTable();
+             Anderson_rho_66 = new DataTable();
+             Anderson_p_66 = new DataTable();
+             Anderson_T_66 = new DataTable();
+             Anderson_M_66 = new DataTable();
+             Anderson_F1_66 = new DataTable();
+             Anderson_F2_66 = new DataTable();
+             Anderson_F3_66 = new DataTable();
+             Anderson_F4_66 = new DataTable();
+             our_u_12 = new DataTable();
+             our_v_12 = new DataTable();
+             our_rho_12 = new DataTable();
+             our_p_12 = new DataTable();
+             our_T_12 = new DataTable();
+             our_M_12 = new DataTable();
+             our_F1_12 = new DataTable();
+             our_F2_12 = new DataTable();
+             our_F3_12 = new DataTable();
+             our_F4_12 = new DataTable();
+             our_u_66 = new DataTable();
+             our_v_66 = new DataTable();
+             our_rho_66 = new DataTable();
+             our_p_66 = new DataTable();
+             our_T_66 = new DataTable();
+             our_M_66 = new DataTable();
+             our_F1_66 = new DataTable();
+             our_F2_66 = new DataTable();
+             our_F3_66 = new DataTable();
+             our_F4_66 = new DataTable();
+
+            Fill_Anderson_Tables();
            Fill_Our_Tables();
            Compute_Errors();
 
