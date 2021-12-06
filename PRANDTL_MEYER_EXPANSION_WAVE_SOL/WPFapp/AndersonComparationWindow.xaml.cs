@@ -369,6 +369,34 @@ namespace WPFapp
                 O_F4_66 = Interpolate_our_results(x, "f4");
             }
 
+            if (p == 0)
+            {
+                x = 12.928;
+                O_T_12 = Interpolate_our_results_different_precision(x, "t");
+                O_V_12 = Interpolate_our_results_different_precision(x, "v");
+                O_U_12 = Interpolate_our_results_different_precision(x, "u");
+                O_RHO_12 = Interpolate_our_results_different_precision(x, "rho");
+                O_P_12 = Interpolate_our_results_different_precision(x, "p");
+                O_M_12 = Interpolate_our_results_different_precision(x, "m");
+                O_F1_12 = Interpolate_our_results_different_precision(x, "f1");
+                O_F2_12 = Interpolate_our_results_different_precision(x, "f2");
+                O_F3_12 = Interpolate_our_results_different_precision(x, "f3");
+                O_F4_12 = Interpolate_our_results_different_precision(x, "f4");
+
+                x = 66.278;
+                O_T_66 = Interpolate_our_results_different_precision(x, "t");
+                O_V_66 = Interpolate_our_results_different_precision(x, "v");
+                O_U_66 = Interpolate_our_results_different_precision(x, "u");
+                O_RHO_66 = Interpolate_our_results_different_precision(x, "rho");
+                O_P_66 = Interpolate_our_results_different_precision(x, "p");
+                O_M_66 = Interpolate_our_results_different_precision(x, "m");
+                O_F1_66 = Interpolate_our_results_different_precision(x, "f1");
+                O_F2_66 = Interpolate_our_results_different_precision(x, "f2");
+                O_F3_66 = Interpolate_our_results_different_precision(x, "f3");
+                O_F4_66 = Interpolate_our_results_different_precision(x, "f4");
+            }
+
+
             DataColumn TEMP_C = new DataColumn();
             DataColumn U_C = new DataColumn();
             DataColumn V_C = new DataColumn();
@@ -557,8 +585,66 @@ namespace WPFapp
                 valores = m.GetColumnData_array(data, j - 1);
             }
 
-            return valores;
+            // now we need to addaptate it to a 41 rows vector
+            double[] valores_low = new double[A_u_12.Length];
 
+            if (p==0)
+            {
+
+                valores_low[0] = valores[0];
+                valores_low[4] = valores[1];
+                valores_low[8] = valores[2];
+                valores_low[12] = valores[3];
+                valores_low[16] = valores[4];
+                valores_low[20] = valores[5];
+                valores_low[24] = valores[6];
+                valores_low[28] = valores[7];
+                valores_low[32] = valores[8];
+                valores_low[36] = valores[9];
+                valores_low[40] = valores[10];
+
+                // interpolamos los valores que faltan
+                valores_low[1] = valores_low[0]+(valores_low[0] - valores_low[4]) / (0 - 4) * (1 - 0);
+                valores_low[2] = valores_low[0]+ (valores_low[0] - valores_low[4]) / (0 - 4) * (2 - 0);
+                valores_low[3] = valores_low[0]+ (valores_low[0] - valores_low[4]) / (0 - 4) * (3 - 0);
+
+                valores_low[5] = valores_low[4]+ (valores_low[4] - valores_low[10]) / (4 - 8) * (5 - 4);
+                valores_low[6] = valores_low[4]+ (valores_low[4] - valores_low[10]) / (4 - 8) * (6 - 4);
+                valores_low[7] = valores_low[4]+ (valores_low[4] - valores_low[10]) / (4 - 8) * (7 - 4);
+
+                valores_low[9] = valores_low[8]+(valores_low[8] - valores_low[12]) / (8 - 12) * (9 - 8);
+                valores_low[10] = valores_low[8]+(valores_low[8] - valores_low[12]) / (8 - 12) * (10 - 8);
+                valores_low[11] = valores_low[8]+(valores_low[8] - valores_low[12]) / (8 - 12) * (11 - 8);
+
+                valores_low[13] = valores_low[12]+(valores_low[12] - valores_low[16]) / (12 - 16) * (13 - 12);
+                valores_low[14] = valores_low[12]+(valores_low[12] - valores_low[16]) / (12 - 16) * (14 - 12);
+                valores_low[15] = valores_low[12]+(valores_low[12] - valores_low[16]) / (12 - 16) * (15 - 12);
+
+                valores_low[17] = valores_low[16]+(valores_low[16] - valores_low[20]) / (20 - 16) * (17 - 16);
+                valores_low[18] = valores_low[16]+(valores_low[16] - valores_low[20]) / (20 - 16) * (18 - 16);
+                valores_low[19] = valores_low[16]+(valores_low[16] - valores_low[20]) / (20 - 16) * (19 - 16);
+
+                valores_low[21] = valores_low[16]+(valores_low[20] - valores_low[24]) / (20 - 24) * (21 - 20);
+                valores_low[22] = valores_low[16]+(valores_low[20] - valores_low[24]) / (20 - 24) * (22 - 20);
+                valores_low[23] = valores_low[16]+(valores_low[20] - valores_low[24]) / (20 - 24) * (23 - 20);
+
+                valores_low[25] = valores_low[24]+(valores_low[24] - valores_low[30]) / (24-30) * (25 - 24);
+                valores_low[26] = valores_low[24] + (valores_low[24] - valores_low[30]) / (24 - 30) * (26 - 24);
+                valores_low[27] = valores_low[24] + (valores_low[24] - valores_low[30]) / (24 - 30) * (27 - 24);
+
+                valores_low[29] = valores_low[28] + (valores_low[28] - valores_low[32]) / (28-32) * (29 - 28);
+                valores_low[30] = valores_low[28] + (valores_low[28] - valores_low[32]) / (28 - 32) * (30 - 28);
+                valores_low[31] = valores_low[28] + (valores_low[28] - valores_low[32]) / (28 - 32) * (31 - 28);
+
+                valores_low[33] = valores_low[32] + (valores_low[32] - valores_low[38]) / (32-38) * (33-32);
+                valores_low[34] = valores_low[32] + (valores_low[32] - valores_low[38]) / (32 - 38) * (34-32);
+                valores_low[35] = valores_low[32] + (valores_low[32] - valores_low[38]) / (32 - 38) * (35-32);
+
+                valores_low[37] = valores_low[36] + (valores_low[36] - valores_low[40]) / (36 - 40) * (37 - 36);
+                valores_low[38] = valores_low[36] + (valores_low[36] - valores_low[40]) / (36 - 40) * (38 - 36);
+                valores_low[39] = valores_low[36] + (valores_low[36] - valores_low[40]) / (36 - 40) * (39- 36);
+            }
+            return valores_low;
         }
 
 
