@@ -151,33 +151,32 @@
                               FontFamily="/Fonts/#Poppins"
                               Background="AliceBlue"
                               HorizontalAlignment="Left"
-                              FontSize="10"
-                              Width="120"/>
+                              FontSize="14"/>
                 <ComboBoxItem Content="u: Horizontal velocity"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
                                   HorizontalAlignment="Left"
-                                  FontSize="10"/>
+                                  FontSize="14"/>
                 <ComboBoxItem Content="v: Vertical velocity"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
                                   HorizontalAlignment="Left"
-                                  FontSize="10"/>
+                                  FontSize="14"/>
                 <ComboBoxItem Content="Rho: Density"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
                                   HorizontalAlignment="Left"
-                                  FontSize="10"/>
+                                  FontSize="14"/>
                 <ComboBoxItem Content="P: Pressure" 
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
                                   HorizontalAlignment="Left"
-                                  FontSize="10"/>
+                                  FontSize="14"/>
                 <ComboBoxItem Content="M: Mach"
                               FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
                                   HorizontalAlignment="Left"
-                                  FontSize="10"/>
+                                  FontSize="14"/>
 
             </ComboBox>
             <Calendar HorizontalAlignment="Left" Margin="327,460,0,0" Grid.Row="1" VerticalAlignment="Top" Height="0" Width="179"/>

@@ -285,7 +285,7 @@
                       Content="Defaul parameters" 
                       Grid.Column="1" 
                       HorizontalAlignment="Left" 
-                      Margin="572,26,0,0" 
+                      Margin="596,34,0,0" 
                       Checked="CheckBox_A_Checked"
                       VerticalAlignment="Top" Height="22" Width="148"
                       FontFamily="/Fonts/#Poppins"
