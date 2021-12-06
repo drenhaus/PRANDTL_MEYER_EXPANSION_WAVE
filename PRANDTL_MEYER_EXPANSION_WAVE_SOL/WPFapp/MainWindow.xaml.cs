@@ -321,5 +321,12 @@ namespace WPFapp
                 // mach_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].M);
             }
         }
+
+        private void WelcomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WelcomeWindow ww = new WelcomeWindow();
+            ww.Show();
+            Close();
+        }
     }
 }
