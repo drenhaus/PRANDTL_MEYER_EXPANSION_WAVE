@@ -554,6 +554,83 @@ namespace LibreriaClases
             return valores;
         }
 
+        public double[] GetFilaData_array(string data, int fila_int)
+        {
+            double[] valores = new double[columns - 1];
+            if (data == "t")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].T;
+                }
+            }
+            else if (data == "u")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].u;
+                }
+            }
+            else if (data == "v")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].v;
+                }
+            }
+            else if (data == "m")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].M;
+                }
+            }
+            else if (data == "p")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].P;
+                }
+            }
+            else if (data == "rho")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].Rho;
+                }
+            }
+            else if (data == "f1")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].F1;
+                }
+            }
+            else if (data == "f2")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].F2;
+                }
+            }
+            else if (data == "f3")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].F3;
+                }
+            }
+            else if (data == "f4")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].F4;
+                }
+            }
+
+            return valores;
+        }
+
         public DataTable [] GetTables()
         {
             DataTable [] T_U_V_RHO_P_M_F1_F2_F3_F4 = new DataTable[] {Temperature_table,u_table,v_table,Rho_table,P_table,Mach_table,F1_table,F2_table,F3_table,F4_table};

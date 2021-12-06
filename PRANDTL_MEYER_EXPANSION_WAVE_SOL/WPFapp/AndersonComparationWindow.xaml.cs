@@ -25,6 +25,7 @@ namespace WPFapp
         }
 
         public Malla m { get; set; }
+        public int p { get; set; } // indicates the precision. if p=0 low. p=1 medium. p=2 high
 
         // ANDERSON TABLES
         DataTable Anderson_u_12 = new DataTable();
@@ -319,51 +320,54 @@ namespace WPFapp
         public void Fill_Our_Tables()
         {
             double x;
-            double[] O_T_12;
-            double[] O_V_12;
-            double[] O_U_12;
-            double[] O_RHO_12;
-            double[] O_P_12;
-            double[] O_M_12;
-            double[] O_F1_12;
-            double[] O_F2_12;
-            double[] O_F3_12;
-            double[] O_F4_12;
+            double[] O_T_12= new double[A_F4_66.Length];
+            double[] O_V_12 = new double[A_F4_66.Length];
+            double[] O_U_12 = new double[A_F4_66.Length];
+            double[] O_RHO_12 = new double[A_F4_66.Length];
+            double[] O_P_12 = new double[A_F4_66.Length];
+            double[] O_M_12 = new double[A_F4_66.Length];
+            double[] O_F1_12 = new double[A_F4_66.Length];
+            double[] O_F2_12 = new double[A_F4_66.Length];
+            double[] O_F3_12 = new double[A_F4_66.Length];
+            double[] O_F4_12 = new double[A_F4_66.Length];
 
-            double[] O_T_66;
-            double[] O_V_66;
-            double[] O_U_66;
-            double[] O_RHO_66;
-            double[] O_P_66;
-            double[] O_M_66;
-            double[] O_F1_66;
-            double[] O_F2_66;
-            double[] O_F3_66;
-            double[] O_F4_66;
+            double[] O_T_66 = new double[A_F4_66.Length];
+            double[] O_V_66 = new double[A_F4_66.Length];
+            double[] O_U_66 = new double[A_F4_66.Length];
+            double[] O_RHO_66 = new double[A_F4_66.Length];
+            double[] O_P_66 = new double[A_F4_66.Length];
+            double[] O_M_66 = new double[A_F4_66.Length];
+            double[] O_F1_66 = new double[A_F4_66.Length];
+            double[] O_F2_66 = new double[A_F4_66.Length];
+            double[] O_F3_66 = new double[A_F4_66.Length];
+            double[] O_F4_66 = new double[A_F4_66.Length];
 
-            x = 12.928;
-            O_T_12 = Interpolate_our_results(x, "t");
-            O_V_12 = Interpolate_our_results(x, "v");
-            O_U_12 = Interpolate_our_results(x, "u");
-            O_RHO_12 = Interpolate_our_results(x, "rho");
-            O_P_12 = Interpolate_our_results(x, "p");
-            O_M_12 = Interpolate_our_results(x, "m");
-            O_F1_12 = Interpolate_our_results(x, "f1");
-            O_F2_12 = Interpolate_our_results(x, "f2");
-            O_F3_12 = Interpolate_our_results(x, "f3");
-            O_F4_12 = Interpolate_our_results(x, "f4");
+            if (p == 1)
+            {
+                x = 12.928;
+                O_T_12 = Interpolate_our_results(x, "t");
+                O_V_12 = Interpolate_our_results(x, "v");
+                O_U_12 = Interpolate_our_results(x, "u");
+                O_RHO_12 = Interpolate_our_results(x, "rho");
+                O_P_12 = Interpolate_our_results(x, "p");
+                O_M_12 = Interpolate_our_results(x, "m");
+                O_F1_12 = Interpolate_our_results(x, "f1");
+                O_F2_12 = Interpolate_our_results(x, "f2");
+                O_F3_12 = Interpolate_our_results(x, "f3");
+                O_F4_12 = Interpolate_our_results(x, "f4");
 
-            x = 66.278; //
-            O_T_66 = Interpolate_our_results(x, "t");
-            O_V_66 = Interpolate_our_results(x, "v");
-            O_U_66 = Interpolate_our_results(x, "u");
-            O_RHO_66 = Interpolate_our_results(x, "rho");
-            O_P_66 = Interpolate_our_results(x, "p");
-            O_M_66 = Interpolate_our_results(x, "m");
-            O_F1_66 = Interpolate_our_results(x, "f1");
-            O_F2_66 = Interpolate_our_results(x, "f2");
-            O_F3_66 = Interpolate_our_results(x, "f3");
-            O_F4_66 = Interpolate_our_results(x, "f4");
+                x = 66.278; 
+                O_T_66 = Interpolate_our_results(x, "t");
+                O_V_66 = Interpolate_our_results(x, "v");
+                O_U_66 = Interpolate_our_results(x, "u");
+                O_RHO_66 = Interpolate_our_results(x, "rho");
+                O_P_66 = Interpolate_our_results(x, "p");
+                O_M_66 = Interpolate_our_results(x, "m");
+                O_F1_66 = Interpolate_our_results(x, "f1");
+                O_F2_66 = Interpolate_our_results(x, "f2");
+                O_F3_66 = Interpolate_our_results(x, "f3");
+                O_F4_66 = Interpolate_our_results(x, "f4");
+            }
 
             DataColumn TEMP_C = new DataColumn();
             DataColumn U_C = new DataColumn();
