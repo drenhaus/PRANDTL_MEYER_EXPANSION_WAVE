@@ -65,7 +65,7 @@
                     />
 
             <Button x:Name="ComparationButton" 
-                    Content="Comparar con el tete Anderson" 
+                    Content="Comparar con el Anderson" 
                     Margin="-9,96,0,0" 
                     Grid.Row="1" 
                     VerticalAlignment="Top" 
