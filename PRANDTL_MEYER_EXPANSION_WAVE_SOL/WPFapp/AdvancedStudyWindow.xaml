@@ -182,10 +182,12 @@
             </ComboBox>
             <Calendar HorizontalAlignment="Left" Margin="327,460,0,0" Grid.Row="1" VerticalAlignment="Top" Height="0" Width="179"/>
 
-
-
             <Canvas IsEnabled="False"
                     Background="#6a59ff" Margin="56,288,932,5"/>
+
+
+
+
             <Canvas IsEnabled="False"
                 Background="#6a59ff" Margin="141,288,847,5"/>
             <Canvas IsEnabled="False"
@@ -308,7 +310,7 @@
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
-           
+            
 
 
 
