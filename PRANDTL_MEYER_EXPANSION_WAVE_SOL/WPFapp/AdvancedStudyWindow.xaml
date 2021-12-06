@@ -202,6 +202,21 @@
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
+            <Button Background="Black"
+                HorizontalAlignment="Center" 
+                Height="8" Margin="0,310,0,0" 
+                VerticalAlignment="Top" 
+                Width="309"
+                BorderThickness="0" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="5.4"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
 
 
 
