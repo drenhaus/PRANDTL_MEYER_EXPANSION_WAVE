@@ -143,7 +143,7 @@ namespace WPFapp
         {
             AndersonComparationWindow anderson_w = new AndersonComparationWindow();
             anderson_w.m = this.m;
-            anderson_w.filas = this.filas;
+            anderson_w.p = PresitionComboBox.SelectedIndex;
             // define the columns we want to check
             //tables_w.SetTables(temperature_table, u_table, v_table, rho_table, p_table, M_table, F1_table, F2_table, F3_table, F4_table);
             anderson_w.Show();
@@ -223,21 +223,21 @@ namespace WPFapp
         {
             if (PresitionComboBox.SelectedIndex == 0) //small
             {
-                columnas = 23;
+                columnas = 24;
                 filas = 11;
                 delta_y_t = 0.1;
 
             }
             if (PresitionComboBox.SelectedIndex == 1) // normal
             {
-                columnas = 89;
+                columnas = 92;
                 filas = 41;
                 delta_y_t = 0.025;
 
             }
             if (PresitionComboBox.SelectedIndex == 2) //high
             {
-                columnas = 440;
+                columnas = 452;
                 filas = 201;
                 delta_y_t = 0.005;
 

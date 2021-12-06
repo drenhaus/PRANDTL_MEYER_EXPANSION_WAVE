@@ -22,57 +22,84 @@ namespace WPFapp
         public AndersonComparationWindow()
         {
             InitializeComponent();
+            anderson_error.Visibility = Visibility.Hidden;
+            anderson_label.Visibility = Visibility.Hidden;
+            computed_label.Visibility = Visibility.Hidden;
+            our_error.Visibility = Visibility.Hidden;
         }
 
-        public int filas { get; set; }
+        double Anderson_M_error;
+        double Anderson_p_error;
+        double Anderson_rho_error;
+        double Anderson_t_error;
+        double Anderson_u_error;
+        double Anderson_v_error;
+
+        double our_M_error;
+        double our_p_error;
+        double our_rho_error;
+        double our_t_error;
+        double our_u_error;
+        double our_v_error;
+
         public Malla m { get; set; }
+        public int p { get; set; } // indicates the precision. if p=0 low. p=1 medium. p=2 high
 
-        DataTable Anderson_u_12 = new DataTable();
-        DataTable Anderson_v_12 = new DataTable();
-        DataTable Anderson_rho_12 = new DataTable();
-        DataTable Anderson_p_12 = new DataTable();
-        DataTable Anderson_T_12 = new DataTable();
-        DataTable Anderson_M_12 = new DataTable();
-        DataTable Anderson_F1_12 = new DataTable();
-        DataTable Anderson_F2_12 = new DataTable();
-        DataTable Anderson_F3_12 = new DataTable();
-        DataTable Anderson_F4_12 = new DataTable();
+        // ANDERSON TABLES
+        DataTable Anderson_u_12;
+        DataTable Anderson_v_12;
+        DataTable Anderson_rho_12;
+        DataTable Anderson_p_12;
+        DataTable Anderson_T_12;
+        DataTable Anderson_M_12;
+        DataTable Anderson_F1_12;
+        DataTable Anderson_F2_12;
+        DataTable Anderson_F3_12;
+        DataTable Anderson_F4_12;
 
-        DataTable Anderson_u_66 = new DataTable();
-        DataTable Anderson_v_66 = new DataTable();
-        DataTable Anderson_rho_66 = new DataTable();
-        DataTable Anderson_p_66 = new DataTable();
-        DataTable Anderson_T_66 = new DataTable();
-        DataTable Anderson_M_66 = new DataTable();
-        DataTable Anderson_F1_66 = new DataTable();
-        DataTable Anderson_F2_66 = new DataTable();
-        DataTable Anderson_F3_66 = new DataTable();
-        DataTable Anderson_F4_66 = new DataTable();
+        DataTable Anderson_u_66;
+        DataTable Anderson_v_66 ;
+        DataTable Anderson_rho_66;
+        DataTable Anderson_p_66;
+        DataTable Anderson_T_66;
+        DataTable Anderson_M_66;
+        DataTable Anderson_F1_66;
+        DataTable Anderson_F2_66;
+        DataTable Anderson_F3_66;
+        DataTable Anderson_F4_66;
 
-        DataTable our_u_12 = new DataTable();
-        DataTable our_v_12 = new DataTable();
-        DataTable our_rho_12 = new DataTable();
-        DataTable our_p_12 = new DataTable();
-        DataTable our_T_12 = new DataTable();
-        DataTable our_M_12 = new DataTable();
-        DataTable our_F1_12 = new DataTable();
-        DataTable our_F2_12 = new DataTable();
-        DataTable our_F3_12 = new DataTable();
-        DataTable our_F4_12 = new DataTable();
+        //OUR TABLES
+        DataTable our_u_12;
+        DataTable our_v_12;
+        DataTable our_rho_12;
+        DataTable our_p_12;
+        DataTable our_T_12;
+        DataTable our_M_12;
+        DataTable our_F1_12 ;
+        DataTable our_F2_12;
+        DataTable our_F3_12;
+        DataTable our_F4_12;
 
-        DataTable our_u_66 = new DataTable();
-        DataTable our_v_66 = new DataTable();
-        DataTable our_rho_66 = new DataTable();
-        DataTable our_p_66 = new DataTable();
-        DataTable our_T_66 = new DataTable();
-        DataTable our_M_66 = new DataTable();
-        DataTable our_F1_66 = new DataTable();
-        DataTable our_F2_66 = new DataTable();
-        DataTable our_F3_66 = new DataTable();
-        DataTable our_F4_66 = new DataTable();
+        DataTable our_u_66;
+        DataTable our_v_66 ;
+        DataTable our_rho_66;
+        DataTable our_p_66;
+        DataTable our_T_66;
+        DataTable our_M_66;
+        DataTable our_F1_66;
+        DataTable our_F2_66;
+        DataTable our_F3_66;
+        DataTable our_F4_66;
 
-
-        double[] A_u_12 = {707,701,691,683,679,678,678,678,678,678,678,678,678,678,678,678,678,678,678,678, 678,678,678,678,678,678,678,678,678,678,678};
+        // vectors with the data of Anderson
+        double[] A_u_12 = {707,701,691,683,679,
+                           678,678,678,678,678,
+                           678,678,678,678,678,
+                           678,678,678,678,678, 
+                           678,678,678,678,678,
+                           678,678,678,678,678,
+                           678,678,678,678,678,
+                           678,678,678,678,678,678};
         double[] A_v_12 = {-66.2,-49.4,-26.6,-8.69,-1.31,-1.48,0.326 * Math.Pow(10, -5),-0.167 * Math.Pow(10, -3),0.472 * Math.Pow(10, -4), -0.702 * Math.Pow(10, -4),-0.195* Math.Pow(10, -4),0.18* Math.Pow(10, -4),-0.598* Math.Pow(10, -4),-0.642* Math.Pow(10, -4),-0.325* Math.Pow(10, -13),0,0,0,0,0,0,0,0,0,
                             0.217* Math.Pow(10, -10),0.118* Math.Pow(10, -3),0.12* Math.Pow(10, -3),0.354* Math.Pow(10, -5),0.125* Math.Pow(10, -3),-0.193* Math.Pow(10, -4),-0.617* Math.Pow(10, -4),0.242* Math.Pow(10, -3),0.16* Math.Pow(10, -3),0.161* Math.Pow(10, -3),0.401* Math.Pow(10, -4),-0.848* Math.Pow(10, -4),-0.128* Math.Pow(10, -3),
                             -0.342* Math.Pow(10, -4),-0.107* Math.Pow(10, -3),-0.636* Math.Pow(10, -4),0};
@@ -189,6 +216,8 @@ namespace WPFapp
                             0.428 * Math.Pow(10, 9),0.429 * Math.Pow(10, 9),0.430 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9)};
 
 
+
+
         public void Fill_Anderson_Tables()
         {
             DataColumn TEMP_C = new DataColumn();
@@ -235,7 +264,7 @@ namespace WPFapp
             Anderson_F3_66.Columns.Add(F3_C2);
             Anderson_F4_66.Columns.Add(F4_C2);
 
-            for (int i = 0; i < filas; i++)
+            for (int i = 0; i < A_F4_66.Length; i++)
             {
                 DataRow TEMP_R = Anderson_T_12.NewRow();
                 DataRow U_R = Anderson_u_12.NewRow();
@@ -309,41 +338,43 @@ namespace WPFapp
         public void Fill_Our_Tables()
         {
             double x;
-            double[] O_T_12;
-            double[] O_V_12;
-            double[] O_U_12;
-            double[] O_RHO_12;
-            double[] O_P_12;
-            double[] O_M_12; 
-            double[] O_F1_12;
-            double[] O_F2_12; 
-            double[] O_F3_12; 
-            double[] O_F4_12;
+            double[] O_T_12= new double[A_F4_66.Length];
+            double[] O_V_12 = new double[A_F4_66.Length];
+            double[] O_U_12 = new double[A_F4_66.Length];
+            double[] O_RHO_12 = new double[A_F4_66.Length];
+            double[] O_P_12 = new double[A_F4_66.Length];
+            double[] O_M_12 = new double[A_F4_66.Length];
+            double[] O_F1_12 = new double[A_F4_66.Length];
+            double[] O_F2_12 = new double[A_F4_66.Length];
+            double[] O_F3_12 = new double[A_F4_66.Length];
+            double[] O_F4_12 = new double[A_F4_66.Length];
 
-            double[] O_T_66;
-            double[] O_V_66;
-            double[] O_U_66;
-            double[] O_RHO_66;
-            double[] O_P_66;
-            double[] O_M_66;
-            double[] O_F1_66;
-            double[] O_F2_66;
-            double[] O_F3_66;
-            double[] O_F4_66;
+            double[] O_T_66 = new double[A_F4_66.Length];
+            double[] O_V_66 = new double[A_F4_66.Length];
+            double[] O_U_66 = new double[A_F4_66.Length];
+            double[] O_RHO_66 = new double[A_F4_66.Length];
+            double[] O_P_66 = new double[A_F4_66.Length];
+            double[] O_M_66 = new double[A_F4_66.Length];
+            double[] O_F1_66 = new double[A_F4_66.Length];
+            double[] O_F2_66 = new double[A_F4_66.Length];
+            double[] O_F3_66 = new double[A_F4_66.Length];
+            double[] O_F4_66 = new double[A_F4_66.Length];
 
-            x = 12.928;
-              O_T_12 = Interpolate_our_results(x, "t");
-              O_V_12 = Interpolate_our_results(x, "v");
-              O_U_12 = Interpolate_our_results(x, "u");
-              O_RHO_12 = Interpolate_our_results(x, "rho");
-              O_P_12 = Interpolate_our_results(x, "p");
-              O_M_12 = Interpolate_our_results(x, "m");
-              O_F1_12 = Interpolate_our_results(x, "f1");
-              O_F2_12= Interpolate_our_results(x, "f2");
-              O_F3_12= Interpolate_our_results(x, "f3");
-              O_F4_12= Interpolate_our_results(x, "f4");
-            
-            x = 66.278;
+            if (p == 1)
+            {
+                x = 12.928;
+                O_T_12 = Interpolate_our_results(x, "t");
+                O_V_12 = Interpolate_our_results(x, "v");
+                O_U_12 = Interpolate_our_results(x, "u");
+                O_RHO_12 = Interpolate_our_results(x, "rho");
+                O_P_12 = Interpolate_our_results(x, "p");
+                O_M_12 = Interpolate_our_results(x, "m");
+                O_F1_12 = Interpolate_our_results(x, "f1");
+                O_F2_12 = Interpolate_our_results(x, "f2");
+                O_F3_12 = Interpolate_our_results(x, "f3");
+                O_F4_12 = Interpolate_our_results(x, "f4");
+
+                x = 66.278; 
                 O_T_66 = Interpolate_our_results(x, "t");
                 O_V_66 = Interpolate_our_results(x, "v");
                 O_U_66 = Interpolate_our_results(x, "u");
@@ -354,7 +385,35 @@ namespace WPFapp
                 O_F2_66 = Interpolate_our_results(x, "f2");
                 O_F3_66 = Interpolate_our_results(x, "f3");
                 O_F4_66 = Interpolate_our_results(x, "f4");
-            
+            }
+
+            if (p == 0 || p==2)
+            {
+                x = 12.928;
+                O_T_12 = Interpolate_our_results_different_precision(x, "t");
+                O_V_12 = Interpolate_our_results_different_precision(x, "v");
+                O_U_12 = Interpolate_our_results_different_precision(x, "u");
+                O_RHO_12 = Interpolate_our_results_different_precision(x, "rho");
+                O_P_12 = Interpolate_our_results_different_precision(x, "p");
+                O_M_12 = Interpolate_our_results_different_precision(x, "m");
+                O_F1_12 = Interpolate_our_results_different_precision(x, "f1");
+                O_F2_12 = Interpolate_our_results_different_precision(x, "f2");
+                O_F3_12 = Interpolate_our_results_different_precision(x, "f3");
+                O_F4_12 = Interpolate_our_results_different_precision(x, "f4");
+
+                x = 66.278;
+                O_T_66 = Interpolate_our_results_different_precision(x, "t");
+                O_V_66 = Interpolate_our_results_different_precision(x, "v");
+                O_U_66 = Interpolate_our_results_different_precision(x, "u");
+                O_RHO_66 = Interpolate_our_results_different_precision(x, "rho");
+                O_P_66 = Interpolate_our_results_different_precision(x, "p");
+                O_M_66 = Interpolate_our_results_different_precision(x, "m");
+                O_F1_66 = Interpolate_our_results_different_precision(x, "f1");
+                O_F2_66 = Interpolate_our_results_different_precision(x, "f2");
+                O_F3_66 = Interpolate_our_results_different_precision(x, "f3");
+                O_F4_66 = Interpolate_our_results_different_precision(x, "f4");
+            }
+
 
             DataColumn TEMP_C = new DataColumn();
             DataColumn U_C = new DataColumn();
@@ -400,7 +459,7 @@ namespace WPFapp
             our_F3_66.Columns.Add(F3_C2);
             our_F4_66.Columns.Add(F4_C2);
 
-            for (int i = 0; i < filas; i++)
+            for (int i = 0; i < A_F4_66.Length; i++)
             {
                 DataRow TEMP_R = our_T_12.NewRow();
                 DataRow U_R = our_u_12.NewRow();
@@ -467,21 +526,19 @@ namespace WPFapp
                 our_F2_66.Rows.Add(F2_R2);
                 our_F3_66.Rows.Add(F3_R2);
                 our_F4_66.Rows.Add(F4_R2);
-
             }
         }
-
 
         public double[] Interpolate_our_results(double x_choosen, string data)
         {
             double[] valores1;
             double[] valores2;
-            double[] valores=new double[m.rows];
+            double[] valores = new double[m.rows];
 
             int j = 0;
             bool valor_exacto = false;
 
-            for (j=0; m.matriz[0, j].x <= x_choosen; j++)
+            for (j = 0; m.matriz[0, j].x <= x_choosen; j++)
             {
 
                 if (m.matriz[0, j].x == x_choosen)
@@ -491,122 +548,415 @@ namespace WPFapp
             }
 
             if (valor_exacto == false)
-            { 
+            {
                 // we interpolate between values at j and values at j-1
                 valores1 = m.GetColumnData_array(data, j);
                 valores2 = m.GetColumnData_array(data, j - 1); //last value checked with x smaller that the choosen x 
 
-                for (int i=0; i<valores1.Length;i++)
+                for (int i = 0; i < valores1.Length; i++)
                 {
                     //Interpolacion lineal
                     valores[i] = valores2[i] + (valores1[i] - valores2[i]) / (m.matriz[0, j].x - m.matriz[0, j - 1].x) * (x_choosen - m.matriz[0, j - 1].x);
                 }
             }
-            else if (valor_exacto==true)
+            else if (valor_exacto == true)
             {
-                valores = m.GetColumnData_array(data, j-1);
+                valores = m.GetColumnData_array(data, j - 1);
             }
 
             return valores;
 
         }
 
+        public double[] Interpolate_our_results_different_precision(double x_choosen, string data)
+        {
+            double[] valores1;
+            double[] valores2;
+            double[] valores = new double[m.rows];
+
+            int j = 0;
+            bool valor_exacto = false;
+
+            for (j = 0; m.matriz[0, j].x <= x_choosen; j++)
+            {
+
+                if (m.matriz[0, j].x == x_choosen)
+                {
+                    valor_exacto = true;
+                }
+            }
+
+            if (valor_exacto == false)
+            {
+                // we interpolate between values at j and values at j-1
+                valores1 = m.GetColumnData_array(data, j);
+                valores2 = m.GetColumnData_array(data, j - 1); //last value checked with x smaller that the choosen x 
+
+                for (int i = 0; i < valores1.Length; i++)
+                {
+                    //Interpolacion lineal
+                    valores[i] = valores2[i] + (valores1[i] - valores2[i]) / (m.matriz[0, j].x - m.matriz[0, j - 1].x) * (x_choosen - m.matriz[0, j - 1].x);
+                }
+            }
+            else if (valor_exacto == true)
+            {
+                valores = m.GetColumnData_array(data, j - 1);
+            }
+
+            // now we need to addaptate it to a 41 rows vector
+            double[] valores_low = new double[A_u_12.Length];
+
+            if (p==0)
+            {
+
+                valores_low[0] = valores[0];
+                valores_low[4] = valores[1];
+                valores_low[8] = valores[2];
+                valores_low[12] = valores[3];
+                valores_low[16] = valores[4];
+                valores_low[20] = valores[5];
+                valores_low[24] = valores[6];
+                valores_low[28] = valores[7];
+                valores_low[32] = valores[8];
+                valores_low[36] = valores[9];
+                valores_low[40] = valores[10];
+
+                // interpolamos los valores que faltan
+                valores_low[1] = valores_low[0]+(valores_low[0] - valores_low[4]) / (0 - 4) * (1 - 0);
+                valores_low[2] = valores_low[0]+ (valores_low[0] - valores_low[4]) / (0 - 4) * (2 - 0);
+                valores_low[3] = valores_low[0]+ (valores_low[0] - valores_low[4]) / (0 - 4) * (3 - 0);
+
+                valores_low[5] = valores_low[4]+ (valores_low[4] - valores_low[10]) / (4 - 8) * (5 - 4);
+                valores_low[6] = valores_low[4]+ (valores_low[4] - valores_low[10]) / (4 - 8) * (6 - 4);
+                valores_low[7] = valores_low[4]+ (valores_low[4] - valores_low[10]) / (4 - 8) * (7 - 4);
+
+                valores_low[9] = valores_low[8]+(valores_low[8] - valores_low[12]) / (8 - 12) * (9 - 8);
+                valores_low[10] = valores_low[8]+(valores_low[8] - valores_low[12]) / (8 - 12) * (10 - 8);
+                valores_low[11] = valores_low[8]+(valores_low[8] - valores_low[12]) / (8 - 12) * (11 - 8);
+
+                valores_low[13] = valores_low[12]+(valores_low[12] - valores_low[16]) / (12 - 16) * (13 - 12);
+                valores_low[14] = valores_low[12]+(valores_low[12] - valores_low[16]) / (12 - 16) * (14 - 12);
+                valores_low[15] = valores_low[12]+(valores_low[12] - valores_low[16]) / (12 - 16) * (15 - 12);
+
+                valores_low[17] = valores_low[16]+(valores_low[16] - valores_low[20]) / (20 - 16) * (17 - 16);
+                valores_low[18] = valores_low[16]+(valores_low[16] - valores_low[20]) / (20 - 16) * (18 - 16);
+                valores_low[19] = valores_low[16]+(valores_low[16] - valores_low[20]) / (20 - 16) * (19 - 16);
+
+                valores_low[21] = valores_low[16]+(valores_low[20] - valores_low[24]) / (20 - 24) * (21 - 20);
+                valores_low[22] = valores_low[16]+(valores_low[20] - valores_low[24]) / (20 - 24) * (22 - 20);
+                valores_low[23] = valores_low[16]+(valores_low[20] - valores_low[24]) / (20 - 24) * (23 - 20);
+
+                valores_low[25] = valores_low[24]+(valores_low[24] - valores_low[30]) / (24-30) * (25 - 24);
+                valores_low[26] = valores_low[24] + (valores_low[24] - valores_low[30]) / (24 - 30) * (26 - 24);
+                valores_low[27] = valores_low[24] + (valores_low[24] - valores_low[30]) / (24 - 30) * (27 - 24);
+
+                valores_low[29] = valores_low[28] + (valores_low[28] - valores_low[32]) / (28-32) * (29 - 28);
+                valores_low[30] = valores_low[28] + (valores_low[28] - valores_low[32]) / (28 - 32) * (30 - 28);
+                valores_low[31] = valores_low[28] + (valores_low[28] - valores_low[32]) / (28 - 32) * (31 - 28);
+
+                valores_low[33] = valores_low[32] + (valores_low[32] - valores_low[38]) / (32-38) * (33-32);
+                valores_low[34] = valores_low[32] + (valores_low[32] - valores_low[38]) / (32 - 38) * (34-32);
+                valores_low[35] = valores_low[32] + (valores_low[32] - valores_low[38]) / (32 - 38) * (35-32);
+
+                valores_low[37] = valores_low[36] + (valores_low[36] - valores_low[40]) / (36 - 40) * (37 - 36);
+                valores_low[38] = valores_low[36] + (valores_low[36] - valores_low[40]) / (36 - 40) * (38 - 36);
+                valores_low[39] = valores_low[36] + (valores_low[36] - valores_low[40]) / (36 - 40) * (39- 36);
+            }
+            if (p == 2)
+            {
+                for (int y=0; y< A_u_12.Length; y++)
+                {
+                    valores_low[y] = valores[y*5];
+                }
+            }
+            return valores_low;
+        }
+
+        public void Compute_Errors()
+        {
+            Anderson_M_error = Math.Round(100 * Math.Abs(2.2 - MeanValue(Anderson_M_66)) / 2.2,4);    
+            Anderson_p_error = Math.Round(100 * Math.Abs(0.739*Math.Pow(10,5) - MeanValue(Anderson_p_66)) / (0.739 * Math.Pow(10, 5)),4);
+            Anderson_rho_error = Math.Round(100 * Math.Abs(0.984 - MeanValue(Anderson_rho_66)) / 0.984,4);
+            Anderson_t_error = Math.Round(100 * Math.Abs(262 - MeanValue(Anderson_T_66)) / 262,4);
+            Anderson_u_error = Math.Round(100 * Math.Abs(710 - MeanValue(Anderson_u_66)) / 710,4);
+            Anderson_v_error =Math.Abs( Math.Round(100 * Math.Abs(-66.5 - MeanValue(Anderson_v_66)) / -66.5,4));
+            
+            our_M_error= Math.Round(100 * Math.Abs(2.2 - MeanValue(our_M_66)) / 2.2,4);
+            our_p_error= Math.Round(100 * Math.Abs(0.739 * Math.Pow(10, 5) - MeanValue(our_p_66)) / (0.739 * Math.Pow(10, 5)),4);
+            our_rho_error= Math.Round(100 * Math.Abs(0.984 - MeanValue(our_rho_66)) / 0.984,4);
+            our_t_error= Math.Round(100 * Math.Abs(262 - MeanValue(our_T_66)) / 262,4);
+            our_u_error= Math.Round(100 * Math.Abs(710 - MeanValue(our_u_66)) / 710,4);
+            our_v_error= Math.Abs(Math.Round(100 * Math.Abs(-66.5 - MeanValue(our_v_66)) / -66.5,4));
+
+        }
+
+        public double MeanValue(DataTable dt)
+        {
+            double accomulated = 0;
+
+            for (int i = 1; i <= 22; i++)
+            {
+                accomulated = accomulated + Convert.ToDouble(dt.Rows[i][0].ToString());
+            }
+            double mean = accomulated / 22;
+
+            return mean;
+        }
+
         private void Compare_btn_Click(object sender, RoutedEventArgs e)
         {
+             Anderson_u_12 = new DataTable();
+             Anderson_v_12 = new DataTable();
+             Anderson_rho_12 = new DataTable();
+             Anderson_p_12 = new DataTable();
+             Anderson_T_12 = new DataTable();
+             Anderson_M_12 = new DataTable();
+             Anderson_F1_12 = new DataTable();
+             Anderson_F2_12 = new DataTable();
+             Anderson_F3_12 = new DataTable();
+             Anderson_F4_12 = new DataTable();
+             Anderson_u_66 = new DataTable();
+             Anderson_v_66 = new DataTable();
+             Anderson_rho_66 = new DataTable();
+             Anderson_p_66 = new DataTable();
+             Anderson_T_66 = new DataTable();
+             Anderson_M_66 = new DataTable();
+             Anderson_F1_66 = new DataTable();
+             Anderson_F2_66 = new DataTable();
+             Anderson_F3_66 = new DataTable();
+             Anderson_F4_66 = new DataTable();
+             our_u_12 = new DataTable();
+             our_v_12 = new DataTable();
+             our_rho_12 = new DataTable();
+             our_p_12 = new DataTable();
+             our_T_12 = new DataTable();
+             our_M_12 = new DataTable();
+             our_F1_12 = new DataTable();
+             our_F2_12 = new DataTable();
+             our_F3_12 = new DataTable();
+             our_F4_12 = new DataTable();
+             our_u_66 = new DataTable();
+             our_v_66 = new DataTable();
+             our_rho_66 = new DataTable();
+             our_p_66 = new DataTable();
+             our_T_66 = new DataTable();
+             our_M_66 = new DataTable();
+             our_F1_66 = new DataTable();
+             our_F2_66 = new DataTable();
+             our_F3_66 = new DataTable();
+             our_F4_66 = new DataTable();
+
             Fill_Anderson_Tables();
-            Fill_Our_Tables();
+           Fill_Our_Tables();
+           Compute_Errors();
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex==0) //T AND 12
-            {AndersonGridData.DataContext = Anderson_T_12.DefaultView;
-                SimulationGrid.DataContext = our_T_12.DefaultView;
+            { AndersonGridData.DataContext = Anderson_T_12.DefaultView;
+              SimulationGrid.DataContext = our_T_12.DefaultView;
+
+                anderson_error.Visibility= Visibility.Hidden;
+                anderson_label.Visibility= Visibility.Hidden;
+                computed_label.Visibility= Visibility.Hidden;
+                our_error.Visibility= Visibility.Hidden;
+
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex == 1) //T AND 66
             {AndersonGridData.DataContext = Anderson_T_66.DefaultView;
-                SimulationGrid.DataContext = our_T_66.DefaultView;
+             SimulationGrid.DataContext = our_T_66.DefaultView;
+
+                anderson_error.Visibility = Visibility.Visible;
+                anderson_label.Visibility = Visibility.Visible;
+                computed_label.Visibility = Visibility.Visible;
+                our_error.Visibility = Visibility.Visible;
+
+                anderson_error.Text = Convert.ToString(Anderson_t_error);
+                our_error.Text = Convert.ToString(our_t_error);
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 1 && Setect_X_ComboBox.SelectedIndex == 0) //u AND 12
             { AndersonGridData.DataContext = Anderson_u_12.DefaultView;
-                SimulationGrid.DataContext = our_u_12.DefaultView;
+              SimulationGrid.DataContext = our_u_12.DefaultView;
+
+                anderson_error.Visibility = Visibility.Hidden;
+                anderson_label.Visibility = Visibility.Hidden;
+                computed_label.Visibility = Visibility.Hidden;
+                our_error.Visibility = Visibility.Hidden;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 1 && Setect_X_ComboBox.SelectedIndex == 1) //u AND 66
             { AndersonGridData.DataContext = Anderson_u_66.DefaultView;
-                SimulationGrid.DataContext = our_u_66.DefaultView;
+              SimulationGrid.DataContext = our_u_66.DefaultView;
+
+                anderson_error.Visibility = Visibility.Visible;
+                anderson_label.Visibility = Visibility.Visible;
+                computed_label.Visibility = Visibility.Visible;
+                our_error.Visibility = Visibility.Visible;
+
+                anderson_error.Text = Convert.ToString(Anderson_u_error);
+                our_error.Text = Convert.ToString(our_u_error);
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 2 && Setect_X_ComboBox.SelectedIndex == 0) //v AND 12
             { AndersonGridData.DataContext = Anderson_v_12.DefaultView;
-                SimulationGrid.DataContext = our_v_12.DefaultView;
+              SimulationGrid.DataContext = our_v_12.DefaultView;
+
+                anderson_error.Visibility = Visibility.Hidden;
+                anderson_label.Visibility = Visibility.Hidden;
+                computed_label.Visibility = Visibility.Hidden;
+                our_error.Visibility = Visibility.Hidden;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 2 && Setect_X_ComboBox.SelectedIndex == 1) //v AND 66
             { AndersonGridData.DataContext = Anderson_v_66.DefaultView;
-                SimulationGrid.DataContext = our_v_12.DefaultView;
+              SimulationGrid.DataContext = our_v_12.DefaultView;
+
+                anderson_error.Visibility = Visibility.Visible;
+                anderson_label.Visibility = Visibility.Visible;
+                computed_label.Visibility = Visibility.Visible;
+                our_error.Visibility = Visibility.Visible;
+
+                anderson_error.Text = Convert.ToString(Anderson_v_error);
+                our_error.Text = Convert.ToString(our_v_error);
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 3 && Setect_X_ComboBox.SelectedIndex == 0) //rho AND 12
             { AndersonGridData.DataContext = Anderson_rho_12.DefaultView;
-                SimulationGrid.DataContext = our_rho_12.DefaultView;
+              SimulationGrid.DataContext = our_rho_12.DefaultView;
+
+                anderson_error.Visibility = Visibility.Hidden;
+                anderson_label.Visibility = Visibility.Hidden;
+                computed_label.Visibility = Visibility.Hidden;
+                our_error.Visibility = Visibility.Hidden;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 3 && Setect_X_ComboBox.SelectedIndex == 1) //rho AND 66
             { AndersonGridData.DataContext = Anderson_rho_66.DefaultView;
-                SimulationGrid.DataContext = our_rho_12.DefaultView;
+              SimulationGrid.DataContext = our_rho_12.DefaultView;
+
+                anderson_error.Visibility = Visibility.Visible;
+                anderson_label.Visibility = Visibility.Visible;
+                computed_label.Visibility = Visibility.Visible;
+                our_error.Visibility = Visibility.Visible;
+
+                anderson_error.Text = Convert.ToString(Anderson_rho_error);
+                our_error.Text = Convert.ToString(our_rho_error);
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 4 && Setect_X_ComboBox.SelectedIndex == 0) //p AND 12
             { AndersonGridData.DataContext = Anderson_p_12.DefaultView;
-               SimulationGrid.DataContext = our_p_12.DefaultView;
+              SimulationGrid.DataContext = our_p_12.DefaultView;
+
+                anderson_error.Visibility = Visibility.Hidden;
+                anderson_label.Visibility = Visibility.Hidden;
+                computed_label.Visibility = Visibility.Hidden;
+                our_error.Visibility = Visibility.Hidden;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 4 && Setect_X_ComboBox.SelectedIndex == 1) //p AND 66
             { AndersonGridData.DataContext = Anderson_p_66.DefaultView;
-               SimulationGrid.DataContext = our_p_66.DefaultView;
+              SimulationGrid.DataContext = our_p_66.DefaultView;
+
+                anderson_error.Visibility = Visibility.Visible;
+                anderson_label.Visibility = Visibility.Visible;
+                computed_label.Visibility = Visibility.Visible;
+                our_error.Visibility = Visibility.Visible;
+
+                anderson_error.Text = Convert.ToString(Anderson_p_error);
+                our_error.Text = Convert.ToString(our_p_error);
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 5 && Setect_X_ComboBox.SelectedIndex == 0) //M AND 12
             { AndersonGridData.DataContext = Anderson_M_12.DefaultView;
               SimulationGrid.DataContext = our_M_12.DefaultView;
+
+                anderson_error.Visibility = Visibility.Hidden;
+                anderson_label.Visibility = Visibility.Hidden;
+                computed_label.Visibility = Visibility.Hidden;
+                our_error.Visibility = Visibility.Hidden;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 5 && Setect_X_ComboBox.SelectedIndex == 1) //M AND 66
             { AndersonGridData.DataContext = Anderson_M_66.DefaultView;
               SimulationGrid.DataContext = our_M_66.DefaultView;
+
+                anderson_error.Visibility = Visibility.Visible;
+                anderson_label.Visibility = Visibility.Visible;
+                computed_label.Visibility = Visibility.Visible;
+                our_error.Visibility = Visibility.Visible;
+
+                anderson_error.Text = Convert.ToString(Anderson_M_error);
+                our_error.Text = Convert.ToString(our_M_error);
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 6 && Setect_X_ComboBox.SelectedIndex == 0) //F1 AND 12
             { AndersonGridData.DataContext = Anderson_F1_12.DefaultView;
-                SimulationGrid.DataContext = our_F1_12.DefaultView;
+              SimulationGrid.DataContext = our_F1_12.DefaultView;
+
+                anderson_error.Visibility = Visibility.Hidden;
+                anderson_label.Visibility = Visibility.Hidden;
+                computed_label.Visibility = Visibility.Hidden;
+                our_error.Visibility = Visibility.Hidden;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 6 && Setect_X_ComboBox.SelectedIndex == 1) //F1 AND 66
             { AndersonGridData.DataContext = Anderson_F1_66.DefaultView;
-               SimulationGrid.DataContext = our_F1_66.DefaultView;
+              SimulationGrid.DataContext = our_F1_66.DefaultView;
+
+                anderson_error.Visibility = Visibility.Hidden;
+                anderson_label.Visibility = Visibility.Hidden;
+                computed_label.Visibility = Visibility.Hidden;
+                our_error.Visibility = Visibility.Hidden;
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 7 && Setect_X_ComboBox.SelectedIndex == 0) //F2 AND 12
             { AndersonGridData.DataContext = Anderson_F2_12.DefaultView;
               SimulationGrid.DataContext = our_F2_12.DefaultView;
+
+                anderson_error.Visibility = Visibility.Hidden;
+                anderson_label.Visibility = Visibility.Hidden;
+                computed_label.Visibility = Visibility.Hidden;
+                our_error.Visibility = Visibility.Hidden;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 7 && Setect_X_ComboBox.SelectedIndex == 1) //F2 AND 66
             { AndersonGridData.DataContext = Anderson_F2_66.DefaultView;
               SimulationGrid.DataContext = our_F2_66.DefaultView;
+
+                anderson_error.Visibility = Visibility.Hidden;
+                anderson_label.Visibility = Visibility.Hidden;
+                computed_label.Visibility = Visibility.Hidden;
+                our_error.Visibility = Visibility.Hidden;
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 8 && Setect_X_ComboBox.SelectedIndex == 0) //F3 AND 12
             { AndersonGridData.DataContext = Anderson_F3_12.DefaultView;
-               SimulationGrid.DataContext = our_F3_12.DefaultView;
+              SimulationGrid.DataContext = our_F3_12.DefaultView;
+
+                anderson_error.Visibility = Visibility.Hidden;
+                anderson_label.Visibility = Visibility.Hidden;
+                computed_label.Visibility = Visibility.Hidden;
+                our_error.Visibility = Visibility.Hidden;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 8 && Setect_X_ComboBox.SelectedIndex == 1) //F3 AND 66
             { AndersonGridData.DataContext = Anderson_F3_66.DefaultView;
-               SimulationGrid.DataContext = our_F3_66.DefaultView;
+              SimulationGrid.DataContext = our_F3_66.DefaultView;
+
+                anderson_error.Visibility = Visibility.Hidden;
+                anderson_label.Visibility = Visibility.Hidden;
+                computed_label.Visibility = Visibility.Hidden;
+                our_error.Visibility = Visibility.Hidden;
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 9 && Setect_X_ComboBox.SelectedIndex == 0) //F4 AND 12
             { AndersonGridData.DataContext = Anderson_F4_12.DefaultView;
               SimulationGrid.DataContext = our_F4_12.DefaultView;
+
+                anderson_error.Visibility = Visibility.Hidden;
+                anderson_label.Visibility = Visibility.Hidden;
+                computed_label.Visibility = Visibility.Hidden;
+                our_error.Visibility = Visibility.Hidden;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 9 && Setect_X_ComboBox.SelectedIndex == 1) //F4 AND 66
             { AndersonGridData.DataContext = Anderson_F4_66.DefaultView;
               SimulationGrid.DataContext = our_F4_66.DefaultView;
+
+                anderson_error.Visibility = Visibility.Hidden;
+                anderson_label.Visibility = Visibility.Hidden;
+                computed_label.Visibility = Visibility.Hidden;
+                our_error.Visibility = Visibility.Hidden;
             }
         }
-
-
-
     }
 }
