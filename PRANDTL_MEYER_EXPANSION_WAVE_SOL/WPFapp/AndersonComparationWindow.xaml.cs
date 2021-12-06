@@ -529,87 +529,87 @@ namespace WPFapp
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex == 1) //T AND 66
             {AndersonGridData.DataContext = Anderson_T_66.DefaultView;
-                //SimulationGrid.DataContext = our_T_66.DefaultView;
+             SimulationGrid.DataContext = our_T_66.DefaultView;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 1 && Setect_X_ComboBox.SelectedIndex == 0) //u AND 12
             { AndersonGridData.DataContext = Anderson_u_12.DefaultView;
-               // SimulationGrid.DataContext = our_u_12.DefaultView;
+              SimulationGrid.DataContext = our_u_12.DefaultView;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 1 && Setect_X_ComboBox.SelectedIndex == 1) //u AND 66
             { AndersonGridData.DataContext = Anderson_u_66.DefaultView;
-              //  SimulationGrid.DataContext = our_u_66.DefaultView;
+              SimulationGrid.DataContext = our_u_66.DefaultView;
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 2 && Setect_X_ComboBox.SelectedIndex == 0) //v AND 12
             { AndersonGridData.DataContext = Anderson_v_12.DefaultView;
-               // SimulationGrid.DataContext = our_v_12.DefaultView;
+              SimulationGrid.DataContext = our_v_12.DefaultView;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 2 && Setect_X_ComboBox.SelectedIndex == 1) //v AND 66
             { AndersonGridData.DataContext = Anderson_v_66.DefaultView;
-               // SimulationGrid.DataContext = our_v_12.DefaultView;
+              SimulationGrid.DataContext = our_v_12.DefaultView;
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 3 && Setect_X_ComboBox.SelectedIndex == 0) //rho AND 12
             { AndersonGridData.DataContext = Anderson_rho_12.DefaultView;
-               // SimulationGrid.DataContext = our_rho_12.DefaultView;
+              SimulationGrid.DataContext = our_rho_12.DefaultView;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 3 && Setect_X_ComboBox.SelectedIndex == 1) //rho AND 66
             { AndersonGridData.DataContext = Anderson_rho_66.DefaultView;
-               // SimulationGrid.DataContext = our_rho_12.DefaultView;
+              SimulationGrid.DataContext = our_rho_12.DefaultView;
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 4 && Setect_X_ComboBox.SelectedIndex == 0) //p AND 12
             { AndersonGridData.DataContext = Anderson_p_12.DefaultView;
-              // SimulationGrid.DataContext = our_p_12.DefaultView;
+              SimulationGrid.DataContext = our_p_12.DefaultView;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 4 && Setect_X_ComboBox.SelectedIndex == 1) //p AND 66
             { AndersonGridData.DataContext = Anderson_p_66.DefaultView;
-              // SimulationGrid.DataContext = our_p_66.DefaultView;
+              SimulationGrid.DataContext = our_p_66.DefaultView;
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 5 && Setect_X_ComboBox.SelectedIndex == 0) //M AND 12
             { AndersonGridData.DataContext = Anderson_M_12.DefaultView;
-              //SimulationGrid.DataContext = our_M_12.DefaultView;
+              SimulationGrid.DataContext = our_M_12.DefaultView;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 5 && Setect_X_ComboBox.SelectedIndex == 1) //M AND 66
             { AndersonGridData.DataContext = Anderson_M_66.DefaultView;
-             // SimulationGrid.DataContext = our_M_66.DefaultView;
+              SimulationGrid.DataContext = our_M_66.DefaultView;
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 6 && Setect_X_ComboBox.SelectedIndex == 0) //F1 AND 12
             { AndersonGridData.DataContext = Anderson_F1_12.DefaultView;
-              //  SimulationGrid.DataContext = our_F1_12.DefaultView;
+              SimulationGrid.DataContext = our_F1_12.DefaultView;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 6 && Setect_X_ComboBox.SelectedIndex == 1) //F1 AND 66
             { AndersonGridData.DataContext = Anderson_F1_66.DefaultView;
-              //SimulationGrid.DataContext = our_F1_66.DefaultView;
+              SimulationGrid.DataContext = our_F1_66.DefaultView;
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 7 && Setect_X_ComboBox.SelectedIndex == 0) //F2 AND 12
             { AndersonGridData.DataContext = Anderson_F2_12.DefaultView;
-             // SimulationGrid.DataContext = our_F2_12.DefaultView;
+              SimulationGrid.DataContext = our_F2_12.DefaultView;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 7 && Setect_X_ComboBox.SelectedIndex == 1) //F2 AND 66
             { AndersonGridData.DataContext = Anderson_F2_66.DefaultView;
-              //SimulationGrid.DataContext = our_F2_66.DefaultView;
+              SimulationGrid.DataContext = our_F2_66.DefaultView;
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 8 && Setect_X_ComboBox.SelectedIndex == 0) //F3 AND 12
             { AndersonGridData.DataContext = Anderson_F3_12.DefaultView;
-               //SimulationGrid.DataContext = our_F3_12.DefaultView;
+              SimulationGrid.DataContext = our_F3_12.DefaultView;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 8 && Setect_X_ComboBox.SelectedIndex == 1) //F3 AND 66
             { AndersonGridData.DataContext = Anderson_F3_66.DefaultView;
-               //SimulationGrid.DataContext = our_F3_66.DefaultView;
+              SimulationGrid.DataContext = our_F3_66.DefaultView;
             }
 
             if (Setect_Parameter_ComboBox.SelectedIndex == 9 && Setect_X_ComboBox.SelectedIndex == 0) //F4 AND 12
             { AndersonGridData.DataContext = Anderson_F4_12.DefaultView;
-             // SimulationGrid.DataContext = our_F4_12.DefaultView;
+              SimulationGrid.DataContext = our_F4_12.DefaultView;
             }
             if (Setect_Parameter_ComboBox.SelectedIndex == 9 && Setect_X_ComboBox.SelectedIndex == 1) //F4 AND 66
             { AndersonGridData.DataContext = Anderson_F4_66.DefaultView;
-              //SimulationGrid.DataContext = our_F4_66.DefaultView;
+              SimulationGrid.DataContext = our_F4_66.DefaultView;
             }
         }
     }

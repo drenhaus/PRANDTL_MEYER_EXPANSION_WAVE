@@ -222,7 +222,7 @@ namespace WPFapp
         {
             if (PresitionComboBox.SelectedIndex == 0) //small
             {
-                columnas = 23;
+                columnas = 24;
                 filas = 11;
                 delta_y_t = 0.1;
 
