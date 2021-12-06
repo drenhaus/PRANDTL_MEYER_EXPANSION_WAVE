@@ -260,6 +260,31 @@
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
+            
+            <Canvas IsEnabled="False"
+                    Background="Black" Margin="56,288,932,5"/>
+            <Canvas IsEnabled="False"
+                Background="Black" Margin="141,288,847,5"/>
+            <Canvas IsEnabled="False"
+                Background="Black" Margin="228,293,760,5"/>
+            <Canvas IsEnabled="False"
+                Background="Black" Margin="331,299,704,5"/>
+            <Canvas IsEnabled="False"
+                Background="Black" Margin="384,303,651,5"/>
+            <Canvas IsEnabled="False"
+                Background="Black" Margin="446,306,606,5"/>
+            <Canvas IsEnabled="False"
+                Background="Black" Margin="476,309,576,5"/>
+            <Canvas IsEnabled="False"
+                Background="Black" Margin="518,314,534,5"/>
+            <Canvas IsEnabled="False"
+                Background="Black" Margin="560,318,492,5"/>
+            <Canvas IsEnabled="False"
+                Background="Black" Margin="608,322,444,5"/>
+            <Canvas IsEnabled="False"
+                Background="Black" Margin="648,327,404,5"/>
+            <Canvas IsEnabled="False"
+                Background="Black" Margin="656,327,396,5"/>
 
 
 
