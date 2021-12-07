@@ -76,6 +76,16 @@ namespace WPFapp
         {
             try
             {
+                Set_headers(temperature_t);
+                Set_headers(u_t);
+                Set_headers(v_t);
+                Set_headers(rho_t);
+                Set_headers(p_t);
+                Set_headers(M_t);
+                Set_headers(F1_t);
+                Set_headers(F2_t);
+                Set_headers(F3_t);
+                Set_headers(F4_t);
 
                 if (TableSetect_ComboBox.SelectedIndex == 0)
                 {
@@ -151,6 +161,13 @@ namespace WPFapp
             }
         }
 
+        private void Set_headers(DataTable dt)
+        {
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                dt.Columns[i].ColumnName = Convert.ToString(i + 1);
+            }
+        }
         private void ExportTable_Button_Click(object sender, RoutedEventArgs e)
         {
             try
