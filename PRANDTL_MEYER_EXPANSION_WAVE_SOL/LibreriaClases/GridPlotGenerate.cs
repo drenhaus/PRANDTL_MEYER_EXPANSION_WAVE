@@ -102,16 +102,22 @@ namespace LibreriaClases
 
         }
 
-        public Polygon[,] actualizar_colores_grid_AS(DataTable t, byte R, byte G, byte B, DataTable t_minmax, int filas_t, int columnas_t)
+        public Polygon[,] actualizar_colores_grid_AS(DataTable t, byte R, byte G, byte B, DataTable t_minmax, int filas_t, int columnas_t, DataTable t_minmax2)
         {
-            double[] max_min;
-            max_min = Max_Min_Datatables_AS(t_minmax);
+            
+            double[] max_min1;
+            double[] max_min2;
+            max_min1 = Max_Min_Datatables_AS(t_minmax);
+            max_min2 = Max_Min_Datatables_AS(t_minmax2);
+
+            double max = Math.Max(max_min1[0], max_min2[0]);
+            double min = Math.Min(max_min1[1], max_min2[1]);
 
             for (int i = 0; i < columnas - 1; i++)
             {
                 for (int j = 0; j < filas; j++)
                 {
-                    byte alpha = Define_Cloroes(max_min[0], max_min[1], Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()));
+                    byte alpha = Define_Cloroes(max,min, Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()));
                     casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(alpha, R, G, B));
                 }
             }
