@@ -68,7 +68,6 @@ namespace WPFapp
             // Parimos de cero, es decir, nueva malla y reacemos el calculo de una matriz en resolucion media
             //la idea es hacer otra matriz con los datos recogidos de la ultima columna de la simulacion.
 
-
             m2.rows = 41;
             m2.columns = 72;
             m2.delta_y_t = 0.025;
@@ -99,8 +98,6 @@ namespace WPFapp
 
             //Empezamos con la segunda malla que empieza con los ultimos datos d ela anterior matriz. 
 
-           
-
             m3.norma.L = 45;
             m3.norma.E = 0.1;
             m3.norma.H = 40;
@@ -117,18 +114,12 @@ namespace WPFapp
             m3.Fill_DataTable();
             tablesM3 = m3.GetTables();
 
-          
-
             //CASO 2!!
 
             // Caso dos, tenemos dos pendientes eparadas por superficie plana
 
-
             //10 m llegamos a E, 30 M llegamos a final, 30 metros de estaviliadad, y repetimops pero con
             // angulo dos
-
-
-            
 
             m4.rows = 41;
             m4.columns = 53;
@@ -157,9 +148,6 @@ namespace WPFapp
             tablesM4 = m4.GetTables();
 
             List<Celda> ListadeUltimaColumnadeCeldas_caso2 = GetLastColumOfMatriz(m4);
-
-           
-
 
             m5.norma.L = 60;
             m5.norma.E = 30;
@@ -237,9 +225,6 @@ namespace WPFapp
             p_table_2 = JuntarTablas(tablesM4[4], tablesM5[4]);
             M_table_2 = JuntarTablas(tablesM4[5], tablesM5[5]);
 
-
-
-
             if (DataGridComboBox_AS.SelectedIndex == 0)
             {
                 casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[0], 255, 0, 0,temperature_table_1,m2.rows+m3.rows,m2.columns+m3.columns);
@@ -268,10 +253,8 @@ namespace WPFapp
 
         }
 
-
         private void DataGridComboBox_AS_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
 
             if (DataGridComboBox_AS.SelectedIndex == 0) //temperature
             {
@@ -279,8 +262,6 @@ namespace WPFapp
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[0], 255, 0, 0, temperature_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[0], 255, 0, 0, temperature_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[0], 255, 0, 0, temperature_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
-                //Advanced_DataGridMalla.DataContext = temperature_table_1.DefaultView;
-                //Advanced_DataGridMalla_2.DataContext = temperature_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 1) //u
             {
@@ -288,8 +269,6 @@ namespace WPFapp
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[1], 0, 255, 0, u_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[1], 0, 255, 0, u_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[1], 0, 255, 0, u_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
-                //Advanced_DataGridMalla.DataContext = u_table_1.DefaultView;
-                //Advanced_DataGridMalla_2.DataContext = u_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 2) //v
             {
@@ -297,8 +276,6 @@ namespace WPFapp
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[2], 255, 128, 0, v_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[2], 255, 128, 0, v_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[2], 255, 128, 0, v_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
-                //Advanced_DataGridMalla.DataContext = v_table_1.DefaultView;
-                //Advanced_DataGridMalla_2.DataContext = v_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 3) //rho
             {
@@ -306,8 +283,6 @@ namespace WPFapp
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[3], 18, 184, 255, rho_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[3], 18, 184, 255, rho_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[3], 18, 184, 255, rho_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
-                //Advanced_DataGridMalla.DataContext = rho_table_1.DefaultView;
-               // Advanced_DataGridMalla_2.DataContext = rho_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 4) //p
             {
@@ -315,8 +290,7 @@ namespace WPFapp
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[4], 255, 0, 127,p_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[4], 255, 0, 127,p_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[4], 255, 0, 127, p_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
-                //Advanced_DataGridMalla.DataContext = p_table_1.DefaultView;
-                //Advanced_DataGridMalla_2.DataContext = p_table_2.DefaultView;
+
             }
             if (DataGridComboBox_AS.SelectedIndex == 5) //Mach
             {
@@ -324,8 +298,7 @@ namespace WPFapp
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[5], 255, 255, 255, M_table_1, m2.rows + m3.rows, m2.columns + m3.columns);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[5], 255, 255, 255, M_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
                 casillas5 = GPG5.actualizar_colores_grid_AS(tablesM5[5], 255, 255, 255, M_table_2, m4.rows + m5.rows, m4.columns + m5.columns);
-                //Advanced_DataGridMalla.DataContext = M_table_1.DefaultView;
-                //DataContext = M_table_2.DefaultView;
+
             }
         }
 
@@ -368,7 +341,6 @@ namespace WPFapp
 
         }
 
-
         private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -387,39 +359,60 @@ namespace WPFapp
             }
         }
 
+        private void Set_headers(DataTable dt)
+        {
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                dt.Columns[i].ColumnName = Convert.ToString(i + 1);
+            }
+        }
+
         private void Load_tables_butt_Click(object sender, RoutedEventArgs e)
         {
             if (DataGridComboBox_AS.SelectedIndex == 0) //temperature
             {
+                Set_headers(temperature_table_1);
+                Set_headers(temperature_table_2);
+
                 Advanced_DataGridMalla.DataContext = temperature_table_1.DefaultView;
                 Advanced_DataGridMalla_2.DataContext = temperature_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 1) //u
             {
+                Set_headers(u_table_1);
+                Set_headers(u_table_2);
 
                 Advanced_DataGridMalla.DataContext = u_table_1.DefaultView;
                 Advanced_DataGridMalla_2.DataContext = u_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 2) //v
             {
+                Set_headers(v_table_1);
+                Set_headers(v_table_2);
 
                 Advanced_DataGridMalla.DataContext = v_table_1.DefaultView;
                 Advanced_DataGridMalla_2.DataContext = v_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 3) //rho
             {
+                Set_headers(rho_table_1);
+                Set_headers(rho_table_2);
 
                 Advanced_DataGridMalla.DataContext = rho_table_1.DefaultView;
                 Advanced_DataGridMalla_2.DataContext = rho_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 4) //p
             {
+                Set_headers(p_table_1);
+                Set_headers(p_table_2);
 
                 Advanced_DataGridMalla.DataContext = p_table_1.DefaultView;
                 Advanced_DataGridMalla_2.DataContext = p_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 5) //Mach
             {
+                Set_headers(M_table_1);
+                Set_headers(M_table_2);
 
                 Advanced_DataGridMalla.DataContext = M_table_1.DefaultView;
                 DataContext = M_table_2.DefaultView;
