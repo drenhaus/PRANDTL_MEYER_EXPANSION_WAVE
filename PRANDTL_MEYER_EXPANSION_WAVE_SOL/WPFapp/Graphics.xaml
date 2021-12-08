@@ -15,7 +15,7 @@
     <Border Background="#3a3752"
             CornerRadius="20">
         <Grid>
-            <TextBlock Text="Crear Gráficas"
+            <TextBlock Text="Create graphs"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
                        Foreground="White"
@@ -37,7 +37,7 @@
                 VerticalAlignment="Top" 
                 Width="16"
                 Style="{DynamicResource minimizebutton}" Height="16" Click="Mini_Button_Click"/>
-            <Button x:Name="Graf_Temperatura_Butt" Content="Temperatura" 
+            <Button x:Name="Graf_Temperatura_Butt" Content="Temperature" 
                 HorizontalAlignment="Left" 
                 Margin="237,75,0,0" 
                 VerticalAlignment="Top" 
@@ -49,13 +49,13 @@
                 VerticalAlignment="Top" 
                 Height="31" Width="90" Click="Graf_Mach_Butt_Click"
                 Style="{DynamicResource grafFaseBut}"/>
-            <Button x:Name="Graf_Densidad_Butt" Content="Densidad" 
+            <Button x:Name="Graf_Densidad_Butt" Content="Density" 
                 HorizontalAlignment="Left" 
                 Margin="427,75,0,0" 
                 VerticalAlignment="Top" 
                 Height="31" Width="90" Click="Graf_Densidad_Butt_Click"
                 Style="{DynamicResource grafDensidadBut}"/>
-            <Button x:Name="Graf_Presure_Butt" Content="Presure" 
+            <Button x:Name="Graf_Presure_Butt" Content="Pressure" 
                 HorizontalAlignment="Left" 
                 Margin="522,75,0,0" 
                 VerticalAlignment="Top" 
@@ -77,19 +77,19 @@
 
             <oxyPlot:PlotView x:Name="Grafica" 
                           Margin="15,115,15,15"/>
-            <Label Content="· Haz clic en algun parámetro·" 
-                   HorizontalAlignment="Center" 
+            <Label Content="· Clik on some parameter·" 
+                   HorizontalAlignment="Left" 
                    Height="64" 
-                   Margin="0,255,0,0" 
+                   Margin="290,255,0,0" 
                    VerticalAlignment="Top" 
-                   Width="423"
+                   Width="364"
                    FontSize="30"
                    Opacity="0.5"
                    x:Name="labelmedio"/>
-            <Label Content="· Permite visualizar los datos al clicar ·" 
+            <Label Content="· It allows you to see the data of the clicked parameter ·" 
                    HorizontalAlignment="Left" 
                    Height="64" 
-                   Margin="114,308,0,0" 
+                   Margin="179,319,0,0" 
                    VerticalAlignment="Top" 
                    Width="586"
                    FontSize="25"

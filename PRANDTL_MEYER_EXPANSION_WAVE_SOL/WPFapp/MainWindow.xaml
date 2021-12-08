@@ -66,7 +66,7 @@
                     />
 
             <Button x:Name="ComparationButton" 
-                    Content="Comparar con el Anderson" 
+                    Content="Compare with Anderson" 
                     Margin="-9,7,0,0" 
                     Grid.Row="2" 
                     VerticalAlignment="Top" 
@@ -79,7 +79,7 @@
                     BorderBrush="Transparent"/>
 
             <Button x:Name="GraficButton" 
-                    Content="Graficos" 
+                    Content="Graphics" 
                     Margin="-9,50,0,0" 
                     Grid.Row="2" 
                     VerticalAlignment="Top" 
@@ -91,7 +91,7 @@
                     Background="Transparent"
                     BorderBrush="Transparent"/>
             <Button x:Name="AdvancedStudyButton" 
-                    Content="estudio avanzado" 
+                    Content="Advanced Study" 
                     Margin="-9,93,0,0" 
                     Grid.Row="2" 
                     VerticalAlignment="Top" 
@@ -134,9 +134,9 @@
                     FontFamily="/Fonts/#Poppins"
                     Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"/>
 
-            <Label Content="Seleciona precision"
+            <Label Content="Select precision"
                    HorizontalAlignment="Left"
-                   Margin="20,0,0,0" 
+                   Margin="27,0,0,0" 
                    Grid.Row="1" 
                    VerticalAlignment="Center" 
                    Width="160" 
@@ -192,11 +192,11 @@
                 FontFamily="/Fonts/#Poppins"
                 Style="{DynamicResource RoundCorner}"
                 ToolTipService.ShowDuration="30000">
-                
+
                 <Button.ToolTip>
-                <StackPanel>
+                    <StackPanel>
                         <TextBlock FontWeight="Bold" FontSize="14" Margin="0,0,0,5">Help for running a simulation</TextBlock>
-                    <TextBlock>
+                        <TextBlock>
                         1. Select the precision and press the selection button
                         <LineBreak />
                         2. Define the initial data line and load it
@@ -207,13 +207,13 @@
                         <LineBreak />
                         5. If you want to make any change press the RESET button and 
                         define again all the simulation parameters
-                        
-                    </TextBlock>
-                    <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
-                    <WrapPanel>
+
+                        </TextBlock>
+                        <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                        <WrapPanel>
                             <TextBlock FontStyle="Italic">Press back to start and watch the video tutorial for more help</TextBlock>
-                    </WrapPanel>
-                </StackPanel>
+                        </WrapPanel>
+                    </StackPanel>
                 </Button.ToolTip>
 
 

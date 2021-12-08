@@ -37,7 +37,7 @@
             </DataGrid>
             
             
-            <TextBlock Text="Ver los datos en Tablas"
+            <TextBlock Text="View data in tables"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
                        Foreground="White"
