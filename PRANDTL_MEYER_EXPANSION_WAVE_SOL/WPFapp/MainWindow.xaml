@@ -185,7 +185,7 @@
 
 
 
-            <!--<Canvas x:Name="low1" Grid.Column="1" Margin="31,439,593,4" Grid.Row="2"
+            <Canvas x:Name="low1" Grid.Column="1" Margin="31,439,593,4" Grid.Row="2"
                     Background="#6a59ff" IsEnabled="False"/>
             <Canvas x:Name="low2" Grid.Column="1" Margin="166,445,531,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
@@ -223,40 +223,40 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Button.RenderTransform>
-            </Button>-->
+            </Button>
 
 
 
-            <Canvas Grid.Column="1" Margin="31,412,666,42" Grid.Row="2"
+            <Canvas x:Name="med1" Grid.Column="1" Margin="31,412,666,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="91,412,602,42" Grid.Row="2"
+            <Canvas x:Name="med2" Grid.Column="1" Margin="91,412,602,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="144,419,549,42" Grid.Row="2"
+            <Canvas x:Name="med3" Grid.Column="1" Margin="144,419,549,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="198,424,495,42" Grid.Row="2"
+            <Canvas x:Name="med4" Grid.Column="1" Margin="198,424,495,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="259,428,427,42" Grid.Row="2"
+            <Canvas x:Name="med5" Grid.Column="1" Margin="259,428,427,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="331,434,359,42" Grid.Row="2"
+            <Canvas x:Name="med6" Grid.Column="1" Margin="331,434,359,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="401,439,292,42" Grid.Row="2"
+            <Canvas x:Name="med7" Grid.Column="1" Margin="401,439,292,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="461,445,218,42" Grid.Row="2"
+            <Canvas x:Name="med8" Grid.Column="1" Margin="461,445,221,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
 
 
 
-            <Button x:Name="low_gnd1" Background="Black"
+            <Button x:Name="med_gnd1" Background="Black"
                     HorizontalAlignment="Left" 
                     Height="8" Margin="31,408,0,0" 
                     VerticalAlignment="Top" 
                     Width="86"
                     BorderThickness="0" Grid.Column="1" Grid.Row="2"/>
-            <Button x:Name="low_gnd2" Background="Black"
+            <Button x:Name="med_gnd2" Background="Black"
                 HorizontalAlignment="Left" 
                 Height="8" Margin="115,426,0,0" 
                 VerticalAlignment="Top" 
-                Width="429"
+                Width="426"
                 BorderThickness="0" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Grid.Column="1">
                 <Button.RenderTransform>
                     <TransformGroup>
@@ -268,7 +268,7 @@
                 </Button.RenderTransform>
             </Button>
 
-            
+
 
 
 
