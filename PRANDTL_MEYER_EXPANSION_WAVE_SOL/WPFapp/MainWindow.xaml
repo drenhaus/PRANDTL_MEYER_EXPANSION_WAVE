@@ -153,7 +153,7 @@
                   Height="26" 
                   Grid.Column="1" RenderTransformOrigin="0.5,0.5"
                   Style="{DynamicResource theComboBox}" 
-                  ItemContainerStyle="{DynamicResource theComboBoxItem}">
+                  ItemContainerStyle="{DynamicResource theComboBoxItem}" SelectionChanged="PresitionComboBox_SelectionChanged">
                 <ComboBoxItem Content="LOW" 
                                   FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
@@ -185,31 +185,31 @@
 
 
 
-            <Canvas Grid.Column="1" Margin="31,439,593,4" Grid.Row="2"
+            <Canvas x:Name="low1" Grid.Column="1" Margin="31,439,593,4" Grid.Row="2"
                     Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="166,445,531,4" Grid.Row="2"
+            <Canvas x:Name="low2" Grid.Column="1" Margin="166,445,531,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="214,450,483,4" Grid.Row="2"
+            <Canvas x:Name="low3" Grid.Column="1" Margin="214,450,483,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="272,454,425,4" Grid.Row="2"
+            <Canvas x:Name="low4" Grid.Column="1" Margin="272,454,425,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="394,464,297,4" Grid.Row="2"
+            <Canvas x:Name="low6" Grid.Column="1" Margin="394,464,297,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="333,459,361,4" Grid.Row="2"
+            <Canvas x:Name="low5" Grid.Column="1" Margin="333,459,361,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="457,469,233,4" Grid.Row="2"
+            <Canvas x:Name="low7" Grid.Column="1" Margin="457,469,233,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas Grid.Column="1" Margin="483,474,214,4" Grid.Row="2"
+            <Canvas x:Name="low8" Grid.Column="1" Margin="483,474,214,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
 
 
-            <Button Background="Black"
+            <Button x:Name="low_gnd1" Background="Black"
                     HorizontalAlignment="Left" 
                     Height="8" Margin="31,431,0,0" 
                     VerticalAlignment="Top" 
                     Width="69"
                     BorderThickness="0" Grid.Column="1" Grid.Row="2"/>
-            <Button Background="Black"
+            <Button x:Name="low_gnd2" Background="Black"
                 HorizontalAlignment="Left" 
                 Height="8" Margin="99,450,0,0" 
                 VerticalAlignment="Top" 
