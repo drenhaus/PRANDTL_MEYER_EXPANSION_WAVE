@@ -189,15 +189,15 @@
                     BorderThickness="0" Grid.Column="1" Grid.Row="2"/>
             <Button Background="Black"
                 HorizontalAlignment="Left" 
-                Height="8" Margin="99,439,0,0" 
+                Height="8" Margin="99,450,0,0" 
                 VerticalAlignment="Top" 
-                Width="274"
+                Width="449"
                 BorderThickness="0" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Grid.Column="1">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
-                        <RotateTransform Angle="3.3333"/>
+                        <RotateTransform Angle="4.9"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </Button.RenderTransform>
@@ -440,6 +440,7 @@
             Margin="425,59,0,0"
             VerticalAlignment="Top" 
             Width="108"
+            FontSize="10"
             IsEnabled="False"   
             SelectionChanged="DataGridComboBox_SelectionChanged"  
                       Grid.Column="1" 
