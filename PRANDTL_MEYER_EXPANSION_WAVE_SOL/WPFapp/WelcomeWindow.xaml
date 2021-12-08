@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
-        Title="WelcomeWindow" Height="450" Width="800">
+        Title="WelcomeWindow" Height="468" Width="814">
     <Grid Background="#FF2D2D30">
 
         <Label Content="Welcome to the simulation!" 
@@ -43,7 +43,7 @@
 
         <Button x:Name="CreditosButton" 
             Content="Creditos" 
-            Margin="85,312,515,72" 
+            Margin="92,321,522,81" 
             Width="200" Height="50" 
             Background="#FFCC00FF" 
             FontWeight="Bold" 

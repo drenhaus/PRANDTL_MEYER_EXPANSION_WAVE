@@ -37,7 +37,7 @@
             </DataGrid>
             
             
-            <TextBlock Text="Ver los datos en Tablas"
+            <TextBlock Text="View data in tables"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
                        Foreground="White"
@@ -126,8 +126,29 @@
                 Margin="282,25,0,0"
                 Style="{DynamicResource RoundCorner}"
                 VerticalAlignment="Top" Height="24" Width="26"
-                    Foreground="White"/>
-            <Button x:Name="Close_Button" 
+                Foreground="White"
+                ToolTipService.ShowDuration="30000">
+
+                <Button.ToolTip>
+                    <StackPanel>
+                        <TextBlock FontWeight="Bold" FontSize="14" Margin="0,0,0,5">Help</TextBlock>
+                        <TextBlock>
+                        Choose the data that you want to display (in the combobox)
+                        <LineBreak />
+                        Depending on the precision, it can take some time loading the information
+                        <LineBreak />
+                        Press the export button to export the current table. Only EXCEL format allowed
+                        </TextBlock>
+                        <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                        <WrapPanel>
+                            <TextBlock FontStyle="Italic">Watch the video tutorial for more help</TextBlock>
+                        </WrapPanel>
+                    </StackPanel>
+                </Button.ToolTip>
+                
+                </Button>
+
+                <Button x:Name="Close_Button" 
                 Content="" 
                 HorizontalAlignment="Left" 
                 Margin="817,10,0,0" 
