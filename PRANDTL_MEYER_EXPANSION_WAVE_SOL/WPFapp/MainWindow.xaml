@@ -181,6 +181,28 @@
               Height="362" 
               VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"
               />
+
+
+
+
+            <Canvas Grid.Column="1" Margin="31,439,593,4" Grid.Row="2"
+                    Background="#6a59ff" IsEnabled="False"/>
+            <Canvas Grid.Column="1" Margin="166,445,531,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas Grid.Column="1" Margin="214,450,483,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas Grid.Column="1" Margin="272,454,425,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas Grid.Column="1" Margin="394,464,297,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas Grid.Column="1" Margin="333,459,361,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas Grid.Column="1" Margin="457,469,233,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas Grid.Column="1" Margin="483,474,214,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+
+
             <Button Background="Black"
                     HorizontalAlignment="Left" 
                     Height="8" Margin="31,431,0,0" 
@@ -202,6 +224,31 @@
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <Button x:Name="InfoPresitionButton" Content="I" 
                 Grid.Column="1" 
@@ -533,6 +580,7 @@
                 Grid.Column="1" Height="26"
                 FontFamily="/Fonts/#Poppins"
                 Foreground="White"/>
+
 
         </Grid>
     </Border>
