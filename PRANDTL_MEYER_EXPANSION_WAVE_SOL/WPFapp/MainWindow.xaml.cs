@@ -23,18 +23,20 @@ namespace WPFapp
     /// </summary>
     public partial class MainWindow : Window
     {
-        Malla m = new Malla();
-        int columnas = 89;
-        int filas = 41;
-
+        // ATTRIBUTES
+            // we create a new Malla
+        Malla m = new Malla(); 
+            // we set by default 89 columns and 41 rows, it may be changed if we select a different precision
+        int columnas = 89; 
+        int filas = 41; 
         double delta_y_t;
 
-        
-
+            // we create a matrix of Polygons that are going to be in the gried view
         Polygon[,] casillas;
-        GridPlotGenerate GPG = new GridPlotGenerate();
+            // where all the functions related to the polygons creation are found
+        GridPlotGenerate GPG = new GridPlotGenerate(); 
         
-
+            //DataTables with the solutions 
         DataTable temperature_table;
         DataTable u_table;
         DataTable v_table;
@@ -49,7 +51,7 @@ namespace WPFapp
         public MainWindow()
         {
             InitializeComponent();
-            SeeGrounfOf("NONE");
+            SeeGrounfOf("NONE"); // initially no ground is visible
         }
 
         // SIMULATE BUTTON CLICK
@@ -131,12 +133,12 @@ namespace WPFapp
             }
 
         }
-
        
         // CHECKBOX OF DEFAULT PARAMETERS CHECKED
-            
+            // if the checkbox is selected it is written the parameters by default
         private void CheckBox_A_Checked(object sender, RoutedEventArgs e)
         {
+            // we write the parameters
             v_TextBox.Text = Convert.ToString(0.0);
             Rho_TextBox.Text = Convert.ToString(1.23);
             P_TextBox.Text = Convert.ToString(101000);
@@ -144,11 +146,14 @@ namespace WPFapp
             T_TextBox.Text = Convert.ToString(286.1);
         }
 
+        // LOAD PARAMETERS BUTTON
+            // When clicking to load the writen parameters are going to be set as the atributes of the 
+            // NORMA class where we find the parameter conditions of the simulation
         private void LoadParametersButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-
+                // initial data line parameters transfered to NORMA clas of the Malla we are working
                 m.norma.v_in = Convert.ToDouble(v_TextBox.Text);
                 m.norma.Rho_in = Convert.ToDouble(Rho_TextBox.Text);
                 m.norma.P_in = Convert.ToDouble(P_TextBox.Text);
@@ -161,21 +166,26 @@ namespace WPFapp
 
                 Simulate_Button.IsEnabled = true;
 
+                //MessageBox to show the parameters had been defined
                 MessageBox.Show("Parameters defined");
             }
             catch (Exception ex)
             {
+                // MessageBox to indicate the parameters had not been correctly defined
                 MessageBox.Show(ex.Message);
             }
-
-
         }
 
+        // RESET BUTTON
+            //If some simulation has been executed but the user wants to make some change in the parameters or
+            // redo the simulation, the reset button creates a new Malla and empties all the DataTables and grid
         private void Reset_button_Click(object sender, RoutedEventArgs e)
         {
-
+            // new Malla created
             m = new Malla();
+            //empty casillas
             casillas = null;
+            // empty tables
             temperature_table = null;
             u_table = null;
             v_table = null;
@@ -186,11 +196,13 @@ namespace WPFapp
             F2_table = null;
             F3_table = null;
             F4_table = null;
-            DataGridComboBox.IsEnabled = false;
+            
+            //empty grid
             GridMalla.Children.Clear();
-
+            // no selected item
             DataGridComboBox.SelectedItem = null;
-
+            // is enable of buttons fals
+            DataGridComboBox.IsEnabled = false;
             Simulate_Button.IsEnabled = false;
             Reset_button.IsEnabled = false;
             LoadParametersButton.IsEnabled = false;
