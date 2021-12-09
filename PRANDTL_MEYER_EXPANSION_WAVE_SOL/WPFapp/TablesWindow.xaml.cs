@@ -39,6 +39,7 @@ namespace WPFapp
         bool expanded = true;
 
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        int timer=0;
 
         public TablesWindow()
         {
@@ -48,7 +49,15 @@ namespace WPFapp
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            showProgressBar();
+            
+            if (timer==0)
+            {
+                showProgressBar();
+            }
+            if (timer==10)
+                { Compute(); }
+            
+            timer = timer + 1;
         }
 
          public void SetTables(DataTable T, DataTable u, DataTable v, DataTable rho, DataTable p, DataTable M, DataTable f1, DataTable f2, DataTable f3, DataTable f4)
@@ -81,13 +90,20 @@ namespace WPFapp
             }
         }
 
+
+        
+
         private void TableSetect_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(50);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(50);// por defecto establecemos una simulación cada segundo
             dispatcherTimer.Start();
-            
+  
+        }
+
+        public void Compute()
+        {
+
             try
             {
                 Set_headers(temperature_t);
@@ -156,9 +172,8 @@ namespace WPFapp
             {
                 MessageBox.Show(ex.Message);
             }
-            
+            hideProgressBar();
         }
-
         private void Mini_Button_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
