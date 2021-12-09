@@ -52,29 +52,28 @@ namespace WPFapp
             SeeGrounfOf("NONE");
         }
 
-
-
-        //open the tables window
-        private void TablesButton_Click(object sender, RoutedEventArgs e)
-        {
-            TablesWindow tables_w = new TablesWindow();
-            tables_w.SetTables(temperature_table, u_table, v_table, rho_table, p_table, M_table, F1_table, F2_table, F3_table, F4_table);
-            tables_w.Show();
-
-
-        }
-        
+        // SIMULATE BUTTON CLICK
+            //When clicking the simulation button the needed parameters are set and 
+            // the functions that compute the simulation in the Malla are initialized        
         private void Simulate_Button_Click(object sender, RoutedEventArgs e)
         {
+            // We define the rows, columns and the delta_y_t depending of the precision
+            // that had been selected
             m.rows = filas;
             m.columns = columnas;
             m.delta_y_t = this.delta_y_t;
 
+            // We create the matrix, compute the simulation and fill the tables using the
+            // functions of the Malla clas
             m.DefinirMatriz();
             m.Compute();
             m.Fill_DataTable();
 
+            // We get the tables that we had computed in the previous step and save them as an
+            // array of DataTables
             DataTable[] T_U_V_RHO_P_M_F1_F2_F3_F4 = m.GetTables();
+
+            //We define each Datble as the corresponding one of the array 
             temperature_table = T_U_V_RHO_P_M_F1_F2_F3_F4[0];
             u_table = T_U_V_RHO_P_M_F1_F2_F3_F4[1];
             v_table = T_U_V_RHO_P_M_F1_F2_F3_F4[2];
@@ -86,9 +85,10 @@ namespace WPFapp
             F3_table = T_U_V_RHO_P_M_F1_F2_F3_F4[8];
             F4_table = T_U_V_RHO_P_M_F1_F2_F3_F4[9];
 
+            //We define the visual grid and call the function that generates them of the class GridPlotGenerate
+            casillas = GPG.GenerateGridPlot(filas, columnas,m); 
 
-            casillas = GPG.GenerateGridPlot(filas, columnas,m);
-
+            // We add the casillas values into the grid
             for (int i = 0; i < columnas - 1; i++)
             {
                 for (int j = 0; j < filas; j++)
@@ -97,20 +97,7 @@ namespace WPFapp
                 }
             }
 
-            if (DataGridComboBox.SelectedIndex == 0)
-            {
-                casillas = GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
-            }
-
-            LoadParametersButton.IsEnabled = false;
-            LoadPresitionButton.IsEnabled = false;
-            DataGridComboBox.IsEnabled = true;
-            Simulate_Button.IsEnabled = false;
-            Reset_button.IsEnabled = true;
-
             MessageBox.Show("Please select the data you want to show or reset for any change");
-
-
         }
 
         private void DataGridComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -216,12 +203,6 @@ namespace WPFapp
             LoadPresitionButton.IsEnabled = true;
         }
 
-        private void AdvancedStudyButton_Click(object sender, RoutedEventArgs e)
-        {
-            AdvancedStudyWindow ad_w = new AdvancedStudyWindow();
-            ad_w.Show();
-        }
-
         private void LoadPresitionButton_Click(object sender, RoutedEventArgs e)
         {
             if (PresitionComboBox.SelectedIndex == 0) //small
@@ -252,58 +233,14 @@ namespace WPFapp
 
         }
 
-        private void GraficButton_Click(object sender, RoutedEventArgs e)
-        {
-            Graphics gr = new Graphics();
-
-            m.CrearListade("x");
-            m.CrearListade("T");
-            m.CrearListade("M");
-            m.CrearListade("Rho");
-            m.CrearListade("P");
-            m.CrearListade("u");
-            m.CrearListade("v");
-
-            gr.Show();
-
-            gr.SetnumdeCOLUMNAS(m.columns);
-            gr.valorMaximdeX = m.norma.L;
-            gr.listaDeXColumna = m.listaDeXColumna;
-            gr.listaTEMPxColumna = m.listaTemperaturaxColumna;
-            gr.listaMachxColumna = m.listaMachxColumna;
-            gr.listaDensidadxColumna = m.listaDensidadxColumna;
-            gr.listaPresurexColumna = m.listaPresurexColumna;
-            gr.listaUxColumna = m.listaU_velxColumna;
-            gr.listaVxColumna = m.listaV_velxColumna;
-
-
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void MiniButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        private void Window_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                this.DragMove();
-            }
-        }
-
         private void polygon_enter(object sender, EventArgs e)
         {
             Polygon poly = (Polygon)sender;
+           
 
             int i = 0;
             int j = 0;
-            int w = 0;
+            
 
             for (i = 0; i < columnas - 1; i++)
             {
@@ -311,7 +248,7 @@ namespace WPFapp
                 {
                     if (poly == casillas[j, i])
                     {
-                        w = 1;
+                      
                         break;
                     }
                 }
@@ -325,12 +262,7 @@ namespace WPFapp
             }
         }
 
-        private void WelcomeButton_Click(object sender, RoutedEventArgs e)
-        {
-            WelcomeWindow ww = new WelcomeWindow();
-            ww.Show();
-            Close();
-        }
+
 
         private void SeeGrounfOf(string str)
         {
@@ -446,6 +378,94 @@ namespace WPFapp
             {
                 SeeGrounfOf("MEDIUM");
             }
+        }
+
+
+
+        // CLOSE BUTTON
+            //When clicking to the top right button (red circle) the current window closes
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        // MINIMIZE BUTTON
+            //When clicking to the top right button (yellow circle) the current window minimises
+        private void MiniButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        // DRAG MOVE
+            //When the left button is pressed and draged, the window can be moved
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
+
+
+        // NEW WINDOW: WELCOME
+        // When clicking to the menu BACK TO START the simulation window closes and it is opened
+        // again the welcome to the simulator windows
+        private void WelcomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WelcomeWindow ww = new WelcomeWindow();
+            ww.Show();
+            Close();
+        }
+
+        // NEW WINDOW: TABLES
+        //When clicking to the menu option TABLES a new window is opened showing the information tables
+        // It is necessary to transfer the information of the tables from the main simulation window to
+        // the tables window
+        private void TablesButton_Click(object sender, RoutedEventArgs e)
+        {
+            TablesWindow tables_w = new TablesWindow();
+            tables_w.SetTables(temperature_table, u_table, v_table, rho_table, p_table, M_table, F1_table, F2_table, F3_table, F4_table);
+            tables_w.Show();
+        }
+
+        // NEW WINDOW: ADVANCED STUDY
+            // When clicking to the menu option ADVANCED STUDY a new window is opened showing the studied carried
+        private void AdvancedStudyButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdvancedStudyWindow ad_w = new AdvancedStudyWindow();
+            ad_w.Show();
+        }
+
+        // NEW WINDOW: GRAPHIC
+            // When clicking to the menu option GRAPHICS a new window is opened showing the graphics
+            //Before that it is required the list of the parameters, defined in Malla clas and some 
+            // parameters have to be set for making the plots: columns, parameters, the values of P,T,u, etc
+        private void GraficButton_Click(object sender, RoutedEventArgs e)
+        {
+            Graphics gr = new Graphics();
+
+            // We call the Malla function CrearListade and create the lists for x, T, M, Rho, P, u, v
+            m.CrearListade("x");
+            m.CrearListade("T");
+            m.CrearListade("M");
+            m.CrearListade("Rho");
+            m.CrearListade("P");
+            m.CrearListade("u");
+            m.CrearListade("v");
+
+            gr.Show(); // Showing the new window
+
+            // We set diferent parameters needed in the new window
+            gr.SetnumdeCOLUMNAS(m.columns); // Set of the number of columns
+            gr.valorMaximdeX = m.norma.L; // Set of the L parameter
+            gr.listaDeXColumna = m.listaDeXColumna; // Set of the X values
+            gr.listaTEMPxColumna = m.listaTemperaturaxColumna; //Set of the T
+            gr.listaMachxColumna = m.listaMachxColumna; //Set of the Mach
+            gr.listaDensidadxColumna = m.listaDensidadxColumna; // Set of the Density
+            gr.listaPresurexColumna = m.listaPresurexColumna; // Set of the Pressure
+            gr.listaUxColumna = m.listaU_velxColumna; // Set of the u
+            gr.listaVxColumna = m.listaV_velxColumna; //Set of the v
+
         }
     }
 }
