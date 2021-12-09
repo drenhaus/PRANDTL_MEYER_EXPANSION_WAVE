@@ -296,6 +296,10 @@
 
 
 
+
+
+
+
             <Button x:Name="InfoPresitionButton" Content="I" 
                 Grid.Column="1" 
                 HorizontalAlignment="Left" 

@@ -29,6 +29,8 @@ namespace WPFapp
 
         double delta_y_t;
 
+        
+
         Polygon[,] casillas;
         GridPlotGenerate GPG = new GridPlotGenerate();
         
@@ -47,6 +49,7 @@ namespace WPFapp
         public MainWindow()
         {
             InitializeComponent();
+            SeeGrounfOf("NONE");
         }
 
 
@@ -374,7 +377,7 @@ namespace WPFapp
                 med1.Visibility = Visibility.Visible;
                 med2.Visibility = Visibility.Visible;
                 med3.Visibility = Visibility.Visible;
-                med4.Visibility = Visibility.Hidden;
+                med4.Visibility = Visibility.Visible;
                 med5.Visibility = Visibility.Visible;
                 med6.Visibility = Visibility.Visible;
                 med7.Visibility = Visibility.Visible;
@@ -382,6 +385,30 @@ namespace WPFapp
 
             }
             if (str == "HIGH")
+            {
+                low_gnd1.Visibility = Visibility.Hidden;
+                low_gnd2.Visibility = Visibility.Hidden;
+                low1.Visibility = Visibility.Hidden;
+                low2.Visibility = Visibility.Hidden;
+                low3.Visibility = Visibility.Hidden;
+                low4.Visibility = Visibility.Hidden;
+                low5.Visibility = Visibility.Hidden;
+                low6.Visibility = Visibility.Hidden;
+                low7.Visibility = Visibility.Hidden;
+                low8.Visibility = Visibility.Hidden;
+
+                med_gnd1.Visibility = Visibility.Visible;
+                med_gnd2.Visibility = Visibility.Visible;
+                med1.Visibility = Visibility.Visible;
+                med2.Visibility = Visibility.Visible;
+                med3.Visibility = Visibility.Visible;
+                med4.Visibility = Visibility.Visible;
+                med5.Visibility = Visibility.Visible;
+                med6.Visibility = Visibility.Visible;
+                med7.Visibility = Visibility.Visible;
+                med8.Visibility = Visibility.Visible;
+            }            
+            if (str == "NONE")
             {
                 low_gnd1.Visibility = Visibility.Hidden;
                 low_gnd2.Visibility = Visibility.Hidden;
@@ -405,7 +432,7 @@ namespace WPFapp
                 med7.Visibility = Visibility.Hidden;
                 med8.Visibility = Visibility.Hidden;
 
-            }
+            }   
 
         }
 
@@ -418,7 +445,6 @@ namespace WPFapp
             if (PresitionComboBox.SelectedIndex == 1)
             {
                 SeeGrounfOf("MEDIUM");
-
             }
         }
     }
