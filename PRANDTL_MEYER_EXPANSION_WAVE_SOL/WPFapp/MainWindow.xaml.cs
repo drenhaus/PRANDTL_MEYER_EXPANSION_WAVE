@@ -29,6 +29,8 @@ namespace WPFapp
 
         double delta_y_t;
 
+        
+
         Polygon[,] casillas;
         GridPlotGenerate GPG = new GridPlotGenerate();
         
@@ -47,6 +49,7 @@ namespace WPFapp
         public MainWindow()
         {
             InitializeComponent();
+            SeeGrounfOf("NONE");
         }
 
 
@@ -327,6 +330,122 @@ namespace WPFapp
             WelcomeWindow ww = new WelcomeWindow();
             ww.Show();
             Close();
+        }
+
+        private void SeeGrounfOf(string str)
+        {
+            if (str == "LOW")
+            {
+                low_gnd1.Visibility = Visibility.Visible;
+                low_gnd2.Visibility = Visibility.Visible;
+                low1.Visibility = Visibility.Visible;
+                low2.Visibility = Visibility.Visible;
+                low3.Visibility = Visibility.Visible;
+                low4.Visibility = Visibility.Visible;
+                low5.Visibility = Visibility.Visible;
+                low6.Visibility = Visibility.Visible;
+                low7.Visibility = Visibility.Visible;
+                low8.Visibility = Visibility.Visible;
+
+                med_gnd1.Visibility = Visibility.Hidden;
+                med_gnd2.Visibility = Visibility.Hidden;
+                med1.Visibility = Visibility.Hidden;
+                med2.Visibility = Visibility.Hidden;
+                med3.Visibility = Visibility.Hidden;
+                med4.Visibility = Visibility.Hidden;
+                med5.Visibility = Visibility.Hidden;
+                med6.Visibility = Visibility.Hidden;
+                med7.Visibility = Visibility.Hidden;
+                med8.Visibility = Visibility.Hidden;
+
+            }
+            if (str == "MEDIUM")
+            {
+                low_gnd1.Visibility = Visibility.Hidden;
+                low_gnd2.Visibility = Visibility.Hidden;
+                low1.Visibility = Visibility.Hidden;
+                low2.Visibility = Visibility.Hidden;
+                low3.Visibility = Visibility.Hidden;
+                low4.Visibility = Visibility.Hidden;
+                low5.Visibility = Visibility.Hidden;
+                low6.Visibility = Visibility.Hidden;
+                low7.Visibility = Visibility.Hidden;
+                low8.Visibility = Visibility.Hidden;
+
+                med_gnd1.Visibility = Visibility.Visible;
+                med_gnd2.Visibility = Visibility.Visible;
+                med1.Visibility = Visibility.Visible;
+                med2.Visibility = Visibility.Visible;
+                med3.Visibility = Visibility.Visible;
+                med4.Visibility = Visibility.Visible;
+                med5.Visibility = Visibility.Visible;
+                med6.Visibility = Visibility.Visible;
+                med7.Visibility = Visibility.Visible;
+                med8.Visibility = Visibility.Visible;
+
+            }
+            if (str == "HIGH")
+            {
+                low_gnd1.Visibility = Visibility.Hidden;
+                low_gnd2.Visibility = Visibility.Hidden;
+                low1.Visibility = Visibility.Hidden;
+                low2.Visibility = Visibility.Hidden;
+                low3.Visibility = Visibility.Hidden;
+                low4.Visibility = Visibility.Hidden;
+                low5.Visibility = Visibility.Hidden;
+                low6.Visibility = Visibility.Hidden;
+                low7.Visibility = Visibility.Hidden;
+                low8.Visibility = Visibility.Hidden;
+
+                med_gnd1.Visibility = Visibility.Visible;
+                med_gnd2.Visibility = Visibility.Visible;
+                med1.Visibility = Visibility.Visible;
+                med2.Visibility = Visibility.Visible;
+                med3.Visibility = Visibility.Visible;
+                med4.Visibility = Visibility.Visible;
+                med5.Visibility = Visibility.Visible;
+                med6.Visibility = Visibility.Visible;
+                med7.Visibility = Visibility.Visible;
+                med8.Visibility = Visibility.Visible;
+            }            
+            if (str == "NONE")
+            {
+                low_gnd1.Visibility = Visibility.Hidden;
+                low_gnd2.Visibility = Visibility.Hidden;
+                low1.Visibility = Visibility.Hidden;
+                low2.Visibility = Visibility.Hidden;
+                low3.Visibility = Visibility.Hidden;
+                low4.Visibility = Visibility.Hidden;
+                low5.Visibility = Visibility.Hidden;
+                low6.Visibility = Visibility.Hidden;
+                low7.Visibility = Visibility.Hidden;
+                low8.Visibility = Visibility.Hidden;
+
+                med_gnd1.Visibility = Visibility.Hidden;
+                med_gnd2.Visibility = Visibility.Hidden;
+                med1.Visibility = Visibility.Hidden;
+                med2.Visibility = Visibility.Hidden;
+                med3.Visibility = Visibility.Hidden;
+                med4.Visibility = Visibility.Hidden;
+                med5.Visibility = Visibility.Hidden;
+                med6.Visibility = Visibility.Hidden;
+                med7.Visibility = Visibility.Hidden;
+                med8.Visibility = Visibility.Hidden;
+
+            }   
+
+        }
+
+        private void PresitionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PresitionComboBox.SelectedIndex == 0)
+            {
+                SeeGrounfOf("LOW");
+            }
+            if (PresitionComboBox.SelectedIndex == 1)
+            {
+                SeeGrounfOf("MEDIUM");
+            }
         }
     }
 }
