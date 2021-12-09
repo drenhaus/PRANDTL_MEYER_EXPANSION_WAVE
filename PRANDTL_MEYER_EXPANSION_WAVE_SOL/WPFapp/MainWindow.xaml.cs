@@ -52,8 +52,6 @@ namespace WPFapp
             SeeGrounfOf("NONE");
         }
 
-
-
         //open the tables window
         private void TablesButton_Click(object sender, RoutedEventArgs e)
         {
