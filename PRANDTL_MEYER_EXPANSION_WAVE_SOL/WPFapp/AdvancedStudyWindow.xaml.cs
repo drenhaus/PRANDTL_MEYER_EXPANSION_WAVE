@@ -341,14 +341,6 @@ namespace WPFapp
             this.WindowState = WindowState.Minimized;
         }
 
-        private void Window_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                this.DragMove();
-            }
-        }
-
         private void Set_headers(DataTable dt)
         {
             for (int i = 0; i < dt.Columns.Count; i++)
@@ -406,6 +398,14 @@ namespace WPFapp
 
                 Advanced_DataGridMalla.DataContext = M_table_1.DefaultView;
                 DataContext = M_table_2.DefaultView;
+            }
+        }
+
+        private void Label_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
             }
         }
     }

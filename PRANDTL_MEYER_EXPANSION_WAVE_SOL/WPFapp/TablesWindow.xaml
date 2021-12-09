@@ -10,8 +10,7 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True"
-        MouseMove="Window_MouseMove">
+        AllowsTransparency="True">
 
 
 
@@ -23,7 +22,7 @@
                       Margin="15,80,15,15" 
                       ItemsSource="{Binding}"
                       AutoGenerateColumns="True">
-                
+
 
                 <DataGrid.Resources>
                     <Style TargetType="DataGridColumnHeader">
@@ -35,8 +34,8 @@
                 </DataGrid.Columns>
 
             </DataGrid>
-            
-            
+
+
             <TextBlock Text="View data in tables"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
@@ -123,7 +122,7 @@
                 Height="32" Width="134" Style="{DynamicResource RoundCorner}" RenderTransformOrigin="0.31,0.437" Click="ExportTable_Button_Click"/>
             <Button x:Name="InfoTables_button" Content="I" 
                 HorizontalAlignment="Left" 
-                Margin="282,25,0,0"
+                Margin="290,34,0,0"
                 Style="{DynamicResource RoundCorner}"
                 VerticalAlignment="Top" Height="24" Width="26"
                 Foreground="White"
@@ -145,10 +144,10 @@
                         </WrapPanel>
                     </StackPanel>
                 </Button.ToolTip>
-                
-                </Button>
 
-                <Button x:Name="Close_Button" 
+            </Button>
+
+            <Button x:Name="Close_Button" 
                 Content="" 
                 HorizontalAlignment="Left" 
                 Margin="817,10,0,0" 
@@ -161,8 +160,21 @@
                 HorizontalAlignment="Left" 
                 Margin="796,10,0,0" 
                 VerticalAlignment="Top" Width="16" Height="16" Click="Mini_Button_Click"/>
+            <Label Content="" 
+                   HorizontalAlignment="Left" 
+                   Height="31" Margin="15,0,0,0"
+                   VerticalAlignment="Top" 
+                   Width="758"
+                   MouseMove="Label_MouseMove"/>
+            <ProgressBar x:Name="progressBar" HorizontalAlignment="Left" Height="20" Margin="351,318,0,0" VerticalAlignment="Top" Width="180" IsIndeterminate="True" Minimum="0" Maximum="100"/>
+
+
+
+
 
         </Grid>
+
+
     </Border>
 
 </Window>

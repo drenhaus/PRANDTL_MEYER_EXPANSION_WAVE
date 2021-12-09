@@ -13,6 +13,7 @@ using System.Linq;
 using LibreriaClases;
 using System.Data;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Windows.Threading;
 
 
 
@@ -37,12 +38,20 @@ namespace WPFapp
         DataTable table_to_Export;
         bool expanded = true;
 
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+
         public TablesWindow()
         {
             InitializeComponent();
+            hideProgressBar();
         }
 
-        public void SetTables(DataTable T, DataTable u, DataTable v, DataTable rho, DataTable p, DataTable M, DataTable f1, DataTable f2, DataTable f3, DataTable f4)
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            showProgressBar();
+        }
+
+         public void SetTables(DataTable T, DataTable u, DataTable v, DataTable rho, DataTable p, DataTable M, DataTable f1, DataTable f2, DataTable f3, DataTable f4)
         {
             this.temperature_t= T;
             this.u_t=u;
@@ -74,6 +83,11 @@ namespace WPFapp
 
         private void TableSetect_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+            
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(50);
+            dispatcherTimer.Start();
+            
             try
             {
                 Set_headers(temperature_t);
@@ -142,6 +156,7 @@ namespace WPFapp
             {
                 MessageBox.Show(ex.Message);
             }
+            
         }
 
         private void Mini_Button_Click(object sender, RoutedEventArgs e)
@@ -152,13 +167,6 @@ namespace WPFapp
         private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-        private void Window_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                this.DragMove();
-            }
         }
 
         private void Set_headers(DataTable dt)
@@ -178,8 +186,31 @@ namespace WPFapp
             {
                 MessageBox.Show(ex.Message);
             }
+
         }
 
-   
+        private void Label_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+
+        }
+
+
+        private void hideProgressBar()
+        {
+            this.Dispatcher.Invoke((Action)(() => {
+                progressBar.Visibility = Visibility.Hidden;
+            }));
+        }
+        private void showProgressBar()
+        {
+            this.Dispatcher.Invoke((Action)(() => {
+                progressBar.Visibility = Visibility.Visible;
+            }));
+        }
+
     }
 }

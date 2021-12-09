@@ -9,8 +9,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         Background="Transparent"
-        AllowsTransparency="True"
-        MouseMove="Window_MouseMove">
+        AllowsTransparency="True">
 
 
     <Border  Background="#302e5e"
@@ -340,6 +339,13 @@
                 Foreground="White" 
                 FontFamily="/Fonts/#Poppins"
                 Style="{DynamicResource RoundCorner}" Click="Load_tables_butt_Click"/>
+            <Label Content="" 
+                   HorizontalAlignment="Left" 
+                   Margin="10,2,0,0" 
+                   VerticalAlignment="Top" 
+                   Height="57" 
+                   Width="1034"
+                   MouseMove="Label_MouseMove"/>
 
 
 

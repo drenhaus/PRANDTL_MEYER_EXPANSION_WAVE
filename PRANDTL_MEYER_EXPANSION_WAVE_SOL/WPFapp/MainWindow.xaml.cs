@@ -142,6 +142,7 @@ namespace WPFapp
             P_TextBox.Text = Convert.ToString(101000);
             M_TextBox.Text = Convert.ToString(2.0);
             T_TextBox.Text = Convert.ToString(286.1);
+
         }
 
         // LOAD PARAMETERS BUTTON
@@ -238,7 +239,7 @@ namespace WPFapp
 
 
 
-        private void polygon_enter(object sender, EventArgs e)
+        public void polygon_enter(object sender, EventArgs e)
         {
             Polygon poly = (Polygon)sender;
            

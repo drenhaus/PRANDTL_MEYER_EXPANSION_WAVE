@@ -70,8 +70,8 @@ namespace LibreriaClases
                     myPointCollection.Add(Point3);
                     myPolygon.Points = myPointCollection;
                     casillas[j, i] = myPolygon;
-
-                    //myPolygon.MouseEnter += new System.Windows.Input.MouseEventHandler(polygon_enter);
+                    
+                   // myPolygon.MouseEnter += new System.Windows.Input.MouseEventHandler(polygon_enter);
 
                     y4 = y2;
                     y3 = y1;
