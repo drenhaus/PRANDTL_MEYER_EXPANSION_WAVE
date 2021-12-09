@@ -100,7 +100,7 @@ namespace WPFapp
             }
         }
 
-        // CHANGING THE SELECTED INDEX OF THE COMBOBOX
+        // CHANGING THE SELECTED INDEX OF THE DATA VIEW COMBOBOX
             // Depending the index selected, the polygons saved in CASILLAS are changed their color
             // according to the data displayed
         private void DataGridComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -171,6 +171,11 @@ namespace WPFapp
                 LoadParametersButton.IsEnabled = false;
                 DataGridComboBox.IsEnabled = true;
                 Reset_button.IsEnabled = true;
+                T_TextBox.IsEnabled = false;
+                Rho_TextBox.IsEnabled = false;
+                P_TextBox.IsEnabled = false;
+                M_TextBox.IsEnabled = false;
+                v_TextBox.IsEnabled = false;
             }
             catch (Exception ex)
             {
@@ -204,6 +209,15 @@ namespace WPFapp
             GridMalla.Children.Clear();
             // no selected item
             DataGridComboBox.SelectedItem = null;
+            PresitionComboBox.SelectedItem = null;
+            // checkbox not selected and labels empty
+            CheckBox_A.IsChecked = false;
+            T_TextBox.Text = "";
+            Rho_TextBox.Text = "";
+            P_TextBox.Text = "";
+            M_TextBox.Text = "";
+            v_TextBox.Text = "";
+
             // is enable of buttons fals
             DataGridComboBox.IsEnabled = false;
             Reset_button.IsEnabled = false;
@@ -212,6 +226,12 @@ namespace WPFapp
             LoadSim_button.IsEnabled = false;
             CheckBox_A.IsEnabled = false;
             PresitionComboBox.IsEnabled = true;
+            T_TextBox.IsEnabled = false;
+            Rho_TextBox.IsEnabled = false;
+            P_TextBox.IsEnabled = false;
+            M_TextBox.IsEnabled = false;
+            v_TextBox.IsEnabled = false;
+
         }
 
 
@@ -390,6 +410,12 @@ namespace WPFapp
                 // we change the isenable of buttons and elements to continue with the simulation
                 LoadParametersButton.IsEnabled = true;
                 CheckBox_A.IsEnabled = true;
+                T_TextBox.IsEnabled = true;
+                Rho_TextBox.IsEnabled = true;
+                P_TextBox.IsEnabled = true;
+                M_TextBox.IsEnabled = true;
+                v_TextBox.IsEnabled = true;
+
                 // Messagebox to show the presicion has been selected
                 MessageBox.Show("Precision selected successfully");
             }
@@ -416,14 +442,13 @@ namespace WPFapp
 
         // DRAG MOVE
             //When the left button is pressed and draged, the window can be moved
-        private void Window_MouseMove(object sender, MouseEventArgs e)
+        private void Label_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 this.DragMove();
             }
         }
-
 
         // NEW WINDOW: WELCOME
         // When clicking to the menu BACK TO START the simulation window closes and it is opened
@@ -498,5 +523,6 @@ namespace WPFapp
             gr.listaVxColumna = m.listaV_velxColumna; //Set of the v
 
         }
+
     }
 }
