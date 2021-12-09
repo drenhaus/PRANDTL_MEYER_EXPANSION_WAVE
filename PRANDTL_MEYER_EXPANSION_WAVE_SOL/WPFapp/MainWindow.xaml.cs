@@ -100,47 +100,41 @@ namespace WPFapp
             MessageBox.Show("Please select the data you want to show or reset for any change");
         }
 
+        // CHANGING THE SELECTED INDEX OF THE COMBOBOX
+            // Depending the index selected, the polygons saved in CASILLAS are changed their color
+            // according to the data displayed
         private void DataGridComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DataGridComboBox.SelectedIndex == 0) //temperature
+            if (DataGridComboBox.SelectedIndex == 0) // if temperature selected
             {
                 casillas=GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
             }
-            if (DataGridComboBox.SelectedIndex == 1) //u
+            if (DataGridComboBox.SelectedIndex == 1) // if u selected
             {
                 casillas = GPG.actualizar_colores_grid(u_table, 0, 255, 0);
             }
-            if (DataGridComboBox.SelectedIndex == 2) //v
+            if (DataGridComboBox.SelectedIndex == 2) //if v selected
             {
                 casillas = GPG.actualizar_colores_grid(v_table, 255, 128, 0);
             }
-            if (DataGridComboBox.SelectedIndex == 3) //rho
+            if (DataGridComboBox.SelectedIndex == 3) //if rho selected
             {
                 casillas = GPG.actualizar_colores_grid(rho_table, 18, 184, 255);
             }
-            if (DataGridComboBox.SelectedIndex == 4) //p
+            if (DataGridComboBox.SelectedIndex == 4) //if p selected
             {
                 casillas = GPG.actualizar_colores_grid(p_table, 255, 0, 127);
             }
-            if (DataGridComboBox.SelectedIndex == 5) //Mach
+            if (DataGridComboBox.SelectedIndex == 5) //if Mach selected
             {
                 casillas = GPG.actualizar_colores_grid(M_table, 255, 255, 255);
             }
 
         }
 
-        private void ComparationButton_Click(object sender, RoutedEventArgs e)
-        {
-            AndersonComparationWindow anderson_w = new AndersonComparationWindow();
-            anderson_w.m = this.m;
-            anderson_w.p = PresitionComboBox.SelectedIndex;
-            // define the columns we want to check
-            //tables_w.SetTables(temperature_table, u_table, v_table, rho_table, p_table, M_table, F1_table, F2_table, F3_table, F4_table);
-            anderson_w.Show();
-
-
-        }
-
+       
+        // CHECKBOX OF DEFAULT PARAMETERS CHECKED
+            
         private void CheckBox_A_Checked(object sender, RoutedEventArgs e)
         {
             v_TextBox.Text = Convert.ToString(0.0);
@@ -415,6 +409,19 @@ namespace WPFapp
             WelcomeWindow ww = new WelcomeWindow();
             ww.Show();
             Close();
+        }
+
+        //NEW WINDOW: COMPARE WITH ANDERSON
+            //When clicking to the menu COMPARING WITH ANDERSON a new window is opened allowing comparing
+            // the results obtained with the Anderson results
+        private void ComparationButton_Click(object sender, RoutedEventArgs e)
+        {
+            AndersonComparationWindow anderson_w = new AndersonComparationWindow();
+
+            // We set the precision and the Malla of the new window as the one simulated in the main Simulation
+            anderson_w.m = this.m;
+            anderson_w.p = PresitionComboBox.SelectedIndex;
+            anderson_w.Show();
         }
 
         // NEW WINDOW: TABLES
