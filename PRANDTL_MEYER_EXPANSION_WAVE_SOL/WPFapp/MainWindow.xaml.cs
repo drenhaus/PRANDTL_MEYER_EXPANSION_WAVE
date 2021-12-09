@@ -54,10 +54,10 @@ namespace WPFapp
             SeeGrounfOf("NONE"); // initially no ground is visible
         }
 
-        // SIMULATE BUTTON CLICK
-            //When clicking the simulation button the needed parameters are set and 
+        // SIMULATION FUNCTION
+            //When the simulation function is called the needed parameters are set and 
             // the functions that compute the simulation in the Malla are initialized        
-        private void Simulate_Button_Click(object sender, RoutedEventArgs e)
+        private void Simulate()
         {
             // We define the rows, columns and the delta_y_t depending of the precision
             // that had been selected
@@ -98,8 +98,6 @@ namespace WPFapp
                     GridMalla.Children.Add(casillas[j, i]);
                 }
             }
-
-            MessageBox.Show("Please select the data you want to show or reset for any change");
         }
 
         // CHANGING THE SELECTED INDEX OF THE COMBOBOX
@@ -164,10 +162,15 @@ namespace WPFapp
                 m.norma.Compute_M_angle();
                 m.norma.Compute_u();
 
-                Simulate_Button.IsEnabled = true;
+                Simulate();
+                MessageBox.Show("Please select the data you want to show or reset for any change");
 
-                //MessageBox to show the parameters had been defined
-                MessageBox.Show("Parameters defined");
+                // The is enable is changed to continue with the simulation
+                PresitionComboBox.IsEnabled = false;
+                CheckBox_A.IsEnabled = false;
+                LoadParametersButton.IsEnabled = false;
+                DataGridComboBox.IsEnabled = true;
+                Reset_button.IsEnabled = true;
             }
             catch (Exception ex)
             {
@@ -203,41 +206,17 @@ namespace WPFapp
             DataGridComboBox.SelectedItem = null;
             // is enable of buttons fals
             DataGridComboBox.IsEnabled = false;
-            Simulate_Button.IsEnabled = false;
             Reset_button.IsEnabled = false;
             LoadParametersButton.IsEnabled = false;
-            LoadPresitionButton.IsEnabled = true;
+            SaveSim_button.IsEnabled = false;
+            LoadSim_button.IsEnabled = false;
+            CheckBox_A.IsEnabled = false;
+            PresitionComboBox.IsEnabled = true;
         }
 
-        private void LoadPresitionButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (PresitionComboBox.SelectedIndex == 0) //small
-            {
-                columnas = 24;
-                filas = 11;
-                delta_y_t = 0.1;
-
-            }
-            if (PresitionComboBox.SelectedIndex == 1) // normal
-            {
-                columnas = 92;
-                filas = 41;
-                delta_y_t = 0.025;
-
-            }
-            if (PresitionComboBox.SelectedIndex == 2) //high
-            {
-                columnas = 452;
-                filas = 201;
-                delta_y_t = 0.005;
-
-            }
-            LoadParametersButton.IsEnabled = true;
-            MessageBox.Show("Precision selected successfully");
 
 
 
-        }
 
         private void polygon_enter(object sender, EventArgs e)
         {
@@ -270,6 +249,12 @@ namespace WPFapp
 
 
 
+
+
+
+        // SEE GROUND 
+            // This function sets if the ground of the simulation is visible or hidden and if is visible which configuration
+            // low, medium or high
         private void SeeGrounfOf(string str)
         {
             if (str == "LOW")
@@ -374,19 +359,46 @@ namespace WPFapp
 
         }
 
+        // CHANGING THE PRECISION INDEX
+            // Depending of the precision selected in the Combobox the dimensions of delta_y_t, rows and columns are
+            // higher or lower and thus is more accurate or not and the ground is visible
         private void PresitionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (PresitionComboBox.SelectedIndex == 0)
+            try
             {
-                SeeGrounfOf("LOW");
+                if (PresitionComboBox.SelectedIndex == 0) //low precision
+                {
+                    SeeGrounfOf("LOW");
+                    columnas = 24;
+                    filas = 11;
+                    delta_y_t = 0.1;
+                }
+                if (PresitionComboBox.SelectedIndex == 1) // normal precision
+                {
+                    SeeGrounfOf("MEDIUM");
+                    columnas = 92;
+                    filas = 41;
+                    delta_y_t = 0.025;
+                }
+                if (PresitionComboBox.SelectedIndex == 2) //high precision
+                {
+                    columnas = 452;
+                    filas = 201;
+                    delta_y_t = 0.005;
+
+                }
+                // we change the isenable of buttons and elements to continue with the simulation
+                LoadParametersButton.IsEnabled = true;
+                CheckBox_A.IsEnabled = true;
+                // Messagebox to show the presicion has been selected
+                MessageBox.Show("Precision selected successfully");
             }
-            if (PresitionComboBox.SelectedIndex == 1)
+            catch (Exception ex)
             {
-                SeeGrounfOf("MEDIUM");
+                // MessageBox to indicate that the precision has not been set well
+                MessageBox.Show(ex.Message);
             }
         }
-
-
 
         // CLOSE BUTTON
             //When clicking to the top right button (red circle) the current window closes
