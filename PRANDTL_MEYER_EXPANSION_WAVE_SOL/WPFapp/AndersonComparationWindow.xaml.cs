@@ -22,10 +22,13 @@ namespace WPFapp
         public AndersonComparationWindow()
         {
             InitializeComponent();
+
+            #region HIDDE LABELS & TEXTBOX
             anderson_error.Visibility = Visibility.Hidden;
             anderson_label.Visibility = Visibility.Hidden;
             computed_label.Visibility = Visibility.Hidden;
             our_error.Visibility = Visibility.Hidden;
+            #endregion HIDDE LABELS & TEXTBOX
         }
 
         #region ATRIBUTES
@@ -533,6 +536,39 @@ namespace WPFapp
                 our_F4_66.Rows.Add(F4_R2);
             }
         }
+
+        #region TABLE COMPUTATIONS
+        public void Compute_Errors()
+        {
+            Anderson_M_error = Math.Round(100 * Math.Abs(2.2 - MeanValue(Anderson_M_66)) / 2.2,4);    
+            Anderson_p_error = Math.Round(100 * Math.Abs(0.739*Math.Pow(10,5) - MeanValue(Anderson_p_66)) / (0.739 * Math.Pow(10, 5)),4);
+            Anderson_rho_error = Math.Round(100 * Math.Abs(0.984 - MeanValue(Anderson_rho_66)) / 0.984,4);
+            Anderson_t_error = Math.Round(100 * Math.Abs(262 - MeanValue(Anderson_T_66)) / 262,4);
+            Anderson_u_error = Math.Round(100 * Math.Abs(710 - MeanValue(Anderson_u_66)) / 710,4);
+            Anderson_v_error =Math.Abs( Math.Round(100 * Math.Abs(-66.5 - MeanValue(Anderson_v_66)) / -66.5,4));
+            
+            our_M_error= Math.Round(100 * Math.Abs(2.2 - MeanValue(our_M_66)) / 2.2,4);
+            our_p_error= Math.Round(100 * Math.Abs(0.739 * Math.Pow(10, 5) - MeanValue(our_p_66)) / (0.739 * Math.Pow(10, 5)),4);
+            our_rho_error= Math.Round(100 * Math.Abs(0.984 - MeanValue(our_rho_66)) / 0.984,4);
+            our_t_error= Math.Round(100 * Math.Abs(262 - MeanValue(our_T_66)) / 262,4);
+            our_u_error= Math.Round(100 * Math.Abs(710 - MeanValue(our_u_66)) / 710,4);
+            our_v_error= Math.Abs(Math.Round(100 * Math.Abs(-66.5 - MeanValue(our_v_66)) / -66.5,4));
+
+        }
+        public double MeanValue(DataTable dt)
+        {
+            double accomulated = 0;
+
+            for (int i = 1; i <= 22; i++)
+            {
+                accomulated = accomulated + Convert.ToDouble(dt.Rows[i][0].ToString());
+            }
+            double mean = accomulated / 22;
+
+            return mean;
+        }
+        #endregion TABLE COMPUTATIONS
+
         #endregion FILL DATATBLE
 
         #region INTERPOLATION FUNCTIONS
@@ -680,37 +716,7 @@ namespace WPFapp
         }
         #endregion INTERPOLATION FUNCTIONS
 
-        public void Compute_Errors()
-        {
-            Anderson_M_error = Math.Round(100 * Math.Abs(2.2 - MeanValue(Anderson_M_66)) / 2.2,4);    
-            Anderson_p_error = Math.Round(100 * Math.Abs(0.739*Math.Pow(10,5) - MeanValue(Anderson_p_66)) / (0.739 * Math.Pow(10, 5)),4);
-            Anderson_rho_error = Math.Round(100 * Math.Abs(0.984 - MeanValue(Anderson_rho_66)) / 0.984,4);
-            Anderson_t_error = Math.Round(100 * Math.Abs(262 - MeanValue(Anderson_T_66)) / 262,4);
-            Anderson_u_error = Math.Round(100 * Math.Abs(710 - MeanValue(Anderson_u_66)) / 710,4);
-            Anderson_v_error =Math.Abs( Math.Round(100 * Math.Abs(-66.5 - MeanValue(Anderson_v_66)) / -66.5,4));
-            
-            our_M_error= Math.Round(100 * Math.Abs(2.2 - MeanValue(our_M_66)) / 2.2,4);
-            our_p_error= Math.Round(100 * Math.Abs(0.739 * Math.Pow(10, 5) - MeanValue(our_p_66)) / (0.739 * Math.Pow(10, 5)),4);
-            our_rho_error= Math.Round(100 * Math.Abs(0.984 - MeanValue(our_rho_66)) / 0.984,4);
-            our_t_error= Math.Round(100 * Math.Abs(262 - MeanValue(our_T_66)) / 262,4);
-            our_u_error= Math.Round(100 * Math.Abs(710 - MeanValue(our_u_66)) / 710,4);
-            our_v_error= Math.Abs(Math.Round(100 * Math.Abs(-66.5 - MeanValue(our_v_66)) / -66.5,4));
-
-        }
-
-        public double MeanValue(DataTable dt)
-        {
-            double accomulated = 0;
-
-            for (int i = 1; i <= 22; i++)
-            {
-                accomulated = accomulated + Convert.ToDouble(dt.Rows[i][0].ToString());
-            }
-            double mean = accomulated / 22;
-
-            return mean;
-        }
-
+        #region COMPARE BUTTON
         private void Compare_btn_Click(object sender, RoutedEventArgs e)
         {
             #region NEW DATATABLE DEFINITIONS
@@ -970,5 +976,9 @@ namespace WPFapp
             }
             #endregion CHANGE WHAT IT IS SHOWN
         }
+        #endregion COMPARE BUTTON
+
+
+        
     }
 }
