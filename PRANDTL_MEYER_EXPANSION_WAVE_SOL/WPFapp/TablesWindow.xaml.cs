@@ -49,7 +49,6 @@ namespace WPFapp
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            
             if (timer==1)
             {
                 ld = new Loading();
