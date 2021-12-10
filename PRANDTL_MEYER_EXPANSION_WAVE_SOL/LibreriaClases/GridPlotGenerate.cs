@@ -22,8 +22,7 @@ namespace LibreriaClases
         #region ATRIBUTES
 
         Polygon[,] casillas;
-        
-
+ 
         int filas;
         int columnas;
 
@@ -31,7 +30,7 @@ namespace LibreriaClases
 
         #endregion ATRIBUTES
 
-
+        #region GRID PLOR GENERATOR
         public Polygon[,] GenerateGridPlot(int filas, int columnas, Malla m)
         {
             this.filas = filas;
@@ -89,7 +88,9 @@ namespace LibreriaClases
 
             return casillas;
         }
+        #endregion GRID PLOT GENERATOR
 
+        #region UPDATE GRID COLOR
         public Polygon[,] actualizar_colores_grid(DataTable t, byte R, byte G, byte B)
         {
             double[] max_min;
@@ -106,7 +107,6 @@ namespace LibreriaClases
             return casillas;
 
         }
-
         public Polygon[,] actualizar_colores_grid_AS(DataTable t, byte R, byte G, byte B, DataTable t_minmax, int filas_t, int columnas_t, DataTable t_minmax2)
         {
             
@@ -129,6 +129,25 @@ namespace LibreriaClases
             return casillas;
 
         }
+        public byte Define_Cloroes(double max, double min, double value)
+        {
+            double rango = max - min;
+
+            byte alpha;
+
+            //max byte --255
+            // min byte --30
+
+            //interpolamos para sacar el parametro alpa
+            alpha = Convert.ToByte(30 + (255 - 30) / (max - min) * (value - min));
+
+            return alpha;
+
+        }
+
+        #endregion UPDATE GRID COLOR
+
+        #region DATATABLE MANIPULATIONS
         public double[] Max_Min_Datatables(DataTable data_t)
         {
             double max = Convert.ToDouble(data_t.Rows[0][0].ToString());
@@ -176,23 +195,7 @@ namespace LibreriaClases
             double[] values = { max, min };
             return values;
         }
-
-
-        public byte Define_Cloroes(double max, double min, double value)
-        {
-            double rango = max - min;
-
-            byte alpha;
-
-            //max byte --255
-            // min byte --30
-
-            //interpolamos para sacar el parametro alpa
-            alpha = Convert.ToByte(30 + (255 - 30) / (max - min) * (value - min));
-
-            return alpha;
-
-        }
+        #endregion DATATABLE MANIPULATIONS
 
     }
 }
