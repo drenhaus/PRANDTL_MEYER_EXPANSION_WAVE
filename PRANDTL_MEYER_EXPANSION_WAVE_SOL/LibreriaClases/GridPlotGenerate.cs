@@ -19,6 +19,8 @@ namespace LibreriaClases
 {
     public class GridPlotGenerate
     {
+        #region ATRIBUTES
+
         Polygon[,] casillas;
         
 
@@ -26,6 +28,9 @@ namespace LibreriaClases
         int columnas;
 
         public int dimension_scale { get; set; } = 7;
+
+        #endregion ATRIBUTES
+
 
         public Polygon[,] GenerateGridPlot(int filas, int columnas, Malla m)
         {

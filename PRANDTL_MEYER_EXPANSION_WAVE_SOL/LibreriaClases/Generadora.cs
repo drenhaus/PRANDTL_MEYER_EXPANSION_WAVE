@@ -6,6 +6,7 @@ namespace LibreriaClases
 {
     public class Generadora
     {
+        #region ATRIBUTES
         public List<Punto> Puntos { get; set; } //generamos una lista de puntos  
 
         public List<double> listaDeXColumna_G { get; set; }
@@ -101,8 +102,9 @@ namespace LibreriaClases
         }
 
 
+        #endregion ATRIBUTES
 
-
+        #region EVALUATE FUNTIONS
         //GENERAMOS LAS FUNCIONES QUE VAMOS A PLOTEAR
         // dada una iteración, nos devuelve el valor de la temperatura media en esa iteración
         private double EvaluarX(double x)
@@ -133,12 +135,7 @@ namespace LibreriaClases
         {
             return listaVxColumna_G[Convert.ToInt32(x)]; // hace la busqueda en la lista
         }
- 
 
-
-
-
-
-
+        #endregion EVALUATE FUNTIONS
     }
 }

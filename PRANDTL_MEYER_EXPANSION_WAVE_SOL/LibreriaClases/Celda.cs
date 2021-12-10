@@ -5,6 +5,7 @@ namespace LibreriaClases
 {
     public class Celda
     {
+        #region ATRIBUTES
         public double M { get; set; }
         public double u { get; set; }
         public double v { get; set; }
@@ -74,6 +75,9 @@ namespace LibreriaClases
         public double dF2_x_av { get; set; }
         public double dF3_x_av { get; set; }
         public double dF4_x_av { get; set; }
+
+        #endregion ATRIBUTES
+
 
         // for the initial data line
         public void Compute_G_F(double Gamma)
