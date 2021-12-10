@@ -381,9 +381,11 @@
                  IsEnabled="False"
                  VerticalAlignment="Top"
                  Width="62" 
-                     Height="30"
-                     Style="{StaticResource TextboxINPUT2}"
-                     FontFamily="/Fonts/#Poppins"/>
+                 Height="30"
+                 Style="{StaticResource TextboxINPUT2}"
+                 FontFamily="/Fonts/#Poppins"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"/>
 
 
             <TextBox x:Name="M_TextBox" Grid.Column="1" 
@@ -395,7 +397,9 @@
                  VerticalAlignment="Top"
                  Width="62" Height="30"
                      Style="{StaticResource TextboxINPUT2}"
-                     FontFamily="/Fonts/#Poppins"/>
+                     FontFamily="/Fonts/#Poppins"
+                     VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"/>
 
             <TextBox x:Name="Rho_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
@@ -407,7 +411,9 @@
                  Width="62" 
                      Height="30"
                      Style="{StaticResource TextboxINPUT2}"
-                     FontFamily="/Fonts/#Poppins" Grid.RowSpan="2"/>
+                     FontFamily="/Fonts/#Poppins" Grid.RowSpan="2"
+                     VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"/>
 
             <TextBox x:Name="v_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
@@ -418,7 +424,9 @@
                  VerticalAlignment="Top"
                  Width="62" Height="30"
                      Style="{StaticResource TextboxINPUT2}"
-                     FontFamily="/Fonts/#Poppins" Grid.RowSpan="2"/>
+                     FontFamily="/Fonts/#Poppins" Grid.RowSpan="2"
+                     VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"/>
 
             <TextBox x:Name="T_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
@@ -430,7 +438,9 @@
                  Width="62" 
                      Height="30"
                      Style="{StaticResource TextboxINPUT2}"
-                     FontFamily="/Fonts/#Poppins"/>
+                     FontFamily="/Fonts/#Poppins"
+                     VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"/>
 
 
 
@@ -538,9 +548,9 @@
                    Foreground="White"/>
             <ComboBox x:Name="DataGridComboBox" 
             HorizontalAlignment="Left" 
-            Margin="588,43,0,0"
+            Margin="412,59,0,0"
             VerticalAlignment="Top" 
-            Width="108"
+            Width="136"
             FontSize="10"
             IsEnabled="False"   
             SelectionChanged="DataGridComboBox_SelectionChanged"  
@@ -633,8 +643,8 @@
                 Grid.Column="1" Height="26"
                 FontFamily="/Fonts/#Poppins"
                 Foreground="White"/>
-            <Label Content="Label" HorizontalAlignment="Left" Height="54" Margin="0,5,0,0" VerticalAlignment="Top" Width="910" Grid.ColumnSpan="2"
-                   MouseMove="Label_MouseMove"/>
+            <Label Content="" HorizontalAlignment="Left" Height="54" Margin="0,5,0,0" VerticalAlignment="Top" Width="910" Grid.ColumnSpan="2"
+                   MouseMove="Label_MouseMove" IsEnabled="True"/>
 
 
 

@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="loading-buffering.gif" />
-  </ItemGroup>
-
-  <ItemGroup>
     <COMReference Include="Microsoft.Office.Interop.Excel">
       <WrapperTool>tlbimp</WrapperTool>
       <VersionMinor>7</VersionMinor>
@@ -37,10 +33,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LibreriaClases\LibreriaClases.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="loading-buffering.gif" />
   </ItemGroup>
 
   <ItemGroup>
