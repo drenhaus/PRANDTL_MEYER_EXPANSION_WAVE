@@ -18,6 +18,7 @@ namespace WPFapp
     /// </summary>
     public partial class Loading : Window
     {
+
         #region ATRIBUTES
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         int timer = 0;
@@ -26,10 +27,8 @@ namespace WPFapp
         public Loading()
         {
             InitializeComponent();
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);// por defecto establecemos una simulación cada segundo
-            dispatcherTimer.Start();
         }
+
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             #region IFs FOR EACH TIEMER TICK
@@ -69,6 +68,7 @@ namespace WPFapp
             { timer = 0; }
             #endregion IFs FOR EACH TIEMER TICK
         }
+
 
 
     }

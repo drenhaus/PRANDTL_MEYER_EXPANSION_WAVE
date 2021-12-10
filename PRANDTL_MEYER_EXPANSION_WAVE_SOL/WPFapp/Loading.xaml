@@ -5,12 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
-        Title="Loading" Height="450" Width="800">
-    <Grid>
-        <Ellipse x:Name="ellipse1" HorizontalAlignment="Left" Height="100" Margin="503,0,0,0" Fill="Red" VerticalAlignment="Center" Width="100"/>
-        <Ellipse x:Name="ellipse3" HorizontalAlignment="Left" Height="100" Margin="202,0,0,0" Fill="Transparent" VerticalAlignment="Center" Width="100"/>
-        <Ellipse x:Name="ellipse4" HorizontalAlignment="Center" Height="100" Margin="0,27,0,0" Fill="Transparent" VerticalAlignment="Top" Width="100"/>
-        <Ellipse x:Name="ellipse2" HorizontalAlignment="Center" Height="100" Margin="0,316,0,0" Fill="Transparent" VerticalAlignment="Top" Width="100"/>
+        WindowStyle="None"
+        Height="194" Width="715" 
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Grid Margin="0,0,51,-14" Background="Transparent">
+        <Rectangle HorizontalAlignment="Left" Height="90" Margin="178,0,0,0" Fill="Black" VerticalAlignment="Center" Width="421"/>
+        <Ellipse HorizontalAlignment="Left" Height="90" Margin="130,0,0,0" Fill="Black" VerticalAlignment="Center" Width="100"/>
+        <Label Content="Loading . . ." 
+               HorizontalAlignment="Left" 
+               Margin="316,0,0,0" 
+               Foreground="White" 
+               FontSize="30"
+               VerticalAlignment="Center" 
+               Height="56" Width="180"/>
+        <Ellipse HorizontalAlignment="Left" Height="90" Margin="549,0,0,0" Fill="Black" VerticalAlignment="Center" Width="100"/>
 
     </Grid>
 </Window>
