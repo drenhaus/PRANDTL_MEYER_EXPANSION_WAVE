@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
         Title="AndersonComparationWindow" Height="610" Width="860"
+        WindowStartupLocation="CenterScreen">
         ResizeMode="NoResize"
         WindowStyle="None"
         Background="Transparent"
