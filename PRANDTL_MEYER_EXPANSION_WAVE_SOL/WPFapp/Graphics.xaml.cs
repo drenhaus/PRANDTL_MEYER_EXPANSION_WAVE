@@ -23,6 +23,7 @@ namespace WPFapp
     /// </summary>
     public partial class Graphics : Window
     {
+        #region ATRIBUTES
         Generadora generador;
 
         int numDeCOLUMNAS;
@@ -35,13 +36,13 @@ namespace WPFapp
         public List<double> listaPresurexColumna { get; set; }
         public List<double> listaUxColumna { get; set; }
         public List<double> listaVxColumna { get; set; }
-
-
-
+        #endregion ATRIBUTES
 
         public Graphics()
         {
             InitializeComponent();
+
+            #region EVENT CREATION ON BUTTON CLICK
 
             Graf_Temperatura_Butt.Click += Graf_Temperatura_Butt_Click;
             Graf_Mach_Butt.Click += Graf_Mach_Butt_Click;
@@ -49,13 +50,12 @@ namespace WPFapp
             Graf_Presure_Butt.Click += Graf_Presure_Butt_Click;
             Graf_U_vel_Butt.Click += Graf_U_vel_Butt_Click;
             Graf_V_vel_Butt.Click += Graf_V_vel_Butt_Click;
+            #endregion EVENT CREATION ON BUTTON CLICK
 
             generador = new LibreriaClases.Generadora(); // generamos una clase Generadora cuando inicializamos
-
-            
-
         }
 
+        #region GRAPH CREATION BY BUTTON CLICK
         private void Graf_Temperatura_Butt_Click(object sender, RoutedEventArgs e)
         {
             //Ocultamos las labels
@@ -282,12 +282,16 @@ namespace WPFapp
 
         }
 
-        
+        #endregion GRAPH CREATION BY BUTTON CLICK
+
+        #region SET INT COLMN
         public void SetnumdeCOLUMNAS(int count)
         {
             this.numDeCOLUMNAS = count;
         }
+        #endregion SET INT COLMN
 
+        #region WINDOW MANIPULATION FUNCTIONS
         private void Mini_Button_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -305,6 +309,7 @@ namespace WPFapp
                 this.DragMove();
             }
         }
+        #endregion WINDOW MANIPULATION FUNCTIONS
 
     }
 }

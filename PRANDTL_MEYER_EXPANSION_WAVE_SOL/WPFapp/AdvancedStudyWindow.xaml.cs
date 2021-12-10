@@ -20,7 +20,7 @@ namespace WPFapp
     public partial class AdvancedStudyWindow : Window
     {
 
-
+        #region ATRIBUTES
         Malla m2 = new Malla();
         Malla m3 = new Malla();
         Malla m4 = new Malla();
@@ -45,8 +45,6 @@ namespace WPFapp
         DataTable p_table_2 = new DataTable();
         DataTable M_table_2 = new DataTable();
 
-
-
         Polygon[,] casillas2;
         Polygon[,] casillas3;
         Polygon[,] casillas4;
@@ -56,14 +54,18 @@ namespace WPFapp
         DataTable[] tablesM3;
         DataTable[] tablesM4;
         DataTable[] tablesM5;
+        #endregion ATRIBUTES
 
         public AdvancedStudyWindow()
         {
             InitializeComponent();
 
-            // m2 sera la primera malla del caso 1 (caso 1 el de dos pendientes de angulo distinto juntas)
             double sumaTheta = (10 * (Math.PI) / 180);
 
+            #region FRIST CASE PARAMETERS (2 STATGE)
+
+            #region MALLA M2 DEFINITION
+            // m2 sera la primera malla del caso 1 (caso 1 el de dos pendientes de angulo distinto juntas)
 
             // Parimos de cero, es decir, nueva malla y reacemos el calculo de una matriz en resolucion media
             //la idea es hacer otra matriz con los datos recogidos de la ultima columna de la simulacion.
@@ -95,7 +97,9 @@ namespace WPFapp
             tablesM2 = m2.GetTables();
 
             List<Celda> ListadeUltimaColumnadeCeldas_caso1 = GetLastColumOfMatriz(m2);
+            #endregion MALLA M2 DEFINITION
 
+            #region MALLA M3 DEFINITION
             //Empezamos con la segunda malla que empieza con los ultimos datos d ela anterior matriz. 
 
             m3.norma.L = 45;
@@ -114,12 +118,18 @@ namespace WPFapp
             m3.Fill_DataTable();
             tablesM3 = m3.GetTables();
 
+            #endregion MALLA M3 DEFINITION
+
+            #endregion FRISRT CASE PARAMETERS (2 STAGE)
+
+            #region SECOND CASE PARAMETERS (3 STAGE)
             //CASO 2!!
 
             // Caso dos, tenemos dos pendientes eparadas por superficie plana
 
-            //10 m llegamos a E, 30 M llegamos a final, 30 metros de estaviliadad, y repetimops pero con
-            // angulo dos
+            #region MALLA M4 DEFINITION
+            //10 m llegamos a E, 30 M llegamos a final, 30 metros de estaviliadad, y repetimos pero con
+            //dos angulo
 
             m4.rows = 41;
             m4.columns = 53;
@@ -149,6 +159,10 @@ namespace WPFapp
 
             List<Celda> ListadeUltimaColumnadeCeldas_caso2 = GetLastColumOfMatriz(m4);
 
+            #endregion MALLA M4 DEFINITION
+
+            #region MALLA M5 DEFINITION
+
             m5.norma.L = 60;
             m5.norma.E = 30;
             m5.norma.H = 40;
@@ -164,16 +178,23 @@ namespace WPFapp
             m5.Compute2(ListadeUltimaColumnadeCeldas_caso2);
             m5.Fill_DataTable();
             tablesM5 = m5.GetTables();
+            #endregion MALLA M5 DEFINITION
 
+            #endregion SECOND CASE PARAMETERS (3 STAGE)
+
+
+            #region DIMENSION SCALE DEFINITIONM
             GPG2.dimension_scale = 6;
             GPG3.dimension_scale = 6;
             GPG4.dimension_scale = 6;
             GPG5.dimension_scale = 6;
+            #endregion DIMENSION SCALE DEFINITIONM
 
             casillas2 = GPG2.GenerateGridPlot(m2.rows, m2.columns, m2);
             casillas3 = GPG3.GenerateGridPlot(m3.rows, m3.columns, m3);
             casillas4 = GPG4.GenerateGridPlot(m4.rows, m4.columns, m4);
             casillas5 = GPG5.GenerateGridPlot(m5.rows, m5.columns, m5);
+
 
             // CASO 1, Advanced_GridMalla_CASO1 y Advanced_GridMalla_2_CASO1
 
@@ -184,7 +205,6 @@ namespace WPFapp
                     Advanced_GridMalla_CASO1.Children.Add(casillas2[j, i]);
                 }
             }
-
             for (int i = 0; i < m3.columns - 1; i++)
             {
                 for (int j = 0; j < m3.rows; j++)
@@ -192,7 +212,7 @@ namespace WPFapp
                     Advanced_GridMalla_2_CASO1.Children.Add(casillas3[j, i]);
                 }
             }
-            // CASO 3, Advanced_GridMalla_CASO2 y Advanced_GridMalla_2_CASO2
+            // CASO 2, Advanced_GridMalla_CASO2 y Advanced_GridMalla_2_CASO2
 
             for (int i = 0; i < m4.columns - 1; i++)
             {
@@ -209,6 +229,7 @@ namespace WPFapp
                 }
             }
 
+            #region TABLE MANIPULATION
             // Unimos las tablas de m2 con m3 
             temperature_table_1 = JuntarTablas(tablesM2[0], tablesM3[0]);
             u_table_1 = JuntarTablas(tablesM2[1], tablesM3[1]);
@@ -224,6 +245,7 @@ namespace WPFapp
             rho_table_2 = JuntarTablas(tablesM4[3], tablesM5[3]);
             p_table_2 = JuntarTablas(tablesM4[4], tablesM5[4]);
             M_table_2 = JuntarTablas(tablesM4[5], tablesM5[5]);
+            #endregion TABLE MANIPULATION
 
         }
 
@@ -243,6 +265,7 @@ namespace WPFapp
 
         }
 
+        #region GRID CHANGE PARAMETER SHOWN
         private void DataGridComboBox_AS_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -291,7 +314,9 @@ namespace WPFapp
 
             }
         }
+        #endregion GRID CHANGE PARAMETER SHOWN
 
+        #region DATA TABLES MANIPULATIONS
         public DataTable JuntarTablas(DataTable dt1, DataTable dt2)
         {
             DataTable Unida = new DataTable();
@@ -330,25 +355,6 @@ namespace WPFapp
 
 
         }
-
-        private void Close_Button_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void Mini_Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        private void Window_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                this.DragMove();
-            }
-        }
-
         private void Set_headers(DataTable dt)
         {
             for (int i = 0; i < dt.Columns.Count; i++)
@@ -356,7 +362,6 @@ namespace WPFapp
                 dt.Columns[i].ColumnName = Convert.ToString(i + 1);
             }
         }
-
         private void Load_tables_butt_Click(object sender, RoutedEventArgs e)
         {
             if (DataGridComboBox_AS.SelectedIndex == 0) //temperature
@@ -408,8 +413,27 @@ namespace WPFapp
                 DataContext = M_table_2.DefaultView;
             }
         }
+        #endregion DATA TABLES MANIPULATIONS
+
+        #region WINDOW MANIPULATION FUNCTIONS
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        private void Mini_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+        private void Label_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
+        #endregion WINDOW MANIPULATION FUNCTIONS
     }
 
-   
+
 }
 

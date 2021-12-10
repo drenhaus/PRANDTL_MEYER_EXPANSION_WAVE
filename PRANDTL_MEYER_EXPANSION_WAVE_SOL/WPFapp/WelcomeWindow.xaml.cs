@@ -41,5 +41,13 @@ namespace WPFapp
             MW.Show();
             Close();
         }
+
+        private void Label_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ using System.Linq;
 using LibreriaClases;
 using System.Data;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Windows.Threading;
 
 
 
@@ -37,10 +38,39 @@ namespace WPFapp
         DataTable table_to_Export;
         bool expanded = true;
 
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        int timer=0;
+        Loading ld = new Loading();
+
         public TablesWindow()
         {
             InitializeComponent();
         }
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            
+            if (timer==1)
+            {
+                ld = new Loading();
+                ld.Show();
+                
+
+            }
+            if (timer==4)
+                { 
+
+                }
+            if (timer == 5)
+            {
+                ld.Close();
+            }
+
+                timer = timer + 1;
+        }
+
+
+      
 
         public void SetTables(DataTable T, DataTable u, DataTable v, DataTable rho, DataTable p, DataTable M, DataTable f1, DataTable f2, DataTable f3, DataTable f4)
         {
@@ -72,8 +102,20 @@ namespace WPFapp
             }
         }
 
+
+        
+
         private void TableSetect_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);// por defecto establecemos una simulación cada segundo
+            dispatcherTimer.Start();
+  
+        }
+
+        public void Compute()
+        {
+
             try
             {
                 Set_headers(temperature_t);
@@ -89,50 +131,51 @@ namespace WPFapp
 
                 if (TableSetect_ComboBox.SelectedIndex == 0)
                 {
-                    grid2.DataContext = temperature_t.DefaultView;
+                    grid2.DataContext = temperature_t;
                     table_to_Export = temperature_t;
+                    
                 }
-                if (TableSetect_ComboBox.SelectedIndex == 1)
+                else if (TableSetect_ComboBox.SelectedIndex == 1)
                 {
                     grid2.DataContext = u_t.DefaultView;
                     table_to_Export = u_t;
                 }
-                if (TableSetect_ComboBox.SelectedIndex == 2)
+                else if (TableSetect_ComboBox.SelectedIndex == 2)
                 {
                     grid2.DataContext = v_t.DefaultView;
                     table_to_Export = v_t;
                 }
-                if (TableSetect_ComboBox.SelectedIndex == 3)
+                else if (TableSetect_ComboBox.SelectedIndex == 3)
                 {
                     grid2.DataContext = rho_t.DefaultView;
                     table_to_Export = rho_t;
                 }
-                if (TableSetect_ComboBox.SelectedIndex == 4)
+                else if (TableSetect_ComboBox.SelectedIndex == 4)
                 {
                     grid2.DataContext = p_t.DefaultView;
                     table_to_Export = p_t;
                 }
-                if (TableSetect_ComboBox.SelectedIndex == 5)
+                else if (TableSetect_ComboBox.SelectedIndex == 5)
                 {
                     grid2.DataContext = M_t.DefaultView;
                     table_to_Export = M_t;
                 }
-                if (TableSetect_ComboBox.SelectedIndex == 6)
+                else if (TableSetect_ComboBox.SelectedIndex == 6)
                 {
                     grid2.DataContext = F1_t.DefaultView;
                     table_to_Export = F1_t;
                 }
-                if (TableSetect_ComboBox.SelectedIndex == 7)
+                else if (TableSetect_ComboBox.SelectedIndex == 7)
                 {
                     grid2.DataContext = F2_t.DefaultView;
                     table_to_Export = F2_t;
                 }
-                if (TableSetect_ComboBox.SelectedIndex == 8)
+                else if (TableSetect_ComboBox.SelectedIndex == 8)
                 {
                     grid2.DataContext = F3_t.DefaultView;
                     table_to_Export = F3_t;
                 }
-                if (TableSetect_ComboBox.SelectedIndex == 9)
+                else if (TableSetect_ComboBox.SelectedIndex == 9)
                 {
                     grid2.DataContext = F4_t.DefaultView;
                     table_to_Export = F4_t;
@@ -142,8 +185,8 @@ namespace WPFapp
             {
                 MessageBox.Show(ex.Message);
             }
+            
         }
-
         private void Mini_Button_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -152,13 +195,6 @@ namespace WPFapp
         private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-        private void Window_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                this.DragMove();
-            }
         }
 
         private void Set_headers(DataTable dt)
@@ -178,8 +214,17 @@ namespace WPFapp
             {
                 MessageBox.Show(ex.Message);
             }
+
         }
 
-   
+        private void Label_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+
+        }
+
     }
 }

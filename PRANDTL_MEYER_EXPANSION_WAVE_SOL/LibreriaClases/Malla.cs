@@ -8,6 +8,8 @@ namespace LibreriaClases
 {
     public class Malla
     {
+        #region ATRIBUTES
+
         public int rows { get; set; }  //   j filas
         public int columns { get; set; }  // i les columnas
         public double delta_y_t { get; set; }
@@ -45,21 +47,9 @@ namespace LibreriaClases
         DataTable F3_table = new DataTable("All F3 values");
         DataTable F4_table = new DataTable("All F4 values");
 
-        //We compute the delta_y values
-        public double[] Vector_Delta_y()
-        {
-            delta_y_array  = new double[columns];
-            for (int i = 0; i < columns; i++)
-            {
-                delta_y_array[i] = matriz[1, i].y-matriz[0,i].y;
-                if (i == columns - 1)
-                {
-                    delta_y_array[i] = delta_y_array[i - 1];
-                }
-            }
-            return delta_y_array;
-        }
+        #endregion ATRIBUTES 
 
+        #region MATRIX DEFINITION
         public void DefinirMatriz()
         {
 
@@ -75,6 +65,26 @@ namespace LibreriaClases
             }
 
         }
+        //We compute the delta_y values
+        public double[] Vector_Delta_y()
+        {
+            delta_y_array = new double[columns];
+            for (int i = 0; i < columns; i++)
+            {
+                delta_y_array[i] = matriz[1, i].y - matriz[0, i].y;
+                if (i == columns - 1)
+                {
+                    delta_y_array[i] = delta_y_array[i - 1];
+                }
+            }
+            return delta_y_array;
+        }
+
+
+
+        #endregion MATRIX DEFINITION
+
+        #region COMPUTE
 
         public void Compute()
         {
@@ -408,6 +418,9 @@ namespace LibreriaClases
 
         }
 
+        #endregion COMPUTE
+
+        #region TABLE MANIPULATION FUNCION
         public void Fill_DataTable()
         {
 
@@ -647,7 +660,7 @@ namespace LibreriaClases
             {
                 for (int i = 0; i < columns; i++)
                 {
-                    listaDeXColumna.Add(matriz[0,i].x);
+                    listaDeXColumna.Add(matriz[0, i].x);
                 }
             }
             if (attribute == "T")
@@ -741,7 +754,7 @@ namespace LibreriaClases
             }
         }
 
-
+        #endregion TABLE MANIPULATION FUNCION
 
     }
 }

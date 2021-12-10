@@ -19,14 +19,18 @@ namespace LibreriaClases
 {
     public class GridPlotGenerate
     {
-        Polygon[,] casillas;
-        
+        #region ATRIBUTES
 
+        Polygon[,] casillas;
+ 
         int filas;
         int columnas;
 
         public int dimension_scale { get; set; } = 7;
 
+        #endregion ATRIBUTES
+
+        #region GRID PLOR GENERATOR
         public Polygon[,] GenerateGridPlot(int filas, int columnas, Malla m)
         {
             this.filas = filas;
@@ -70,8 +74,8 @@ namespace LibreriaClases
                     myPointCollection.Add(Point3);
                     myPolygon.Points = myPointCollection;
                     casillas[j, i] = myPolygon;
-
-                    //myPolygon.MouseEnter += new System.Windows.Input.MouseEventHandler(polygon_enter);
+                    
+                   // myPolygon.MouseEnter += new System.Windows.Input.MouseEventHandler(polygon_enter);
 
                     y4 = y2;
                     y3 = y1;
@@ -84,7 +88,9 @@ namespace LibreriaClases
 
             return casillas;
         }
+        #endregion GRID PLOT GENERATOR
 
+        #region UPDATE GRID COLOR
         public Polygon[,] actualizar_colores_grid(DataTable t, byte R, byte G, byte B)
         {
             double[] max_min;
@@ -101,7 +107,6 @@ namespace LibreriaClases
             return casillas;
 
         }
-
         public Polygon[,] actualizar_colores_grid_AS(DataTable t, byte R, byte G, byte B, DataTable t_minmax, int filas_t, int columnas_t, DataTable t_minmax2)
         {
             
@@ -124,6 +129,25 @@ namespace LibreriaClases
             return casillas;
 
         }
+        public byte Define_Cloroes(double max, double min, double value)
+        {
+            double rango = max - min;
+
+            byte alpha;
+
+            //max byte --255
+            // min byte --30
+
+            //interpolamos para sacar el parametro alpa
+            alpha = Convert.ToByte(30 + (255 - 30) / (max - min) * (value - min));
+
+            return alpha;
+
+        }
+
+        #endregion UPDATE GRID COLOR
+
+        #region DATATABLE MANIPULATIONS
         public double[] Max_Min_Datatables(DataTable data_t)
         {
             double max = Convert.ToDouble(data_t.Rows[0][0].ToString());
@@ -171,23 +195,7 @@ namespace LibreriaClases
             double[] values = { max, min };
             return values;
         }
-
-
-        public byte Define_Cloroes(double max, double min, double value)
-        {
-            double rango = max - min;
-
-            byte alpha;
-
-            //max byte --255
-            // min byte --30
-
-            //interpolamos para sacar el parametro alpa
-            alpha = Convert.ToByte(30 + (255 - 30) / (max - min) * (value - min));
-
-            return alpha;
-
-        }
+        #endregion DATATABLE MANIPULATIONS
 
     }
 }
