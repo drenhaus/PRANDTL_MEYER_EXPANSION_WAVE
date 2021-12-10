@@ -28,6 +28,7 @@ namespace WPFapp
             our_error.Visibility = Visibility.Hidden;
         }
 
+        #region ATRIBUTES
         double Anderson_M_error;
         double Anderson_p_error;
         double Anderson_rho_error;
@@ -45,6 +46,7 @@ namespace WPFapp
         public Malla m { get; set; }
         public int p { get; set; } // indicates the precision. if p=0 low. p=1 medium. p=2 high
 
+        #region DATATABLES
         // ANDERSON TABLES
         DataTable Anderson_u_12;
         DataTable Anderson_v_12;
@@ -90,7 +92,9 @@ namespace WPFapp
         DataTable our_F2_66;
         DataTable our_F3_66;
         DataTable our_F4_66;
+        #endregion DATATABLE
 
+        #region VECTORS ANDERSON
         // vectors with the data of Anderson
         double[] A_u_12 = {707,701,691,683,679,
                            678,678,678,678,678,
@@ -214,9 +218,11 @@ namespace WPFapp
                             0.375 * Math.Pow(10, 9),0.382 * Math.Pow(10, 9),0.388 * Math.Pow(10, 9),0.394 * Math.Pow(10, 9),0.401 * Math.Pow(10, 9),
                             407 * Math.Pow(10, 9),0.412 * Math.Pow(10, 9),0.417 * Math.Pow(10, 9),0.422 * Math.Pow(10, 9),0.425 * Math.Pow(10, 9),
                             0.428 * Math.Pow(10, 9),0.429 * Math.Pow(10, 9),0.430 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9),0.431 * Math.Pow(10, 9)};
+        #endregion VECTORS ANDERSON
 
+        #endregion ATRIBUTES
 
-
+        #region FILL DATATABLE
 
         public void Fill_Anderson_Tables()
         {
@@ -334,7 +340,6 @@ namespace WPFapp
 
             }
         }
-
         public void Fill_Our_Tables()
         {
             double x;
@@ -528,7 +533,9 @@ namespace WPFapp
                 our_F4_66.Rows.Add(F4_R2);
             }
         }
+        #endregion FILL DATATBLE
 
+        #region INTERPOLATION FUNCTIONS
         public double[] Interpolate_our_results(double x_choosen, string data)
         {
             double[] valores1;
@@ -671,6 +678,7 @@ namespace WPFapp
             }
             return valores_low;
         }
+        #endregion INTERPOLATION FUNCTIONS
 
         public void Compute_Errors()
         {
@@ -705,7 +713,8 @@ namespace WPFapp
 
         private void Compare_btn_Click(object sender, RoutedEventArgs e)
         {
-             Anderson_u_12 = new DataTable();
+            #region NEW DATATABLE DEFINITIONS
+            Anderson_u_12 = new DataTable();
              Anderson_v_12 = new DataTable();
              Anderson_rho_12 = new DataTable();
              Anderson_p_12 = new DataTable();
@@ -745,11 +754,15 @@ namespace WPFapp
              our_F2_66 = new DataTable();
              our_F3_66 = new DataTable();
              our_F4_66 = new DataTable();
+            #endregion NEW DATATABLE DEFINITIONS
 
+            #region FUNCIONTS
             Fill_Anderson_Tables();
-           Fill_Our_Tables();
-           Compute_Errors();
+            Fill_Our_Tables();
+            Compute_Errors();
+            #endregion FUNCIONTS
 
+            #region CHANGE WHAT IT IS SHOWN
             if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex==0) //T AND 12
             { AndersonGridData.DataContext = Anderson_T_12.DefaultView;
               SimulationGrid.DataContext = our_T_12.DefaultView;
@@ -815,7 +828,6 @@ namespace WPFapp
                 anderson_error.Text = Convert.ToString(Anderson_v_error);
                 our_error.Text = Convert.ToString(our_v_error);
             }
-
             if (Setect_Parameter_ComboBox.SelectedIndex == 3 && Setect_X_ComboBox.SelectedIndex == 0) //rho AND 12
             { AndersonGridData.DataContext = Anderson_rho_12.DefaultView;
               SimulationGrid.DataContext = our_rho_12.DefaultView;
@@ -859,7 +871,6 @@ namespace WPFapp
                 anderson_error.Text = Convert.ToString(Anderson_p_error);
                 our_error.Text = Convert.ToString(our_p_error);
             }
-
             if (Setect_Parameter_ComboBox.SelectedIndex == 5 && Setect_X_ComboBox.SelectedIndex == 0) //M AND 12
             { AndersonGridData.DataContext = Anderson_M_12.DefaultView;
               SimulationGrid.DataContext = our_M_12.DefaultView;
@@ -957,6 +968,7 @@ namespace WPFapp
                 computed_label.Visibility = Visibility.Hidden;
                 our_error.Visibility = Visibility.Hidden;
             }
+            #endregion CHANGE WHAT IT IS SHOWN
         }
     }
 }
