@@ -15,13 +15,14 @@
         <Grid>
 
             <Label Content="Welcome to the simulation!" 
-               Margin="0,10,0,0" FontSize="50" 
+               Margin="0,4,0,0" FontSize="50" 
                FontWeight="Thin" 
                Foreground="AliceBlue" 
-               HorizontalAlignment="Center" Height="101" VerticalAlignment="Top"/>
+                   
+               HorizontalAlignment="Center" Height="84" VerticalAlignment="Top"/>
 
             <Button x:Name="StarButton" Content="Start" 
-                Margin="109,163,0,0" 
+                Margin="24,359,0,0" 
                 Width="200" 
                 Height="66" 
                 FontSize="30"
@@ -31,7 +32,7 @@
                     Foreground="White"/>
 
             <Button x:Name="ExitButton" Content="Exit" 
-                Margin="394,163,0,221" 
+                Margin="466,359,0,25" 
                 Width="200"               
                 Click="Button_Click"                   
                     FontSize="30"
@@ -39,18 +40,48 @@
                     Foreground="White" HorizontalAlignment="Left"/>
 
             <Button x:Name="TutorialButton" Content="Tutorial" 
-            Margin="394,295,0,89" 
+            Margin="0,359,0,25" 
             Width="200" 
             FontWeight="Bold" 
             FontSize="30" 
             Click="Button_Click"
                     Style="{DynamicResource RoundCorner}"
-                    Foreground="White" HorizontalAlignment="Left"/>
+                    Foreground="White" HorizontalAlignment="Center"/>
             <Button Content="" 
                     HorizontalAlignment="Left" 
-                    Height="3" Margin="0,108,0,0" 
+                    Height="3" Margin="0,87,0,0" 
                     VerticalAlignment="Top" Width="702"
                     Background="White"/>
+            <Button Content="" 
+                    HorizontalAlignment="Center" Height="220" 
+                    VerticalAlignment="Center" Width="642"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False"/>
+            <Button Content="" 
+                    HorizontalAlignment="Center" Height="220" 
+                    VerticalAlignment="Center" Width="642"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False"/>
+
+            <Label Content="" HorizontalAlignment="Center" Height="83" Margin="0,5,0,0" VerticalAlignment="Top" Width="690"
+                   MouseMove="Label_MouseMove" IsEnabled="True"/>
+
+            <Label Content="Numerical solution of a" 
+                   HorizontalAlignment="Left" 
+                   Height="45" Margin="41,145,0,0" 
+                   VerticalAlignment="Top" Width="342"
+                   FontFamily="/Fonts/#Poppins"
+                      Foreground="White"
+                   FontSize="25"/>
+            <Label Content="two-dimensional supersonic flow:" 
+                   HorizontalAlignment="Left" 
+                   Height="49" Margin="41,176,0,0" 
+                   VerticalAlignment="Top" Width="517"
+                   FontFamily="/Fonts/#Poppins"
+                      Foreground="White"
+                   FontSize="25"/>
+
+
 
         </Grid>
 
