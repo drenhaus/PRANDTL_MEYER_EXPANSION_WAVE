@@ -57,12 +57,11 @@ namespace WPFapp
                 
 
             }
-            if (timer==5)
+            if (timer==4)
                 { 
-                Compute();
-                
+
                 }
-            if (timer == 6)
+            if (timer == 5)
             {
                 ld.Close();
             }

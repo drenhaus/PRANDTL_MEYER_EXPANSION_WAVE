@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Title="Loading" Height="450" Width="800">
     <Grid>
-        <ProgressBar x:Name="progressBar" HorizontalAlignment="Left" Height="20" Margin="295,217,0,0" VerticalAlignment="Top" Width="180" IsIndeterminate="True" Minimum="0" Maximum="100"/>
+        <Ellipse x:Name="ellipse1" HorizontalAlignment="Left" Height="100" Margin="503,0,0,0" Fill="Red" VerticalAlignment="Center" Width="100"/>
+        <Ellipse x:Name="ellipse3" HorizontalAlignment="Left" Height="100" Margin="202,0,0,0" Fill="Transparent" VerticalAlignment="Center" Width="100"/>
+        <Ellipse x:Name="ellipse4" HorizontalAlignment="Center" Height="100" Margin="0,27,0,0" Fill="Transparent" VerticalAlignment="Top" Width="100"/>
+        <Ellipse x:Name="ellipse2" HorizontalAlignment="Center" Height="100" Margin="0,316,0,0" Fill="Transparent" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>
