@@ -17,11 +17,11 @@
     <Border Background="#3a3752" 
             CornerRadius="20">
         <Grid>
+                      
 
             <DataGrid x:Name="grid2" 
                       Margin="15,80,15,15" 
-                      ItemsSource="{Binding}"
-                      AutoGenerateColumns="True">
+                      ItemsSource="{Binding}">
 
 
                 <DataGrid.Resources>
@@ -34,6 +34,7 @@
                 </DataGrid.Columns>
 
             </DataGrid>
+      
 
 
             <TextBlock Text="View data in tables"
@@ -166,7 +167,6 @@
                    VerticalAlignment="Top" 
                    Width="758"
                    MouseMove="Label_MouseMove"/>
-            <ProgressBar x:Name="progressBar" HorizontalAlignment="Left" Height="20" Margin="351,318,0,0" VerticalAlignment="Top" Width="180" IsIndeterminate="True" Minimum="0" Maximum="100"/>
 
 
 
