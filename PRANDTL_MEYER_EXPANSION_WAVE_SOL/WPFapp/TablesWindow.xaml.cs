@@ -40,7 +40,7 @@ namespace WPFapp
 
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         int timer=0;
-        Loading ld = new Loading();
+        Loading ld;
 
         public TablesWindow()
         {
@@ -54,12 +54,10 @@ namespace WPFapp
             {
                 ld = new Loading();
                 ld.Show();
-                
-
-            }
+                            }
             if (timer==4)
-                { 
-
+                {
+                Compute();
                 }
             if (timer == 5)
             {
@@ -69,8 +67,6 @@ namespace WPFapp
                 timer = timer + 1;
         }
 
-
-      
 
         public void SetTables(DataTable T, DataTable u, DataTable v, DataTable rho, DataTable p, DataTable M, DataTable f1, DataTable f2, DataTable f3, DataTable f4)
         {
@@ -101,9 +97,6 @@ namespace WPFapp
                 expanded = true;
             }
         }
-
-
-        
 
         private void TableSetect_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
