@@ -64,6 +64,7 @@ namespace LibreriaClases
             return delta_y_array;
         }
 
+        #region MATRIX DEFINITION
         public void DefinirMatriz()
         {
 
@@ -80,6 +81,7 @@ namespace LibreriaClases
 
         }
 
+        #endregion MATRIX DEFINITION
 
         #region COMPUTE
 
@@ -417,7 +419,7 @@ namespace LibreriaClases
 
         #endregion COMPUTE
 
-
+        #region FUNCION TABLES
         public void Fill_DataTable()
         {
 
@@ -650,6 +652,8 @@ namespace LibreriaClases
             DataTable [] T_U_V_RHO_P_M_F1_F2_F3_F4 = new DataTable[] {Temperature_table,u_table,v_table,Rho_table,P_table,Mach_table,F1_table,F2_table,F3_table,F4_table};
             return T_U_V_RHO_P_M_F1_F2_F3_F4;
         }
+
+        #endregion FUNCION TABLES
 
         public void CrearListade(string attribute)
         {
