@@ -64,35 +64,35 @@
 
             <Label Content="Numerical solution" 
                    HorizontalAlignment="Left" 
-                   Height="35" Margin="91,132,0,0" 
+                   Height="35" Margin="91,127,0,0" 
                    VerticalAlignment="Top" Width="171"
                    FontFamily="/Fonts/#Poppins"
                       Foreground="White"
                    FontSize="15"/>
             <Label Content=" of a two-dimensional " 
                    HorizontalAlignment="Left" 
-                   Height="35" Margin="86,153,0,0" 
+                   Height="35" Margin="86,148,0,0" 
                    VerticalAlignment="Top" Width="176"
                    FontFamily="/Fonts/#Poppins"
                       Foreground="White"
                    FontSize="15"/>
             <Label Content="supersonic flow:" 
                    HorizontalAlignment="Left" 
-                   Height="39" Margin="91,173,0,0" 
+                   Height="39" Margin="91,168,0,0" 
                    VerticalAlignment="Top" Width="171"
                    FontFamily="/Fonts/#Poppins"
                       Foreground="White"
                    FontSize="15"/>
             <Label Content="PRANDTL-MEYER" 
                    HorizontalAlignment="Left" 
-                   Height="50" Margin="331,124,0,0" 
+                   Height="50" Margin="331,119,0,0" 
                    VerticalAlignment="Top" Width="265"
                    FontFamily="/Fonts/#Poppins"
                       Foreground="White"
                    FontSize="30"/>
             <Label Content="EXPANSION WAVE" 
                    HorizontalAlignment="Left" 
-                   Height="50" Margin="331,165,0,0" 
+                   Height="50" Margin="331,160,0,0" 
                    VerticalAlignment="Top" Width="284"
                    FontFamily="/Fonts/#Poppins"
                       Foreground="White"
@@ -106,14 +106,46 @@
             <Button Content="" 
                     Background="White"                   
                     HorizontalAlignment="Left"
-                    Height="80" Margin="291,132,0,0" 
-                    VerticalAlignment="Top" Width="4"/>
-            <Label Content="mamasita" 
+                    Height="80" Margin="323,127,0,0" 
+                    VerticalAlignment="Top" Width="3"
+                    BorderThickness="0"/>
+
+            <Label Content="OLGA CATALAN" 
                    HorizontalAlignment="Left" Height="32" 
-                   Margin="134,282,0,0" VerticalAlignment="Top"
-                   Width="211"
+                   Margin="92,246,0,0" VerticalAlignment="Top"
+                   Width="124"
                    Foreground="White"
-                   FontWeight="Thin"/>
+                   FontWeight="Thin"
+                   FontSize="15"/>
+            <Label Content="MARC DRENHAUS" 
+                   HorizontalAlignment="Center" Height="32" 
+                   Margin="0,246,0,0" VerticalAlignment="Top"
+                   Width="138"
+                   Foreground="White"
+                   FontWeight="Thin"
+                   FontSize="15"/>
+            <Label Content="ALVARO HERNANDO" 
+                   HorizontalAlignment="Left" Height="32" 
+                   Margin="460,246,0,0" VerticalAlignment="Top"
+                   Width="149"
+                   Foreground="White"
+                   FontWeight="Thin"
+                   FontSize="15"/>
+            <Button Content="" 
+                Background="White"                   
+                HorizontalAlignment="Left"
+                Height="32" Margin="242,246,0,0" 
+                VerticalAlignment="Top" Width="1"
+                BorderThickness="0"/>
+            <Button Content="" 
+                Background="White"                   
+                HorizontalAlignment="Left"
+                Height="32" Margin="438,246,0,0" 
+                VerticalAlignment="Top" Width="1"
+                BorderThickness="0"/>
+
+
+
 
 
 
