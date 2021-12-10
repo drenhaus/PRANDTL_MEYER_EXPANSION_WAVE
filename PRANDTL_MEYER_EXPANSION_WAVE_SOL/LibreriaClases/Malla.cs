@@ -8,6 +8,8 @@ namespace LibreriaClases
 {
     public class Malla
     {
+        #region ATRIBUTES
+
         public int rows { get; set; }  //   j filas
         public int columns { get; set; }  // i les columnas
         public double delta_y_t { get; set; }
@@ -44,6 +46,8 @@ namespace LibreriaClases
         DataTable F2_table = new DataTable("All F2 values");
         DataTable F3_table = new DataTable("All F3 values");
         DataTable F4_table = new DataTable("All F4 values");
+
+        #endregion ATRIBUTES 
 
         //We compute the delta_y values
         public double[] Vector_Delta_y()
