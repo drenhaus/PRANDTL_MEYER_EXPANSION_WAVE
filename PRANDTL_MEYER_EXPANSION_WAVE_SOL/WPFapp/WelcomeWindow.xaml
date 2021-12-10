@@ -5,51 +5,152 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
-        Title="WelcomeWindow" Height="468" Width="814"
-        WindowStartupLocation="CenterScreen">
-    <Grid Background="#FF2D2D30">
-
-        <Label Content="Welcome to the simulation!" 
-               Margin="0,10,0,0" FontSize="50" 
+        WindowStartupLocation="CenterScreen"> 
+        Title="WelcomeWindow" Height="450" Width="690"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border Background="#FF2D2D30"
+            CornerRadius="20">
+        <Grid>
+            <Label Content="Welcome to the simulation!" FontSize="50" 
                FontWeight="Thin" 
-               Foreground="#FFCC00FF" 
-               HorizontalAlignment="Center" Height="101" VerticalAlignment="Top"/>
+               Foreground="AliceBlue" 
+                   
+               HorizontalAlignment="Center" Height="84" VerticalAlignment="Top" Margin="0,-1,0,0"/>
 
-        <Button x:Name="StarButton" Content="Start" 
-                Margin="85,0,0,0" 
-                Width="200" 
-                Height="50" 
-                Foreground="Black" 
-                Background="#FFCC00FF" 
-                FontSize="30" 
-                FontWeight="Bold" 
-                VerticalAlignment="Center" 
-                HorizontalAlignment="Left" Click="StarButton_Click"/>
+            <Button x:Name="StarButton" Content="Start" 
+                Margin="38,368,0,0" 
+                Width="185" 
+                Height="57" 
+                FontSize="30"
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Left" Click="StarButton_Click"
+                    Style="{DynamicResource RoundCorner}"
+                    Foreground="White"/>
 
-        <Button x:Name="ExitButton" Content="Exit" 
-                Margin="400,192,200,192" 
-                Width="200" Height="50" 
-                Background="#FFCC00FF" 
-                FontWeight="Bold" 
-                FontSize="30" 
-                Click="Button_Click"/>
+            <Button x:Name="ExitButton" Content="Exit" 
+                Margin="466,368,0,25" 
+                Width="185"               
+                Click="Button_Click"                   
+                    FontSize="30"
+                    Style="{DynamicResource RoundCorner}"
+                    Foreground="White" HorizontalAlignment="Left"/>
 
-        <Button x:Name="TutorialButton" Content="Tuto" 
-            Margin="371,312,229,72" 
-            Width="200" Height="50" 
-            Background="#FFCC00FF" 
+            <Button x:Name="TutorialButton" Content="Tutorial" 
+            Margin="0,368,0,25" 
+            Width="185" 
             FontWeight="Bold" 
             FontSize="30" 
-            Click="Button_Click"/>
+            Click="Button_Click"
+                    Style="{DynamicResource RoundCorner}"
+                    Foreground="White" HorizontalAlignment="Center"/>
 
-        <Button x:Name="CreditosButton" 
-            Content="Creditos" 
-            Margin="92,321,522,81" 
-            Width="200" Height="50" 
-            Background="#FFCC00FF" 
-            FontWeight="Bold" 
-            FontSize="30" 
-            Click="Button_Click"/>
+            <Button Content="" 
+                    HorizontalAlignment="Center" Height="248" 
+                    VerticalAlignment="Top" Width="614"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False" Margin="0,91,0,0"/>
+            <Button Content="" 
+                    HorizontalAlignment="Center" Height="213" 
+                    VerticalAlignment="Top" Width="574"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False" Margin="0,108,0,0"/>
 
-    </Grid>
+
+            <Label Content="" HorizontalAlignment="Center" Height="114" VerticalAlignment="Top" Width="690"
+                   MouseMove="Label_MouseMove" IsEnabled="True" Margin="0,-5,0,0"/>
+
+            <Label Content="Numerical solution" 
+                   HorizontalAlignment="Left" 
+                   Height="35" Margin="91,127,0,0" 
+                   VerticalAlignment="Top" Width="171"
+                   FontFamily="/Fonts/#Poppins"
+                      Foreground="White"
+                   FontSize="15"/>
+            <Label Content=" of a two-dimensional " 
+                   HorizontalAlignment="Left" 
+                   Height="35" Margin="86,148,0,0" 
+                   VerticalAlignment="Top" Width="176"
+                   FontFamily="/Fonts/#Poppins"
+                      Foreground="White"
+                   FontSize="15"/>
+            <Label Content="supersonic flow:" 
+                   HorizontalAlignment="Left" 
+                   Height="39" Margin="91,168,0,0" 
+                   VerticalAlignment="Top" Width="171"
+                   FontFamily="/Fonts/#Poppins"
+                      Foreground="White"
+                   FontSize="15"/>
+            <Label Content="PRANDTL-MEYER" 
+                   HorizontalAlignment="Left" 
+                   Height="50" Margin="331,119,0,0" 
+                   VerticalAlignment="Top" Width="265"
+                   FontFamily="/Fonts/#Poppins"
+                      Foreground="White"
+                   FontSize="30"/>
+            <Label Content="EXPANSION WAVE" 
+                   HorizontalAlignment="Left" 
+                   Height="50" Margin="331,160,0,0" 
+                   VerticalAlignment="Top" Width="284"
+                   FontFamily="/Fonts/#Poppins"
+                      Foreground="White"
+                   FontSize="30"/>
+            <Label Content="based on Anderson's Book explanation" 
+                   HorizontalAlignment="Left" Height="32" 
+                   Margin="418,291,0,0" VerticalAlignment="Top"
+                   Width="211"
+                   Foreground="White"
+                   FontWeight="Thin"/>
+            <Button Content="" 
+                    Background="White"                   
+                    HorizontalAlignment="Left"
+                    Height="80" Margin="323,127,0,0" 
+                    VerticalAlignment="Top" Width="3"
+                    BorderThickness="0"/>
+
+            <Label Content="OLGA CATALAN" 
+                   HorizontalAlignment="Left" Height="32" 
+                   Margin="92,246,0,0" VerticalAlignment="Top"
+                   Width="124"
+                   Foreground="White"
+                   FontWeight="Thin"
+                   FontSize="15"/>
+            <Label Content="MARC DRENHAUS" 
+                   HorizontalAlignment="Center" Height="32" 
+                   Margin="0,246,0,0" VerticalAlignment="Top"
+                   Width="138"
+                   Foreground="White"
+                   FontWeight="Thin"
+                   FontSize="15"/>
+            <Label Content="ALVARO HERNANDO" 
+                   HorizontalAlignment="Left" Height="32" 
+                   Margin="460,246,0,0" VerticalAlignment="Top"
+                   Width="149"
+                   Foreground="White"
+                   FontWeight="Thin"
+                   FontSize="15"/>
+            <Button Content="" 
+                Background="White"                   
+                HorizontalAlignment="Left"
+                Height="32" Margin="242,246,0,0" 
+                VerticalAlignment="Top" Width="1"
+                BorderThickness="0"/>
+            <Button Content="" 
+                Background="White"                   
+                HorizontalAlignment="Left"
+                Height="32" Margin="438,246,0,0" 
+                VerticalAlignment="Top" Width="1"
+                BorderThickness="0"/>
+
+
+
+
+
+
+        </Grid>
+
+    </Border>
+
 </Window>

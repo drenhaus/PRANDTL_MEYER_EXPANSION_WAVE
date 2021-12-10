@@ -23,8 +23,8 @@ namespace WPFapp
     /// </summary>
     public partial class MainWindow : Window
     {
-        // ATTRIBUTES
-            // we create a new Malla
+        #region ATTRIBUTES
+        // we create a new Malla
         Malla m = new Malla(); 
             // we set by default 89 columns and 41 rows, it may be changed if we select a different precision
         int columnas = 89; 
@@ -47,6 +47,7 @@ namespace WPFapp
         DataTable F2_table;
         DataTable F3_table;
         DataTable F4_table;
+        #endregion ATTRIBUTES
 
         public MainWindow()
         {
@@ -54,9 +55,9 @@ namespace WPFapp
             SeeGrounfOf("NONE"); // initially no ground is visible
         }
 
-        // SIMULATION FUNCTION
-            //When the simulation function is called the needed parameters are set and 
-            // the functions that compute the simulation in the Malla are initialized        
+        #region SIMULATION FUNCTION
+        //When the simulation function is called the needed parameters are set and 
+        // the functions that compute the simulation in the Malla are initialized        
         private void Simulate()
         {
             // We define the rows, columns and the delta_y_t depending of the precision
@@ -99,10 +100,13 @@ namespace WPFapp
                 }
             }
         }
+        #endregion SIMULATION FUNCTION
+
+        #region SIMULATION WPF CONTROLS
 
         // CHANGING THE SELECTED INDEX OF THE DATA VIEW COMBOBOX
-            // Depending the index selected, the polygons saved in CASILLAS are changed their color
-            // according to the data displayed
+        // Depending the index selected, the polygons saved in CASILLAS are changed their color
+        // according to the data displayed
         private void DataGridComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataGridComboBox.SelectedIndex == 0) // if temperature selected
@@ -235,10 +239,6 @@ namespace WPFapp
 
         }
 
-
-
-
-
         public void polygon_enter(object sender, EventArgs e)
         {
             Polygon poly = (Polygon)sender;
@@ -267,11 +267,6 @@ namespace WPFapp
                 // mach_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].M);
             }
         }
-
-
-
-
-
 
         // SEE GROUND 
             // This function sets if the ground of the simulation is visible or hidden and if is visible which configuration
@@ -426,9 +421,11 @@ namespace WPFapp
                 MessageBox.Show(ex.Message);
             }
         }
+        #endregion SIMULATION WPF CONTROLS
 
+        #region WINDOW MANIPULATION FUNCTIONS
         // CLOSE BUTTON
-            //When clicking to the top right button (red circle) the current window closes
+        //When clicking to the top right button (red circle) the current window closes
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -451,6 +448,9 @@ namespace WPFapp
             }
         }
 
+        #endregion WINDOW MANIPULATION FUNCTIONS
+
+        #region LEFT BUTTONS (OPEN TABLES, COMPARATIONS, GRAPHICS AND ADVANCED STUDY)
         // NEW WINDOW: WELCOME
         // When clicking to the menu BACK TO START the simulation window closes and it is opened
         // again the welcome to the simulator windows
@@ -524,6 +524,7 @@ namespace WPFapp
             gr.listaVxColumna = m.listaV_velxColumna; //Set of the v
 
         }
+        #endregion LEFT BUTTONS (OPEN TABLES, COMPARATIONS, GRAPHICS AND ADVANCED STUDY)
 
     }
 }
