@@ -46,16 +46,6 @@
             Click="Button_Click"
                     Style="{DynamicResource RoundCorner}"
                     Foreground="White" HorizontalAlignment="Left"/>
-
-            <Button x:Name="CreditosButton" 
-            Content="Creditos" 
-            Margin="109,295,0,89" 
-            Width="200" 
-            Background="#FFCC00FF"            
-            Click="Button_Click"
-                     Style="{DynamicResource RoundCorner}"
-                    Foreground="White"
-                    FontSize="30" HorizontalAlignment="Left"/>
             <Button Content="" 
                     HorizontalAlignment="Left" 
                     Height="3" Margin="0,108,0,0" 
