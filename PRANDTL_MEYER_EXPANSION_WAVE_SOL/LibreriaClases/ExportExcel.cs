@@ -11,6 +11,7 @@ namespace LibreriaClases
 {
     public static class ExportExcel
     {
+        #region EXPORT TABLE FUNCTION
         public static void ExportToExcel(this DataTable tbl)
         {
             try
@@ -40,6 +41,7 @@ namespace LibreriaClases
                 throw new Exception(ex.Message);
             }
         }
+        #endregion EXPORT TABLE FUNCTION
 
     }
 }

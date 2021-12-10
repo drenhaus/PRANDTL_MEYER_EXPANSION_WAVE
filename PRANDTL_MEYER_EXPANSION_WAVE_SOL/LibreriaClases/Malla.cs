@@ -49,21 +49,6 @@ namespace LibreriaClases
 
         #endregion ATRIBUTES 
 
-        //We compute the delta_y values
-        public double[] Vector_Delta_y()
-        {
-            delta_y_array  = new double[columns];
-            for (int i = 0; i < columns; i++)
-            {
-                delta_y_array[i] = matriz[1, i].y-matriz[0,i].y;
-                if (i == columns - 1)
-                {
-                    delta_y_array[i] = delta_y_array[i - 1];
-                }
-            }
-            return delta_y_array;
-        }
-
         #region MATRIX DEFINITION
         public void DefinirMatriz()
         {
@@ -80,6 +65,22 @@ namespace LibreriaClases
             }
 
         }
+        //We compute the delta_y values
+        public double[] Vector_Delta_y()
+        {
+            delta_y_array = new double[columns];
+            for (int i = 0; i < columns; i++)
+            {
+                delta_y_array[i] = matriz[1, i].y - matriz[0, i].y;
+                if (i == columns - 1)
+                {
+                    delta_y_array[i] = delta_y_array[i - 1];
+                }
+            }
+            return delta_y_array;
+        }
+
+
 
         #endregion MATRIX DEFINITION
 
@@ -419,7 +420,7 @@ namespace LibreriaClases
 
         #endregion COMPUTE
 
-        #region FUNCION TABLES
+        #region TABLE MANIPULATION FUNCION
         public void Fill_DataTable()
         {
 
@@ -653,15 +654,13 @@ namespace LibreriaClases
             return T_U_V_RHO_P_M_F1_F2_F3_F4;
         }
 
-        #endregion FUNCION TABLES
-
         public void CrearListade(string attribute)
         {
             if (attribute == "x")
             {
                 for (int i = 0; i < columns; i++)
                 {
-                    listaDeXColumna.Add(matriz[0,i].x);
+                    listaDeXColumna.Add(matriz[0, i].x);
                 }
             }
             if (attribute == "T")
@@ -755,7 +754,7 @@ namespace LibreriaClases
             }
         }
 
-
+        #endregion TABLE MANIPULATION FUNCION
 
     }
 }
