@@ -8,7 +8,8 @@
         WindowStyle="None"
         Height="194" Width="715" 
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,51,-14" Background="Transparent">
         <Rectangle HorizontalAlignment="Left" Height="90" Margin="178,0,0,0" Fill="Black" VerticalAlignment="Center" Width="421"/>
         <Ellipse HorizontalAlignment="Left" Height="90" Margin="130,0,0,0" Fill="Black" VerticalAlignment="Center" Width="100"/>

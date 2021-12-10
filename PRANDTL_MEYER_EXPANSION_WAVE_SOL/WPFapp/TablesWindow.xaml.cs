@@ -38,7 +38,7 @@ namespace WPFapp
         DataTable table_to_Export;
         bool expanded = true;
 
-        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        DispatcherTimer dispatcherTimer;
         int timer=0;
         Loading ld;
 
@@ -54,16 +54,17 @@ namespace WPFapp
             {
                 ld = new Loading();
                 ld.Show();
-                            }
-            if (timer==4)
+            }
+            if (timer==2)
                 {
                 Compute();
                 }
-            if (timer == 5)
+            if (timer == 3)
             {
                 ld.Close();
+                timer = -1;
+                dispatcherTimer.Stop();
             }
-
                 timer = timer + 1;
         }
 
@@ -100,8 +101,9 @@ namespace WPFapp
 
         private void TableSetect_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+            dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);// por defecto establecemos una simulación cada segundo
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
             dispatcherTimer.Start();
   
         }

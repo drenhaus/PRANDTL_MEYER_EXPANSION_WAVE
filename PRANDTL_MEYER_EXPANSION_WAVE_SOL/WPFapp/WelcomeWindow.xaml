@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
-        Title="WelcomeWindow" Height="468" Width="814">
+        Title="WelcomeWindow" Height="468" Width="814"
+        WindowStartupLocation="CenterScreen">
     <Grid Background="#FF2D2D30">
 
         <Label Content="Welcome to the simulation!" 

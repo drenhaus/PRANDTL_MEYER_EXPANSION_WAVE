@@ -11,7 +11,8 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True"
-        MouseMove="Window_MouseMove">
+        MouseMove="Window_MouseMove"
+        WindowStartupLocation="CenterScreen">
     <Border Background="#3a3752"
             CornerRadius="20">
         <Grid>
