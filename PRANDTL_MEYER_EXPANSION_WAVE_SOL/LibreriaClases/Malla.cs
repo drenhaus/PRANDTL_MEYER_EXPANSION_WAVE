@@ -80,6 +80,9 @@ namespace LibreriaClases
 
         }
 
+
+        #region COMPUTE
+
         public void Compute()
         {
 
@@ -411,6 +414,9 @@ namespace LibreriaClases
 
 
         }
+
+        #endregion COMPUTE
+
 
         public void Fill_DataTable()
         {
