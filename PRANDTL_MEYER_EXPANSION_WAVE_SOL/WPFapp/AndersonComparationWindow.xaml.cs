@@ -976,9 +976,25 @@ namespace WPFapp
             }
             #endregion CHANGE WHAT IT IS SHOWN
         }
+
+
         #endregion COMPARE BUTTON
 
+        private void Mini_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
 
-        
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        private void Label_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
     }
 }
