@@ -18,9 +18,11 @@ namespace WPFapp
     /// </summary>
     public partial class Loading : Window
     {
+        #region ATRIBUTES
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         int timer = 0;
-        
+        #endregion ATRIBUTES
+
         public Loading()
         {
             InitializeComponent();
@@ -30,7 +32,7 @@ namespace WPFapp
         }
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-
+            #region IFs FOR EACH TIEMER TICK
             if (timer == 0)
             {
                 ellipse1.Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
@@ -60,12 +62,12 @@ namespace WPFapp
                 ellipse2.Fill = new SolidColorBrush(Color.FromArgb(0, 255, 0, 0));
                 ellipse3.Fill = new SolidColorBrush(Color.FromArgb(0, 255, 0, 0));
                 ellipse1.Fill = new SolidColorBrush(Color.FromArgb(0, 255, 0, 0));
-              
-            }
 
+            }
             timer = timer + 1;
             if (timer==4)
             { timer = 0; }
+            #endregion IFs FOR EACH TIEMER TICK
         }
 
 
