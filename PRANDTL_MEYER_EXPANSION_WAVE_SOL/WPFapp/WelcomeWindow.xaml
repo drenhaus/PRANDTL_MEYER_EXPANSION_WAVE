@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"> 
-        Title="WelcomeWindow" Height="450" Width="690"
+        WindowStartupLocation="CenterScreen"
+    Title="WelcomeWindow" Height="450" Width="690"
         ResizeMode="NoResize"
         WindowStyle="None"
         Background="Transparent"

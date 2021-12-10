@@ -549,7 +549,7 @@
                    Foreground="White"/>
             <ComboBox x:Name="DataGridComboBox" 
             HorizontalAlignment="Left" 
-            Margin="412,59,0,0"
+            Margin="577,43,0,0"
             VerticalAlignment="Top" 
             Width="136"
             FontSize="10"

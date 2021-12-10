@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
         Title="AndersonComparationWindow" Height="610" Width="860"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True">
+    
     <Border Background="#3a3752"
             CornerRadius="20">
 
@@ -44,7 +45,7 @@
                       Style="{DynamicResource theComboBox}" 
                   ItemContainerStyle="{DynamicResource theComboBoxItem}">
 
-<ComboBoxItem Content="T: Temperature"
+            <ComboBoxItem Content="T: Temperature"
                               FontFamily="/Fonts/#Poppins"
                               Background="AliceBlue"
                               HorizontalAlignment="Left"
