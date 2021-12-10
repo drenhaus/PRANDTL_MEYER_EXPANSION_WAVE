@@ -14,17 +14,16 @@
             CornerRadius="20">
         <Grid>
 
-            <Label Content="Welcome to the simulation!" 
-               Margin="0,4,0,0" FontSize="50" 
+            <Label Content="Welcome to the simulation!" FontSize="50" 
                FontWeight="Thin" 
                Foreground="AliceBlue" 
                    
-               HorizontalAlignment="Center" Height="84" VerticalAlignment="Top"/>
+               HorizontalAlignment="Center" Height="84" VerticalAlignment="Top" Margin="0,-1,0,0"/>
 
             <Button x:Name="StarButton" Content="Start" 
-                Margin="24,359,0,0" 
-                Width="200" 
-                Height="66" 
+                Margin="38,368,0,0" 
+                Width="185" 
+                Height="57" 
                 FontSize="30"
                 VerticalAlignment="Top" 
                 HorizontalAlignment="Left" Click="StarButton_Click"
@@ -32,54 +31,89 @@
                     Foreground="White"/>
 
             <Button x:Name="ExitButton" Content="Exit" 
-                Margin="466,359,0,25" 
-                Width="200"               
+                Margin="466,368,0,25" 
+                Width="185"               
                 Click="Button_Click"                   
                     FontSize="30"
                     Style="{DynamicResource RoundCorner}"
                     Foreground="White" HorizontalAlignment="Left"/>
 
             <Button x:Name="TutorialButton" Content="Tutorial" 
-            Margin="0,359,0,25" 
-            Width="200" 
+            Margin="0,368,0,25" 
+            Width="185" 
             FontWeight="Bold" 
             FontSize="30" 
             Click="Button_Click"
                     Style="{DynamicResource RoundCorner}"
                     Foreground="White" HorizontalAlignment="Center"/>
-            <Button Content="" 
-                    HorizontalAlignment="Left" 
-                    Height="3" Margin="0,87,0,0" 
-                    VerticalAlignment="Top" Width="702"
-                    Background="White"/>
-            <Button Content="" 
-                    HorizontalAlignment="Center" Height="220" 
-                    VerticalAlignment="Center" Width="642"
-                    Style="{DynamicResource RoundCorner}"
-                    IsEnabled="False"/>
-            <Button Content="" 
-                    HorizontalAlignment="Center" Height="220" 
-                    VerticalAlignment="Center" Width="642"
-                    Style="{DynamicResource RoundCorner}"
-                    IsEnabled="False"/>
 
-            <Label Content="" HorizontalAlignment="Center" Height="83" Margin="0,5,0,0" VerticalAlignment="Top" Width="690"
-                   MouseMove="Label_MouseMove" IsEnabled="True"/>
+            <Button Content="" 
+                    HorizontalAlignment="Center" Height="248" 
+                    VerticalAlignment="Top" Width="614"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False" Margin="0,91,0,0"/>
+            <Button Content="" 
+                    HorizontalAlignment="Center" Height="213" 
+                    VerticalAlignment="Top" Width="574"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False" Margin="0,108,0,0"/>
 
-            <Label Content="Numerical solution of a" 
+
+            <Label Content="" HorizontalAlignment="Center" Height="114" VerticalAlignment="Top" Width="690"
+                   MouseMove="Label_MouseMove" IsEnabled="True" Margin="0,-5,0,0"/>
+
+            <Label Content="Numerical solution" 
                    HorizontalAlignment="Left" 
-                   Height="45" Margin="41,145,0,0" 
-                   VerticalAlignment="Top" Width="342"
+                   Height="35" Margin="91,132,0,0" 
+                   VerticalAlignment="Top" Width="171"
                    FontFamily="/Fonts/#Poppins"
                       Foreground="White"
-                   FontSize="25"/>
-            <Label Content="two-dimensional supersonic flow:" 
+                   FontSize="15"/>
+            <Label Content=" of a two-dimensional " 
                    HorizontalAlignment="Left" 
-                   Height="49" Margin="41,176,0,0" 
-                   VerticalAlignment="Top" Width="517"
+                   Height="35" Margin="86,153,0,0" 
+                   VerticalAlignment="Top" Width="176"
                    FontFamily="/Fonts/#Poppins"
                       Foreground="White"
-                   FontSize="25"/>
+                   FontSize="15"/>
+            <Label Content="supersonic flow:" 
+                   HorizontalAlignment="Left" 
+                   Height="39" Margin="91,173,0,0" 
+                   VerticalAlignment="Top" Width="171"
+                   FontFamily="/Fonts/#Poppins"
+                      Foreground="White"
+                   FontSize="15"/>
+            <Label Content="PRANDTL-MEYER" 
+                   HorizontalAlignment="Left" 
+                   Height="50" Margin="331,124,0,0" 
+                   VerticalAlignment="Top" Width="265"
+                   FontFamily="/Fonts/#Poppins"
+                      Foreground="White"
+                   FontSize="30"/>
+            <Label Content="EXPANSION WAVE" 
+                   HorizontalAlignment="Left" 
+                   Height="50" Margin="331,165,0,0" 
+                   VerticalAlignment="Top" Width="284"
+                   FontFamily="/Fonts/#Poppins"
+                      Foreground="White"
+                   FontSize="30"/>
+            <Label Content="based on Anderson's Book explanation" 
+                   HorizontalAlignment="Left" Height="32" 
+                   Margin="418,291,0,0" VerticalAlignment="Top"
+                   Width="211"
+                   Foreground="White"
+                   FontWeight="Thin"/>
+            <Button Content="" 
+                    Background="White"                   
+                    HorizontalAlignment="Left"
+                    Height="80" Margin="291,132,0,0" 
+                    VerticalAlignment="Top" Width="4"/>
+            <Label Content="mamasita" 
+                   HorizontalAlignment="Left" Height="32" 
+                   Margin="134,282,0,0" VerticalAlignment="Top"
+                   Width="211"
+                   Foreground="White"
+                   FontWeight="Thin"/>
 
 
 
