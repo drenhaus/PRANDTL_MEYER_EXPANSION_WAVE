@@ -16,6 +16,7 @@ using LibreriaClases;
 using System.Data;
 using System.Windows.Threading;
 using System.IO;
+using Microsoft.Win32;
 
 namespace WPFapp
 {
@@ -26,19 +27,19 @@ namespace WPFapp
     {
         #region ATTRIBUTES
         // we create a new Malla
-        Malla m = new Malla(); 
-            // we set by default 89 columns and 41 rows, it may be changed if we select a different precision
-        int columnas = 89; 
-        int filas = 41; 
+        Malla m = new Malla();
+        // we set by default 89 columns and 41 rows, it may be changed if we select a different precision
+        int columnas = 89;
+        int filas = 41;
         double delta_y_t;
 
 
-            // we create a matrix of Polygons that are going to be in the gried view
+        // we create a matrix of Polygons that are going to be in the gried view
         Polygon[,] casillas;
-            // where all the functions related to the polygons creation are found
-        GridPlotGenerate GPG = new GridPlotGenerate(); 
-        
-            //DataTables with the solutions 
+        // where all the functions related to the polygons creation are found
+        GridPlotGenerate GPG = new GridPlotGenerate();
+
+        //DataTables with the solutions 
         DataTable temperature_table;
         DataTable u_table;
         DataTable v_table;
@@ -100,7 +101,7 @@ namespace WPFapp
             F4_table = T_U_V_RHO_P_M_F1_F2_F3_F4[9];
 
             //We define the visual grid and call the function that generates them of the class GridPlotGenerate
-            casillas = GPG.GenerateGridPlot(filas, columnas,m); 
+            casillas = GPG.GenerateGridPlot(filas, columnas, m);
 
             // We add the casillas values into the grid
             for (int i = 0; i < columnas - 1; i++)
@@ -170,7 +171,7 @@ namespace WPFapp
         {
             if (DataGridComboBox.SelectedIndex == 0) // if temperature selected
             {
-                casillas=GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
+                casillas = GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
             }
             if (DataGridComboBox.SelectedIndex == 1) // if u selected
             {
@@ -194,13 +195,13 @@ namespace WPFapp
             }
 
         }
-        
+
         // DEPENDING OF THE PRECISION A LOADING ADVICE WILL APPEAR
-            //if the selected index of the precision is 2 (high presition) a loading advice is going
-            // to be shown
+        //if the selected index of the precision is 2 (high presition) a loading advice is going
+        // to be shown
         private void DataGridComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        { 
-            if (PresitionComboBox.SelectedIndex==2)
+        {
+            if (PresitionComboBox.SelectedIndex == 2)
             {
                 dispatcherTimer2 = new DispatcherTimer();
                 dispatcherTimer2.Tick += new EventHandler(dispatcherTimer_Tick2);
@@ -215,7 +216,7 @@ namespace WPFapp
         }
 
         // CHECKBOX OF DEFAULT PARAMETERS CHECKED
-            // if the checkbox is selected it is written the parameters by default
+        // if the checkbox is selected it is written the parameters by default
         private void CheckBox_A_Checked(object sender, RoutedEventArgs e)
         {
             // we write the parameters
@@ -228,8 +229,8 @@ namespace WPFapp
         }
 
         // LOAD PARAMETERS BUTTON
-            // When clicking to load the writen parameters are going to be set as the atributes of the 
-            // NORMA class where we find the parameter conditions of the simulation
+        // When clicking to load the writen parameters are going to be set as the atributes of the 
+        // NORMA class where we find the parameter conditions of the simulation
         private void LoadParametersButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -246,7 +247,7 @@ namespace WPFapp
                 m.norma.Compute_u();
 
                 // only show the loading advice when we select the higher precision
-                if (PresitionComboBox.SelectedIndex==2)
+                if (PresitionComboBox.SelectedIndex == 2)
                 {
                     dispatcherTimer = new DispatcherTimer();
                     dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
@@ -281,8 +282,8 @@ namespace WPFapp
         }
 
         // RESET BUTTON
-            //If some simulation has been executed but the user wants to make some change in the parameters or
-            // redo the simulation, the reset button creates a new Malla and empties all the DataTables and grid
+        //If some simulation has been executed but the user wants to make some change in the parameters or
+        // redo the simulation, the reset button creates a new Malla and empties all the DataTables and grid
         private void Reset_button_Click(object sender, RoutedEventArgs e)
         {
             // new Malla created
@@ -300,7 +301,7 @@ namespace WPFapp
             F2_table = null;
             F3_table = null;
             F4_table = null;
-            
+
             //empty grid
             GridMalla.Children.Clear();
             // no selected item
@@ -333,9 +334,9 @@ namespace WPFapp
         public bool AreDefautParametersLoaded()
         {
             if (m.norma.v_in == 0.0 && m.norma.Rho_in == 1.23 && m.norma.P_in == 101000 && m.norma.M_in == 2.0 && m.norma.T_in == 286.1)
-            { return true;}
+            { return true; }
             else
-            { return false;}           
+            { return false; }
         }
 
 
@@ -360,21 +361,21 @@ namespace WPFapp
         //        }
         //    }
 
-         
+
         //    u_label.Content = Convert.ToString(m.matriz[filas-1-j,i].u);
         //    v_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].v);
         //    rho_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].Rho);
         //    p_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].P);
         //    temeprature_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].T);
         //    mach_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].M);
-            
+
         //}
 
 
 
         // SEE GROUND 
-            // This function sets if the ground of the simulation is visible or hidden and if is visible which configuration
-            // low, medium or high
+        // This function sets if the ground of the simulation is visible or hidden and if is visible which configuration
+        // low, medium or high
         private void SeeGrounfOf(string str)
         {
             if (str == "LOW")
@@ -450,7 +451,7 @@ namespace WPFapp
                 med6.Visibility = Visibility.Visible;
                 med7.Visibility = Visibility.Visible;
                 med8.Visibility = Visibility.Visible;
-            }            
+            }
             if (str == "NONE")
             {
                 low_gnd1.Visibility = Visibility.Hidden;
@@ -475,13 +476,13 @@ namespace WPFapp
                 med7.Visibility = Visibility.Hidden;
                 med8.Visibility = Visibility.Hidden;
 
-            }   
+            }
 
         }
 
         // CHANGING THE PRECISION INDEX
-            // Depending of the precision selected in the Combobox the dimensions of delta_y_t, rows and columns are
-            // higher or lower and thus is more accurate or not and the ground is visible
+        // Depending of the precision selected in the Combobox the dimensions of delta_y_t, rows and columns are
+        // higher or lower and thus is more accurate or not and the ground is visible
         private void PresitionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -525,7 +526,7 @@ namespace WPFapp
                 M_TextBox.IsEnabled = true;
                 v_TextBox.IsEnabled = true;
 
-                
+
             }
             catch (Exception ex)
             {
@@ -546,7 +547,7 @@ namespace WPFapp
 
                 w.Write(PresitionComboBox.SelectedIndex);
                 w.Write('\n');
-                w.Write(m.norma.T_in + " " + m.norma.Rho_in + " " + m.norma.P_in + " " + m.norma.M_in + " " + m.norma.T_in);
+                w.Write(m.norma.v_in + " " + m.norma.Rho_in + " " + m.norma.P_in + " " + m.norma.M_in + " " + m.norma.T_in);
                 w.Close();
                 return 0;
             }
@@ -555,8 +556,77 @@ namespace WPFapp
                 return -1;
             }
         }
+        public Malla CargarSimulacion(string name)
+        {
+            Malla m = new Malla();
+
+            StreamReader sr = new StreamReader(name);
+            string linea = sr.ReadLine();
+
+            #region PRESITION OF SAVED FILE
+            if (Convert.ToInt16(linea) == 0)
+            { 
+                SeeGrounfOf("LOW");
+                columnas = 24;
+                filas = 11;
+                delta_y_t = 0.1;
+            }
+            if (Convert.ToInt16(linea) == 1)
+            {
+                SeeGrounfOf("MEDIUM");
+                columnas = 92;
+                filas = 41;
+                delta_y_t = 0.025;
+            }
+            if (Convert.ToInt16(linea) == 2)
+            {
+                SeeGrounfOf("MEDIUM");
+                columnas = 452;
+                filas = 201;
+                delta_y_t = 0.005;
+            }
+            #endregion PRESITION OF SAVED FILE
+
+            LoadParametersButton.IsEnabled = true;
+            CheckBox_A.IsEnabled = true;
+            T_TextBox.IsEnabled = true;
+            Rho_TextBox.IsEnabled = true;
+            P_TextBox.IsEnabled = true;
+            M_TextBox.IsEnabled = true;
+            v_TextBox.IsEnabled = true;
+
+            string lineaParam = sr.ReadLine();
+            string[] trozosParam = lineaParam.Split(' ');
+
+            m.norma.v_in = Convert.ToDouble(trozosParam[0]);
+            m.norma.Rho_in = Convert.ToDouble(trozosParam[1]);
+            m.norma.P_in = Convert.ToDouble(trozosParam[2]);
+            m.norma.M_in = Convert.ToDouble(trozosParam[3]);
+            m.norma.T_in = Convert.ToDouble(trozosParam[4]);
+
+            m.norma.Compute_a();
+            m.norma.Compute_M_angle();
+            m.norma.Compute_u();
+
+            if (Convert.ToInt16(linea) == 2)
+            {
+                dispatcherTimer = new DispatcherTimer();
+                dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+                dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
+                dispatcherTimer.Start();
+            }
+
+            else
+            { Simulate(); }
+            sr.Close();
+            return m;
 
 
+            
+
+
+            
+        }
         private void SaveSim_button_Click(object sender, RoutedEventArgs e)
         {
             // Configure save file dialog box
@@ -582,6 +652,195 @@ namespace WPFapp
             else
             { MessageBox.Show("No ha sido posible guardar la simulación"); }
         }
+        private void LoadSim_button_Click(object sender, RoutedEventArgs e)
+        {
+            #region CLEAR ALL
+            // new Malla created
+            m = new Malla();
+            //empty casillas
+            casillas = null;
+            // empty tables
+            temperature_table = null;
+            u_table = null;
+            v_table = null;
+            rho_table = null;
+            p_table = null;
+            M_table = null;
+            F1_table = null;
+            F2_table = null;
+            F3_table = null;
+            F4_table = null;
+
+            //empty grid
+            GridMalla.Children.Clear();
+            // no selected item
+            DataGridComboBox.SelectedItem = null;
+            PresitionComboBox.SelectedItem = null;
+            // checkbox not selected and labels empty
+            CheckBox_A.IsChecked = false;
+            T_TextBox.Text = "";
+            Rho_TextBox.Text = "";
+            P_TextBox.Text = "";
+            M_TextBox.Text = "";
+            v_TextBox.Text = "";
+
+            //// is enable of buttons fals
+            //DataGridComboBox.IsEnabled = false;
+            //Reset_button.IsEnabled = false;
+            //LoadParametersButton.IsEnabled = false;
+            //SaveSim_button.IsEnabled = false;
+            //LoadSim_button.IsEnabled = false;
+            //CheckBox_A.IsEnabled = false;
+            //PresitionComboBox.IsEnabled = true;
+            //T_TextBox.IsEnabled = false;
+            //Rho_TextBox.IsEnabled = false;
+            //P_TextBox.IsEnabled = false;
+            //M_TextBox.IsEnabled = false;
+            //v_TextBox.IsEnabled = false;
+
+            #endregion CLEAR ALL
+
+            #region LOAD FILE
+
+            //try
+            //{
+            //    OpenFileDialog ofd = new OpenFileDialog();
+            //    ofd.Multiselect = true;
+            //    ofd.Filter = "Text documents (.txt)|*.txt";
+            //    Nullable<bool> result = ofd.ShowDialog();
+
+            //    if (result == true)
+            //    {
+            //        // Cargar documento
+            //        string filename = ofd.FileName;
+            //        Malla M = Malla.CargarSimulacion(filename);
+
+
+            //        matriz_celdas = matriz;
+            //        x = matriz_celdas.getX() - 2;
+            //        y = matriz_celdas.getY() - 2;
+            //        lc = new graficosPage();
+
+            //        // Generamos las Mallas
+            //        this.casillas = generarMalla1(casillas, canvas1);
+            //        this.casillas2 = generarMalla1(casillas2, canvas2);
+
+            //        volverApintar(); // repintamos 
+
+            //        boxIteration.Text = Convert.ToString(historial.Count()); // AL cargar la simulación que la iteración  se ponga a 0
+
+            //        if (MessageBox.Show("Quieres conservar los parámetros y condiciones de contorno de la simulación guardada?", "Cargar parámetros", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            //        {
+            //            // escribimos el numero de filas y columnas
+            //            TextBoxX.Text = Convert.ToString(matriz_celdas.getX() - 2);
+            //            TextBoxY.Text = Convert.ToString(matriz_celdas.getY() - 2);
+
+            //            //si conservamos los parámetros, simulamos con lo cargado y escribimos  los parámetros para que se muestren
+
+            //            dxdy.Text = Convert.ToString(matriz_celdas.GetNorma().GetDxDy());
+            //            epsilon.Text = Convert.ToString(matriz_celdas.GetNorma().GetEpsilon());
+            //            betta.Text = Convert.ToString(matriz_celdas.GetNorma().GetBetta());
+            //            delta.Text = Convert.ToString(matriz_celdas.GetNorma().GetDelta());
+            //            M.Text = Convert.ToString(matriz_celdas.GetNorma().GetM());
+            //            dt.Text = Convert.ToString(matriz_celdas.GetNorma().GetDT());
+
+            //            // escribimos en el comboBox la condición de contorno seleccionada
+            //            string condicion = matriz_celdas.GetCondicionsContornoFaseTemperatura();
+            //            string text = "Fijas";
+
+            //            if (condicion == "System.Windows.Controls.ComboBoxItem: Fijas")
+            //            { text = "Fijas"; }
+            //            if (condicion == "System.Windows.Controls.ComboBoxItem: Espejo")
+            //            { text = "Espejo"; }
+
+            //            comboBox1.IsEditable = true;
+            //            comboBox1.Text = text;
+
+
+            //            // habilitamos  todos los botones y textboxs por si se carga el fichero solo iniciar el programa
+            //            button1.IsEnabled = true;
+            //            button2.IsEnabled = true;
+            //            button4.IsEnabled = true;
+            //            button5.IsEnabled = true;
+            //            button6.IsEnabled = true;
+            //            boton_retroceder.IsEnabled = true;
+            //            botonCARGAR.IsEnabled = true;
+            //            betta.IsEnabled = true;
+            //            dxdy.IsEnabled = true;
+            //            epsilon.IsEnabled = true;
+            //            delta.IsEnabled = true;
+            //            M.IsEnabled = true;
+            //            dt.IsEnabled = true;
+            //            ParametrosA.IsEnabled = true;
+            //            ParametrosB.IsEnabled = true;
+            //            Parametros.IsEnabled = true;
+            //            slider1.IsEnabled = true;
+            //            boton_retroceder.IsEnabled = true;
+            //            comboBox1.IsEnabled = true;
+            //            botongraficos.IsEnabled = true;
+
+            //        }
+            //        else
+            //        {
+            //            // escribimos el numero de filas y columnas
+            //            TextBoxX.Text = Convert.ToString(matriz_celdas.getX() - 2);
+            //            TextBoxY.Text = Convert.ToString(matriz_celdas.getY() - 2);
+
+            //            // no habilitamos todos los botones, únicamente los necesarios para introducir los parámetros
+            //            betta.Text = null;
+            //            dxdy.Text = null;
+            //            epsilon.Text = null;
+            //            delta.Text = null;
+            //            M.Text = null;
+            //            dt.Text = null;
+            //            ParametrosA.IsChecked = false;
+            //            ParametrosB.IsChecked = false;
+
+            //            betta.IsEnabled = true;
+            //            dxdy.IsEnabled = true;
+            //            epsilon.IsEnabled = true;
+            //            delta.IsEnabled = true;
+            //            M.IsEnabled = true;
+            //            dt.IsEnabled = true;
+            //            ParametrosA.IsEnabled = true;
+            //            ParametrosB.IsEnabled = true;
+            //            Parametros.IsEnabled = true;
+            //            boton_retroceder.IsEnabled = true; // permite retroceder al estar clicando
+            //            button5.IsEnabled = true;
+            //            botongraficos.IsEnabled = true;
+
+            //            button1.IsEnabled = false;
+            //            button2.IsEnabled = false;
+            //            button4.IsEnabled = false;
+            //            button5.IsEnabled = false;
+            //            button6.IsEnabled = false;
+            //            boton_retroceder.IsEnabled = false;
+            //            botonCARGAR.IsEnabled = false;
+            //            slider1.IsEnabled = false;
+            //            boton_retroceder.IsEnabled = false;
+            //            comboBox1.Text = null;
+            //            comboBox1.IsEnabled = false;
+
+
+            //        }
+
+            //        boxIteration.Text = Convert.ToString(1); // Ponemos a 1 las iteraciones
+            //    }
+            //    else
+            //    { MessageBox.Show("No ha sido posible cargar la simulación"); }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+
+
+
+
+            #endregion LOAD FILE
+
+        }
+
         #endregion SAVE/LOAD SIMULATION
 
         #region LEFT BUTTONS (OPEN TABLES, COMPARATIONS, GRAPHICS AND ADVANCED STUDY)
@@ -693,6 +952,7 @@ namespace WPFapp
                 this.DragMove();
             }
         }
+
 
         #endregion WINDOW MANIPULATION FUNCTIONS
 

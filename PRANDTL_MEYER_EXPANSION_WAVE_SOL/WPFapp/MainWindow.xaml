@@ -498,7 +498,7 @@
                 RenderTransformOrigin="0.477,-0.345"
                     Foreground="White" 
                     FontFamily="/Fonts/#Poppins"
-                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"/>
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2" Click="LoadSim_button_Click"/>
 
             <Button x:Name="Reset_button" 
                 Content="Reset" 

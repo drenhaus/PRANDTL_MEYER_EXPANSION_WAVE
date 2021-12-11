@@ -80,8 +80,6 @@ namespace LibreriaClases
             return delta_y_array;
         }
 
-
-
         #endregion MATRIX DEFINITION
 
         #region COMPUTE
