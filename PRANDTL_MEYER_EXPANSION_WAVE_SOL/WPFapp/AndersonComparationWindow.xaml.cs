@@ -996,5 +996,29 @@ namespace WPFapp
                 this.DragMove();
             }
         }
+
+        private void AndersonGridData_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            if (Convert.ToDouble((e.Row.GetIndex()).ToString()) != A_F1_12.Length)
+            {
+                e.Row.Header = Convert.ToDouble((e.Row.GetIndex()).ToString()) + 1;
+            }
+            else
+            {
+                e.Row.Header = "";
+            }
+        }
+
+        private void SimulationGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            if (Convert.ToDouble((e.Row.GetIndex()).ToString()) != A_F1_12.Length)
+            {
+                e.Row.Header = Convert.ToDouble((e.Row.GetIndex()).ToString()) + 1;
+            }
+            else
+            {
+                e.Row.Header = "";
+            }
+        }
     }
 }
