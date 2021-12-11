@@ -112,6 +112,8 @@ namespace WPFapp
                     GridMalla.Children.Add(casillas[j, i]);
                 }
             }
+            MessageBox.Show("Please select the data you want to show or reset for any change");
+
         }
 
         // DISPATCHER TIMER TICK FOR Simulation()
@@ -171,27 +173,27 @@ namespace WPFapp
         {
             if (DataGridComboBox.SelectedIndex == 0) // if temperature selected
             {
-                casillas = GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
+                casillas=GPG.actualizar_colores_grid(temperature_table, 255, 0, 0,false);
             }
             if (DataGridComboBox.SelectedIndex == 1) // if u selected
             {
-                casillas = GPG.actualizar_colores_grid(u_table, 0, 255, 0);
+                casillas = GPG.actualizar_colores_grid(u_table, 0, 255, 0,false);
             }
             if (DataGridComboBox.SelectedIndex == 2) //if v selected
             {
-                casillas = GPG.actualizar_colores_grid(v_table, 255, 128, 0);
+                casillas = GPG.actualizar_colores_grid(v_table, 255, 128, 0,true);
             }
             if (DataGridComboBox.SelectedIndex == 3) //if rho selected
             {
-                casillas = GPG.actualizar_colores_grid(rho_table, 18, 184, 255);
+                casillas = GPG.actualizar_colores_grid(rho_table, 18, 184, 255,false);
             }
             if (DataGridComboBox.SelectedIndex == 4) //if p selected
             {
-                casillas = GPG.actualizar_colores_grid(p_table, 255, 0, 127);
+                casillas = GPG.actualizar_colores_grid(p_table, 255, 0, 127,false);
             }
             if (DataGridComboBox.SelectedIndex == 5) //if Mach selected
             {
-                casillas = GPG.actualizar_colores_grid(M_table, 255, 255, 255);
+                casillas = GPG.actualizar_colores_grid(M_table, 255, 255, 255,false);
             }
 
         }
@@ -263,21 +265,38 @@ namespace WPFapp
                 m.norma.M_in = Convert.ToDouble(M_TextBox.Text);
                 m.norma.T_in = Convert.ToDouble(T_TextBox.Text);
 
-                m.norma.Compute_a();
-                m.norma.Compute_M_angle();
-                m.norma.Compute_u();
+                //checking if the data introduced fulfill the equation of state
+                double rho_es = m.norma.P_in / (m.norma.R_air * m.norma.T_in);
 
-                // only show the loading advice when we select the higher precision
-                if (PresitionComboBox.SelectedIndex == 2)
+                if (Math.Round(Convert.ToDecimal(rho_es), 2) != Math.Round(Convert.ToDecimal(m.norma.Rho_in), 2))
                 {
-                    dispatcherTimer = new DispatcherTimer();
-                    dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-                    dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
-                    dispatcherTimer.Start();
-                }
+                    // if it is not fulfilled a messagebox appears giving the option to continue or change the parameters
+                    //MessageBox.Show("The introduced parameters do not fulfill the equation state. Do you want to continue without changing the parameters?", "", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (MessageBox.Show("The introduced parameters do not fulfill the equation stateDo you want to continue without changing the parameters?", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                    {
+                        M_TextBox.Text = "";
+                        v_TextBox.Text = "";
+                        P_TextBox.Text = "";
+                        Rho_TextBox.Text = "";
+                        T_TextBox.Text = "";
+                    }
+                    else
+                    {
+                        m.norma.Compute_a();
+                        m.norma.Compute_M_angle();
+                        m.norma.Compute_u();
 
-                else
-                { Simulate(); }
+                        // only show the loading advice when we select the higher precision
+                        if (PresitionComboBox.SelectedIndex == 2)
+                        {
+                            dispatcherTimer = new DispatcherTimer();
+                            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+                            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
+                            dispatcherTimer.Start();
+                        }
+
+                        else
+                        { Simulate(); }
 
                 #region ENABLE/DISABLE BUTTONS
                 // The is enable is changed to continue with the simulation
@@ -293,13 +312,51 @@ namespace WPFapp
                 M_TextBox.IsEnabled = false;
                 v_TextBox.IsEnabled = false;
                 #endregion ENABLE/ DISABLE BUTTONS
-            }
+
+                    } 
+                }
+                else
+                {
+
+                    m.norma.Compute_a();
+                    m.norma.Compute_M_angle();
+                    m.norma.Compute_u();
+
+                    // only show the loading advice when we select the higher precision
+                    if (PresitionComboBox.SelectedIndex == 2)
+                    {
+                        dispatcherTimer = new DispatcherTimer();
+                        dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+                        dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
+                        dispatcherTimer.Start();
+                    }
+
+                    else
+                    { Simulate(); }
+
+
+                #region ENABLE/DISABLE BUTTONS
+                // The is enable is changed to continue with the simulation
+                PresitionComboBox.IsEnabled = false;
+                CheckBox_A.IsEnabled = false;
+                LoadParametersButton.IsEnabled = false;
+                DataGridComboBox.IsEnabled = true;
+                SaveSim_button.IsEnabled = true;
+                Reset_button.IsEnabled = true;
+                T_TextBox.IsEnabled = false;
+                Rho_TextBox.IsEnabled = false;
+                P_TextBox.IsEnabled = false;
+                M_TextBox.IsEnabled = false;
+                v_TextBox.IsEnabled = false;
+                #endregion ENABLE/ DISABLE BUTTONS
+                }
+                }
+
             catch (Exception ex)
             {
                 // MessageBox to indicate the parameters had not been correctly defined
                 MessageBox.Show(ex.Message);
             }
-            MessageBox.Show("Please select the data you want to show or reset for any change");
         }
 
         // RESET BUTTON
@@ -360,38 +417,42 @@ namespace WPFapp
             { return false; }
         }
 
+        //WHRN THE MOUSE ENTER INSIDE A POLYGON
+            // When the mouse is seted inside a polygon, a group of labels appear showing the properties
+            // of the polygon: temperature, pressure, density ,etc.
+        public void polygon_enter(object sender, EventArgs e)
+        {
+            // We obtain the points that define the polygon we are in
+            Polygon poly = (Polygon)sender;
+            Point p0 = poly.Points[0];
+            Point p1= poly.Points[1];
+            Point p2 = poly.Points[2];
+            Point p3 = poly.Points[3];
+              
+            // we look for which of the polygons saved in CASILLAS corresponts the points
+                for (int i = 0; i < columnas - 1; i++)
+                {
+                    for (int j = 0; j < filas; j++)
+                    {
+                        Point p0_C = casillas[j, i].Points[0];
+                        Point p1_C = casillas[j, i].Points[1];
+                        Point p2_C = casillas[j, i].Points[2];
+                        Point p3_C = casillas[j, i].Points[3];
 
-        //public void polygon_enter(object sender, EventArgs e)
-        //{
-        //    //Polygon poly = (Polygon)sender;
-        //    Polygon poly = sender as Polygon;
-        //    Point y = poly.Points[0];
-        //    Point x= poly.Points[1];
-
-        //    int i = 0;
-        //    int j = 0;
-        //    for (i = 0; i < columnas; i++)
-        //    {
-        //        for (j = 0; j < filas; j++)
-        //        {
-        //            if ((m.matriz[j, i].x == x) && (m.matriz[j, i].y == y))
-        //            {
-        //                break;
-        //            }
-
-        //        }
-        //    }
-
-
-        //    u_label.Content = Convert.ToString(m.matriz[filas-1-j,i].u);
-        //    v_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].v);
-        //    rho_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].Rho);
-        //    p_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].P);
-        //    temeprature_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].T);
-        //    mach_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].M);
-
-        //}
-
+                        if ((p0 == p0_C) && (p1 == p1_C) && (p2 == p2_C) && (p3 == p3_C))
+                        {
+                            // when we find the polygon with this points we show the corresponging labels
+                            u_text.Text = Convert.ToString(m.matriz[filas - 1 - j, i].u);
+                            v_text.Text = Convert.ToString(m.matriz[filas - 1 - j, i].v);
+                            rho_text.Text= Convert.ToString(m.matriz[filas - 1 - j, i].Rho);
+                            p_text.Text = Convert.ToString(m.matriz[filas - 1 - j, i].P);
+                            t_text.Text = Convert.ToString(m.matriz[filas - 1 - j, i].T);
+                            m_text.Text = Convert.ToString(m.matriz[filas - 1 - j, i].M);
+                        }
+                    }
+                }
+            
+        }
 
 
         // SEE GROUND 
