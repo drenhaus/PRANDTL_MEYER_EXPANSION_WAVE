@@ -371,6 +371,42 @@ namespace WPFapp
 
         private void Load_tables_butt_Click(object sender, RoutedEventArgs e)
         {
+            #region VISIBLE/HIDDE
+            labelt.Visibility = Visibility.Hidden;
+            labelm.Visibility = Visibility.Hidden;
+            labelp.Visibility = Visibility.Hidden;
+            labelrho.Visibility = Visibility.Hidden;
+            labelv.Visibility = Visibility.Hidden;
+            labelu.Visibility = Visibility.Hidden;
+
+            labelt2.Visibility = Visibility.Hidden;
+            labelm2.Visibility = Visibility.Hidden;
+            labelp2.Visibility = Visibility.Hidden;
+            labelrho2.Visibility = Visibility.Hidden;
+            labelv2.Visibility = Visibility.Hidden;
+            labelu2.Visibility = Visibility.Hidden;
+
+            t1_text.Visibility = Visibility.Hidden;
+            m1_text.Visibility = Visibility.Hidden;
+            p1_text.Visibility = Visibility.Hidden;
+            rho1_text.Visibility = Visibility.Hidden;
+            u1_text.Visibility = Visibility.Hidden;
+            v1_text.Visibility = Visibility.Hidden;
+
+            t2_text.Visibility = Visibility.Hidden;
+            m2_text.Visibility = Visibility.Hidden;
+            p2_text.Visibility = Visibility.Hidden;
+            rho2_text.Visibility = Visibility.Hidden;
+            u2_text.Visibility = Visibility.Hidden;
+            v2_text.Visibility = Visibility.Hidden;
+
+            Advanced_DataGridMalla.Visibility = Visibility.Visible;
+            Advanced_DataGridMalla_2.Visibility = Visibility.Visible;
+            #endregion VISIBLE/HIDDE
+
+
+
+
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
@@ -492,6 +528,40 @@ namespace WPFapp
             {
                 e.Row.Header = "";
             }
+        }
+
+        private void change_Mouse_butt_Click(object sender, RoutedEventArgs e)
+        {
+            labelt.Visibility = Visibility.Visible;
+            labelm.Visibility = Visibility.Visible;
+            labelp.Visibility = Visibility.Visible;
+            labelrho.Visibility = Visibility.Visible;
+            labelv.Visibility = Visibility.Visible;
+            labelu.Visibility = Visibility.Visible;
+
+            labelt2.Visibility = Visibility.Visible;
+            labelm2.Visibility = Visibility.Visible;
+            labelp2.Visibility = Visibility.Visible;
+            labelrho2.Visibility = Visibility.Visible;
+            labelv2.Visibility = Visibility.Visible;
+            labelu2.Visibility = Visibility.Visible;
+
+            t1_text.Visibility = Visibility.Visible;
+            m1_text.Visibility = Visibility.Visible;
+            p1_text.Visibility = Visibility.Visible;
+            rho1_text.Visibility = Visibility.Visible;
+            u1_text.Visibility = Visibility.Visible;
+            v1_text.Visibility = Visibility.Visible;
+
+            t2_text.Visibility = Visibility.Visible;
+            m2_text.Visibility = Visibility.Visible;
+            p2_text.Visibility = Visibility.Visible;
+            rho2_text.Visibility = Visibility.Visible;
+            u2_text.Visibility = Visibility.Visible;
+            v2_text.Visibility = Visibility.Visible;
+
+            Advanced_DataGridMalla.Visibility = Visibility.Hidden;
+            Advanced_DataGridMalla_2.Visibility = Visibility.Hidden;
         }
     }
 
