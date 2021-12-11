@@ -698,20 +698,21 @@
                     Width="1"
                     Background="White" BorderThickness="0" Grid.Row="1" Grid.RowSpan="2"/>
 
-            <Image Margin="5,54,168,424" Stretch="Fill" 
-                   Source="/icons/tableicon.png" Grid.Row="2"/>
-
             <Image Margin="4,19,173,49" Grid.Row="1" Stretch="Fill" 
                    Source="/icons/back_to_start.png"/>
 
             <Image Margin="5,57,171,2" Stretch="Fill" 
                    Source="/icons/tableicon.png" Grid.Row="1"/>
 
-            <Image Margin="4,12,168,472" Stretch="Fill" 
+            <Image Margin="4,58,168,426" Stretch="Fill" 
                    Source="/icons/graf.png" Grid.Row="2"/>
 
             <Image Margin="2,100,167,381" Grid.Row="2" Stretch="Fill" 
                    Source="/icons/AS.png"/>
+            
+            <Image Margin="0,12,163,462" 
+                   Stretch="Fill" 
+                   Source="/icons/balnce.png" Grid.Row="2"/>
 
         </Grid>
     </Border>
