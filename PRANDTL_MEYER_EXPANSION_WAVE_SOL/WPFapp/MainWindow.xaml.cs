@@ -330,34 +330,31 @@ namespace WPFapp
         }
 
 
-
-
+        //WHRN THE MOUSE ENTER INSIDE A POLYGON
+            // When the mouse is seted inside a polygon, a group of labels appear showing the properties
+            // of the polygon: temperature, pressure, density ,etc.
         public void polygon_enter(object sender, EventArgs e)
         {
-            //Polygon poly = (Polygon)sender;
-            Polygon poly = sender as Polygon;
+            // We obtain the points that define the polygon we are in
+            Polygon poly = (Polygon)sender;
             Point p0 = poly.Points[0];
             Point p1= poly.Points[1];
             Point p2 = poly.Points[2];
             Point p3 = poly.Points[3];
-
-            int i = 0;
-            int j = 0;
-            bool found = false;
-            while (found == false)
-            {
-                for (i = 0; i < columnas - 1; i++)
+              
+            // we look for which of the polygons saved in CASILLAS corresponts the points
+                for (int i = 0; i < columnas - 1; i++)
                 {
-                    for (j = 0; j < filas; j++)
+                    for (int j = 0; j < filas; j++)
                     {
                         Point p0_C = casillas[j, i].Points[0];
                         Point p1_C = casillas[j, i].Points[1];
                         Point p2_C = casillas[j, i].Points[2];
                         Point p3_C = casillas[j, i].Points[3];
 
-                        if ((p0 == p0_C) && (p1 == p1_C) && (p2 == p2_C) && (p2 == p2_C))
+                        if ((p0 == p0_C) && (p1 == p1_C) && (p2 == p2_C) && (p3 == p3_C))
                         {
-                            found=true;
+                            // when we find the polygon with this points we show the corresponging labels
                             u_label.Content = Convert.ToString(m.matriz[filas - 1 - j, i].u);
                             v_label.Content = Convert.ToString(m.matriz[filas - 1 - j, i].v);
                             rho_label.Content = Convert.ToString(m.matriz[filas - 1 - j, i].Rho);
@@ -367,7 +364,7 @@ namespace WPFapp
                         }
                     }
                 }
-            } 
+            
         }
 
 
