@@ -558,7 +558,7 @@ namespace WPFapp
         }
         public Malla CargarSimulacion(string name)
         {
-            Malla m = new Malla();
+            //Malla m = new Malla();
 
             StreamReader sr = new StreamReader(name);
             string linea = sr.ReadLine();
@@ -570,6 +570,7 @@ namespace WPFapp
                 columnas = 24;
                 filas = 11;
                 delta_y_t = 0.1;
+                PresitionComboBox.SelectedIndex = 0;
             }
             if (Convert.ToInt16(linea) == 1)
             {
@@ -577,6 +578,7 @@ namespace WPFapp
                 columnas = 92;
                 filas = 41;
                 delta_y_t = 0.025;
+                PresitionComboBox.SelectedIndex = 1;
             }
             if (Convert.ToInt16(linea) == 2)
             {
@@ -584,6 +586,7 @@ namespace WPFapp
                 columnas = 452;
                 filas = 201;
                 delta_y_t = 0.005;
+                PresitionComboBox.SelectedIndex = 2;
             }
             #endregion PRESITION OF SAVED FILE
 
@@ -594,6 +597,9 @@ namespace WPFapp
             P_TextBox.IsEnabled = true;
             M_TextBox.IsEnabled = true;
             v_TextBox.IsEnabled = true;
+            SaveSim_button.IsEnabled = true;
+            Reset_button.IsEnabled = true;
+
 
             string lineaParam = sr.ReadLine();
             string[] trozosParam = lineaParam.Split(' ');
@@ -608,6 +614,12 @@ namespace WPFapp
             m.norma.Compute_M_angle();
             m.norma.Compute_u();
 
+            v_TextBox.Text = Convert.ToString(trozosParam[0]);
+            Rho_TextBox.Text = Convert.ToString(trozosParam[1]);
+            P_TextBox.Text = Convert.ToString(trozosParam[2]);
+            M_TextBox.Text = Convert.ToString(trozosParam[3]);
+            T_TextBox.Text = Convert.ToString(trozosParam[4]);
+
             if (Convert.ToInt16(linea) == 2)
             {
                 dispatcherTimer = new DispatcherTimer();
@@ -615,16 +627,11 @@ namespace WPFapp
                 dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
                 dispatcherTimer.Start();
             }
-
             else
             { Simulate(); }
+
             sr.Close();
             return m;
-
-
-            
-
-
             
         }
         private void SaveSim_button_Click(object sender, RoutedEventArgs e)
@@ -702,140 +709,28 @@ namespace WPFapp
 
             #region LOAD FILE
 
-            //try
-            //{
-            //    OpenFileDialog ofd = new OpenFileDialog();
-            //    ofd.Multiselect = true;
-            //    ofd.Filter = "Text documents (.txt)|*.txt";
-            //    Nullable<bool> result = ofd.ShowDialog();
+            try
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Multiselect = true;
+                ofd.Filter = "Text documents (.txt)|*.txt";
+                Nullable<bool> result = ofd.ShowDialog();
 
-            //    if (result == true)
-            //    {
-            //        // Cargar documento
-            //        string filename = ofd.FileName;
-            //        Malla M = Malla.CargarSimulacion(filename);
-
-
-            //        matriz_celdas = matriz;
-            //        x = matriz_celdas.getX() - 2;
-            //        y = matriz_celdas.getY() - 2;
-            //        lc = new graficosPage();
-
-            //        // Generamos las Mallas
-            //        this.casillas = generarMalla1(casillas, canvas1);
-            //        this.casillas2 = generarMalla1(casillas2, canvas2);
-
-            //        volverApintar(); // repintamos 
-
-            //        boxIteration.Text = Convert.ToString(historial.Count()); // AL cargar la simulación que la iteración  se ponga a 0
-
-            //        if (MessageBox.Show("Quieres conservar los parámetros y condiciones de contorno de la simulación guardada?", "Cargar parámetros", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            //        {
-            //            // escribimos el numero de filas y columnas
-            //            TextBoxX.Text = Convert.ToString(matriz_celdas.getX() - 2);
-            //            TextBoxY.Text = Convert.ToString(matriz_celdas.getY() - 2);
-
-            //            //si conservamos los parámetros, simulamos con lo cargado y escribimos  los parámetros para que se muestren
-
-            //            dxdy.Text = Convert.ToString(matriz_celdas.GetNorma().GetDxDy());
-            //            epsilon.Text = Convert.ToString(matriz_celdas.GetNorma().GetEpsilon());
-            //            betta.Text = Convert.ToString(matriz_celdas.GetNorma().GetBetta());
-            //            delta.Text = Convert.ToString(matriz_celdas.GetNorma().GetDelta());
-            //            M.Text = Convert.ToString(matriz_celdas.GetNorma().GetM());
-            //            dt.Text = Convert.ToString(matriz_celdas.GetNorma().GetDT());
-
-            //            // escribimos en el comboBox la condición de contorno seleccionada
-            //            string condicion = matriz_celdas.GetCondicionsContornoFaseTemperatura();
-            //            string text = "Fijas";
-
-            //            if (condicion == "System.Windows.Controls.ComboBoxItem: Fijas")
-            //            { text = "Fijas"; }
-            //            if (condicion == "System.Windows.Controls.ComboBoxItem: Espejo")
-            //            { text = "Espejo"; }
-
-            //            comboBox1.IsEditable = true;
-            //            comboBox1.Text = text;
-
-
-            //            // habilitamos  todos los botones y textboxs por si se carga el fichero solo iniciar el programa
-            //            button1.IsEnabled = true;
-            //            button2.IsEnabled = true;
-            //            button4.IsEnabled = true;
-            //            button5.IsEnabled = true;
-            //            button6.IsEnabled = true;
-            //            boton_retroceder.IsEnabled = true;
-            //            botonCARGAR.IsEnabled = true;
-            //            betta.IsEnabled = true;
-            //            dxdy.IsEnabled = true;
-            //            epsilon.IsEnabled = true;
-            //            delta.IsEnabled = true;
-            //            M.IsEnabled = true;
-            //            dt.IsEnabled = true;
-            //            ParametrosA.IsEnabled = true;
-            //            ParametrosB.IsEnabled = true;
-            //            Parametros.IsEnabled = true;
-            //            slider1.IsEnabled = true;
-            //            boton_retroceder.IsEnabled = true;
-            //            comboBox1.IsEnabled = true;
-            //            botongraficos.IsEnabled = true;
-
-            //        }
-            //        else
-            //        {
-            //            // escribimos el numero de filas y columnas
-            //            TextBoxX.Text = Convert.ToString(matriz_celdas.getX() - 2);
-            //            TextBoxY.Text = Convert.ToString(matriz_celdas.getY() - 2);
-
-            //            // no habilitamos todos los botones, únicamente los necesarios para introducir los parámetros
-            //            betta.Text = null;
-            //            dxdy.Text = null;
-            //            epsilon.Text = null;
-            //            delta.Text = null;
-            //            M.Text = null;
-            //            dt.Text = null;
-            //            ParametrosA.IsChecked = false;
-            //            ParametrosB.IsChecked = false;
-
-            //            betta.IsEnabled = true;
-            //            dxdy.IsEnabled = true;
-            //            epsilon.IsEnabled = true;
-            //            delta.IsEnabled = true;
-            //            M.IsEnabled = true;
-            //            dt.IsEnabled = true;
-            //            ParametrosA.IsEnabled = true;
-            //            ParametrosB.IsEnabled = true;
-            //            Parametros.IsEnabled = true;
-            //            boton_retroceder.IsEnabled = true; // permite retroceder al estar clicando
-            //            button5.IsEnabled = true;
-            //            botongraficos.IsEnabled = true;
-
-            //            button1.IsEnabled = false;
-            //            button2.IsEnabled = false;
-            //            button4.IsEnabled = false;
-            //            button5.IsEnabled = false;
-            //            button6.IsEnabled = false;
-            //            boton_retroceder.IsEnabled = false;
-            //            botonCARGAR.IsEnabled = false;
-            //            slider1.IsEnabled = false;
-            //            boton_retroceder.IsEnabled = false;
-            //            comboBox1.Text = null;
-            //            comboBox1.IsEnabled = false;
-
-
-            //        }
-
-            //        boxIteration.Text = Convert.ToString(1); // Ponemos a 1 las iteraciones
-            //    }
-            //    else
-            //    { MessageBox.Show("No ha sido posible cargar la simulación"); }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-
-
-
+                if (result == true)
+                {
+                    // Cargar documento
+                    string filename = ofd.FileName;
+                    m = CargarSimulacion(filename);
+                    DataGridComboBox.IsEnabled = true;
+                    MessageBox.Show("Please select the data you want to show or reset for any change");
+                }
+                else
+                { MessageBox.Show("No ha sido posible cargar la simulación"); }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             #endregion LOAD FILE
 
