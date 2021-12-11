@@ -108,7 +108,7 @@ namespace WPFapp
             {
                 for (int j = 0; j < filas; j++)
                 {
-                    casillas[j, i].MouseEnter += polygon_enter;
+                    //casillas[j, i].MouseEnter += polygon_enter;
                     GridMalla.Children.Add(casillas[j, i]);
                 }
             }
@@ -332,36 +332,36 @@ namespace WPFapp
 
 
 
-        public void polygon_enter(object sender, EventArgs e)
-        {
-            //Polygon poly = (Polygon)sender;
-            Polygon poly = sender as Polygon;
-            Point y = poly.Points[0];
-            Point x= poly.Points[1];
+        //public void polygon_enter(object sender, EventArgs e)
+        //{
+        //    //Polygon poly = (Polygon)sender;
+        //    Polygon poly = sender as Polygon;
+        //    Point y = poly.Points[0];
+        //    Point x= poly.Points[1];
 
-            int i = 0;
-            int j = 0;
-            for (i = 0; i < columnas; i++)
-            {
-                for (j = 0; j < filas; j++)
-                {
-                    if ((m.matriz[j, i].x == x) && (m.matriz[j, i].y == y))
-                    {
-                        break;
-                    }
+        //    int i = 0;
+        //    int j = 0;
+        //    for (i = 0; i < columnas; i++)
+        //    {
+        //        for (j = 0; j < filas; j++)
+        //        {
+        //            if ((m.matriz[j, i].x == x) && (m.matriz[j, i].y == y))
+        //            {
+        //                break;
+        //            }
 
-                }
-            }
+        //        }
+        //    }
 
          
-            u_label.Content = Convert.ToString(m.matriz[filas-1-j,i].u);
-            v_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].v);
-            rho_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].Rho);
-            p_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].P);
-            temeprature_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].T);
-            mach_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].M);
+        //    u_label.Content = Convert.ToString(m.matriz[filas-1-j,i].u);
+        //    v_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].v);
+        //    rho_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].Rho);
+        //    p_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].P);
+        //    temeprature_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].T);
+        //    mach_label.Content= Convert.ToString(m.matriz[filas - 1 - j, i].M);
             
-        }
+        //}
 
 
 
