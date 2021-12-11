@@ -18,7 +18,12 @@
     <Border Background="#3a3752" 
             CornerRadius="20">
         <Grid>
-
+            <Label Content="" 
+                   HorizontalAlignment="Left" 
+                   Height="31" Margin="15,0,0,0"
+                   VerticalAlignment="Top" 
+                   Width="758"
+                   MouseMove="Label_MouseMove"/>
 
             <DataGrid x:Name="grid2" 
                       Margin="15,80,15,15" 
@@ -124,12 +129,13 @@
                     FontFamily="/Fonts/#Poppins"
                 VerticalAlignment="Top" 
                 Height="32" Width="134" Style="{DynamicResource RoundCorner}" RenderTransformOrigin="0.31,0.437" Click="ExportTable_Button_Click"/>
-            <Button x:Name="InfoTables_button" Content="I" 
+            <Button x:Name="InfoTables_button"  
                 HorizontalAlignment="Left" 
-                Margin="286,34,0,0"
-                Style="{DynamicResource RoundCorner}"
-                VerticalAlignment="Top" Height="24" Width="26"
-                Foreground="White"
+                Margin="235,20,0,0"
+                VerticalAlignment="Top" Height="30" Width="30"
+                Foreground="Transparent"
+                    Background="Transparent"
+                    BorderThickness="0"
                 ToolTipService.ShowDuration="30000">
 
                 <Button.ToolTip>
@@ -148,6 +154,9 @@
                         </WrapPanel>
                     </StackPanel>
                 </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="Images/info.png"/>
+                </StackPanel>
 
             </Button>
 
@@ -164,12 +173,7 @@
                 HorizontalAlignment="Left" 
                 Margin="796,10,0,0" 
                 VerticalAlignment="Top" Width="16" Height="16" Click="Mini_Button_Click"/>
-            <Label Content="" 
-                   HorizontalAlignment="Left" 
-                   Height="31" Margin="15,0,0,0"
-                   VerticalAlignment="Top" 
-                   Width="758"
-                   MouseMove="Label_MouseMove"/>
+            
 
 
 
