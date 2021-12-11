@@ -28,20 +28,7 @@
                 <RowDefinition Height="512*"/>
             </Grid.RowDefinitions>
 
-            <Image Margin="5,54,168,424" Stretch="Fill" 
-                   Source="/icons/tableicon.png" Grid.Row="2"/>
 
-            <Image Margin="4,19,173,49" Grid.Row="1" Stretch="Fill" 
-                   Source="/icons/back_to_start.png"/>
-
-            <Image Margin="5,57,171,2" Stretch="Fill" 
-                   Source="/icons/tableicon.png" Grid.Row="1"/>
-
-            <Image Margin="4,12,168,472" Stretch="Fill" 
-                   Source="/icons/graf.png" Grid.Row="2"/>
-
-            <Image Margin="2,100,167,381" Grid.Row="2" Stretch="Fill" 
-                   Source="/icons/AS.png"/>
 
             <Label Content="" HorizontalAlignment="Left" Height="54" Margin="0,5,0,0" VerticalAlignment="Top" Width="910" Grid.ColumnSpan="3"
                    MouseMove="Label_MouseMove" IsEnabled="True"/>
@@ -59,7 +46,7 @@
                    MouseMove="Label_MouseMove" IsEnabled="True"/>
 
 
-            
+
 
             <Button x:Name="WelcomeButton" 
                     Content="                Back to start" 
@@ -149,7 +136,7 @@
                     Style="{DynamicResource RoundCorner}"
                     IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
-            
+
 
 
             <Label Content="Select precision"
@@ -285,38 +272,6 @@
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <Button x:Name="InfoPresitionButton" 
                 Grid.Column="1" 
@@ -737,7 +692,26 @@
                      VerticalAlignment="Top" Width="63"
                      Style="{StaticResource verUtextbox}" Grid.ColumnSpan="2"
                      />
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Height="601" Margin="197,0,0,0" VerticalAlignment="Top" 
+                    Width="1"
+                    Background="White" BorderThickness="0" Grid.Row="1" Grid.RowSpan="2"/>
 
+            <Image Margin="5,54,168,424" Stretch="Fill" 
+                   Source="/icons/tableicon.png" Grid.Row="2"/>
+
+            <Image Margin="4,19,173,49" Grid.Row="1" Stretch="Fill" 
+                   Source="/icons/back_to_start.png"/>
+
+            <Image Margin="5,57,171,2" Stretch="Fill" 
+                   Source="/icons/tableicon.png" Grid.Row="1"/>
+
+            <Image Margin="4,12,168,472" Stretch="Fill" 
+                   Source="/icons/graf.png" Grid.Row="2"/>
+
+            <Image Margin="2,100,167,381" Grid.Row="2" Stretch="Fill" 
+                   Source="/icons/AS.png"/>
 
         </Grid>
     </Border>
