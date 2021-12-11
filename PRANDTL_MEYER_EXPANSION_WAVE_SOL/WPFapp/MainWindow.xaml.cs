@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using LibreriaClases;
 using System.Data;
 using System.Windows.Threading;
-
+using System.IO;
 
 namespace WPFapp
 {
@@ -256,8 +256,8 @@ namespace WPFapp
 
                 else
                 { Simulate(); }
-                
 
+                #region ENABLE/DISABLE BUTTONS
                 // The is enable is changed to continue with the simulation
                 PresitionComboBox.IsEnabled = false;
                 CheckBox_A.IsEnabled = false;
@@ -269,6 +269,7 @@ namespace WPFapp
                 P_TextBox.IsEnabled = false;
                 M_TextBox.IsEnabled = false;
                 v_TextBox.IsEnabled = false;
+                #endregion ENABLE/ DISABLE BUTTONS
             }
             catch (Exception ex)
             {
@@ -328,7 +329,7 @@ namespace WPFapp
 
         }
 
-        public Boolean AreDefautParametersLoaded()
+        public bool AreDefautParametersLoaded()
         {
             if (m.norma.v_in == 0.0 && m.norma.Rho_in == 1.23 && m.norma.P_in == 101000 && m.norma.M_in == 2.0 && m.norma.T_in == 286.1)
             { return true;}
@@ -531,6 +532,26 @@ namespace WPFapp
                 MessageBox.Show(ex.Message);
             }
         }
+
+        public int GuardarSimulacion(string nombre)
+        {
+            try
+            {
+                StreamWriter w = new StreamWriter(nombre);
+
+                w.Write(PresitionComboBox.SelectedIndex);
+                w.Write('\n');
+                w.Write(m.norma.T_in + " " + m.norma.Rho_in + " " + m.norma.P_in + " " + m.norma.M_in + " " + m.norma.T_in);
+                w.Close();
+                return 0;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
+
         #endregion SIMULATION WPF CONTROLS
 
         #region LEFT BUTTONS (OPEN TABLES, COMPARATIONS, GRAPHICS AND ADVANCED STUDY)
