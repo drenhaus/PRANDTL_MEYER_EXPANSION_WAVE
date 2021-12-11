@@ -712,6 +712,7 @@
                      VerticalAlignment="Top" Width="63"
                      Style="{StaticResource verUtextbox}"
                      />
+            <Image Margin="5,57,168,431" Stretch="Fill" Source="pack://siteoforigin:,,,/graf.png" Grid.Row="2"/>
 
 
 
