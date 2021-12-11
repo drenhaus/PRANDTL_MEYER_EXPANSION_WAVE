@@ -33,6 +33,7 @@ namespace WPFapp
         int filas = 41;
         double delta_y_t;
 
+        bool isLOADING = false;
 
         // we create a matrix of Polygons that are going to be in the gried view
         Polygon[,] casillas;
@@ -112,7 +113,12 @@ namespace WPFapp
                     GridMalla.Children.Add(casillas[j, i]);
                 }
             }
-            MessageBox.Show("Please select the data you want to show or reset for any change");
+            if (isLOADING) { }
+
+            else
+            {
+                MessageBox.Show("Please select the data you want to show or reset for any change");
+            }
 
         }
 
@@ -569,15 +575,13 @@ namespace WPFapp
         {
             try
             {
+
                 if (PresitionComboBox.SelectedIndex == 0) //low precision
                 {
                     SeeGrounfOf("LOW");
                     columnas = 24;
                     filas = 11;
                     delta_y_t = 0.1;
-
-                    // Messagebox to show the presicion has been selected
-                    MessageBox.Show("Precision selected successfully");
                 }
                 if (PresitionComboBox.SelectedIndex == 1) // normal precision
                 {
@@ -585,20 +589,15 @@ namespace WPFapp
                     columnas = 92;
                     filas = 41;
                     delta_y_t = 0.025;
-
-                    // Messagebox to show the presicion has been selected
-                    MessageBox.Show("Precision selected successfully");
                 }
                 if (PresitionComboBox.SelectedIndex == 2) //high precision
                 {
                     columnas = 452;
                     filas = 201;
-                    delta_y_t = 0.005;
-
-                    // Messagebox to show the presicion has been selected
-                    MessageBox.Show("Precision selected successfully");
-
+                    delta_y_t = 0.005;                
                 }
+
+
                 // we change the isenable of buttons and elements to continue with the simulation
                 LoadParametersButton.IsEnabled = true;
                 CheckBox_A.IsEnabled = true;
@@ -608,7 +607,13 @@ namespace WPFapp
                 M_TextBox.IsEnabled = true;
                 v_TextBox.IsEnabled = true;
 
-
+                if (isLOADING)
+                { }
+                else
+                {
+                    // Messagebox to show the presicion has been selected
+                    MessageBox.Show("Precision selected successfully");
+                }
             }
             catch (Exception ex)
             {
@@ -641,6 +646,7 @@ namespace WPFapp
         public Malla CargarSimulacion(string name)
         {
             //Malla m = new Malla();
+            isLOADING = true;
 
             StreamReader sr = new StreamReader(name);
             string linea = sr.ReadLine();
@@ -670,6 +676,7 @@ namespace WPFapp
                 delta_y_t = 0.005;
                 PresitionComboBox.SelectedIndex = 2;
             }
+            
             #endregion PRESITION OF SAVED FILE
 
             LoadParametersButton.IsEnabled = true;
@@ -709,9 +716,11 @@ namespace WPFapp
                 dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
                 dispatcherTimer.Start();
             }
+
             else
             { Simulate(); }
 
+            isLOADING = false;
             sr.Close();
             return m;
             
