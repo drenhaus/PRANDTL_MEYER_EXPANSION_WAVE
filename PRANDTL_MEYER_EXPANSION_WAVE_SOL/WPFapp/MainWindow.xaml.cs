@@ -32,6 +32,7 @@ namespace WPFapp
         int filas = 41; 
         double delta_y_t;
 
+
             // we create a matrix of Polygons that are going to be in the gried view
         Polygon[,] casillas;
             // where all the functions related to the polygons creation are found
@@ -64,8 +65,6 @@ namespace WPFapp
             InitializeComponent();
             SeeGrounfOf("NONE"); // initially no ground is visible
         }
-
-
 
         #region SIMULATION FUNCTION
         //When the simulation function is called the needed parameters are set and 
@@ -215,9 +214,9 @@ namespace WPFapp
 
         }
 
-            // CHECKBOX OF DEFAULT PARAMETERS CHECKED
+        // CHECKBOX OF DEFAULT PARAMETERS CHECKED
             // if the checkbox is selected it is written the parameters by default
-            private void CheckBox_A_Checked(object sender, RoutedEventArgs e)
+        private void CheckBox_A_Checked(object sender, RoutedEventArgs e)
         {
             // we write the parameters
             v_TextBox.Text = Convert.ToString(0.0);
@@ -329,7 +328,13 @@ namespace WPFapp
 
         }
 
-
+        public Boolean AreDefautParametersLoaded()
+        {
+            if (m.norma.v_in == 0.0 && m.norma.Rho_in == 1.23 && m.norma.P_in == 101000 && m.norma.M_in == 2.0 && m.norma.T_in == 286.1)
+            { return true;}
+            else
+            { return false;}           
+        }
 
 
         //public void polygon_enter(object sender, EventArgs e)
@@ -528,33 +533,6 @@ namespace WPFapp
         }
         #endregion SIMULATION WPF CONTROLS
 
-        #region WINDOW MANIPULATION FUNCTIONS
-        // CLOSE BUTTON
-        //When clicking to the top right button (red circle) the current window closes
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        // MINIMIZE BUTTON
-            //When clicking to the top right button (yellow circle) the current window minimises
-        private void MiniButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        // DRAG MOVE
-            //When the left button is pressed and draged, the window can be moved
-        private void Label_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                this.DragMove();
-            }
-        }
-
-        #endregion WINDOW MANIPULATION FUNCTIONS
-
         #region LEFT BUTTONS (OPEN TABLES, COMPARATIONS, GRAPHICS AND ADVANCED STUDY)
         // NEW WINDOW: WELCOME
         // When clicking to the menu BACK TO START the simulation window closes and it is opened
@@ -571,12 +549,21 @@ namespace WPFapp
             // the results obtained with the Anderson results
         private void ComparationButton_Click(object sender, RoutedEventArgs e)
         {
-            AndersonComparationWindow anderson_w = new AndersonComparationWindow();
+            if (AreDefautParametersLoaded())
+            {
+                AndersonComparationWindow anderson_w = new AndersonComparationWindow();
 
-            // We set the precision and the Malla of the new window as the one simulated in the main Simulation
-            anderson_w.m = this.m;
-            anderson_w.p = PresitionComboBox.SelectedIndex;
-            anderson_w.Show();
+                // We set the precision and the Malla of the new window as the one simulated in the main Simulation
+                anderson_w.m = this.m;
+                anderson_w.p = PresitionComboBox.SelectedIndex;
+                anderson_w.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please to compare with Anderson's results use the defaud parameters");
+            }
+            
+
         }
 
         // NEW WINDOW: TABLES
@@ -631,5 +618,31 @@ namespace WPFapp
         }
         #endregion LEFT BUTTONS (OPEN TABLES, COMPARATIONS, GRAPHICS AND ADVANCED STUDY)
 
+        #region WINDOW MANIPULATION FUNCTIONS
+        // CLOSE BUTTON
+        //When clicking to the top right button (red circle) the current window closes
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        // MINIMIZE BUTTON
+        //When clicking to the top right button (yellow circle) the current window minimises
+        private void MiniButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        // DRAG MOVE
+        //When the left button is pressed and draged, the window can be moved
+        private void Label_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
+
+        #endregion WINDOW MANIPULATION FUNCTIONS
     }
 }
