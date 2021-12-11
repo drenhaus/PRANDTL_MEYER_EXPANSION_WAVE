@@ -244,35 +244,90 @@ namespace WPFapp
                 m.norma.M_in = Convert.ToDouble(M_TextBox.Text);
                 m.norma.T_in = Convert.ToDouble(T_TextBox.Text);
 
-                m.norma.Compute_a();
-                m.norma.Compute_M_angle();
-                m.norma.Compute_u();
+                //checking if the data introduced fulfill the equation of state
+                double rho_es = m.norma.P_in / (m.norma.R_air * m.norma.T_in);
 
-                // only show the loading advice when we select the higher precision
-                if (PresitionComboBox.SelectedIndex==2)
+                if (Math.Round(Convert.ToDecimal(rho_es), 2) != Math.Round(Convert.ToDecimal(m.norma.Rho_in), 2))
                 {
-                    dispatcherTimer = new DispatcherTimer();
-                    dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-                    dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
-                    dispatcherTimer.Start();
+                    // if it is not fulfilled a messagebox appears giving the option to continue or change the parameters
+                    //MessageBox.Show("The introduced parameters do not fulfill the equation state. Do you want to continue without changing the parameters?", "", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (MessageBox.Show("The introduced parameters do not fulfill the equation stateDo you want to continue without changing the parameters?", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                    {
+                        M_TextBox.Text = "";
+                        v_TextBox.Text = "";
+                        P_TextBox.Text = "";
+                        Rho_TextBox.Text = "";
+                        T_TextBox.Text = "";
+                    }
+                    else
+                    {
+                        m.norma.Compute_a();
+                        m.norma.Compute_M_angle();
+                        m.norma.Compute_u();
+
+                        // only show the loading advice when we select the higher precision
+                        if (PresitionComboBox.SelectedIndex == 2)
+                        {
+                            dispatcherTimer = new DispatcherTimer();
+                            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+                            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
+                            dispatcherTimer.Start();
+                        }
+
+                        else
+                        { Simulate(); }
+
+
+                        // The is enable is changed to continue with the simulation
+                        PresitionComboBox.IsEnabled = false;
+                        CheckBox_A.IsEnabled = false;
+                        LoadParametersButton.IsEnabled = false;
+                        DataGridComboBox.IsEnabled = true;
+                        Reset_button.IsEnabled = true;
+                        T_TextBox.IsEnabled = false;
+                        Rho_TextBox.IsEnabled = false;
+                        P_TextBox.IsEnabled = false;
+                        M_TextBox.IsEnabled = false;
+                        v_TextBox.IsEnabled = false;
+
+                    } 
+                }
+                else
+                {
+
+                    m.norma.Compute_a();
+                    m.norma.Compute_M_angle();
+                    m.norma.Compute_u();
+
+                    // only show the loading advice when we select the higher precision
+                    if (PresitionComboBox.SelectedIndex == 2)
+                    {
+                        dispatcherTimer = new DispatcherTimer();
+                        dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+                        dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
+                        dispatcherTimer.Start();
+                    }
+
+                    else
+                    { Simulate(); }
+
+
+                    // The is enable is changed to continue with the simulation
+                    PresitionComboBox.IsEnabled = false;
+                    CheckBox_A.IsEnabled = false;
+                    LoadParametersButton.IsEnabled = false;
+                    DataGridComboBox.IsEnabled = true;
+                    Reset_button.IsEnabled = true;
+                    T_TextBox.IsEnabled = false;
+                    Rho_TextBox.IsEnabled = false;
+                    P_TextBox.IsEnabled = false;
+                    M_TextBox.IsEnabled = false;
+                    v_TextBox.IsEnabled = false;
+                }
                 }
 
-                else
-                { Simulate(); }
-                
 
-                // The is enable is changed to continue with the simulation
-                PresitionComboBox.IsEnabled = false;
-                CheckBox_A.IsEnabled = false;
-                LoadParametersButton.IsEnabled = false;
-                DataGridComboBox.IsEnabled = true;
-                Reset_button.IsEnabled = true;
-                T_TextBox.IsEnabled = false;
-                Rho_TextBox.IsEnabled = false;
-                P_TextBox.IsEnabled = false;
-                M_TextBox.IsEnabled = false;
-                v_TextBox.IsEnabled = false;
-            }
+            
             catch (Exception ex)
             {
                 // MessageBox to indicate the parameters had not been correctly defined

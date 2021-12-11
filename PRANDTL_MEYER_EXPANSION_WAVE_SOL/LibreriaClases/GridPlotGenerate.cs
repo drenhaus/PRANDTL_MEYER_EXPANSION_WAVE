@@ -149,10 +149,7 @@ namespace LibreriaClases
                 {
                     alpha = Convert.ToByte(30 + (255 - 30) / (max - min) * (value - min));
                 }
-                catch 
-                {
-                    
-                }
+                catch { }
             }
             
            
