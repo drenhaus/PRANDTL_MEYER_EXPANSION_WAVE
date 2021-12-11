@@ -73,11 +73,13 @@ namespace WPFapp
             ejeX.Minimum = 0;
             ejeX.Maximum = valorMaximdeX;  //número  de iteraciones
             ejeX.Position = AxisPosition.Bottom;
+            ejeX.Title = "POSITION [m]";
 
             LinearAxis ejeY = new LinearAxis();
             ejeY.Minimum = 267;
             ejeY.Maximum = 287;
             ejeY.Position = AxisPosition.Left;
+            ejeY.Title = "TEMPERATURE [Kelvin]";
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
@@ -110,11 +112,13 @@ namespace WPFapp
             ejeX.Minimum = 0;
             ejeX.Maximum = valorMaximdeX;  //número  de iteraciones
             ejeX.Position = AxisPosition.Bottom;
+            ejeX.Title = "POSITION [m]";
 
             LinearAxis ejeY = new LinearAxis();
             ejeY.Minimum = 1.99;
             ejeY.Maximum = 2.15;
             ejeY.Position = AxisPosition.Left;
+            ejeY.Title = "MACH [-]";
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
@@ -147,11 +151,13 @@ namespace WPFapp
             ejeX.Minimum = 0;
             ejeX.Maximum = valorMaximdeX;  //número  de iteraciones
             ejeX.Position = AxisPosition.Bottom;
+            ejeX.Title = "POSITION [m]";
 
             LinearAxis ejeY = new LinearAxis();
             ejeY.Minimum = 1;
             ejeY.Maximum = 1.24;
             ejeY.Position = AxisPosition.Left;
+            ejeY.Title = "DENSITY [kg/m^3]";
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
@@ -186,11 +192,13 @@ namespace WPFapp
             ejeX.Minimum = 0;
             ejeX.Maximum = valorMaximdeX;  //número  de iteraciones
             ejeX.Position = AxisPosition.Bottom;
+            ejeX.Title = "POSITION [m]";
 
             LinearAxis ejeY = new LinearAxis();
             ejeY.Minimum = 80000;
             ejeY.Maximum = 102000;
             ejeY.Position = AxisPosition.Left;
+            ejeY.Title = "PRESURE [N/m^2]";
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
@@ -223,11 +231,13 @@ namespace WPFapp
             ejeX.Minimum = 0;
             ejeX.Maximum = valorMaximdeX;  //número  de iteraciones
             ejeX.Position = AxisPosition.Bottom;
+            ejeX.Title = "POSITION [m]";
 
             LinearAxis ejeY = new LinearAxis();
             ejeY.Minimum = 677;
             ejeY.Maximum = 702;
-            ejeY.Position = AxisPosition.Left;
+            ejeY.Position = AxisPosition.Left; 
+            ejeY.Title = "HORIZONTAL VELOCITY (U) [m/s]";
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
@@ -260,11 +270,13 @@ namespace WPFapp
             ejeX.Minimum = 0;
             ejeX.Maximum = valorMaximdeX;  //número  de iteraciones
             ejeX.Position = AxisPosition.Bottom;
+            ejeX.Title = "POSITION [m]";
 
             LinearAxis ejeY = new LinearAxis();
             ejeY.Minimum = -50;
             ejeY.Maximum = 1;
             ejeY.Position = AxisPosition.Left;
+            ejeY.Title = "VERTICAL VELOCITY (V) [m/s]";
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
