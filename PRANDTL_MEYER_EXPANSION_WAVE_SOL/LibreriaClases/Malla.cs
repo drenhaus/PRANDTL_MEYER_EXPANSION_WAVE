@@ -463,16 +463,16 @@ namespace LibreriaClases
 
                 for (int j = 0; j < columns; j++)
                 {
-                    TEMP_R[j] = matriz[i, j].T;
-                    U_R[j] = matriz[i, j].u;
-                    V_R[j] = matriz[i, j].v;
-                    RHO_R[j] = matriz[i, j].Rho;
-                    P_R[j] = matriz[i, j].P;
-                    M_R[j] = matriz[i, j].M;
-                    F1_R[j] = matriz[i, j].F1;
-                    F2_R[j] = matriz[i, j].F2;
-                    F3_R[j] = matriz[i, j].F3;
-                    F4_R[j] = matriz[i, j].F4;
+                    TEMP_R[j] = Math.Round(matriz[i, j].T,4);
+                    U_R[j] = Math.Round(matriz[i, j].u, 4);
+                    V_R[j] = Math.Round(matriz[i, j].v, 4);
+                    RHO_R[j] = Math.Round(matriz[i, j].Rho, 4);
+                    P_R[j] = Math.Round(matriz[i, j].P, 4);
+                    M_R[j] = Math.Round(matriz[i, j].M, 4);
+                    F1_R[j] = Math.Round(matriz[i, j].F1, 4);
+                    F2_R[j] = Math.Round(matriz[i, j].F2, 4);
+                    F3_R[j] = Math.Round(matriz[i, j].F3, 4);
+                    F4_R[j] = Math.Round(matriz[i, j].F4, 4);
 
                 }
 

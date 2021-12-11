@@ -170,7 +170,8 @@ namespace WPFapp
 
                 if (TableSetect_ComboBox.SelectedIndex == 0)
                 {
-                    grid2.DataContext = temperature_t;
+
+                    grid2.DataContext =temperature_t;
                     table_to_Export = temperature_t;
                     
                 }
