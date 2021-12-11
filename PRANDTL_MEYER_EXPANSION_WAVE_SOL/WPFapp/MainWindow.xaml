@@ -5,355 +5,650 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="690" Width="980">
-    <Grid x:Name="grid1" Loaded="Loaded" Margin="0,10,0,10" HorizontalAlignment="Center" Width="960">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="199*"/>
-            <ColumnDefinition Width="761*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="67*"/>
-            <RowDefinition Height="587*"/>
-        </Grid.RowDefinitions>
-
-        <Label Content="Simulation Window" 
-               Margin="10,0,0,0"
-               FontSize="30" 
-               FontWeight="Bold" 
-               Foreground="#FFCC00FF"
-               HorizontalAlignment="Left" 
-               Grid.ColumnSpan="2"
-               Height="62" 
-               VerticalAlignment="Center" 
-               Width="374"/>
-        <Button x:Name="WelcomeButton" Content="Back to start" 
-                HorizontalAlignment="Right" 
-                Margin="0,10,0,0" 
-                Grid.Row="1" 
-                VerticalAlignment="Top" 
-                Height="38" Width="208" 
-                RenderTransformOrigin="0.477,-0.345"/>
-
-        <Button x:Name="TablesButton" Content="Tables" 
-            HorizontalAlignment="Right" 
-            Margin="0,53,0,0" 
-            Grid.Row="1" 
-            VerticalAlignment="Top" 
-            Height="38" Width="208" 
-            RenderTransformOrigin="0.477,-0.345"/>
-
-        <Button x:Name="ComparationButton" 
-                Content="Comparar con el tete Anderson" 
-            HorizontalAlignment="Right" 
-            Margin="0,96,0,0" 
-            Grid.Row="1" 
-            VerticalAlignment="Top" 
-            Height="38" Width="208" 
-            RenderTransformOrigin="0.477,-0.345"/>
-
-        <Button x:Name="GraficButton" 
-            Content="Graficos" 
-            HorizontalAlignment="Right" 
-            Margin="0,139,0,0" 
-            Grid.Row="1" 
-            VerticalAlignment="Top" 
-            Height="38" Width="208" 
-            RenderTransformOrigin="0.477,-0.345"/>
-        <Button x:Name="AdvancedStudyButton" 
-            Content="estudio avanzado" 
-            HorizontalAlignment="Right" 
-            Margin="0,182,0,0" 
-            Grid.Row="1" 
-            VerticalAlignment="Top" 
-            Height="38" Width="208" 
-            RenderTransformOrigin="0.477,-0.345"/>
+        Title="MainWindow" Height="690" Width="980"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen">
 
 
 
+    <Border Background="#272537"
+            CornerRadius="20">
+        <Grid x:Name="grid1" Margin="0,10,0,10" HorizontalAlignment="Center" Width="960">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="199*"/>
+                <ColumnDefinition Width="761*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="69*"/>
+                <RowDefinition Height="89*"/>
+                <RowDefinition Height="512*"/>
+            </Grid.RowDefinitions>
 
-        <Button x:Name="LoadPresitionButton" 
-                Content="Select this presition" 
-                HorizontalAlignment="Left" 
-                Margin="31,54,0,0" 
-                Grid.Row="1" 
-                Grid.Column="1"
-                VerticalAlignment="Top" 
-                Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345"/>
-        <Label Content="Seleciona precision" 
-               HorizontalAlignment="Right"
-               Margin="0,0,637,545" 
-               Grid.Row="1" 
-               VerticalAlignment="Bottom" 
-               Width="114" 
-               Grid.Column="1" Height="26"/>
+            <TextBlock Text="Simulation window"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Foreground="White"
+                       FontSize="30"
+                       FontFamily="/Fonts/#Poppins" 
+                       Height="60" 
+                       Margin="24,10,0,0" 
+                       Width="299" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
-        <ComboBox x:Name="PresitionComboBox" 
+
+            <Button x:Name="WelcomeButton" 
+                    Content="Back to start" 
+                    Margin="-9,10,0,0" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Top" 
+                    Height="38" 
+                    RenderTransformOrigin="0.477,-0.345"
+                    FontFamily="/Fonts/#Poppins"     
+                    Foreground="White"
+                    Background="Transparent"
+                    BorderBrush="Transparent" Click="WelcomeButton_Click"
+                    />
+
+            <Button x:Name="TablesButton" 
+                    Content="Tables" 
+                    Margin="-9,53,0,0" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Top" 
+                    Height="38" 
+                    RenderTransformOrigin="0.477,-0.345" 
+                    Click="TablesButton_Click"
+                    FontFamily="/Fonts/#Poppins"     
+                    Foreground="White"
+                    Background="Transparent"
+                    BorderBrush="Transparent" Grid.RowSpan="2"
+                    />
+
+            <Button x:Name="ComparationButton" 
+                    Content="Compare with Anderson" 
+                    Margin="-9,7,0,0" 
+                    Grid.Row="2" 
+                    VerticalAlignment="Top" 
+                    Height="38" 
+                    RenderTransformOrigin="0.477,-0.345" 
+                    Click="ComparationButton_Click"
+                    FontFamily="/Fonts/#Poppins"     
+                    Foreground="White"
+                    Background="Transparent"
+                    BorderBrush="Transparent"/>
+
+            <Button x:Name="GraficButton" 
+                    Content="Graphics" 
+                    Margin="-9,50,0,0" 
+                    Grid.Row="2" 
+                    VerticalAlignment="Top" 
+                    Height="38" 
+                    RenderTransformOrigin="0.477,-0.345" 
+                    Click="GraficButton_Click"
+                    FontFamily="/Fonts/#Poppins"     
+                    Foreground="White"
+                    Background="Transparent"
+                    BorderBrush="Transparent"/>
+            <Button x:Name="AdvancedStudyButton" 
+                    Content="Advanced Study" 
+                    Margin="-9,93,0,0" 
+                    Grid.Row="2" 
+                    VerticalAlignment="Top" 
+                    Height="38" 
+                    RenderTransformOrigin="0.477,-0.345" 
+                    Click="AdvancedStudyButton_Click"                    FontFamily="/Fonts/#Poppins"     
+                    Foreground="White"
+                    Background="Transparent"
+                    BorderBrush="Transparent"/>
+
+            <Button Content="" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,8,466,0" 
+                    VerticalAlignment="Top" 
+                    Height="64" 
+                    Width="277"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False" Grid.Column="1" Grid.Row="1"/>
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Margin="323,8,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="112" 
+                    Width="428"
+                    Style="{DynamicResource RoundCorner}"
+                    IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
+
+            <Label Content="Select precision"
+                   HorizontalAlignment="Left"
+                   Margin="40,27,0,0" 
+                   Grid.Row="1" 
+                   VerticalAlignment="Top" 
+                   Width="138" 
+                   Grid.Column="1" Height="26"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"/>
+
+            <ComboBox x:Name="PresitionComboBox" 
                   HorizontalAlignment="Left" 
-                  Margin="128,15,0,0" 
+                  Margin="166,23,0,0" 
                   Grid.Row="1" 
                   VerticalAlignment="Top" 
                   Width="107" 
                   Height="26" 
-                  Grid.Column="1" RenderTransformOrigin="0.5,0.5">
-            <ComboBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.51"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </ComboBox.RenderTransform>
-        </ComboBox>
+                  Grid.Column="1" RenderTransformOrigin="0.5,0.5"
+                  Style="{DynamicResource theComboBox}" 
+                  ItemContainerStyle="{DynamicResource theComboBoxItem}" SelectionChanged="PresitionComboBox_SelectionChanged">
+                <ComboBoxItem Content="LOW" 
+                                  FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="MEDIUM"
+                                  FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="HIGH"
+                                  FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
 
-        <Grid x:Name="GridMalla" Grid.Column="1" 
-              Grid.Row="1" 
+            </ComboBox>
+
+
+
+
+            <Grid x:Name="GridMalla" 
               HorizontalAlignment="Left" 
-              Width="582" Margin="109,215,0,0" 
+              Width="601" Margin="31,126,0,0" 
               Height="362" 
-              VerticalAlignment="Top"
-              Background="Black"/>
+              VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"
+              />
 
-        <Button x:Name="InfoPresitionButton" Content="I" 
+
+
+
+            <Canvas x:Name="low1" Grid.Column="1" Margin="31,439,593,4" Grid.Row="2"
+                    Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="low2" Grid.Column="1" Margin="166,445,531,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="low3" Grid.Column="1" Margin="214,450,483,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="low4" Grid.Column="1" Margin="272,454,425,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="low6" Grid.Column="1" Margin="394,464,297,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="low5" Grid.Column="1" Margin="333,459,361,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="low7" Grid.Column="1" Margin="457,469,233,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="low8" Grid.Column="1" Margin="483,474,214,4" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+
+
+            <Button x:Name="low_gnd1" Background="Black"
+                    HorizontalAlignment="Left" 
+                    Height="8" Margin="31,431,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="69"
+                    BorderThickness="0" Grid.Column="1" Grid.Row="2"/>
+            <Button x:Name="low_gnd2" Background="Black"
+                HorizontalAlignment="Left" 
+                Height="8" Margin="99,450,0,0" 
+                VerticalAlignment="Top" 
+                Width="449"
+                BorderThickness="0" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Grid.Column="1">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="4.9"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+
+
+
+            <Canvas x:Name="med1" Grid.Column="1" Margin="31,412,666,42" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="med2" Grid.Column="1" Margin="91,412,602,42" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="med3" Grid.Column="1" Margin="144,419,549,42" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="med4" Grid.Column="1" Margin="198,424,495,42" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="med5" Grid.Column="1" Margin="259,428,427,42" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="med6" Grid.Column="1" Margin="331,434,359,42" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="med7" Grid.Column="1" Margin="401,439,292,42" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+            <Canvas x:Name="med8" Grid.Column="1" Margin="461,445,221,42" Grid.Row="2"
+                Background="#6a59ff" IsEnabled="False"/>
+
+
+
+            <Button x:Name="med_gnd1" Background="Black"
+                    HorizontalAlignment="Left" 
+                    Height="8" Margin="31,408,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="86"
+                    BorderThickness="0" Grid.Column="1" Grid.Row="2"/>
+            <Button x:Name="med_gnd2" Background="Black"
+                HorizontalAlignment="Left" 
+                Height="8" Margin="115,426,0,0" 
+                VerticalAlignment="Top" 
+                Width="426"
+                BorderThickness="0" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Grid.Column="1">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="4.9"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <Button x:Name="InfoPresitionButton" Content="I" 
                 Grid.Column="1" 
                 HorizontalAlignment="Left" 
-                Margin="168,51,0,0" 
-                Grid.Row="1"
+                Margin="719,40,0,0" 
+                Grid.Row="2"
                 VerticalAlignment="Top" 
                 RenderTransformOrigin="-0.074,-0.171" 
-                Height="24" Width="27"/>
+                Height="24" Width="26"
+                Foreground="White" 
+                FontFamily="/Fonts/#Poppins"
+                Style="{DynamicResource RoundCorner}"
+                ToolTipService.ShowDuration="30000">
 
-        <Label Content="ρ:" 
-               Grid.Column="1" 
-               HorizontalAlignment="Left" 
-               Margin="284,74,0,0" 
-               Grid.Row="1" 
-               VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="20"/>
-        <Label Content="P:" 
-               Grid.Column="1" 
-               HorizontalAlignment="Left" 
-               Margin="285,9,0,0" 
-               Grid.Row="1" 
-               VerticalAlignment="Top" RenderTransformOrigin="0.168,0.491" Height="26" Width="19"/>
-        <Label Content="M:" 
-               Grid.Column="1" 
-               HorizontalAlignment="Left" 
-               Margin="423,7,0,0" 
-               Grid.Row="1" 
-               VerticalAlignment="Top" RenderTransformOrigin="-0.426,-0.61" Height="26" Width="23"/>
-        <Label Content="T:" 
-               Grid.Column="1" 
-               HorizontalAlignment="Left" 
-               Margin="285,37,0,0" 
-               Grid.Row="1" 
-               VerticalAlignment="Top" Height="26" Width="19"/>
-        <Label Content="R:" 
-            Grid.Column="1" 
-            HorizontalAlignment="Left" 
-            Margin="423,46,0,0" 
-            Grid.Row="1" 
-            VerticalAlignment="Top" 
-             RenderTransformOrigin="-0.426,-0.61" Height="26" Width="20"/>
-        <Label Content="ɣ:" 
-            Grid.Column="1" 
-            HorizontalAlignment="Left" 
-            Margin="426,74,0,0" 
-            Grid.Row="1" 
-            VerticalAlignment="Top" 
-               RenderTransformOrigin="-0.426,-0.61" Height="26" Width="18"/>
-        <Label Content="E:" 
-               Grid.Column="1" 
-               HorizontalAlignment="Left" 
-               Margin="549,10,0,0" 
-               Grid.Row="1" 
-               VerticalAlignment="Top" Height="26" Width="19"/>
-        <Label Content="θ:" 
-               Grid.Column="1" 
-               HorizontalAlignment="Left" 
-               Margin="549,44,0,0" 
-               Grid.Row="1" 
-               VerticalAlignment="Top" Height="26" Width="20"/>
-        <Label Content="Cy:" 
-               Grid.Column="1" 
-               HorizontalAlignment="Left" 
-               Margin="549,74,0,0" 
-               Grid.Row="1" 
-               VerticalAlignment="Top" Height="26" Width="26"/>
+                <Button.ToolTip>
+                    <StackPanel>
+                        <TextBlock FontWeight="Bold" FontSize="14" Margin="0,0,0,5">Help for running a simulation</TextBlock>
+                        <TextBlock>
+                        1. Select the precision and press the selection button
+                        <LineBreak />
+                        2. Define the initial data line and load it
+                        <LineBreak />
+                        3. Press the simulating button
+                        <LineBreak />
+                        4. Choose the data that you want to display (in the combobox)
+                        <LineBreak />
+                        5. If you want to make any change press the RESET button and 
+                        define again all the simulation parameters
+
+                        </TextBlock>
+                        <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                        <WrapPanel>
+                            <TextBlock FontStyle="Italic">Press back to start and watch the video tutorial for more help</TextBlock>
+                        </WrapPanel>
+                    </StackPanel>
+                </Button.ToolTip>
 
 
+            </Button>
 
-        <TextBox x:Name="P_TextBox" Grid.Column="1" 
+            <Label Content="ρ:" 
+                   Grid.Column="1" 
+                   HorizontalAlignment="Left" 
+                   Margin="339,82,0,0" 
+                   Grid.Row="1" 
+                   VerticalAlignment="Top" 
+                   RenderTransformOrigin="0.495,1.177" 
+                   Height="26" Width="20"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White" Grid.RowSpan="2"/>
+            <Label Content="P:"
+                   Grid.Column="1" 
+                   HorizontalAlignment="Left" 
+                   Margin="460,18,0,0" 
+                   Grid.Row="1" 
+                   VerticalAlignment="Top" 
+                   RenderTransformOrigin="0.168,0.491" Height="26" Width="19"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"/>
+            <Label Content="M:" 
+                   Grid.Column="1" 
+                   HorizontalAlignment="Left" 
+                   Margin="458,53,0,0" 
+                   Grid.Row="1" 
+                   VerticalAlignment="Top" 
+                   RenderTransformOrigin="-0.426,-0.61" 
+                   Height="26" Width="23"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"/>
+            <Label Content="T:" 
+                   Grid.Column="1" 
+                   HorizontalAlignment="Left" 
+                   Margin="340,46,0,0" 
+                   Grid.Row="1" 
+                   VerticalAlignment="Top" Height="26" Width="19"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"/>
+            <Label Content="v:" 
+                   Grid.Column="1" 
+                   HorizontalAlignment="Left" 
+                   Margin="461,86,0,0" 
+                   Grid.Row="1" 
+                   VerticalAlignment="Top" 
+                   RenderTransformOrigin="-0.426,-0.61" Height="26" 
+                   Width="20"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White" Grid.RowSpan="2"/>
+
+
+
+            <TextBox x:Name="P_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="318,17,0,0" 
+                 Margin="495,16,0,0" 
                  Grid.Row="1" 
-                 Text="TextBox" 
+                 TextWrapping="Wrap" 
+                 IsEnabled="False"
+                 VerticalAlignment="Top"
+                 Width="62" 
+                 Height="30"
+                 Style="{StaticResource TextboxINPUT2}"
+                 FontFamily="/Fonts/#Poppins"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"/>
+
+
+            <TextBox x:Name="M_TextBox" Grid.Column="1" 
+                 HorizontalAlignment="Left" 
+                 Margin="495,50,0,0" 
+                 Grid.Row="1" 
+                 TextWrapping="Wrap" 
+                 IsEnabled="False"
+                 VerticalAlignment="Top"
+                 Width="62" Height="30"
+                     Style="{StaticResource TextboxINPUT2}"
+                     FontFamily="/Fonts/#Poppins"
+                     VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"/>
+
+            <TextBox x:Name="Rho_TextBox" Grid.Column="1" 
+                 HorizontalAlignment="Left" 
+                 Margin="373,83,0,0" 
+                 Grid.Row="1" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62" Height="18"/>
+                     IsEnabled="False"
+                 Width="62" 
+                     Height="30"
+                     Style="{StaticResource TextboxINPUT2}"
+                     FontFamily="/Fonts/#Poppins" Grid.RowSpan="2"
+                     VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"/>
 
-        <TextBox x:Name="R_TextBox" Grid.Column="1" 
+            <TextBox x:Name="v_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="460,46,0,0" 
+                 Margin="495,84,0,0" 
                  Grid.Row="1" 
-                 Text="TextBox" 
+                 TextWrapping="Wrap" 
+                 IsEnabled="False"
+                 VerticalAlignment="Top"
+                 Width="62" Height="30"
+                     Style="{StaticResource TextboxINPUT2}"
+                     FontFamily="/Fonts/#Poppins" Grid.RowSpan="2"
+                     VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"/>
+
+            <TextBox x:Name="T_TextBox" Grid.Column="1" 
+                 HorizontalAlignment="Left" 
+                 Margin="373,48,0,0" 
+                 Grid.Row="1" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
-                 Width="62" Height="18"/>
-
-
-        <TextBox x:Name="M_TextBox" Grid.Column="1" 
-                 HorizontalAlignment="Left" 
-                 Margin="460,14,0,0" 
-                 Grid.Row="1" 
-                 Text="TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top"
-                 Width="62" Height="18"/>
-
-
-        <TextBox x:Name="Phi_TextBox" Grid.Column="1" 
-                 HorizontalAlignment="Left" 
-                 Margin="573,47,0,0" 
-                 Grid.Row="1" 
-                 Text="TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top"
-                 Width="62" Height="18"/>
-
-
-        <TextBox x:Name="E_TextBox" Grid.Column="1" 
-                 HorizontalAlignment="Left" 
-                 Margin="573,14,0,0" 
-                 Grid.Row="1" 
-                 Text="TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top"
-                 Width="62" Height="18"/>
-
-        <TextBox x:Name="Rho_TextBox" Grid.Column="1" 
-                 HorizontalAlignment="Left" 
-                 Margin="318,78,0,0" 
-                 Grid.Row="1" 
-                 Text="TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top"
-                 Width="62" Height="18"/>
-
-        <TextBox x:Name="Gamma_TextBox" Grid.Column="1" 
-                 HorizontalAlignment="Left" 
-                 Margin="460,78,0,0" 
-                 Grid.Row="1" 
-                 Text="TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top"
-                 Width="62" Height="18"/>
-
-        <TextBox x:Name="T_TextBox" Grid.Column="1" 
-                 HorizontalAlignment="Left" 
-                 Margin="318,50,0,0" 
-                 Grid.Row="1" 
-                 Text="TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top"
-                 Width="62" Height="18"/>
-
-
-        <TextBox x:Name="Cy_TextBox" Grid.Column="1" 
-                 HorizontalAlignment="Left" 
-                 Margin="580,78,0,0" 
-                 Grid.Row="1" 
-                 Text="TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top"
-                 Width="62" Height="18"/>
+                 IsEnabled="False"
+                 Width="62" 
+                     Height="30"
+                     Style="{StaticResource TextboxINPUT2}"
+                     FontFamily="/Fonts/#Poppins"
+                     VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"/>
 
 
 
-        <CheckBox x:Name="CheckBox_A" Content="CheckBox A" 
-                  Grid.Column="1" 
-                  HorizontalAlignment="Left" 
-                  Margin="350,112,0,0" 
-                  Grid.Row="1" 
-                  VerticalAlignment="Top" Height="15" Width="82"/>
-
-        <CheckBox x:Name="CheckBox_B" Content="CheckBox B" 
-                  Grid.Column="1" 
-                  HorizontalAlignment="Left" 
-                  Margin="460,112,0,0" 
-                  Grid.Row="1" 
-                  VerticalAlignment="Top" Height="15" Width="82"/>
+            <CheckBox x:Name="CheckBox_A" 
+                      Content="Defaul parameters" 
+                      Grid.Column="1" 
+                      HorizontalAlignment="Left" 
+                      Margin="584,0,0,0" 
+                      Checked="CheckBox_A_Checked"
+                      IsEnabled="False"
+                      VerticalAlignment="Center" Height="22" Width="148"
+                      FontFamily="/Fonts/#Poppins"
+                      Foreground="White" RenderTransformOrigin="0.475,0.608" Grid.Row="1"
+                     />
 
 
 
 
-        <Button x:Name="LoadParametersButton" 
+
+            <Button x:Name="LoadParametersButton" 
                 Content="Load Parameters" 
                 HorizontalAlignment="Left" 
-                Margin="573,108,0,0" 
+                Margin="585,70,0,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
-                Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345"/>
+                Height="28" Width="137" 
+                IsEnabled="False"
+                RenderTransformOrigin="0.477,-0.345" Click="LoadParametersButton_Click"
+                    Foreground="White" 
+                    FontFamily="/Fonts/#Poppins"
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"/>
 
-        <Button x:Name="Simulate_Button" 
-                Content="Star Simulation" 
-                HorizontalAlignment="Right" 
-                Margin="0,163,613,0" 
-                Grid.Row="1" 
-                Grid.Column="1"
-                VerticalAlignment="Top" 
-                Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345"/>
-
-        <Button x:Name="SaveSim_button" 
+            <Button x:Name="SaveSim_button" 
                 Content="Save Simulation" 
                 HorizontalAlignment="Left" 
-                Margin="186,163,0,0" 
+                Margin="18,86,0,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
-                Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345"/>
+                IsEnabled="False"
+                Height="28" Width="127" 
+                RenderTransformOrigin="0.477,-0.345"
+                    Foreground="White" 
+                    FontFamily="/Fonts/#Poppins"
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"/>
 
-        <Button x:Name="LoadSim_button" 
+            <Button x:Name="LoadSim_button" 
                 Content="Load Simulation" 
                 HorizontalAlignment="Left" 
-                Margin="325,163,0,0" 
+                Margin="173,86,0,0" 
+                IsEnabled="False"
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
-                Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345"/>
+                Height="28" Width="122" 
+                RenderTransformOrigin="0.477,-0.345"
+                    Foreground="White" 
+                    FontFamily="/Fonts/#Poppins"
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"/>
 
-        <Button x:Name="Reset_button" 
+            <Button x:Name="Reset_button" 
                 Content="Reset" 
+                IsEnabled="False"
                 HorizontalAlignment="Left" 
-                Margin="325,163,0,0" 
-                Grid.Row="1" 
+                Margin="323,46,0,0" 
+                Grid.Row="2" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
                 Height="28" Width="118" 
-                RenderTransformOrigin="0.477,-0.345"/>
+                RenderTransformOrigin="0.477,-0.345" 
+                    Click="Reset_button_Click"
+                    Foreground="White" 
+                    FontFamily="/Fonts/#Poppins"
+                    Style="{DynamicResource RoundCorner}"/>
 
-        <Button x:Name="Close_Button" 
+            <Button x:Name="Close_Button" 
                 Content="x" 
                 Grid.Column="1" 
                 HorizontalAlignment="Left" 
-                Margin="658,19,0,0" 
-                VerticalAlignment="Top" Width="33"/>
+                Margin="735,10,0,0" 
+                VerticalAlignment="Top" FontSize="55"
+                    Click="CloseButton_Click"
+                    Style="{DynamicResource closebutton}" Height="16" Width="16"/>
 
-        <Button x:Name="Mini_Button" 
+            <Button x:Name="Mini_Button" 
                 Content="-" 
                 Grid.Column="1" 
                 HorizontalAlignment="Left" 
-                Margin="615,19,0,0" 
-                VerticalAlignment="Top" Width="34"/>
+                Margin="714,10,0,0" 
+                VerticalAlignment="Top" Width="16"
+                    FontSize="55"
+                    Click="MiniButton_Click"
+                    Style="{DynamicResource minimizebutton}"
+                    Height="16" RenderTransformOrigin="3.613,0.613"/>
+            <Label Content="Select data type:" 
+                   Grid.Column="1" 
+                   HorizontalAlignment="Left" 
+                   Margin="461,46,0,0" 
+                   Grid.Row="2" 
+                   VerticalAlignment="Top" 
+                   RenderTransformOrigin="0.495,1.177"
+                   Height="26" Width="130"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"/>
+            <ComboBox x:Name="DataGridComboBox" 
+            HorizontalAlignment="Left" 
+            Margin="577,43,0,0"
+            VerticalAlignment="Top" 
+            Width="136"
+            FontSize="10"
+            IsEnabled="False"   
+            SelectionChanged="DataGridComboBox_SelectionChanged"  
+                      Grid.Column="1" 
+                      Grid.Row="2"
+                      Style="{DynamicResource theComboBox}" 
+                  ItemContainerStyle="{DynamicResource theComboBoxItem}">
+
+                <ComboBoxItem Content="T: Temperature"
+                              FontFamily="/Fonts/#Poppins"
+                              Background="AliceBlue"
+                              HorizontalAlignment="Left"
+                              FontSize="10"
+                              Width="120"/>
+                <ComboBoxItem Content="u: Horizontal velocity"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="v: Vertical velocity"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="Rho: Density"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="P: Pressure" 
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="M: Mach"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+
+            </ComboBox>
+
+            <Label Content="T:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="645,145,0,0" 
+            Grid.Row="2" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="30"/>
+            <Label Content="M:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="645,187,0,0" 
+            Grid.Row="2" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="30"/>
+            <Label Content="P:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="645,236,0,0" 
+            Grid.Row="2" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="30"/>
+            <Label Content="Rho:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="645,267,0,0" 
+            Grid.Row="2" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="46"/>
+            <Label Content="v:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="646,307,0,0" 
+            Grid.Row="2" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="46"/>
+            <Label Content="u:" 
+            Grid.Column="1" 
+            HorizontalAlignment="Left" 
+            Margin="647,364,0,0" 
+            Grid.Row="2" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="46"/>
+            <Label x:Name="temeprature_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="691,145,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+            <Label x:Name="mach_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="691,187,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+            <Label x:Name="p_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="693,236,0,0" Grid.Row="2" VerticalAlignment="Top" Width="36"/>
+            <Label x:Name="rho_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Height="27" Margin="696,280,0,0" Grid.Row="2" VerticalAlignment="Top" Width="33"/>
+            <Label x:Name="v_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Height="33" Margin="705,320,0,0" Grid.Row="2" VerticalAlignment="Top" Width="24"/>
+            <Label x:Name="u_label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="698,377,0,0" Grid.Row="2" VerticalAlignment="Top" Width="43"/>
+            <Label Content=""
+                HorizontalAlignment="Left"
+                Margin="8,0,0,0" 
+                VerticalAlignment="Center" 
+                Width="905" 
+                Grid.Column="1" Height="26"
+                FontFamily="/Fonts/#Poppins"
+                Foreground="White"/>
+            <Label Content="" HorizontalAlignment="Left" Height="54" Margin="0,5,0,0" VerticalAlignment="Top" Width="910" Grid.ColumnSpan="2"
+                   MouseMove="Label_MouseMove" IsEnabled="True"/>
 
 
 
-
-
-
-    </Grid>
+        </Grid>
+    </Border>
 </Window>

@@ -8,19 +8,31 @@ namespace LibreriaClases
 {
     public class Malla
     {
-        int rows=41; //   j filas
-        int columns = 120; // i les columnas
-        double delta_y_t = 0.025;
+        #region ATRIBUTES
+
+        public int rows { get; set; }  //   j filas
+        public int columns { get; set; }  // i les columnas
+        public double delta_y_t { get; set; }
         double Cy = 0.6;
         double C = 0.5;
 
-        double delta_x;
+        public double delta_x { get; set; }
         double delta_y;
 
         double delta_xi;
 
-        Normas norma = new Normas();
-        Celda[,] matriz;
+        public double[] delta_y_array { get; set; }
+
+        public Normas norma { get; set; } = new Normas();
+        public Celda[,] matriz { get; set; }
+
+        public List<double> listaDeXColumna = new List<double>();
+        public List<double> listaTemperaturaxColumna = new List<double>();
+        public List<double> listaMachxColumna = new List<double>();
+        public List<double> listaDensidadxColumna = new List<double>();
+        public List<double> listaPresurexColumna = new List<double>();
+        public List<double> listaU_velxColumna = new List<double>();
+        public List<double> listaV_velxColumna = new List<double>();
 
 
         //Tables with the data of all iterations
@@ -35,10 +47,9 @@ namespace LibreriaClases
         DataTable F3_table = new DataTable("All F3 values");
         DataTable F4_table = new DataTable("All F4 values");
 
+        #endregion ATRIBUTES 
 
-
-
-
+        #region MATRIX DEFINITION
         public void DefinirMatriz()
         {
 
@@ -54,12 +65,29 @@ namespace LibreriaClases
             }
 
         }
+        //We compute the delta_y values
+        public double[] Vector_Delta_y()
+        {
+            delta_y_array = new double[columns];
+            for (int i = 0; i < columns; i++)
+            {
+                delta_y_array[i] = matriz[1, i].y - matriz[0, i].y;
+                if (i == columns - 1)
+                {
+                    delta_y_array[i] = delta_y_array[i - 1];
+                }
+            }
+            return delta_y_array;
+        }
+
+
+
+        #endregion MATRIX DEFINITION
+
+        #region COMPUTE
 
         public void Compute()
         {
-            norma.Compute_a();
-            norma.Compute_M_angle();
-            norma.Compute_u();
 
             // We define the initial line conditions
             for (int j = 0; j < rows; j++)
@@ -224,7 +252,176 @@ namespace LibreriaClases
 
             }
 
-        public DataTable Fill_DataTable()
+        public void Compute2(List<Celda> listaUltimaColumna)
+        {
+
+            int numerodeFilasdeLista = listaUltimaColumna.Count();
+            // We define the initial line conditions
+            for (int j = 0; j < rows; j++)
+            {
+                matriz[j, 0].a = listaUltimaColumna[j].a;
+                matriz[j, 0].M = listaUltimaColumna[j].M;
+                matriz[j, 0].u = listaUltimaColumna[j].u;
+                matriz[j, 0].v = listaUltimaColumna[j].v;
+                matriz[j, 0].T = listaUltimaColumna[j].T;
+                matriz[j, 0].P = listaUltimaColumna[j].P;
+                matriz[j, 0].Rho = listaUltimaColumna[j].Rho;
+                matriz[j, 0].M_angle = listaUltimaColumna[j].M_angle;
+                matriz[j, 0].Compute_G_F(norma.Gamma);
+            }
+
+
+            //We define all the y_t values of the matrix
+            for (int i = 0; i < columns; i++)
+            {
+                for (int j = 1; j < rows; j++)
+                {
+                    matriz[j, i].Compute_y_t(matriz[j - 1, i].y_t, delta_y_t);
+                }
+            }
+
+
+            for (int j = 0; matriz[0, j].x <= norma.L; j++)
+            {
+
+                for (int i = 0; i < rows; i++)
+                {
+                    matriz[i, j].xy_Transformation_ToEtaXi(norma.H, norma.E, norma.Theta);
+                }
+
+                double[] max_tan_Array = new double[rows];
+
+                for (int i = 0; i < rows; i++)
+                {
+                    delta_y = matriz[2, j].y - matriz[1, j].y; // mirar si posar 1 i 0 afecta
+                    max_tan_Array[i] = matriz[i, j].TanMax(norma.Theta);
+
+                }
+                double max_tan = max_tan_Array.Max();
+                delta_x = C * delta_y / max_tan;
+                delta_xi = delta_x;
+                for (int i = 0; i < rows; i++)
+                {
+                    matriz[i, j + 1].x = matriz[i, j].x + delta_x;
+                }
+
+                for (int i = 0; i < rows; i++)
+                {
+                    double[] F1_F2_F3_F4_p_derecha_vector;
+                    if (i == 0)
+                    {
+                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Inferior(delta_y_t, delta_xi, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
+                                                                                                     matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i + 1, j].G1,
+                                                                                                     matriz[i + 1, j].G2, matriz[i + 1, j].G3, matriz[i + 1, j].G4);
+                    }
+                    else if (i == rows - 1)
+                    {
+                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Superior(delta_y_t, delta_xi, matriz[i - 1, j].F1, matriz[i - 1, j].F2,
+                                                                                                     matriz[i - 1, j].F3, matriz[i - 1, j].F4, matriz[i - 1, j].G1,
+                                                                                                     matriz[i - 1, j].G2, matriz[i - 1, j].G3, matriz[i - 1, j].G4);
+                    }
+                    else
+                    {
+                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Principal(Cy, delta_y_t, delta_xi, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
+                                                                                             matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i - 1, j].F1,
+                                                                                             matriz[i - 1, j].F2, matriz[i - 1, j].F3, matriz[i - 1, j].F4,
+                                                                                             matriz[i + 1, j].G1, matriz[i + 1, j].G2, matriz[i + 1, j].G3,
+                                                                                             matriz[i + 1, j].G4, matriz[i + 1, j].P, matriz[i - 1, j].P);
+                    }
+                    matriz[i, j + 1].F1_p = F1_F2_F3_F4_p_derecha_vector[0];
+                    matriz[i, j + 1].F2_p = F1_F2_F3_F4_p_derecha_vector[1];
+                    matriz[i, j + 1].F3_p = F1_F2_F3_F4_p_derecha_vector[2];
+                    matriz[i, j + 1].F4_p = F1_F2_F3_F4_p_derecha_vector[3];
+                }
+
+
+
+                for (int i = 0; i < rows; i++)
+                {
+                    double[] G1p_G2p_G3p_G4p_Rhop_Pp = matriz[i, j].Gp_Rhop_Pp_Predicted(norma.Gamma, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p,
+                                                                                        matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p);
+
+                    matriz[i, j + 1].G1_p = G1p_G2p_G3p_G4p_Rhop_Pp[0];
+                    matriz[i, j + 1].G2_p = G1p_G2p_G3p_G4p_Rhop_Pp[1];
+                    matriz[i, j + 1].G3_p = G1p_G2p_G3p_G4p_Rhop_Pp[2];
+                    matriz[i, j + 1].G4_p = G1p_G2p_G3p_G4p_Rhop_Pp[3];
+                    matriz[i, j + 1].Rho_p = G1p_G2p_G3p_G4p_Rhop_Pp[4];
+                    matriz[i, j + 1].P_p = G1p_G2p_G3p_G4p_Rhop_Pp[5];
+                }
+
+                for (int i = 0; i < rows; i++)
+                {
+                    double[] F1_F2_F3_F4_derecha_corrected;
+
+                    if (i == 0)
+                    {
+                        F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Inferior(delta_y_t, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p, matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p, matriz[i + 1, j + 1].F1_p,
+                            matriz[i + 1, j + 1].F2_p, matriz[i + 1, j + 1].F3_p, matriz[i + 1, j + 1].F4_p, matriz[i, j + 1].G1_p, matriz[i, j + 1].G2_p, matriz[i, j + 1].G3_p, matriz[i, j + 1].G4_p, matriz[i + 1, j + 1].G1_p,
+                            matriz[i + 1, j + 1].G2_p, matriz[i + 1, j + 1].G3_p, matriz[i + 1, j + 1].G4_p, delta_xi);
+                    }
+                    else if (i == rows - 1)
+                    {
+                        F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Superior(delta_y_t, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p, matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p, matriz[i - 1, j + 1].F1_p,
+                            matriz[i - 1, j + 1].F2_p, matriz[i - 1, j + 1].F3_p, matriz[i - 1, j + 1].F4_p, matriz[i, j + 1].G1_p, matriz[i, j + 1].G2_p, matriz[i, j + 1].G3_p, matriz[i, j + 1].G4_p, matriz[i - 1, j + 1].G1_p,
+                            matriz[i - 1, j + 1].G2_p, matriz[i - 1, j + 1].G3_p, matriz[i - 1, j + 1].G4_p, delta_xi);
+
+                    }
+                    else
+                    {
+                        F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, delta_xi, delta_y_t,
+                            matriz[i - 1, j + 1].F1_p,
+                            matriz[i - 1, j + 1].F2_p,
+                            matriz[i - 1, j + 1].F3_p,
+                            matriz[i - 1, j + 1].F4_p,
+                            matriz[i, j + 1].F1_p,
+                            matriz[i, j + 1].F2_p,
+                            matriz[i, j + 1].F3_p,
+                            matriz[i, j + 1].F4_p,
+                            matriz[i - 1, j + 1].G1_p,
+                            matriz[i - 1, j + 1].G2_p,
+                            matriz[i - 1, j + 1].G3_p,
+                            matriz[i - 1, j + 1].G4_p,
+                            matriz[i, j + 1].G1_p,
+                            matriz[i, j + 1].G2_p,
+                            matriz[i, j + 1].G3_p,
+                            matriz[i, j + 1].G4_p,
+                            matriz[i + 1, j + 1].F1_p,
+                            matriz[i + 1, j + 1].F2_p,
+                            matriz[i + 1, j + 1].F3_p,
+                            matriz[i + 1, j + 1].F4_p,
+                            matriz[i + 1, j + 1].P_p,
+                            matriz[i, j + 1].P_p,
+                            matriz[i - 1, j + 1].P_p);
+                    }
+                    matriz[i, j + 1].F1 = F1_F2_F3_F4_derecha_corrected[0];
+                    matriz[i, j + 1].F2 = F1_F2_F3_F4_derecha_corrected[1];
+                    matriz[i, j + 1].F3 = F1_F2_F3_F4_derecha_corrected[2];
+                    matriz[i, j + 1].F4 = F1_F2_F3_F4_derecha_corrected[3];
+                }
+
+                for (int i = 0; i < rows; i++)
+                {
+                    if (i == 0)
+                    {
+                        matriz[i, j + 1].Wall_Bounday_Condition(norma.Gamma, norma.R_air, norma.E, norma.Theta);
+                    }
+
+                    else
+                    {
+                        matriz[i, j + 1].ComputeFinalValues(norma.Gamma, norma.R_air);
+                    }
+
+                }
+
+            }
+
+
+        }
+
+        #endregion COMPUTE
+
+        #region TABLE MANIPULATION FUNCION
+        public void Fill_DataTable()
         {
 
             for (int j = 0; j < columns; j++)
@@ -294,11 +491,270 @@ namespace LibreriaClases
 
             }
 
-            return Mach_table;
 
         }
 
+        public double[] GetColumnData_array(string data, int columna_int)
+        {
+            double[] valores= new double[rows-1];
+            if (data=="t")
+            { 
+                for (int j=0;j<rows-1;j++)
+                {
+                    valores[j] = matriz[j, columna_int].T;
+                }
+            }
+            else if (data == "u")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].u;
+                }
+            }
+            else if (data == "v")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].v;
+                }
+            }
+            else if (data == "m")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].M;
+                }
+            }
+            else if (data == "p")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].P;
+                }
+            }
+            else if (data == "rho")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].Rho;
+                }
+            }
+            else if (data == "f1")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].F1;
+                }
+            }
+            else if (data == "f2")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].F2;
+                }
+            }
+            else if (data == "f3")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].F3;
+                }
+            }
+            else if (data == "f4")
+            {
+                for (int j = 0; j < rows-1; j++)
+                {
+                    valores[j] = matriz[j, columna_int].F4;
+                }
+            }
 
+            return valores;
+        }
+
+        public double[] GetFilaData_array(string data, int fila_int)
+        {
+            double[] valores = new double[columns - 1];
+            if (data == "t")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].T;
+                }
+            }
+            else if (data == "u")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].u;
+                }
+            }
+            else if (data == "v")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].v;
+                }
+            }
+            else if (data == "m")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].M;
+                }
+            }
+            else if (data == "p")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].P;
+                }
+            }
+            else if (data == "rho")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].Rho;
+                }
+            }
+            else if (data == "f1")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].F1;
+                }
+            }
+            else if (data == "f2")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].F2;
+                }
+            }
+            else if (data == "f3")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].F3;
+                }
+            }
+            else if (data == "f4")
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    valores[i] = matriz[fila_int, i].F4;
+                }
+            }
+
+            return valores;
+        }
+
+        public DataTable [] GetTables()
+        {
+            DataTable [] T_U_V_RHO_P_M_F1_F2_F3_F4 = new DataTable[] {Temperature_table,u_table,v_table,Rho_table,P_table,Mach_table,F1_table,F2_table,F3_table,F4_table};
+            return T_U_V_RHO_P_M_F1_F2_F3_F4;
+        }
+
+        public void CrearListade(string attribute)
+        {
+            if (attribute == "x")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    listaDeXColumna.Add(matriz[0, i].x);
+                }
+            }
+            if (attribute == "T")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    double suma_en_columna = 0;
+
+                    for (int j = 0; j < rows; j++)
+                    {
+                        suma_en_columna = suma_en_columna + matriz[j, i].T;
+                    }
+                    suma_en_columna = suma_en_columna / rows;
+                    listaTemperaturaxColumna.Add(suma_en_columna);
+                }
+            }
+
+            if (attribute == "M")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    double suma_en_columna = 0;
+
+                    for (int j = 0; j < rows; j++)
+                    {
+                        suma_en_columna = suma_en_columna + matriz[j, i].M;
+                    }
+                    suma_en_columna = suma_en_columna / rows;
+                    listaMachxColumna.Add(suma_en_columna);
+                }
+            }
+
+            if (attribute == "Rho")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    double suma_en_columna = 0;
+
+                    for (int j = 0; j < rows; j++)
+                    {
+                        suma_en_columna = suma_en_columna + matriz[j, i].Rho;
+                    }
+                    suma_en_columna = suma_en_columna / rows;
+                    listaDensidadxColumna.Add(suma_en_columna);
+                }
+            }
+
+            if (attribute == "P")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    double suma_en_columna = 0;
+
+                    for (int j = 0; j < rows; j++)
+                    {
+                        suma_en_columna = suma_en_columna + matriz[j, i].P;
+                    }
+                    suma_en_columna = suma_en_columna / rows;
+                    listaPresurexColumna.Add(suma_en_columna);
+                }
+            }
+
+            if (attribute == "u")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    double suma_en_columna = 0;
+
+                    for (int j = 0; j < rows; j++)
+                    {
+                        suma_en_columna = suma_en_columna + matriz[j, i].u;
+                    }
+                    suma_en_columna = suma_en_columna / rows;
+                    listaU_velxColumna.Add(suma_en_columna);
+                }
+            }
+
+            if (attribute == "v")
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    double suma_en_columna = 0;
+
+                    for (int j = 0; j < rows; j++)
+                    {
+                        suma_en_columna = suma_en_columna + matriz[j, i].v;
+                    }
+                    suma_en_columna = suma_en_columna / rows;
+                    listaV_velxColumna.Add(suma_en_columna);
+                }
+            }
+        }
+
+        #endregion TABLE MANIPULATION FUNCION
 
     }
 }

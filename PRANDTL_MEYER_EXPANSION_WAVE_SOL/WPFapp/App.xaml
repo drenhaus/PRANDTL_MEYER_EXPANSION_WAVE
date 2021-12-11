@@ -2,8 +2,33 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WPFapp"
-             StartupUri="MainWindow.xaml">
+             StartupUri="WelcomeWindow.xaml">
     <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/textboxINPUTtheme.xaml"/>
+                
+                <ResourceDictionary Source="Theme/grafTEMPButtTheme.xaml"/>
+                <ResourceDictionary Source="Theme/grafFaseButtTheme.xaml"/>
+                <ResourceDictionary Source="Theme/grafDesnsidadTheme.xaml"/>
+                <ResourceDictionary Source="Theme/grafPresureTheme.xaml"/>
+                <ResourceDictionary Source="Theme/grafUButtTheme.xaml"/>
+                <ResourceDictionary Source="Theme/grafVButtTheme.xaml"/>
+                
+                <ResourceDictionary Source="Theme/verTemperaturatTheme.xaml"/>
+                <ResourceDictionary Source="Theme/verFasesTheme.xaml"/>
+                
+                <ResourceDictionary Source="Theme/MinimizeButtTheme.xaml"/>
+                <ResourceDictionary Source="Theme/CloseButtTheme.xaml"/>
+                
+                <ResourceDictionary Source="Theme/ComboBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/CheckBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TextboxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TextboxTheme2.xaml"/>
+                <ResourceDictionary Source="Theme/ButtonTheme.xaml"/>
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
          
     </Application.Resources>
 </Application>

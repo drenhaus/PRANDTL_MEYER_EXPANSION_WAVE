@@ -5,139 +5,210 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFapp"
         mc:Ignorable="d"
-        Title="AndersonComparationWindow" Height="610" Width="860">
-    <Grid>
-        <Grid x:Name="AndersonGrid" 
-              Background="Black" 
+        Title="AndersonComparationWindow" Height="610" Width="860"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+    
+    <Border Background="#3a3752"
+            CornerRadius="20">
+
+        <Grid>
+            <DataGrid x:Name="AndersonGridData" 
+              ItemsSource="{Binding}"    
               RenderTransformOrigin="0.5,0.5" 
-              Margin="213,97,510,10">
+              Margin="231,121,463,19">
 
-        </Grid>
+            </DataGrid>
 
-        <Grid x:Name="SimulationGrid" 
-              Background="Black" 
+            <DataGrid x:Name="SimulationGrid" 
               RenderTransformOrigin="0.5,0.5" 
-              Margin="430,97,293,10">
+              ItemsSource="{Binding}"
+              Margin="430,123,265,16">
 
-        </Grid>
-        <Label Content="Compare the:" 
+            </DataGrid>
+            <Label Content="Compare the:" 
                HorizontalAlignment="Left" 
-               Margin="43,44,0,0" 
-               VerticalAlignment="Top" Width="101"/>
+               Margin="38,114,0,0" 
+               VerticalAlignment="Top" Width="101"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"/>
 
 
-        <ComboBox x:Name="Setect_Parameter_ComboBox" 
+            <ComboBox x:Name="Setect_Parameter_ComboBox" 
                   HorizontalAlignment="Left" 
-                  Margin="43,81,0,0"
+                  Margin="38,151,0,0"
                   VerticalAlignment="Top" 
-                  Width="120">
+                  Width="120"
+                      Style="{DynamicResource theComboBox}" 
+                  ItemContainerStyle="{DynamicResource theComboBoxItem}">
 
-            <ComboBoxItem Content="T"/>
-            <ComboBoxItem Content="u"/>
-            <ComboBoxItem Content="v"/>
-            <ComboBoxItem Content="Rho"/>
-            <ComboBoxItem Content="P" />
-            <ComboBoxItem Content="Mach"/>
-            <ComboBoxItem Content="F1"/>
-            <ComboBoxItem Content="F2"/>
-            <ComboBoxItem Content="F3"/>
-            <ComboBoxItem Content="F4"/>
-        </ComboBox>
+            <ComboBoxItem Content="T: Temperature"
+                              FontFamily="/Fonts/#Poppins"
+                              Background="AliceBlue"
+                              HorizontalAlignment="Left"
+                              FontSize="10"
+                              Width="120"/>
+                <ComboBoxItem Content="u: Horizontal velocity"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="v: Vertical velocity"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="Rho: Density               "
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="P: Pressure               " 
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="M: Mach               "
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="F1                              "
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="F2                              "
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="F3                              "
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="F4                              "
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Left"
+                                  FontSize="10"/>
+            </ComboBox>
 
-        <Label Content="Select position:" 
+            <Label Content="Select position:" 
                HorizontalAlignment="Left" 
-               Margin="43,133,0,0" 
-               VerticalAlignment="Top" Width="101"/>
+               Margin="38,203,0,0" 
+               VerticalAlignment="Top" Width="101"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"/>
 
-        <ComboBox x:Name="Setect_X_ComboBox" 
+            <ComboBox x:Name="Setect_X_ComboBox" 
                   HorizontalAlignment="Left" 
-                  Margin="43,164,0,0"
+                  Margin="38,234,0,0"
                   VerticalAlignment="Top" 
-                  Width="120">
+                  Width="120"
+                      Style="{DynamicResource theComboBox}" 
+                  ItemContainerStyle="{DynamicResource theComboBoxItem}">
 
-            <ComboBoxItem Content="X = 12.928 m"/>
-            <ComboBoxItem Content="X = 66.278 m"/>
+                <ComboBoxItem Content="X = 12.928 m"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
+                <ComboBoxItem Content="X = 66.278 m"
+                              FontFamily="/Fonts/#Poppins"
+                                  Background="AliceBlue"
+                                  HorizontalAlignment="Center"
+                                  FontSize="10"/>
 
 
-        </ComboBox>
+            </ComboBox>
 
-        <Label Content="Anderson Table" 
+            <Label Content="Anderson Table" 
                HorizontalAlignment="Left" 
-               Margin="213,48,0,0" 
-               VerticalAlignment="Top"/>
+               Margin="231,81,0,0" 
+               VerticalAlignment="Top"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="20"/>
 
-        <Label Content="Our Simulation Table" 
+            <Label Content="Our Simulation Table" 
                HorizontalAlignment="Left" 
-               Margin="430,52,0,0" 
-               VerticalAlignment="Top"/>
-        <TextBox x:Name="Rel_error_TextBox" HorizontalAlignment="Left" 
-                 Margin="650,141,0,0" 
+               Margin="418,81,0,0" 
+               VerticalAlignment="Top"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="20"/>
+            <TextBox x:Name="anderson_error" HorizontalAlignment="Left" 
+                 Margin="698,231,0,0" 
                  Text="Rel_error_TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
-                 Width="120"/>
-        <TextBox x:Name="Abs_error_TextBox" HorizontalAlignment="Left" 
-                 Margin="649,211,0,0" 
-                 Text="Abs_error_TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top" 
-                 Width="120"/>
-        <Label Content="Relative Error" 
+                 Width="50" Height="30"
+                      Style="{StaticResource TextboxINPUT2}"
+                     FontFamily="/Fonts/#Poppins"/>
+            <Label x:Name="anderson_label" Content="Anderson Relative Error (%):" 
                HorizontalAlignment="Left" 
-               Margin="668,110,0,0" 
-               VerticalAlignment="Top" Width="82"/>
+               Margin="636,193,0,0" 
+               VerticalAlignment="Top" Width="184"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"/>
 
-        <Label Content="Absolute Error" 
-               HorizontalAlignment="Left" 
-               Margin="658,180,0,0" 
-               VerticalAlignment="Top" Width="112"/>
-
-
-        <Label Content="Selected Relative Error" 
-               HorizontalAlignment="Left" 
-               Margin="658,297,0,0" 
-               VerticalAlignment="Top" Width="135"/>
-
-        <TextBox x:Name="Rel_error_SELECTED_TextBox" HorizontalAlignment="Left" 
-                 Margin="650,341,0,0" 
+            <TextBox x:Name="our_error" HorizontalAlignment="Left" 
+                 Margin="698,368,0,0" 
                  Text="Rel_error_SELECTED_TextBox" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
-                 Width="130"/>
+                 Width="50" Height="30"
+                      Style="{StaticResource TextboxINPUT2}"
+                     FontFamily="/Fonts/#Poppins"/>
 
 
-        <Label Content="Selected Absolute Error" 
-               HorizontalAlignment="Left" 
-               Margin="658,406,0,0" 
-               VerticalAlignment="Top" 
-               Width="135" 
-               RenderTransformOrigin="0.409,1.32"/>
-
-        <TextBox x:Name="Abs_error_SELECTED_TextBox" HorizontalAlignment="Left" 
-                 Margin="650,437,0,0" 
-                 Text="Abs_error_SELECTED_TextBox" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top" 
-                 Width="130"/>
-
-
-        <Button x:Name="Close_Button" 
-                Content="x" 
+            <Button x:Name="Close_Button" 
+                Content="" 
                 HorizontalAlignment="Left" 
-                Margin="804,10,0,0" 
-                VerticalAlignment="Top" Width="33"/>
+                Margin="834,10,0,0" 
+                VerticalAlignment="Top" 
+                    Style="{DynamicResource closebutton}" Height="16" Width="16" Click="Close_Button_Click"/>
 
-        <Button x:Name="Mini_Button" 
-                Content="-" 
-                Margin="759,10,67,0" 
-                VerticalAlignment="Top"/>
+            <Button x:Name="Mini_Button" 
+                Content="" 
+                Margin="813,10,31,0" 
+                VerticalAlignment="Top"
+                    Style="{DynamicResource minimizebutton}"
+                    Height="16" Width="16" Click="Mini_Button_Click"/>
+            <Button x:Name="Compare_btn"
+                    FontFamily="/Fonts/#Poppins"
+                    Foreground="White"
+                    Style="{DynamicResource RoundCorner}"
+                    Content="Compare" HorizontalAlignment="Left" Margin="44,303,0,0" VerticalAlignment="Top" Click="Compare_btn_Click" Height="33" Width="89"/>
+            <Label x:Name="computed_label" Content="Computetd Relative Error (%):" 
+            HorizontalAlignment="Left" 
+            Margin="636,324,0,0"                
+            VerticalAlignment="Top" Width="184"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"/>
+            <TextBlock Text="Compare with Anderson"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Foreground="White"
+                       FontSize="30"
+                       FontFamily="/Fonts/#Poppins" 
+                       Height="60" 
+                       Margin="24,13,0,0" 
+                       Width="378"/>
 
 
 
 
+            <Label Content="" HorizontalAlignment="Left" Height="54" Margin="0,5,0,0" VerticalAlignment="Top" Width="808"
+                   MouseMove="Label_MouseMove" IsEnabled="True"/>
 
 
 
-
-    </Grid>
+        </Grid>
+    </Border>
 </Window>

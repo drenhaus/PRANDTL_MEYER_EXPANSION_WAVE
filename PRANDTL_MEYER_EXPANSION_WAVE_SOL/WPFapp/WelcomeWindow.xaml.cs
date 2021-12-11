@@ -32,5 +32,22 @@ namespace WPFapp
         {
             Close();
         }
+
+        private void StarButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            MainWindow MW = new MainWindow();
+
+            MW.Show();
+            Close();
+        }
+
+        private void Label_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace LibreriaClases
 {
     public class Celda
     {
+        #region ATRIBUTES
         public double M { get; set; }
         public double u { get; set; }
         public double v { get; set; }
@@ -17,17 +18,22 @@ namespace LibreriaClases
         public double tan_max { get; set; }
 
 
+        #region F VALUES
+
         public double F1 { get; set; }
         public double F2 { get; set; }
         public double F3 { get; set; }
         public double F4 { get; set; }
+        #endregion F VALUES
 
-
+        #region G VALUES
         public double G1 { get; set; }
         public double G2 { get; set; }
         public double G3 { get; set; }
         public double G4 { get; set; }
+        #endregion F VALUES
 
+        #region PREDICTED VALUES
         public double F1_p { get; set; }
         public double F2_p { get; set; }
         public double F3_p { get; set; }
@@ -49,6 +55,10 @@ namespace LibreriaClases
         public double dF3_p_x { get; set; }
         public double dF4_p_x { get; set; }
 
+        public double P_p { get; set; }
+        public double Rho_p { get; set; }
+
+        #endregion PREDICTED VALUES
 
         public double x { get; set; }
         public double y { get; set; }
@@ -60,11 +70,7 @@ namespace LibreriaClases
         public double dEta_dy { get; set; }
         public double delta_y_t { get; set; }
 
-
-        public double P_p { get; set; }
-        public double Rho_p { get; set; }
-
-        public double SF1 { get; set; }
+        public double SF1 { get; set; }     // 0 REFERENCIAS!!! SE PUEDE QUITAR
         public double SF2 { get; set; }
         public double SF3 { get; set; }
         public double SF4 { get; set; }
@@ -75,6 +81,9 @@ namespace LibreriaClases
         public double dF3_x_av { get; set; }
         public double dF4_x_av { get; set; }
 
+        #endregion ATRIBUTES
+
+        #region FIRST COLUM COMPUTATIOPN
         // for the initial data line
         public void Compute_G_F(double Gamma)
         {
@@ -90,7 +99,9 @@ namespace LibreriaClases
             this.G4 = Gamma / (Gamma - 1) * (F2 - Math.Pow(F1, 2) / Rho) * (F3 / F1) + Rho * F3 / (2 * F1) * (Math.Pow(F1 / Rho, 2) + Math.Pow(F3 / F1, 2));
 
         }
+        #endregion FIRST COLUM COMPUTATIOPN
 
+        #region GRID DIMENSION VARIATION COMPUTATION
         public void Compute_y_t(double y_t_debajo, double delta_y_t)
         { 
             this.y_t = y_t_debajo + delta_y_t; 
@@ -131,6 +142,9 @@ namespace LibreriaClases
             return tan_max;
             
         }
+        #endregion GRID DIMENSION VARIATION COMPUTATION
+
+        #region PREDICTIOON STEP FUNTIONS
 
         public double[] Predictor_Step_Principal (double Cy, double delta_y_t,double delta_x, double F1_arriba, double F2_arriba,double F3_arriba, double F4_arriba, double F1_abajo,double F2_abajo, double F3_abajo, double F4_abajo ,double G1_arriba,double G2_arriba, double G3_arriba, double G4_arriba, double P_arriba, double P_abajo)
         { 
@@ -205,7 +219,9 @@ namespace LibreriaClases
             return G_predictedValues;
 
         }
+        #endregion PREDICTION STEP FUNTIONS
 
+        #region CORRECTOR STEPS FUNTIONS
         public double[] Corrector_Step_Principal (double Cy, double delta_x,double delta_y_t, double F1_p_debajo_derecha,double F2_p_debajo_derecha, double F3_p_debajo_derecha, double F4_p_debajo_derecha,
             double F1_p_derecha, double F2_p_derecha, double F3_p_derecha,double F4_p_derecha, double G1_p_debajo_derecha, double G2_p_debajo_derecha,double G3_p_debajo_derecha,double G4_p_debajo_derecha, 
             double G1_p_derecha,   double G2_p_derecha,  double G3_p_derecha, double G4_p_derecha, double F1_p_derecha_arriba, double F2_p_derecha_arriba,double F3_p_derecha_arriba, double F4_p_derecha_arriba,
@@ -277,6 +293,8 @@ namespace LibreriaClases
             double[] F_Derecha = { F1_derecha, F2_derecha, F3_derecha, F4_derecha };
             return F_Derecha;
         }
+
+        #endregion  CORRECTOR STEPS FUNTIONS
 
         public void Wall_Bounday_Condition(double Gamma, double R_aire, double E, double theta)
         {
@@ -357,6 +375,7 @@ namespace LibreriaClases
             this.G4 = ((Gamma / (Gamma - 1)) * ((F2) - ((Math.Pow(F1, 2)) / Rho)) * (F3 / F1)) + (((Rho * F3) / (2 * F1)) * ((Math.Pow((F1 / Rho), 2)) + (Math.Pow((F3 / F1), 2))));
         }
 
+        #region COMPUTATION OF THE ACTUAL MACH
         public double compute_M_act(double Gamma, double f_act)
         {
 
@@ -384,8 +403,7 @@ namespace LibreriaClases
             return xi[xi.Count - 1];
     
         }
-
-
+        #endregion COMPUTATION OF THE ACTUAL MACH
 
 
     }
