@@ -452,8 +452,7 @@
                       IsEnabled="False"
                       VerticalAlignment="Center" Height="22" Width="148"
                       FontFamily="/Fonts/#Poppins"
-                      Foreground="White" RenderTransformOrigin="0.475,0.608" Grid.Row="1"
-                     />
+                      Foreground="White" RenderTransformOrigin="0.475,0.608" Grid.Row="1"/>
 
 
 
