@@ -404,7 +404,7 @@ namespace WPFapp
             Reset_button.IsEnabled = false;
             LoadParametersButton.IsEnabled = false;
             SaveSim_button.IsEnabled = false;
-            LoadSim_button.IsEnabled = false;
+            LoadSim_button.IsEnabled = true;
             CheckBox_A.IsEnabled = false;
             PresitionComboBox.IsEnabled = true;
             T_TextBox.IsEnabled = false;
@@ -868,9 +868,15 @@ namespace WPFapp
         // the tables window
         private void TablesButton_Click(object sender, RoutedEventArgs e)
         {
-            TablesWindow tables_w = new TablesWindow();
-            tables_w.SetTables(temperature_table, u_table, v_table, rho_table, p_table, M_table, F1_table, F2_table, F3_table, F4_table);
-            tables_w.Show();
+            if (temperature_table != null)
+            {
+                TablesWindow tables_w = new TablesWindow();
+                tables_w.SetTables(temperature_table, u_table, v_table, rho_table, p_table, M_table, F1_table, F2_table, F3_table, F4_table);
+                tables_w.Show();
+            }
+            else
+                MessageBox.Show("Please make a simulation to acces tables");
+            
         }
 
         // NEW WINDOW: ADVANCED STUDY
