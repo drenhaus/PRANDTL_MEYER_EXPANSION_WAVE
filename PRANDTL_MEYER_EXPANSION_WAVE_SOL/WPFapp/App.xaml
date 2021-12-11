@@ -17,6 +17,11 @@
                 
                 <ResourceDictionary Source="Theme/verTemperaturatTheme.xaml"/>
                 <ResourceDictionary Source="Theme/verFasesTheme.xaml"/>
+                <ResourceDictionary Source="Theme/verDensityTheme.xaml"/>
+                <ResourceDictionary Source="Theme/verPressureTheme.xaml"/>
+                <ResourceDictionary Source="Theme/verUTheme.xaml"/>
+                <ResourceDictionary Source="Theme/verVTheme.xaml"/>
+                
                 
                 <ResourceDictionary Source="Theme/MinimizeButtTheme.xaml"/>
                 <ResourceDictionary Source="Theme/CloseButtTheme.xaml"/>
