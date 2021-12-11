@@ -355,12 +355,12 @@ namespace WPFapp
                         if ((p0 == p0_C) && (p1 == p1_C) && (p2 == p2_C) && (p3 == p3_C))
                         {
                             // when we find the polygon with this points we show the corresponging labels
-                            u_label.Content = Convert.ToString(m.matriz[filas - 1 - j, i].u);
-                            v_label.Content = Convert.ToString(m.matriz[filas - 1 - j, i].v);
-                            rho_label.Content = Convert.ToString(m.matriz[filas - 1 - j, i].Rho);
-                            p_label.Content = Convert.ToString(m.matriz[filas - 1 - j, i].P);
-                            temeprature_label.Content = Convert.ToString(m.matriz[filas - 1 - j, i].T);
-                            mach_label.Content = Convert.ToString(m.matriz[filas - 1 - j, i].M);
+                            u_text.Text = Convert.ToString(m.matriz[filas - 1 - j, i].u);
+                            v_text.Text = Convert.ToString(m.matriz[filas - 1 - j, i].v);
+                            rho_text.Text= Convert.ToString(m.matriz[filas - 1 - j, i].Rho);
+                            p_text.Text = Convert.ToString(m.matriz[filas - 1 - j, i].P);
+                            t_text.Text = Convert.ToString(m.matriz[filas - 1 - j, i].T);
+                            m_text.Text = Convert.ToString(m.matriz[filas - 1 - j, i].M);
                         }
                     }
                 }
@@ -368,10 +368,9 @@ namespace WPFapp
         }
 
 
-
         // SEE GROUND 
-            // This function sets if the ground of the simulation is visible or hidden and if is visible which configuration
-            // low, medium or high
+        // This function sets if the ground of the simulation is visible or hidden and if is visible which configuration
+        // low, medium or high
         private void SeeGrounfOf(string str)
         {
             if (str == "LOW")

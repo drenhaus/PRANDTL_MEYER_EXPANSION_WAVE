@@ -592,37 +592,37 @@
 
             </ComboBox>
 
-            <Label Content="T:" 
+            <Label x:Name="labelt" Content="T:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="645,145,0,0" 
             Grid.Row="2" 
             VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="30"/>
-            <Label Content="M:" 
+            <Label x:Name="labelm" Content="M:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="645,187,0,0" 
             Grid.Row="2" 
             VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="30"/>
-            <Label Content="P:" 
+            <Label x:Name="labelp" Content="P:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="645,236,0,0" 
             Grid.Row="2" 
             VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="30"/>
-            <Label Content="Rho:" 
+            <Label x:Name="labelrho" Content="Rho:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="645,281,0,0" 
             Grid.Row="2" 
             VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="46"/>
-            <Label Content="v:" 
+            <Label x:Name="labelv" Content="v:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="645,318,0,0" 
             Grid.Row="2" 
             VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="46"/>
-            <Label Content="u:" 
+            <Label x:Name="labelu" Content="u:" 
             Grid.Column="1" 
             HorizontalAlignment="Left" 
             Margin="647,364,0,0" 
@@ -638,10 +638,10 @@
                 Foreground="White"/>
             <Label Content="" HorizontalAlignment="Left" Height="54" Margin="0,5,0,0" VerticalAlignment="Top" Width="910" Grid.ColumnSpan="2"
                    MouseMove="Label_MouseMove" IsEnabled="True"/>
-            <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="680,149,0,0" Grid.Row="2" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"/>
-            <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="680,187,0,0" Grid.Row="2" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"/>
-            <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="680,234,0,0" Grid.Row="2" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"/>
-            <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="680,279,0,0" Grid.Row="2" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"/>
+            <TextBox x:Name="t_text" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="680,149,0,0" Grid.Row="2" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"/>
+            <TextBox x:Name="m_text" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="680,187,0,0" Grid.Row="2" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"/>
+            <TextBox x:Name="p_text" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="680,234,0,0" Grid.Row="2" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"/>
+            <TextBox x:Name="rho_text" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="680,279,0,0" Grid.Row="2" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"/>
             <TextBox x:Name="v_text" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="680,318,0,0" Grid.Row="2" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"/>
             <TextBox x:Name="u_text" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="680,364,0,0" Grid.Row="2" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"/>
 
