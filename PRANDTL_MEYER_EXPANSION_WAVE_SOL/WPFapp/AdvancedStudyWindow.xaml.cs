@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using LibreriaClases;
 using System.Data;
+using System.Windows.Threading;
 
 namespace WPFapp
 {
@@ -54,6 +55,10 @@ namespace WPFapp
         DataTable[] tablesM3;
         DataTable[] tablesM4;
         DataTable[] tablesM5;
+
+        DispatcherTimer dispatcherTimer;
+        int timer = 0;
+        Loading ld;
         #endregion ATRIBUTES
 
         public AdvancedStudyWindow()
@@ -362,8 +367,39 @@ namespace WPFapp
                 dt.Columns[i].ColumnName = Convert.ToString(i + 1);
             }
         }
+
+
         private void Load_tables_butt_Click(object sender, RoutedEventArgs e)
         {
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
+            dispatcherTimer.Start();
+
+        }
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            if (timer == 1)
+            {
+                ld = new Loading();
+                ld.Show();
+            }
+            if (timer == 2)
+            {
+                TablesLoaded();
+            }
+            if (timer == 3)
+            {
+                ld.Close();
+                timer = -1;
+                dispatcherTimer.Stop();
+            }
+            timer = timer + 1;
+        }
+
+        public void TablesLoaded()
+        {
+
             if (DataGridComboBox_AS.SelectedIndex == 0) //temperature
             {
                 Set_headers(temperature_table_1);
@@ -413,6 +449,7 @@ namespace WPFapp
                 DataContext = M_table_2.DefaultView;
             }
         }
+
         #endregion DATA TABLES MANIPULATIONS
 
         #region WINDOW MANIPULATION FUNCTIONS
