@@ -108,7 +108,7 @@ namespace WPFapp
             {
                 for (int j = 0; j < filas; j++)
                 {
-                    //casillas[j, i].MouseEnter += polygon_enter;
+                    casillas[j, i].MouseEnter += polygon_enter;
                     GridMalla.Children.Add(casillas[j, i]);
                 }
             }
