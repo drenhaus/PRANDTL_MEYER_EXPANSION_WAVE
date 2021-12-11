@@ -19,14 +19,18 @@
         <Grid x:Name="grid1" Margin="0,10,0,10" HorizontalAlignment="Center" Width="960">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="199*"/>
-                <ColumnDefinition Width="761*"/>
+                <ColumnDefinition Width="693*"/>
+                <ColumnDefinition Width="68*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="69*"/>
                 <RowDefinition Height="89*"/>
                 <RowDefinition Height="512*"/>
             </Grid.RowDefinitions>
-            <Label Content="" HorizontalAlignment="Left" Height="54" Margin="0,5,0,0" VerticalAlignment="Top" Width="910" Grid.ColumnSpan="2"
+
+
+
+            <Label Content="" HorizontalAlignment="Left" Height="54" Margin="0,5,0,0" VerticalAlignment="Top" Width="910" Grid.ColumnSpan="3"
                    MouseMove="Label_MouseMove" IsEnabled="True"/>
             <TextBlock Text="Simulation window"
                        VerticalAlignment="Top"
@@ -38,26 +42,33 @@
                        Margin="24,10,0,0" 
                        Width="299" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
-            <Label Content="" HorizontalAlignment="Left" Height="54" Margin="-2,0,0,0" VerticalAlignment="Top" Width="910" Grid.ColumnSpan="2"
+            <Label Content="" HorizontalAlignment="Left" Height="54" Margin="-2,0,0,0" VerticalAlignment="Top" Width="910" Grid.ColumnSpan="3"
                    MouseMove="Label_MouseMove" IsEnabled="True"/>
+
+
+
+
             <Button x:Name="WelcomeButton" 
-                    Content="Back to start" 
+                    Content="                Back to start" 
                     Margin="-9,10,0,0" 
                     Grid.Row="1" 
+                    HorizontalContentAlignment="Left"
                     VerticalAlignment="Top" 
                     Height="38" 
                     RenderTransformOrigin="0.477,-0.345"
                     FontFamily="/Fonts/#Poppins"     
                     Foreground="White"
                     Background="Transparent"
-                    BorderBrush="Transparent" Click="WelcomeButton_Click"
+                    BorderBrush="Transparent" 
+                    Click="WelcomeButton_Click" Width="208"
                     />
 
             <Button x:Name="TablesButton" 
-                    Content="Tables" 
+                    Content="                Tables" 
                     Margin="-9,53,0,0" 
                     Grid.Row="1" 
                     VerticalAlignment="Top" 
+                    HorizontalContentAlignment="Left"
                     Height="38" 
                     RenderTransformOrigin="0.477,-0.345" 
                     Click="TablesButton_Click"
@@ -68,23 +79,25 @@
                     />
 
             <Button x:Name="ComparationButton" 
-                    Content="Compare with Anderson" 
+                    Content="                Compare with Anderson" 
                     Margin="-9,7,0,0" 
                     Grid.Row="2" 
-                    VerticalAlignment="Top" 
+                    VerticalAlignment="Top"
+                    HorizontalContentAlignment="Left"
                     Height="38" 
                     RenderTransformOrigin="0.477,-0.345" 
                     Click="ComparationButton_Click"
                     FontFamily="/Fonts/#Poppins"     
                     Foreground="White"
                     Background="Transparent"
-                    BorderBrush="Transparent"/>
+                    BorderBrush="Transparent" Width="208"/>
 
             <Button x:Name="GraficButton" 
-                    Content="Graphics" 
+                    Content="                Graphics" 
                     Margin="-9,50,0,0" 
                     Grid.Row="2" 
                     VerticalAlignment="Top" 
+                    HorizontalContentAlignment="Left"
                     Height="38" 
                     RenderTransformOrigin="0.477,-0.345" 
                     Click="GraficButton_Click"
@@ -93,10 +106,11 @@
                     Background="Transparent"
                     BorderBrush="Transparent"/>
             <Button x:Name="AdvancedStudyButton" 
-                    Content="Advanced Study" 
+                    Content="                Advanced Study" 
                     Margin="-9,93,0,0" 
                     Grid.Row="2" 
                     VerticalAlignment="Top" 
+                    HorizontalContentAlignment="Left"
                     Height="38" 
                     RenderTransformOrigin="0.477,-0.345" 
                     Click="AdvancedStudyButton_Click"                    FontFamily="/Fonts/#Poppins"     
@@ -106,20 +120,24 @@
 
             <Button Content="" 
                     HorizontalAlignment="Right" 
-                    Margin="0,8,466,0" 
+                    Margin="0,8,398,0" 
                     VerticalAlignment="Top" 
                     Height="64" 
                     Width="277"
                     Style="{DynamicResource RoundCorner}"
                     IsEnabled="False" Grid.Column="1" Grid.Row="1"/>
             <Button Content="" 
+                    
                     HorizontalAlignment="Left" 
                     Margin="323,8,0,0" 
                     VerticalAlignment="Top" 
                     Height="112" 
                     Width="428"
                     Style="{DynamicResource RoundCorner}"
-                    IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
+                    IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
+
+
 
             <Label Content="Select precision"
                    HorizontalAlignment="Left"
@@ -172,21 +190,21 @@
 
 
 
-            <Canvas x:Name="low1" Grid.Column="1" Margin="31,439,593,4" Grid.Row="2"
+            <Canvas x:Name="low1" Grid.Column="1" Margin="31,439,525,4" Grid.Row="2"
                     Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="low2" Grid.Column="1" Margin="166,445,531,4" Grid.Row="2"
+            <Canvas x:Name="low2" Grid.Column="1" Margin="166,445,463,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="low3" Grid.Column="1" Margin="214,450,483,4" Grid.Row="2"
+            <Canvas x:Name="low3" Grid.Column="1" Margin="214,450,415,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="low4" Grid.Column="1" Margin="272,454,425,4" Grid.Row="2"
+            <Canvas x:Name="low4" Grid.Column="1" Margin="272,454,357,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="low6" Grid.Column="1" Margin="394,464,297,4" Grid.Row="2"
+            <Canvas x:Name="low6" Grid.Column="1" Margin="394,464,229,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="low5" Grid.Column="1" Margin="333,459,361,4" Grid.Row="2"
+            <Canvas x:Name="low5" Grid.Column="1" Margin="333,459,293,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="low7" Grid.Column="1" Margin="457,469,233,4" Grid.Row="2"
+            <Canvas x:Name="low7" Grid.Column="1" Margin="457,469,165,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="low8" Grid.Column="1" Margin="483,474,214,4" Grid.Row="2"
+            <Canvas x:Name="low8" Grid.Column="1" Margin="483,474,146,4" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
 
 
@@ -214,21 +232,21 @@
 
 
 
-            <Canvas x:Name="med1" Grid.Column="1" Margin="31,412,666,42" Grid.Row="2"
+            <Canvas x:Name="med1" Grid.Column="1" Margin="31,412,598,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="med2" Grid.Column="1" Margin="91,412,602,42" Grid.Row="2"
+            <Canvas x:Name="med2" Grid.Column="1" Margin="91,412,534,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="med3" Grid.Column="1" Margin="144,419,549,42" Grid.Row="2"
+            <Canvas x:Name="med3" Grid.Column="1" Margin="144,419,481,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="med4" Grid.Column="1" Margin="198,424,495,42" Grid.Row="2"
+            <Canvas x:Name="med4" Grid.Column="1" Margin="198,424,427,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="med5" Grid.Column="1" Margin="259,428,427,42" Grid.Row="2"
+            <Canvas x:Name="med5" Grid.Column="1" Margin="259,428,359,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="med6" Grid.Column="1" Margin="331,434,359,42" Grid.Row="2"
+            <Canvas x:Name="med6" Grid.Column="1" Margin="331,434,291,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="med7" Grid.Column="1" Margin="401,439,292,42" Grid.Row="2"
+            <Canvas x:Name="med7" Grid.Column="1" Margin="401,439,224,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
-            <Canvas x:Name="med8" Grid.Column="1" Margin="461,445,221,42" Grid.Row="2"
+            <Canvas x:Name="med8" Grid.Column="1" Margin="461,445,153,42" Grid.Row="2"
                 Background="#6a59ff" IsEnabled="False"/>
 
 
@@ -255,42 +273,10 @@
                 </Button.RenderTransform>
             </Button>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <Button x:Name="InfoPresitionButton" 
                 Grid.Column="1" 
                 HorizontalAlignment="Left" 
-                Margin="120,0,0,0" 
+                Margin="120,20,0,19" 
                 Grid.Row="0" 
                 RenderTransformOrigin="-0.074,-0.171" Width="30"
                 FontFamily="/Fonts/#Poppins"
@@ -459,7 +445,7 @@
                       IsEnabled="False"
                       VerticalAlignment="Center" Height="22" Width="148"
                       FontFamily="/Fonts/#Poppins"
-                      Foreground="White" RenderTransformOrigin="0.475,0.608" Grid.Row="1"/>
+                      Foreground="White" RenderTransformOrigin="0.475,0.608" Grid.Row="1" Grid.ColumnSpan="2"/>
 
 
 
@@ -477,7 +463,7 @@
                 RenderTransformOrigin="0.477,-0.345" Click="LoadParametersButton_Click"
                     Foreground="White" 
                     FontFamily="/Fonts/#Poppins"
-                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"/>
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
             <Button x:Name="SaveSim_button" 
                 Content="Save Simulation" 
@@ -524,18 +510,18 @@
 
             <Button x:Name="Close_Button" 
                 Content="x" 
-                Grid.Column="1" 
+                Grid.Column="2" 
                 HorizontalAlignment="Left" 
-                Margin="735,10,0,0" 
+                Margin="42,10,0,0" 
                 VerticalAlignment="Top" FontSize="55"
                     Click="CloseButton_Click"
                     Style="{DynamicResource closebutton}" Height="16" Width="16"/>
 
             <Button x:Name="Mini_Button" 
                 Content="-" 
-                Grid.Column="1" 
+                Grid.Column="2" 
                 HorizontalAlignment="Left" 
-                Margin="714,10,0,0" 
+                Margin="21,10,0,0" 
                 VerticalAlignment="Top" Width="16"
                     FontSize="55"
                     Click="MiniButton_Click"
@@ -561,7 +547,7 @@
                       Grid.Column="1" 
                       Grid.Row="2"
                       Style="{DynamicResource theComboBox}" 
-                  ItemContainerStyle="{DynamicResource theComboBoxItem}">
+                  ItemContainerStyle="{DynamicResource theComboBoxItem}" Grid.ColumnSpan="2">
 
                 <ComboBoxItem Content="T: Temperature"
                               FontFamily="/Fonts/#Poppins"
@@ -664,7 +650,7 @@
                      TextWrapping="Wrap" 
                      VerticalAlignment="Top" 
                      Width="63"
-                     Style="{StaticResource verTemperaturatextbox}"/>
+                     Style="{StaticResource verTemperaturatextbox}" Grid.ColumnSpan="2"/>
             <TextBox x:Name="m_text" 
                      Grid.Column="1" 
                      HorizontalAlignment="Left" 
@@ -673,7 +659,7 @@
                      TextWrapping="Wrap" 
                      VerticalAlignment="Top" 
                      Width="63"
-                     Style="{StaticResource verFasetextbox}"/>
+                     Style="{StaticResource verFasetextbox}" Grid.ColumnSpan="2"/>
             <TextBox x:Name="p_text" 
                      Grid.Column="1" 
                      HorizontalAlignment="Left" 
@@ -681,7 +667,7 @@
                      Grid.Row="2"
                      TextWrapping="Wrap" 
                      VerticalAlignment="Top" Width="63"
-                     Style="{StaticResource verPresuretextbox}"
+                     Style="{StaticResource verPresuretextbox}" Grid.ColumnSpan="2"
                      />
             <TextBox x:Name="rho_text" 
                      Grid.Column="1" 
@@ -689,14 +675,14 @@
                      Height="28" Margin="668,304,0,0" 
                      Grid.Row="2" Style="{StaticResource verDensitytextbox}" 
                      TextWrapping="Wrap" VerticalAlignment="Top" 
-                     Width="63"/>
+                     Width="63" Grid.ColumnSpan="2"/>
             <TextBox x:Name="v_text" 
                      Grid.Column="1" 
                      HorizontalAlignment="Left" 
                      Height="28" Margin="668,337,0,0" 
                      Grid.Row="2" Style="{StaticResource verVtextbox}" 
                      TextWrapping="Wrap" VerticalAlignment="Top" 
-                     Width="63"/>
+                     Width="63" Grid.ColumnSpan="2"/>
             <TextBox x:Name="u_text" 
                      Grid.Column="1" 
                      HorizontalAlignment="Left" 
@@ -704,11 +690,29 @@
                      Grid.Row="2"  
                      TextWrapping="Wrap" 
                      VerticalAlignment="Top" Width="63"
-                     Style="{StaticResource verUtextbox}"
+                     Style="{StaticResource verUtextbox}" Grid.ColumnSpan="2"
                      />
+            <Button Content="" 
+                    HorizontalAlignment="Left" 
+                    Height="601" Margin="197,0,0,0" VerticalAlignment="Top" 
+                    Width="1"
+                    Background="White" BorderThickness="0" Grid.Row="1" Grid.RowSpan="2"/>
 
+            <Image Margin="4,19,173,49" Grid.Row="1" Stretch="Fill" 
+                   Source="/icons/back_to_start.png"/>
 
+            <Image Margin="5,57,171,2" Stretch="Fill" 
+                   Source="/icons/tableicon.png" Grid.Row="1"/>
 
+            <Image Margin="4,58,168,426" Stretch="Fill" 
+                   Source="/icons/graf.png" Grid.Row="2"/>
+
+            <Image Margin="2,100,167,381" Grid.Row="2" Stretch="Fill" 
+                   Source="/icons/AS.png"/>
+            
+            <Image Margin="0,12,163,462" 
+                   Stretch="Fill" 
+                   Source="/icons/balnce.png" Grid.Row="2"/>
 
         </Grid>
     </Border>

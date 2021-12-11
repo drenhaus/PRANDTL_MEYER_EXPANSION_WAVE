@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="icons\AS.png" />
+    <None Remove="icons\back_to_start.png" />
+    <None Remove="icons\balnce.png" />
+    <None Remove="icons\graf.png" />
+    <None Remove="icons\tableicon.png" />
     <None Remove="Images\info.png" />
   </ItemGroup>
 
@@ -43,6 +48,24 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LibreriaClases\LibreriaClases.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icons\AS.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\back_to_start.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\balnce.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\graf.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\tableicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
