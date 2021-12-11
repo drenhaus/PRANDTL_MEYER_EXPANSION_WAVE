@@ -494,14 +494,14 @@
                     Style="{DynamicResource RoundCorner}" Grid.RowSpan="2" Click="SaveSim_button_Click"/>
 
             <Button x:Name="LoadSim_button" 
-                Content="Load Simulation" 
+                Content="Load file" 
                 HorizontalAlignment="Left" 
-                Margin="173,86,0,0" 
+                Margin="175,87,0,0" 
                 IsEnabled="True"
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
-                Height="28" Width="122" 
+                Height="28" Width="81" 
                 RenderTransformOrigin="0.477,-0.345"
                     Foreground="White" 
                     FontFamily="/Fonts/#Poppins"
