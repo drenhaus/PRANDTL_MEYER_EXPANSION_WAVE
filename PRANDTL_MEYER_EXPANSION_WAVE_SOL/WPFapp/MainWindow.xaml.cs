@@ -399,6 +399,13 @@ namespace WPFapp
             M_TextBox.Text = "";
             v_TextBox.Text = "";
 
+            t_text.Text = "";
+            m_text.Text = "";
+            p_text.Text = "";
+            rho_text.Text = "";
+            u_text.Text = "";
+            v_text.Text = "";
+
             // is enable of buttons fals
             DataGridComboBox.IsEnabled = false;
             Reset_button.IsEnabled = false;
