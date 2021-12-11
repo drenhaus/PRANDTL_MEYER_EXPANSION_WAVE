@@ -235,6 +235,27 @@ namespace WPFapp
         {
             try
             {
+                // If we input a . replece it by a ,
+                if (v_TextBox.Text.Contains("."))
+                {
+                    v_TextBox.Text = v_TextBox.Text.Replace(".", ",");
+                }
+                if (Rho_TextBox.Text.Contains("."))
+                {
+                    Rho_TextBox.Text = Rho_TextBox.Text.Replace(".", ",");
+                }
+                if (P_TextBox.Text.Contains("."))
+                {
+                    P_TextBox.Text = P_TextBox.Text.Replace(".", ",");
+                }
+                if (M_TextBox.Text.Contains("."))
+                {
+                    M_TextBox.Text = M_TextBox.Text.Replace(".", ",");
+                }
+                if (T_TextBox.Text.Contains("."))
+                {
+                    T_TextBox.Text = T_TextBox.Text.Replace(".", ",");
+                }
                 // initial data line parameters transfered to NORMA clas of the Malla we are working
                 m.norma.v_in = Convert.ToDouble(v_TextBox.Text);
                 m.norma.Rho_in = Convert.ToDouble(Rho_TextBox.Text);
