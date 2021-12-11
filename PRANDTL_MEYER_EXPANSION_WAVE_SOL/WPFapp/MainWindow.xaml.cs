@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LibreriaClases;
 using System.Data;
+using System.Windows.Threading;
 
 
 namespace WPFapp
@@ -47,6 +48,15 @@ namespace WPFapp
         DataTable F2_table;
         DataTable F3_table;
         DataTable F4_table;
+
+        // We define a dispatcher timer and a inter that are going to be used for the loading advice
+        DispatcherTimer dispatcherTimer;
+        DispatcherTimer dispatcherTimer2;
+        int timer = 0;
+        int timer2 = 0;
+        // when loading takes too land a new windoe Loading ld will open
+        Loading ld;
+
         #endregion ATTRIBUTES
 
         public MainWindow()
@@ -54,6 +64,8 @@ namespace WPFapp
             InitializeComponent();
             SeeGrounfOf("NONE"); // initially no ground is visible
         }
+
+
 
         #region SIMULATION FUNCTION
         //When the simulation function is called the needed parameters are set and 
@@ -100,14 +112,61 @@ namespace WPFapp
                 }
             }
         }
+
+        // DISPATCHER TIMER TICK FOR Simulation()
+        // When the timer is initialized a new window loading is opened during the long process
+        // is executed. When this process finishes the loading window closes and the timer is stoped
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            if (timer == 1)
+            {
+                ld = new Loading();
+                ld.Show();
+            }
+            if (timer == 2)
+            {
+                Simulate();
+            }
+            if (timer == 3)
+            {
+                ld.Close();
+                timer = -1;
+                dispatcherTimer.Stop();
+            }
+            timer = timer + 1;
+        }
+
+        // DISPATCHER TIMER TICK FOR DataChangedComboBox
+        // When the timer is initialized a new window loading is opened during the long process
+        // is executed. When this process finishes the loading window closes and the timer is stoped
+        private void dispatcherTimer_Tick2(object sender, EventArgs e)
+        {
+            if (timer2 == 1)
+            {
+                ld = new Loading();
+                ld.Show();
+            }
+            if (timer2 == 2)
+            {
+                DataChangedComboBox();
+            }
+            if (timer2 == 3)
+            {
+                ld.Close();
+                timer2 = -1;
+                dispatcherTimer2.Stop();
+            }
+            timer2 = timer2 + 1;
+        }
+
         #endregion SIMULATION FUNCTION
 
         #region SIMULATION WPF CONTROLS
 
-        // CHANGING THE SELECTED INDEX OF THE DATA VIEW COMBOBOX
+        // FUNCTION CALLED WHEN CHANGING THE SELECTED INDEX OF THE DATA VIEW COMBOBOX
         // Depending the index selected, the polygons saved in CASILLAS are changed their color
         // according to the data displayed
-        private void DataGridComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataChangedComboBox()
         {
             if (DataGridComboBox.SelectedIndex == 0) // if temperature selected
             {
@@ -135,10 +194,29 @@ namespace WPFapp
             }
 
         }
-       
-        // CHECKBOX OF DEFAULT PARAMETERS CHECKED
+        
+        // DEPENDING OF THE PRECISION A LOADING ADVICE WILL APPEAR
+            //if the selected index of the precision is 2 (high presition) a loading advice is going
+            // to be shown
+        private void DataGridComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        { 
+            if (PresitionComboBox.SelectedIndex==2)
+            {
+                dispatcherTimer2 = new DispatcherTimer();
+                dispatcherTimer2.Tick += new EventHandler(dispatcherTimer_Tick2);
+                dispatcherTimer2.Interval = TimeSpan.FromMilliseconds(100);
+                dispatcherTimer2.Start();
+            }
+            else
+            {
+                DataChangedComboBox();
+            }
+
+        }
+
+            // CHECKBOX OF DEFAULT PARAMETERS CHECKED
             // if the checkbox is selected it is written the parameters by default
-        private void CheckBox_A_Checked(object sender, RoutedEventArgs e)
+            private void CheckBox_A_Checked(object sender, RoutedEventArgs e)
         {
             // we write the parameters
             v_TextBox.Text = Convert.ToString(0.0);
@@ -167,8 +245,18 @@ namespace WPFapp
                 m.norma.Compute_M_angle();
                 m.norma.Compute_u();
 
-                Simulate();
-                MessageBox.Show("Please select the data you want to show or reset for any change");
+                // only show the loading advice when we select the higher precision
+                if (PresitionComboBox.SelectedIndex==2)
+                {
+                    dispatcherTimer = new DispatcherTimer();
+                    dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+                    dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
+                    dispatcherTimer.Start();
+                }
+
+                else
+                { Simulate(); }
+                
 
                 // The is enable is changed to continue with the simulation
                 PresitionComboBox.IsEnabled = false;
@@ -187,6 +275,7 @@ namespace WPFapp
                 // MessageBox to indicate the parameters had not been correctly defined
                 MessageBox.Show(ex.Message);
             }
+            MessageBox.Show("Please select the data you want to show or reset for any change");
         }
 
         // RESET BUTTON
@@ -239,6 +328,9 @@ namespace WPFapp
 
         }
 
+
+
+
         public void polygon_enter(object sender, EventArgs e)
         {
             Polygon poly = (Polygon)sender;
@@ -267,6 +359,8 @@ namespace WPFapp
                 // mach_label.Content= Convert.ToString(m.matriz[filas - j, columnas - i - 1].M);
             }
         }
+
+
 
         // SEE GROUND 
             // This function sets if the ground of the simulation is visible or hidden and if is visible which configuration
@@ -388,6 +482,9 @@ namespace WPFapp
                     columnas = 24;
                     filas = 11;
                     delta_y_t = 0.1;
+
+                    // Messagebox to show the presicion has been selected
+                    MessageBox.Show("Precision selected successfully");
                 }
                 if (PresitionComboBox.SelectedIndex == 1) // normal precision
                 {
@@ -395,12 +492,18 @@ namespace WPFapp
                     columnas = 92;
                     filas = 41;
                     delta_y_t = 0.025;
+
+                    // Messagebox to show the presicion has been selected
+                    MessageBox.Show("Precision selected successfully");
                 }
                 if (PresitionComboBox.SelectedIndex == 2) //high precision
                 {
                     columnas = 452;
                     filas = 201;
                     delta_y_t = 0.005;
+
+                    // Messagebox to show the presicion has been selected
+                    MessageBox.Show("Precision selected successfully");
 
                 }
                 // we change the isenable of buttons and elements to continue with the simulation
@@ -412,8 +515,7 @@ namespace WPFapp
                 M_TextBox.IsEnabled = true;
                 v_TextBox.IsEnabled = true;
 
-                // Messagebox to show the presicion has been selected
-                MessageBox.Show("Precision selected successfully");
+                
             }
             catch (Exception ex)
             {
