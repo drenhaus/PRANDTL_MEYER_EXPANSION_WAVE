@@ -40,6 +40,8 @@ namespace WPFapp
 
         DispatcherTimer dispatcherTimer;
         int timer=0;
+        DispatcherTimer dispatcherTimer2;
+        int timer2 = 0;
         Loading ld;
 
         public TablesWindow()
@@ -65,6 +67,25 @@ namespace WPFapp
                 dispatcherTimer.Stop();
             }
                 timer = timer + 1;
+        }
+        private void dispatcherTimer_Tick2(object sender, EventArgs e)
+        {
+            if (timer2 == 1)
+            {
+                ld = new Loading();
+                ld.Show();
+            }
+            if (timer2 == 2)
+            {
+                table_to_Export.ExportToExcel();
+            }
+            if (timer2 == 3)
+            {
+                ld.Close();
+                timer2 = -1;
+                dispatcherTimer2.Stop();
+            }
+            timer2 = timer2 + 1;
         }
 
 
@@ -202,7 +223,11 @@ namespace WPFapp
         {
             try
             {
-                table_to_Export.ExportToExcel();
+                dispatcherTimer2 = new DispatcherTimer();
+                dispatcherTimer2.Tick += new EventHandler(dispatcherTimer_Tick2);
+                dispatcherTimer2.Interval = TimeSpan.FromMilliseconds(100);
+                dispatcherTimer2.Start();
+
             }
             catch (Exception ex)
             {
