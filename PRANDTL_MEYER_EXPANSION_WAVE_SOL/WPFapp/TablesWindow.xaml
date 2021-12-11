@@ -22,6 +22,7 @@
 
             <DataGrid x:Name="grid2" 
                       Margin="15,80,15,15" 
+                      LoadingRow="grid2_LoadingRow"
                       ItemsSource="{Binding}">
 
 

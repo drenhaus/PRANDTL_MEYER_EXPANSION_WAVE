@@ -110,11 +110,13 @@
             <DataGrid x:Name="Advanced_DataGridMalla" 
                   Margin="782,172,42,288" 
                   ItemsSource="{Binding}" 
+                  LoadingRow="Advanced_DataGridMalla_LoadingRow"
                     AutoGenerateColumns="True" Grid.RowSpan="2"/>
 
             <DataGrid x:Name="Advanced_DataGridMalla_2" 
                   Margin="782,69,0,0" 
                   ItemsSource="{Binding}" 
+                  LoadingRow="Advanced_DataGridMalla_2_LoadingRow"
                     AutoGenerateColumns="True" RenderTransformOrigin="0.61,-0.682" Height="258" VerticalAlignment="Top" HorizontalAlignment="Left" Width="276" Grid.Row="1"/>
             <Button x:Name="AdvStudyExplication_Button" Content="Explication of A.S" 
                 HorizontalAlignment="Left" 

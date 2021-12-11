@@ -246,10 +246,21 @@ namespace WPFapp
             }
 
         }
+
+
+
         #endregion WINDOW MANIPULATION FUNCTIONS
 
-
-        
-
+        private void grid2_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            if (Convert.ToDouble((e.Row.GetIndex()).ToString()) != F4_t.Rows.Count)
+            {
+                e.Row.Header = Convert.ToDouble((e.Row.GetIndex()).ToString()) + 1;
+            }
+            else
+            {
+                e.Row.Header = "";
+            }
+        }
     }
 }

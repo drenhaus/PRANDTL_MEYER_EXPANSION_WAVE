@@ -469,6 +469,30 @@ namespace WPFapp
             }
         }
         #endregion WINDOW MANIPULATION FUNCTIONS
+
+        private void Advanced_DataGridMalla_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            if (Convert.ToDouble((e.Row.GetIndex()).ToString()) != m2.rows)
+            {
+                e.Row.Header = Convert.ToDouble((e.Row.GetIndex()).ToString()) + 1;
+            }
+            else
+            {
+                e.Row.Header = "";
+            }
+        }
+
+        private void Advanced_DataGridMalla_2_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            if (Convert.ToDouble((e.Row.GetIndex()).ToString()) != m4.rows)
+            {
+                e.Row.Header = Convert.ToDouble((e.Row.GetIndex()).ToString()) + 1;
+            }
+            else
+            {
+                e.Row.Header = "";
+            }
+        }
     }
 
 
