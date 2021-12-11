@@ -112,6 +112,8 @@ namespace WPFapp
                     GridMalla.Children.Add(casillas[j, i]);
                 }
             }
+            MessageBox.Show("Please select the data you want to show or reset for any change");
+
         }
 
         // DISPATCHER TIMER TICK FOR Simulation()
@@ -171,27 +173,27 @@ namespace WPFapp
         {
             if (DataGridComboBox.SelectedIndex == 0) // if temperature selected
             {
-                casillas=GPG.actualizar_colores_grid(temperature_table, 255, 0, 0);
+                casillas=GPG.actualizar_colores_grid(temperature_table, 255, 0, 0,false);
             }
             if (DataGridComboBox.SelectedIndex == 1) // if u selected
             {
-                casillas = GPG.actualizar_colores_grid(u_table, 0, 255, 0);
+                casillas = GPG.actualizar_colores_grid(u_table, 0, 255, 0,false);
             }
             if (DataGridComboBox.SelectedIndex == 2) //if v selected
             {
-                casillas = GPG.actualizar_colores_grid(v_table, 255, 128, 0);
+                casillas = GPG.actualizar_colores_grid(v_table, 255, 128, 0,true);
             }
             if (DataGridComboBox.SelectedIndex == 3) //if rho selected
             {
-                casillas = GPG.actualizar_colores_grid(rho_table, 18, 184, 255);
+                casillas = GPG.actualizar_colores_grid(rho_table, 18, 184, 255,false);
             }
             if (DataGridComboBox.SelectedIndex == 4) //if p selected
             {
-                casillas = GPG.actualizar_colores_grid(p_table, 255, 0, 127);
+                casillas = GPG.actualizar_colores_grid(p_table, 255, 0, 127,false);
             }
             if (DataGridComboBox.SelectedIndex == 5) //if Mach selected
             {
-                casillas = GPG.actualizar_colores_grid(M_table, 255, 255, 255);
+                casillas = GPG.actualizar_colores_grid(M_table, 255, 255, 255,false);
             }
 
         }
@@ -276,7 +278,6 @@ namespace WPFapp
                 // MessageBox to indicate the parameters had not been correctly defined
                 MessageBox.Show(ex.Message);
             }
-            MessageBox.Show("Please select the data you want to show or reset for any change");
         }
 
         // RESET BUTTON
