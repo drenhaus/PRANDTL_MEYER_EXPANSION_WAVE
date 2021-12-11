@@ -491,27 +491,27 @@ namespace WPFapp
                 DataRow F3_R2 = our_F3_66.NewRow();
                 DataRow F4_R2 = our_F4_66.NewRow();
 
-                TEMP_R[0] = O_T_12[i];
-                U_R[0] = O_U_12[i];
-                V_R[0] = O_V_12[i];
-                RHO_R[0] = O_RHO_12[i];
-                P_R[0] = O_P_12[i];
-                M_R[0] = O_M_12[i];
-                F1_R[0] = O_F1_12[i];
-                F2_R[0] = O_F2_12[i];
-                F3_R[0] = O_F3_12[i];
-                F4_R[0] = O_F4_12[i];
+                TEMP_R[0] = Math.Round(O_T_12[i],4);
+                U_R[0] = Math.Round(O_U_12[i], 4);
+                V_R[0] = Math.Round(O_V_12[i], 4);
+                RHO_R[0] = Math.Round(O_RHO_12[i], 4);
+                P_R[0] = Math.Round(O_P_12[i], 4);
+                M_R[0] = Math.Round(O_M_12[i], 4);
+                F1_R[0] = Math.Round(O_F1_12[i], 4);
+                F2_R[0] = Math.Round(O_F2_12[i], 4);
+                F3_R[0] = Math.Round(O_F3_12[i], 4);
+                F4_R[0] = Math.Round(O_F4_12[i], 4);
 
-                TEMP_R2[0] = O_T_66[i];
-                U_R2[0] = O_U_66[i];
-                V_R2[0] = O_V_66[i];
-                RHO_R2[0] = O_RHO_66[i];
-                P_R2[0] = O_P_66[i];
-                M_R2[0] = O_M_66[i];
-                F1_R2[0] = O_F1_66[i];
-                F2_R2[0] = O_F2_66[i];
-                F3_R2[0] = O_F3_66[i];
-                F4_R2[0] = O_F4_66[i];
+                TEMP_R2[0] = Math.Round(O_T_66[i], 4);
+                U_R2[0] = Math.Round(O_U_66[i], 4);
+                V_R2[0] = Math.Round(O_V_66[i], 4);
+                RHO_R2[0] = Math.Round(O_RHO_66[i], 4);
+                P_R2[0] = Math.Round(O_P_66[i], 4);
+                M_R2[0] = Math.Round(O_M_66[i], 4);
+                F1_R2[0] = Math.Round(O_F1_66[i], 4);
+                F2_R2[0] = Math.Round(O_F2_66[i], 4);
+                F3_R2[0] = Math.Round(O_F3_66[i], 4);
+                F4_R2[0] = Math.Round(O_F4_66[i], 4);
 
                 our_T_12.Rows.Add(TEMP_R);
                 our_u_12.Rows.Add(U_R);
