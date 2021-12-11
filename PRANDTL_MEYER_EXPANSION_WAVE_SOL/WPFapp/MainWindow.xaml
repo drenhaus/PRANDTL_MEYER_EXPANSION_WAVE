@@ -26,7 +26,8 @@
                 <RowDefinition Height="89*"/>
                 <RowDefinition Height="512*"/>
             </Grid.RowDefinitions>
-
+            <Label Content="" HorizontalAlignment="Left" Height="54" Margin="0,5,0,0" VerticalAlignment="Top" Width="910" Grid.ColumnSpan="2"
+                   MouseMove="Label_MouseMove" IsEnabled="True"/>
             <TextBlock Text="Simulation window"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
@@ -285,17 +286,19 @@
 
 
 
-            <Button x:Name="InfoPresitionButton" Content="I" 
+            <Button x:Name="InfoPresitionButton" 
                 Grid.Column="1" 
                 HorizontalAlignment="Left" 
-                Margin="719,40,0,0" 
-                Grid.Row="2"
-                VerticalAlignment="Top" 
-                RenderTransformOrigin="-0.074,-0.171" 
-                Height="24" Width="26"
-                Foreground="White" 
+                Margin="120,0,0,0" 
+                Grid.Row="0" 
+                RenderTransformOrigin="-0.074,-0.171" Width="30"
                 FontFamily="/Fonts/#Poppins"
-                Style="{DynamicResource RoundCorner}"
+                    Height="30"
+                    
+                
+                    Background="Transparent"
+                    Foreground="Transparent"
+                    BorderThickness="0"
                 ToolTipService.ShowDuration="30000">
 
                 <Button.ToolTip>
@@ -318,6 +321,9 @@
                         </WrapPanel>
                     </StackPanel>
                 </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="Images/info.png"/>
+                </StackPanel>
 
 
             </Button>
@@ -648,6 +654,7 @@
                    Foreground="White"
                    FontSize="10"
             VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="46"/>
+
             <Label Content=""
                 HorizontalAlignment="Left"
                 Margin="8,0,0,0" 
@@ -708,6 +715,7 @@
                      VerticalAlignment="Top" Width="63"
                      Style="{StaticResource verUtextbox}"
                      />
+
 
 
 

@@ -120,14 +120,16 @@
                   ItemsSource="{Binding}" 
                   LoadingRow="Advanced_DataGridMalla_2_LoadingRow"
                     AutoGenerateColumns="True" RenderTransformOrigin="0.61,-0.682" Height="258" VerticalAlignment="Top" HorizontalAlignment="Left" Width="276" Grid.Row="1"/>
-            <Button x:Name="AdvStudyExplication_Button" Content="Explication of A.S" 
+            <Button x:Name="AdvStudyExplication_Button" 
                 HorizontalAlignment="Left" 
                 Margin="782,78,0,0" 
                 VerticalAlignment="Top" 
-                Height="32" Width="127"
-                    Foreground="White" 
+                Height="30" Width="30"
+                BorderThickness="0"
+                Background="Transparent"
+                Foreground="Transparent" 
                     FontFamily="/Fonts/#Poppins"
-                    Style="{DynamicResource RoundCorner}"
+                    
                     
                     ToolTipService.ShowDuration="30000">
 
@@ -141,7 +143,7 @@
                         <LineBreak />
                         CASE 2. Two consecutive inclined planes but with a straight plane between them
                         <LineBreak />
-                        The results can be observed by selecting the data in the combobox and pressing the load table’s button
+                        The results can be observed by selecting the data in the combobox
                         </TextBlock>
                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                         <WrapPanel>
@@ -149,6 +151,9 @@
                         </WrapPanel>
                     </StackPanel>
                 </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="Images/info.png"/>
+                </StackPanel>
 
             </Button>
 
@@ -545,6 +550,7 @@
                     VerticalAlignment="Top" Width="299"
                     Background="White"
                     BorderThickness="0" IsEnabled="False"/>
+
 
 
 
