@@ -24,6 +24,7 @@ namespace WPFapp
     /// </summary>
     public partial class TablesWindow : Window
     {
+        #region ATRIBUTES
         DataTable temperature_t;
         DataTable u_t;
         DataTable v_t;
@@ -43,12 +44,14 @@ namespace WPFapp
         DispatcherTimer dispatcherTimer2;
         int timer2 = 0;
         Loading ld;
+        #endregion ATRIBUTES
 
         public TablesWindow()
         {
             InitializeComponent();
         }
 
+        #region TIMERS
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             if (timer==1)
@@ -87,8 +90,9 @@ namespace WPFapp
             }
             timer2 = timer2 + 1;
         }
+        #endregion TIMERS
 
-
+        #region TABLES FUNCIONTS
         public void SetTables(DataTable T, DataTable u, DataTable v, DataTable rho, DataTable p, DataTable M, DataTable f1, DataTable f2, DataTable f3, DataTable f4)
         {
             this.temperature_t= T;
@@ -102,7 +106,6 @@ namespace WPFapp
             this.F3_t=f3;
             this.F4_t=f4;
         }
-
         private void DataGridColumnHeader_Click(object sender, RoutedEventArgs e)
         {
             if (expanded==true)
@@ -118,7 +121,6 @@ namespace WPFapp
                 expanded = true;
             }
         }
-
         private void TableSetect_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             dispatcherTimer = new DispatcherTimer();
@@ -127,7 +129,29 @@ namespace WPFapp
             dispatcherTimer.Start();
   
         }
+        private void Set_headers(DataTable dt)
+        {
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                dt.Columns[i].ColumnName = Convert.ToString(i + 1);
+            }
+        }
+        private void ExportTable_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                dispatcherTimer2 = new DispatcherTimer();
+                dispatcherTimer2.Tick += new EventHandler(dispatcherTimer_Tick2);
+                dispatcherTimer2.Interval = TimeSpan.FromMilliseconds(100);
+                dispatcherTimer2.Start();
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
         public void Compute()
         {
 
@@ -202,40 +226,17 @@ namespace WPFapp
             }
             
         }
+        #endregion TABLES FUNCIONTS
+
+        #region WINDOW MANIPULATION FUNCTIONS
         private void Mini_Button_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
-
         private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
-        private void Set_headers(DataTable dt)
-        {
-            for (int i = 0; i < dt.Columns.Count; i++)
-            {
-                dt.Columns[i].ColumnName = Convert.ToString(i + 1);
-            }
-        }
-        private void ExportTable_Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                dispatcherTimer2 = new DispatcherTimer();
-                dispatcherTimer2.Tick += new EventHandler(dispatcherTimer_Tick2);
-                dispatcherTimer2.Interval = TimeSpan.FromMilliseconds(100);
-                dispatcherTimer2.Start();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
         private void Label_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -244,6 +245,10 @@ namespace WPFapp
             }
 
         }
+        #endregion WINDOW MANIPULATION FUNCTIONS
+
+
+        
 
     }
 }

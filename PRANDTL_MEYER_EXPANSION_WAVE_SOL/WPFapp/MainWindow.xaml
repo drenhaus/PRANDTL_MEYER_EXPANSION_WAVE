@@ -452,8 +452,7 @@
                       IsEnabled="False"
                       VerticalAlignment="Center" Height="22" Width="148"
                       FontFamily="/Fonts/#Poppins"
-                      Foreground="White" RenderTransformOrigin="0.475,0.608" Grid.Row="1"
-                     />
+                      Foreground="White" RenderTransformOrigin="0.475,0.608" Grid.Row="1"/>
 
 
 
@@ -485,13 +484,13 @@
                 RenderTransformOrigin="0.477,-0.345"
                     Foreground="White" 
                     FontFamily="/Fonts/#Poppins"
-                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"/>
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2" Click="SaveSim_button_Click"/>
 
             <Button x:Name="LoadSim_button" 
                 Content="Load Simulation" 
                 HorizontalAlignment="Left" 
                 Margin="173,86,0,0" 
-                IsEnabled="False"
+                IsEnabled="True"
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
@@ -499,7 +498,7 @@
                 RenderTransformOrigin="0.477,-0.345"
                     Foreground="White" 
                     FontFamily="/Fonts/#Poppins"
-                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"/>
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2" Click="LoadSim_button_Click"/>
 
             <Button x:Name="Reset_button" 
                 Content="Reset" 
@@ -547,8 +546,7 @@
                    Foreground="White"/>
             <ComboBox x:Name="DataGridComboBox" 
             HorizontalAlignment="Left" 
-            Margin="577,43,0,0"
-            VerticalAlignment="Top" 
+            Margin="577,43,0,434" 
             Width="136"
             FontSize="10"
             IsEnabled="False"   
