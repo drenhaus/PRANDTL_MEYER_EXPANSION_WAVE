@@ -263,6 +263,7 @@ namespace WPFapp
                 CheckBox_A.IsEnabled = false;
                 LoadParametersButton.IsEnabled = false;
                 DataGridComboBox.IsEnabled = true;
+                SaveSim_button.IsEnabled = true;
                 Reset_button.IsEnabled = true;
                 T_TextBox.IsEnabled = false;
                 Rho_TextBox.IsEnabled = false;
@@ -533,6 +534,10 @@ namespace WPFapp
             }
         }
 
+
+        #endregion SIMULATION WPF CONTROLS
+
+        #region SAVE/LOAD SIMULATION
         public int GuardarSimulacion(string nombre)
         {
             try
@@ -552,7 +557,32 @@ namespace WPFapp
         }
 
 
-        #endregion SIMULATION WPF CONTROLS
+        private void SaveSim_button_Click(object sender, RoutedEventArgs e)
+        {
+            // Configure save file dialog box
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Simulación"; // Default file name
+            dlg.DefaultExt = ".txt"; // Default file extension
+            dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                // Save document
+                string filename = dlg.FileName;
+                int n = GuardarSimulacion(filename);
+                if (n == 0)
+                { MessageBox.Show("Simulación guardada correctamente!"); }
+                else
+                { MessageBox.Show("No ha sido posible guardar la simulación"); }
+            }
+            else
+            { MessageBox.Show("No ha sido posible guardar la simulación"); }
+        }
+        #endregion SAVE/LOAD SIMULATION
 
         #region LEFT BUTTONS (OPEN TABLES, COMPARATIONS, GRAPHICS AND ADVANCED STUDY)
         // NEW WINDOW: WELCOME
@@ -665,5 +695,7 @@ namespace WPFapp
         }
 
         #endregion WINDOW MANIPULATION FUNCTIONS
+
+
     }
 }

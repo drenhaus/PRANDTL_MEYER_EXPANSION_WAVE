@@ -484,7 +484,7 @@
                 RenderTransformOrigin="0.477,-0.345"
                     Foreground="White" 
                     FontFamily="/Fonts/#Poppins"
-                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2"/>
+                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2" Click="SaveSim_button_Click"/>
 
             <Button x:Name="LoadSim_button" 
                 Content="Load Simulation" 
