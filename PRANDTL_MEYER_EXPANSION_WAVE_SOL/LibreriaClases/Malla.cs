@@ -8,7 +8,7 @@ namespace LibreriaClases
 {
     public class Malla
     {
-        #region ATRIBUTES
+        #region ATTRIBUTES
 
         public int rows { get; set; }  //   j filas
         public int columns { get; set; }  // i les columnas
@@ -19,7 +19,6 @@ namespace LibreriaClases
         public double delta_x { get; set; }
         double delta_y;
 
-        double delta_xi;
 
         public double[] delta_y_array { get; set; }
 
@@ -47,7 +46,7 @@ namespace LibreriaClases
         DataTable F3_table = new DataTable("All F3 values");
         DataTable F4_table = new DataTable("All F4 values");
 
-        #endregion ATRIBUTES 
+        #endregion ATTRIBUTES 
 
         #region MATRIX DEFINITION
         public void DefinirMatriz()
@@ -132,7 +131,7 @@ namespace LibreriaClases
                 }
                 double max_tan = max_tan_Array.Max();
                 delta_x = C * delta_y / max_tan;
-                delta_xi = delta_x;
+
                 for (int i = 0; i < rows; i++)
                 {
                     matriz[i,j+1].x = matriz[i, j].x + delta_x;
@@ -143,19 +142,19 @@ namespace LibreriaClases
                         double[] F1_F2_F3_F4_p_derecha_vector;
                         if (i == 0)
                         {
-                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Inferior(delta_y_t, delta_xi, matriz[i + 1, j].F1, matriz[i + 1, j].F2, 
+                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Inferior(delta_y_t, delta_x, matriz[i + 1, j].F1, matriz[i + 1, j].F2, 
                                                                                                          matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i + 1, j].G1, 
                                                                                                          matriz[i + 1, j].G2, matriz[i + 1, j].G3, matriz[i + 1, j].G4);
                         }
                         else if (i == rows - 1)
                         {
-                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Superior(delta_y_t, delta_xi, matriz[i - 1, j].F1, matriz[i - 1, j].F2, 
+                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Superior(delta_y_t, delta_x, matriz[i - 1, j].F1, matriz[i - 1, j].F2, 
                                                                                                          matriz[i - 1, j].F3, matriz[i - 1, j].F4, matriz[i - 1, j].G1, 
                                                                                                          matriz[i - 1, j].G2, matriz[i - 1, j].G3, matriz[i - 1, j].G4);
                         }
                         else
                         {
-                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Principal(Cy, delta_y_t, delta_xi, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
+                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Principal(Cy, delta_y_t, delta_x, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
                                                                                                  matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i - 1, j].F1,
                                                                                                  matriz[i - 1, j].F2, matriz[i - 1, j].F3, matriz[i - 1, j].F4,
                                                                                                  matriz[i + 1, j].G1, matriz[i + 1, j].G2, matriz[i + 1, j].G3,
@@ -190,18 +189,18 @@ namespace LibreriaClases
                         {
                             F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Inferior(delta_y_t, matriz[i, j+1].F1_p, matriz[i, j+1].F2_p, matriz[i, j+1].F3_p, matriz[i, j+1].F4_p, matriz[i + 1, j+1].F1_p,
                                 matriz[i + 1, j+1].F2_p, matriz[i + 1, j+1].F3_p, matriz[i + 1, j+1].F4_p, matriz[i, j+1].G1_p, matriz[i, j+1].G2_p, matriz[i, j+1].G3_p, matriz[i, j+1].G4_p, matriz[i + 1, j+1].G1_p,
-                                matriz[i + 1, j+1].G2_p, matriz[i + 1, j+1].G3_p, matriz[i + 1, j+1].G4_p, delta_xi);
+                                matriz[i + 1, j+1].G2_p, matriz[i + 1, j+1].G3_p, matriz[i + 1, j+1].G4_p, delta_x);
                         }
                         else if (i == rows - 1)
                         {
                             F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Superior(delta_y_t, matriz[i, j+1].F1_p, matriz[i, j+1].F2_p, matriz[i, j+1].F3_p, matriz[i, j+1].F4_p, matriz[i - 1, j+1].F1_p,
                                 matriz[i - 1, j+1].F2_p, matriz[i - 1, j+1].F3_p, matriz[i - 1, j+1].F4_p, matriz[i, j+1].G1_p, matriz[i, j+1].G2_p, matriz[i, j+1].G3_p, matriz[i, j+1].G4_p, matriz[i - 1, j+1].G1_p,
-                                matriz[i - 1, j+1].G2_p, matriz[i - 1, j+1].G3_p, matriz[i - 1, j+1].G4_p, delta_xi);
+                                matriz[i - 1, j+1].G2_p, matriz[i - 1, j+1].G3_p, matriz[i - 1, j+1].G4_p, delta_x);
 
                         }
                         else
                         {
-                            F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, delta_xi, delta_y_t, 
+                            F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, delta_x, delta_y_t, 
                                 matriz[i - 1, j+1].F1_p, 
                                 matriz[i - 1, j+1].F2_p, 
                                 matriz[i - 1, j+1].F3_p, 
@@ -297,7 +296,7 @@ namespace LibreriaClases
                 }
                 double max_tan = max_tan_Array.Max();
                 delta_x = C * delta_y / max_tan;
-                delta_xi = delta_x;
+                
                 for (int i = 0; i < rows; i++)
                 {
                     matriz[i, j + 1].x = matriz[i, j].x + delta_x;
@@ -308,19 +307,19 @@ namespace LibreriaClases
                     double[] F1_F2_F3_F4_p_derecha_vector;
                     if (i == 0)
                     {
-                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Inferior(delta_y_t, delta_xi, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
+                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Inferior(delta_y_t, delta_x, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
                                                                                                      matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i + 1, j].G1,
                                                                                                      matriz[i + 1, j].G2, matriz[i + 1, j].G3, matriz[i + 1, j].G4);
                     }
                     else if (i == rows - 1)
                     {
-                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Superior(delta_y_t, delta_xi, matriz[i - 1, j].F1, matriz[i - 1, j].F2,
+                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Superior(delta_y_t, delta_x, matriz[i - 1, j].F1, matriz[i - 1, j].F2,
                                                                                                      matriz[i - 1, j].F3, matriz[i - 1, j].F4, matriz[i - 1, j].G1,
                                                                                                      matriz[i - 1, j].G2, matriz[i - 1, j].G3, matriz[i - 1, j].G4);
                     }
                     else
                     {
-                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Principal(Cy, delta_y_t, delta_xi, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
+                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Principal(Cy, delta_y_t, delta_x, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
                                                                                              matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i - 1, j].F1,
                                                                                              matriz[i - 1, j].F2, matriz[i - 1, j].F3, matriz[i - 1, j].F4,
                                                                                              matriz[i + 1, j].G1, matriz[i + 1, j].G2, matriz[i + 1, j].G3,
@@ -355,18 +354,18 @@ namespace LibreriaClases
                     {
                         F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Inferior(delta_y_t, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p, matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p, matriz[i + 1, j + 1].F1_p,
                             matriz[i + 1, j + 1].F2_p, matriz[i + 1, j + 1].F3_p, matriz[i + 1, j + 1].F4_p, matriz[i, j + 1].G1_p, matriz[i, j + 1].G2_p, matriz[i, j + 1].G3_p, matriz[i, j + 1].G4_p, matriz[i + 1, j + 1].G1_p,
-                            matriz[i + 1, j + 1].G2_p, matriz[i + 1, j + 1].G3_p, matriz[i + 1, j + 1].G4_p, delta_xi);
+                            matriz[i + 1, j + 1].G2_p, matriz[i + 1, j + 1].G3_p, matriz[i + 1, j + 1].G4_p, delta_x);
                     }
                     else if (i == rows - 1)
                     {
                         F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Superior(delta_y_t, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p, matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p, matriz[i - 1, j + 1].F1_p,
                             matriz[i - 1, j + 1].F2_p, matriz[i - 1, j + 1].F3_p, matriz[i - 1, j + 1].F4_p, matriz[i, j + 1].G1_p, matriz[i, j + 1].G2_p, matriz[i, j + 1].G3_p, matriz[i, j + 1].G4_p, matriz[i - 1, j + 1].G1_p,
-                            matriz[i - 1, j + 1].G2_p, matriz[i - 1, j + 1].G3_p, matriz[i - 1, j + 1].G4_p, delta_xi);
+                            matriz[i - 1, j + 1].G2_p, matriz[i - 1, j + 1].G3_p, matriz[i - 1, j + 1].G4_p, delta_x);
 
                     }
                     else
                     {
-                        F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, delta_xi, delta_y_t,
+                        F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, delta_x, delta_y_t,
                             matriz[i - 1, j + 1].F1_p,
                             matriz[i - 1, j + 1].F2_p,
                             matriz[i - 1, j + 1].F3_p,
