@@ -389,8 +389,10 @@ namespace WPFapp
             //empty grid
             GridMalla.Children.Clear();
             // no selected item
+            isLOADING = true;
             DataGridComboBox.SelectedItem = null;
             PresitionComboBox.SelectedItem = null;
+            isLOADING = false;
             // checkbox not selected and labels empty
             CheckBox_A.IsChecked = false;
             T_TextBox.Text = "";
@@ -419,6 +421,7 @@ namespace WPFapp
             P_TextBox.IsEnabled = false;
             M_TextBox.IsEnabled = false;
             v_TextBox.IsEnabled = false;
+
 
         }
 
@@ -734,6 +737,7 @@ namespace WPFapp
         }
         private void SaveSim_button_Click(object sender, RoutedEventArgs e)
         {
+            
             // Configure save file dialog box
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
             dlg.FileName = "Simulación"; // Default file name
@@ -760,6 +764,7 @@ namespace WPFapp
         private void LoadSim_button_Click(object sender, RoutedEventArgs e)
         {
             #region CLEAR ALL
+            isLOADING = true;
             // new Malla created
             m = new Malla();
             //empty casillas
