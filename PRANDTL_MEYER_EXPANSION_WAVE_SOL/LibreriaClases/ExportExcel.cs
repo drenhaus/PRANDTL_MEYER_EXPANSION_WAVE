@@ -42,6 +42,5 @@ namespace LibreriaClases
             }
         }
         #endregion EXPORT TABLE FUNCTION
-
     }
 }

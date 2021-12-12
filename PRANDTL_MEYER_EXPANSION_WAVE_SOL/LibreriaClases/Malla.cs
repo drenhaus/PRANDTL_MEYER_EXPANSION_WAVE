@@ -417,7 +417,7 @@ namespace LibreriaClases
 
         #endregion COMPUTE
 
-        #region TABLE MANIPULATION FUNCION
+        #region TABLE MANIPULATION FUNCTION
         public void Fill_DataTable()
         {
 
@@ -751,7 +751,7 @@ namespace LibreriaClases
             }
         }
 
-        #endregion TABLE MANIPULATION FUNCION
+        #endregion TABLE MANIPULATION FUNCTION
 
     }
 }

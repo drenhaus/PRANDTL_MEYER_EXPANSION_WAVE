@@ -20,7 +20,6 @@ namespace LibreriaClases
 
 
 
-
         //GENERAMOS EL GRÁFICO DE LA TEMPERATURA
         public List<Punto> GenerarDatosTEMP(double limiteSuperior)
         {
@@ -104,7 +103,7 @@ namespace LibreriaClases
 
         #endregion ATRIBUTES
 
-        #region EVALUATE FUNTIONS
+        #region EVALUATE FUNCTIONS
         //GENERAMOS LAS FUNCIONES QUE VAMOS A PLOTEAR
         // dada una iteración, nos devuelve el valor de la temperatura media en esa iteración
         private double EvaluarX(double x)
@@ -136,6 +135,6 @@ namespace LibreriaClases
             return listaVxColumna_G[Convert.ToInt32(x)]; // hace la busqueda en la lista
         }
 
-        #endregion EVALUATE FUNTIONS
+        #endregion EVALUATE FUNCTIONS
     }
 }

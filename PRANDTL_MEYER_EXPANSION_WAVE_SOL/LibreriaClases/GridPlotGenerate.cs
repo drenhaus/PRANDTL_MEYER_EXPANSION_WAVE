@@ -19,7 +19,7 @@ namespace LibreriaClases
 {
     public class GridPlotGenerate
     {
-        #region ATRIBUTES
+        #region ATTRIBUTES
 
         Polygon[,] casillas;
  
@@ -28,7 +28,7 @@ namespace LibreriaClases
 
         public int dimension_scale { get; set; } = 7;
 
-        #endregion ATRIBUTES
+        #endregion ATTRIBUTES
 
         #region GRID PLOR GENERATOR
         public Polygon[,] GenerateGridPlot(int filas, int columnas, Malla m)
@@ -54,7 +54,6 @@ namespace LibreriaClases
                 y3 = 0;
                 y4 = 0;
 
-                
 
                 for (int j = 0; j < filas; j++)
                 {
@@ -90,7 +89,7 @@ namespace LibreriaClases
         }
         #endregion GRID PLOT GENERATOR
 
-        #region UPDATE GRID COLOR
+        #region UPDATE GRID COLOUR
         public Polygon[,] actualizar_colores_grid(DataTable t, byte R, byte G, byte B, bool DataIsV)
         {
             double[] max_min;
@@ -100,7 +99,7 @@ namespace LibreriaClases
             {
                 for (int j = 0; j < filas; j++)
                 {
-                    byte alpha = Define_Cloroes(max_min[0], max_min[1], Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()),DataIsV);
+                    byte alpha = Define_Colores(max_min[0], max_min[1], Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()),DataIsV);
                     casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(alpha, R, G, B));
                 }
             }
@@ -122,14 +121,14 @@ namespace LibreriaClases
             {
                 for (int j = 0; j < filas; j++)
                 {
-                    byte alpha = Define_Cloroes(max,min, Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()),true);
+                    byte alpha = Define_Colores(max,min, Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()),true);
                     casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(alpha, R, G, B));
                 }
             }
             return casillas;
 
         }
-        public byte Define_Cloroes(double max, double min, double value, bool DataIsV)
+        public byte Define_Colores(double max, double min, double value, bool DataIsV)
         {
             double rango = max - min;
 
@@ -158,7 +157,7 @@ namespace LibreriaClases
 
         }
 
-        #endregion UPDATE GRID COLOR
+        #endregion UPDATE GRID COLOUR
 
         #region DATATABLE MANIPULATIONS
         public double[] Max_Min_Datatables(DataTable data_t, bool DataIsV)
