@@ -91,16 +91,16 @@ namespace LibreriaClases
         #endregion GRID PLOT GENERATOR
 
         #region UPDATE GRID COLOR
-        public Polygon[,] actualizar_colores_grid(DataTable t, byte R, byte G, byte B)
+        public Polygon[,] actualizar_colores_grid(DataTable t, byte R, byte G, byte B, bool DataIsV)
         {
             double[] max_min;
-            max_min = Max_Min_Datatables(t);
+            max_min = Max_Min_Datatables(t, DataIsV);
 
             for (int i = 0; i < columnas - 1; i++)
             {
                 for (int j = 0; j < filas; j++)
                 {
-                    byte alpha = Define_Cloroes(max_min[0], max_min[1], Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()));
+                    byte alpha = Define_Cloroes(max_min[0], max_min[1], Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()),DataIsV);
                     casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(alpha, R, G, B));
                 }
             }
@@ -122,24 +122,37 @@ namespace LibreriaClases
             {
                 for (int j = 0; j < filas; j++)
                 {
-                    byte alpha = Define_Cloroes(max,min, Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()));
+                    byte alpha = Define_Cloroes(max,min, Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()),true);
                     casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(alpha, R, G, B));
                 }
             }
             return casillas;
 
         }
-        public byte Define_Cloroes(double max, double min, double value)
+        public byte Define_Cloroes(double max, double min, double value, bool DataIsV)
         {
             double rango = max - min;
 
-            byte alpha;
+            byte alpha=255; // to initialize the variable
 
             //max byte --255
             // min byte --30
 
-            //interpolamos para sacar el parametro alpa
-            alpha = Convert.ToByte(30 + (255 - 30) / (max - min) * (value - min));
+            if (DataIsV==false && value==0)
+            {
+                alpha = 0;
+            }
+
+            else
+            {
+                try
+                {
+                    alpha = Convert.ToByte(30 + (255 - 30) / (max - min) * (value - min));
+                }
+                catch { }
+            }
+            
+           
 
             return alpha;
 
@@ -148,8 +161,9 @@ namespace LibreriaClases
         #endregion UPDATE GRID COLOR
 
         #region DATATABLE MANIPULATIONS
-        public double[] Max_Min_Datatables(DataTable data_t)
+        public double[] Max_Min_Datatables(DataTable data_t, bool DataIsV)
         {
+
             double max = Convert.ToDouble(data_t.Rows[0][0].ToString());
             double min = Convert.ToDouble(data_t.Rows[0][0].ToString());
             for (int i = 0; i < columnas; i++)
@@ -158,7 +172,12 @@ namespace LibreriaClases
                 {
                     if (Convert.ToDouble(data_t.Rows[j][i].ToString()) < min)
                     {
-                        min = Convert.ToDouble(data_t.Rows[j][i].ToString());
+                        if (DataIsV == false && data_t.Rows[j][i].ToString() == "0")
+                        { }
+                        else
+                        {
+                            min = Convert.ToDouble(data_t.Rows[j][i].ToString());
+                        }
                     }
                     if (Convert.ToDouble(data_t.Rows[j][i].ToString()) > max)
                     {

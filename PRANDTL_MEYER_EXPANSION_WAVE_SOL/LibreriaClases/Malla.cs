@@ -80,8 +80,6 @@ namespace LibreriaClases
             return delta_y_array;
         }
 
-
-
         #endregion MATRIX DEFINITION
 
         #region COMPUTE
@@ -465,16 +463,16 @@ namespace LibreriaClases
 
                 for (int j = 0; j < columns; j++)
                 {
-                    TEMP_R[j] = matriz[i, j].T;
-                    U_R[j] = matriz[i, j].u;
-                    V_R[j] = matriz[i, j].v;
-                    RHO_R[j] = matriz[i, j].Rho;
-                    P_R[j] = matriz[i, j].P;
-                    M_R[j] = matriz[i, j].M;
-                    F1_R[j] = matriz[i, j].F1;
-                    F2_R[j] = matriz[i, j].F2;
-                    F3_R[j] = matriz[i, j].F3;
-                    F4_R[j] = matriz[i, j].F4;
+                    TEMP_R[j] = Math.Round(matriz[i, j].T,4);
+                    U_R[j] = Math.Round(matriz[i, j].u, 4);
+                    V_R[j] = Math.Round(matriz[i, j].v, 4);
+                    RHO_R[j] = Math.Round(matriz[i, j].Rho, 4);
+                    P_R[j] = Math.Round(matriz[i, j].P, 4);
+                    M_R[j] = Math.Round(matriz[i, j].M, 4);
+                    F1_R[j] = Math.Round(matriz[i, j].F1, 4);
+                    F2_R[j] = Math.Round(matriz[i, j].F2, 4);
+                    F3_R[j] = Math.Round(matriz[i, j].F3, 4);
+                    F4_R[j] = Math.Round(matriz[i, j].F4, 4);
 
                 }
 
@@ -496,73 +494,73 @@ namespace LibreriaClases
 
         public double[] GetColumnData_array(string data, int columna_int)
         {
-            double[] valores= new double[rows-1];
+            double[] valores= new double[rows];
             if (data=="t")
             { 
-                for (int j=0;j<rows-1;j++)
+                for (int j=0;j<rows;j++)
                 {
                     valores[j] = matriz[j, columna_int].T;
                 }
             }
             else if (data == "u")
             {
-                for (int j = 0; j < rows-1; j++)
+                for (int j = 0; j < rows; j++)
                 {
                     valores[j] = matriz[j, columna_int].u;
                 }
             }
             else if (data == "v")
             {
-                for (int j = 0; j < rows-1; j++)
+                for (int j = 0; j < rows; j++)
                 {
                     valores[j] = matriz[j, columna_int].v;
                 }
             }
             else if (data == "m")
             {
-                for (int j = 0; j < rows-1; j++)
+                for (int j = 0; j < rows; j++)
                 {
                     valores[j] = matriz[j, columna_int].M;
                 }
             }
             else if (data == "p")
             {
-                for (int j = 0; j < rows-1; j++)
+                for (int j = 0; j < rows; j++)
                 {
                     valores[j] = matriz[j, columna_int].P;
                 }
             }
             else if (data == "rho")
             {
-                for (int j = 0; j < rows-1; j++)
+                for (int j = 0; j < rows; j++)
                 {
                     valores[j] = matriz[j, columna_int].Rho;
                 }
             }
             else if (data == "f1")
             {
-                for (int j = 0; j < rows-1; j++)
+                for (int j = 0; j < rows; j++)
                 {
                     valores[j] = matriz[j, columna_int].F1;
                 }
             }
             else if (data == "f2")
             {
-                for (int j = 0; j < rows-1; j++)
+                for (int j = 0; j < rows; j++)
                 {
                     valores[j] = matriz[j, columna_int].F2;
                 }
             }
             else if (data == "f3")
             {
-                for (int j = 0; j < rows-1; j++)
+                for (int j = 0; j < rows; j++)
                 {
                     valores[j] = matriz[j, columna_int].F3;
                 }
             }
             else if (data == "f4")
             {
-                for (int j = 0; j < rows-1; j++)
+                for (int j = 0; j < rows; j++)
                 {
                     valores[j] = matriz[j, columna_int].F4;
                 }

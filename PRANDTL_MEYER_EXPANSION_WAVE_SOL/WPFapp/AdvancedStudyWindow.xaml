@@ -108,22 +108,28 @@
 
 
             <DataGrid x:Name="Advanced_DataGridMalla" 
-                  Margin="782,172,42,288" 
+                  Margin="793,173,31,287" 
+                      Visibility="Hidden"
                   ItemsSource="{Binding}" 
+                  LoadingRow="Advanced_DataGridMalla_LoadingRow"
                     AutoGenerateColumns="True" Grid.RowSpan="2"/>
 
             <DataGrid x:Name="Advanced_DataGridMalla_2" 
-                  Margin="782,69,0,0" 
+                  Margin="794,77,0,0" 
+                      Visibility="Hidden"
                   ItemsSource="{Binding}" 
+                  LoadingRow="Advanced_DataGridMalla_2_LoadingRow"
                     AutoGenerateColumns="True" RenderTransformOrigin="0.61,-0.682" Height="258" VerticalAlignment="Top" HorizontalAlignment="Left" Width="276" Grid.Row="1"/>
-            <Button x:Name="AdvStudyExplication_Button" Content="Explication of A.S" 
+            <Button x:Name="AdvStudyExplication_Button" 
                 HorizontalAlignment="Left" 
                 Margin="782,78,0,0" 
                 VerticalAlignment="Top" 
-                Height="32" Width="127"
-                    Foreground="White" 
+                Height="30" Width="30"
+                BorderThickness="0"
+                Background="Transparent"
+                Foreground="Transparent" 
                     FontFamily="/Fonts/#Poppins"
-                    Style="{DynamicResource RoundCorner}"
+                    
                     
                     ToolTipService.ShowDuration="30000">
 
@@ -137,7 +143,7 @@
                         <LineBreak />
                         CASE 2. Two consecutive inclined planes but with a straight plane between them
                         <LineBreak />
-                        The results can be observed by selecting the data in the combobox and pressing the load table’s button
+                        The results can be observed by selecting the data in the combobox
                         </TextBlock>
                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                         <WrapPanel>
@@ -145,6 +151,9 @@
                         </WrapPanel>
                     </StackPanel>
                 </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="Images/info.png"/>
+                </StackPanel>
 
             </Button>
 
@@ -332,11 +341,11 @@
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
-            <Button x:Name="Load_tables_butt" Content="Load tables" 
+            <Button x:Name="Load_tables_butt" Content="Show tables" 
                 HorizontalAlignment="Left" 
-                Margin="782,125,0,0" 
+                Margin="801,125,0,0" 
                 VerticalAlignment="Top" 
-                Height="32" Width="127"
+                Height="32" Width="89"
                 Foreground="White" 
                 FontFamily="/Fonts/#Poppins"
                 Style="{DynamicResource RoundCorner}" Click="Load_tables_butt_Click"/>
@@ -347,6 +356,204 @@
                    Height="57" 
                    Width="1034"
                    MouseMove="Label_MouseMove"/>
+            <Button x:Name="change_Mouse_butt" Content="Show cell datails" 
+                HorizontalAlignment="Left" 
+                Margin="910,125,0,0" 
+                VerticalAlignment="Top" 
+                Height="32" Width="127"
+                Foreground="White" 
+                FontFamily="/Fonts/#Poppins"
+                Style="{DynamicResource RoundCorner}" Click="change_Mouse_butt_Click" 
+                />
+
+
+            <TextBox x:Name="t1_text" 
+                     HorizontalAlignment="Left" 
+                     Height="28" Margin="982,189,0,0" Text="" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="63"
+                     Style="{StaticResource verTemperaturatextbox}"/>
+            <TextBox x:Name="m1_text" 
+                     HorizontalAlignment="Left" 
+                     Height="28" Margin="982,222,0,0" Text="" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="63"
+                     Style="{StaticResource verFasetextbox}"/>
+            <TextBox x:Name="p1_text" 
+                     HorizontalAlignment="Left" 
+                     Height="28" Margin="982,256,0,0"
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" Width="63"
+                     Style="{StaticResource verPresuretextbox}"
+                     />
+            <TextBox x:Name="rho1_text" 
+                     HorizontalAlignment="Left" 
+                     Height="28" Margin="982,289,0,0" Style="{StaticResource verDensitytextbox}" 
+                     TextWrapping="Wrap" VerticalAlignment="Top" 
+                     Width="63"/>
+            <TextBox x:Name="v1_text" 
+                     HorizontalAlignment="Left" 
+                     Height="28" Margin="982,322,0,0" Style="{StaticResource verVtextbox}" 
+                     TextWrapping="Wrap" VerticalAlignment="Top" 
+                     Width="63" Grid.RowSpan="2"/>
+            <TextBox x:Name="u1_text" 
+                     HorizontalAlignment="Left" 
+                     Height="28" Margin="982,10,0,0"
+                     Grid.Row="1"  
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" Width="63"
+                     Style="{StaticResource verUtextbox}"
+                     />
+            <TextBox x:Name="t2_text" 
+                     HorizontalAlignment="Left" 
+                     Height="28" Margin="982,97,0,0" Text="" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="63"
+                     Style="{StaticResource verTemperaturatextbox}" Grid.Row="1"/>
+            <TextBox x:Name="m2_text" 
+                     HorizontalAlignment="Left" 
+                     Height="28" Margin="982,130,0,0" Text="" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="63"
+                     Style="{StaticResource verFasetextbox}" Grid.Row="1"/>
+            <TextBox x:Name="p2_text" 
+                     HorizontalAlignment="Left" 
+                     Height="28" Margin="982,163,0,0"
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" Width="63"
+                     Style="{StaticResource verPresuretextbox}" Grid.Row="1"
+                     />
+            <TextBox x:Name="rho2_text" 
+                     HorizontalAlignment="Left" 
+                     Height="28" Margin="982,196,0,0" Style="{StaticResource verDensitytextbox}" 
+                     TextWrapping="Wrap" VerticalAlignment="Top" 
+                     Width="63" Grid.Row="1"/>
+            <TextBox x:Name="v2_text" 
+                     HorizontalAlignment="Left" 
+                     Height="28" Margin="982,229,0,0" Style="{StaticResource verVtextbox}" 
+                     TextWrapping="Wrap" VerticalAlignment="Top" 
+                     Width="63" Grid.Row="1"/>
+            <TextBox x:Name="u2_text" 
+                     HorizontalAlignment="Left" 
+                     Height="28" Margin="982,262,0,0"
+                     Grid.Row="1"  
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" Width="63"
+                     Style="{StaticResource verUtextbox}"
+                     />
+            <Label x:Name="labelt" Content="Tempreature [K]:" 
+            HorizontalAlignment="Left" 
+            Margin="800,190,0,0" 
+            VerticalAlignment="Top" 
+                   RenderTransformOrigin="0.495,1.177"
+                   Height="26" Width="116"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="12"/>
+            <Label x:Name="labelm" Content="Mach:" 
+            HorizontalAlignment="Left" 
+            Margin="801,223,0,0" 
+            VerticalAlignment="Top" 
+                   RenderTransformOrigin="0.495,1.177" 
+                   Height="26" Width="67"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="12"/>
+            <Label x:Name="labelp" Content="Pressure [N/m^2]:" 
+            HorizontalAlignment="Left" 
+            Margin="800,257,0,0" 
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="12"
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="152"/>
+            <Label x:Name="labelrho" Content="Density [kg/m^3]:" 
+            HorizontalAlignment="Left" 
+            Margin="800,290,0,0" 
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="12"
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="152"/>
+            <Label x:Name="labelv" Content="Vertical velocity [m/s]:" 
+            HorizontalAlignment="Left" 
+            Margin="800,323,0,0" 
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="12"
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="152" Grid.RowSpan="2"/>
+            <Label x:Name="labelu" Content="Horizontal velocity [m/s]:" 
+            HorizontalAlignment="Left" 
+            Margin="800,11,0,0" 
+            Grid.Row="1" 
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="12"
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="165"/>
+
+            <Label x:Name="labelt2" Content="Temperature [K]:" 
+            HorizontalAlignment="Left" 
+            Margin="800,93,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" 
+                   RenderTransformOrigin="0.495,1.177"
+                   Height="26" Width="132"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="12"/>
+            <Label x:Name="labelm2" Content="Mach:" 
+            HorizontalAlignment="Left" 
+            Margin="801,126,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" 
+                   RenderTransformOrigin="0.495,1.177" 
+                   Height="26" Width="43"
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="12"/>
+            <Label x:Name="labelp2" Content="Pressure [N/m^2]:" 
+            HorizontalAlignment="Left" 
+            Margin="801,164,0,0" 
+            Grid.Row="1" 
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="12"
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="142"/>
+            <Label x:Name="labelrho2" Content="Density [kg/m^3]:" 
+            HorizontalAlignment="Left" 
+            Margin="801,199,0,0" 
+            Grid.Row="1" 
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="12"
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="115"/>
+            <Label x:Name="labelv2" Content="Vertical velocity [m/s]:" 
+            HorizontalAlignment="Left" 
+            Margin="801,231,0,0" 
+            Grid.Row="1" 
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="12"
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="142"/>
+            <Label x:Name="labelu2" Content="Horizontal velocity [m/s]:" 
+            HorizontalAlignment="Left" 
+            Margin="801,262,0,0" 
+            Grid.Row="1" 
+                   FontFamily="/Fonts/#Poppins"
+                   Foreground="White"
+                   FontSize="12"
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="164"/>
+            <Button x:Name="butt_entrelabels" Content="" HorizontalAlignment="Left" 
+                    Height="1" Margin="782,66,0,0" Grid.Row="1" 
+                    VerticalAlignment="Top" Width="299"
+                    Background="White"
+                    BorderThickness="0" IsEnabled="False"/>
+
+
+
+
 
 
 
