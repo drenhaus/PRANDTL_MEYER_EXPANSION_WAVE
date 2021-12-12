@@ -6,14 +6,16 @@ namespace LibreriaClases
 {
     public class Normas
     {
-        #region ATRIBUITES
+        #region ATTRIBUTES
 
+        #region PHYSICAL DOMAIN
         public double H { get; set; } = 40;
         public double Theta { get; set; } = 5.352 * Math.PI / 180;
         public double L { get; set; } = 67;
         public double E { get; set; } = 10;
+        #endregion PHYSICAL DOMAIN
 
-        #region INITIAL CONDITION ATRIBUTES
+        #region INITIAL DATA LINE AND PARAMETERS 
         public double M_in { get; set; } 
         public double P_in { get; set; } 
         public double Rho_in { get; set; }
@@ -24,10 +26,11 @@ namespace LibreriaClases
         public double u_in { get; set; }
         public double M_angle { get; set; }
         public double a_in { get; set; }
-        #endregion INITIAL CONDITIONS ATRIBUITES
-        #endregion ATRIBUTES
+        #endregion INITIAL DATA LINE AND PARAMETERS 
 
-        #region FUNTION TO COMPUTE THE REST OF INITIAL OCNDITIONS
+        #endregion ATTRIBUTES
+
+        #region FUNCTIONS TO COMPUTE THE REST OF PARAMETERS
         public void Compute_u()
         {
             this.u_in= this.M_in *this.a_in;
@@ -41,6 +44,6 @@ namespace LibreriaClases
             this.a_in = Math.Sqrt(this.Gamma * this.R_air * this.T_in);
         }
 
-        #endregion FUNTION TO COMPUTE THE REST OF INITIAL OCNDITIONS 
+        #endregion FUNCTIONS TO COMPUTE THE REST OF PARAMETERS
     }
 }

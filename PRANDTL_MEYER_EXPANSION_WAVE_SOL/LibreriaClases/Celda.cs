@@ -5,7 +5,7 @@ namespace LibreriaClases
 {
     public class Celda
     {
-        #region ATRIBUTES
+        #region ATTRIBUTES
         public double M { get; set; }
         public double u { get; set; }
         public double v { get; set; }
@@ -16,7 +16,6 @@ namespace LibreriaClases
         public double M_angle { get; set; }
 
         public double tan_max { get; set; }
-
 
         #region F VALUES
 
@@ -50,11 +49,6 @@ namespace LibreriaClases
         public double dF3_x { get; set; }
         public double dF4_x { get; set; }
 
-        public double dF1_p_x { get; set; }
-        public double dF2_p_x { get; set; }
-        public double dF3_p_x { get; set; }
-        public double dF4_p_x { get; set; }
-
         public double P_p { get; set; }
         public double Rho_p { get; set; }
 
@@ -65,23 +59,10 @@ namespace LibreriaClases
         public double y_t { get; set; }
         public double y_s { get; set; }
         public double h { get; set; }
-        public double delta_x { get; set; }
         public double dEta_dx { get; set; }
         public double dEta_dy { get; set; }
-        public double delta_y_t { get; set; }
 
-        public double SF1 { get; set; }     // 0 REFERENCIAS!!! SE PUEDE QUITAR
-        public double SF2 { get; set; }
-        public double SF3 { get; set; }
-        public double SF4 { get; set; }
-
-
-        public double dF1_x_av { get; set; }
-        public double dF2_x_av { get; set; }
-        public double dF3_x_av { get; set; }
-        public double dF4_x_av { get; set; }
-
-        #endregion ATRIBUTES
+        #endregion ATTRIBUTES
 
         #region FIRST COLUM COMPUTATIOPN
         // for the initial data line
@@ -296,6 +277,7 @@ namespace LibreriaClases
 
         #endregion  CORRECTOR STEPS FUNTIONS
 
+        #region COMPUTATION OF THE FINAL VALUES
         public void Wall_Bounday_Condition(double Gamma, double R_aire, double E, double theta)
         {
             double A = (Math.Pow(F3, 2) / (2 * F1)) - F4;
@@ -374,6 +356,7 @@ namespace LibreriaClases
             this.G3 = Rho * Math.Pow((F3 / F1), 2) + F2 - (Math.Pow(F1, 2) / Rho);
             this.G4 = ((Gamma / (Gamma - 1)) * ((F2) - ((Math.Pow(F1, 2)) / Rho)) * (F3 / F1)) + (((Rho * F3) / (2 * F1)) * ((Math.Pow((F1 / Rho), 2)) + (Math.Pow((F3 / F1), 2))));
         }
+        #endregion COMPUTATION OF THE FINAL VALUES
 
         #region COMPUTATION OF THE ACTUAL MACH
         public double compute_M_act(double Gamma, double f_act)
@@ -404,7 +387,6 @@ namespace LibreriaClases
     
         }
         #endregion COMPUTATION OF THE ACTUAL MACH
-
 
     }
 }
