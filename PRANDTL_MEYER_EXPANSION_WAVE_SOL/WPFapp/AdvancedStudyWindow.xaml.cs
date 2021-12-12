@@ -579,6 +579,7 @@ namespace WPFapp
             Advanced_DataGridMalla_2.Visibility = Visibility.Hidden;
         }
 
+        // Mouse functions
         public void polygon_enter2(object sender, EventArgs e)
         {
             if (FijarValor1 == false)
@@ -615,7 +616,6 @@ namespace WPFapp
             }
 
         }
-
         public void polygon_enter3(object sender, EventArgs e)
         {
             if (FijarValor1 == false)
