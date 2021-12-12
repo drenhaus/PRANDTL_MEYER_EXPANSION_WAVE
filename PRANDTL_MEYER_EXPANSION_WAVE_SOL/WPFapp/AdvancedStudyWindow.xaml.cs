@@ -22,6 +22,9 @@ namespace WPFapp
     {
 
         #region ATRIBUTES
+        bool FijarValor1 = false;
+        bool FijarValor2 = false;
+
         Malla m2 = new Malla();
         Malla m3 = new Malla();
         Malla m4 = new Malla();
@@ -207,6 +210,9 @@ namespace WPFapp
             {
                 for (int j = 0; j < m2.rows; j++)
                 {
+                    casillas2[j, i].MouseEnter += polygon_enter2;
+                    casillas2[j, i].MouseRightButtonDown += right_button1;
+                    casillas2[j, i].MouseLeftButtonDown += left_button1;
                     Advanced_GridMalla_CASO1.Children.Add(casillas2[j, i]);
                 }
             }
@@ -214,6 +220,9 @@ namespace WPFapp
             {
                 for (int j = 0; j < m3.rows; j++)
                 {
+                    casillas3[j, i].MouseLeftButtonDown += left_button1;
+                    casillas3[j, i].MouseEnter += polygon_enter3;
+                    casillas3[j, i].MouseRightButtonDown += right_button1;
                     Advanced_GridMalla_2_CASO1.Children.Add(casillas3[j, i]);
                 }
             }
@@ -223,6 +232,9 @@ namespace WPFapp
             {
                 for (int j = 0; j < m4.rows; j++)
                 {
+                    casillas4[j, i].MouseEnter += polygon_enter4;
+                    casillas4[j, i].MouseRightButtonDown += right_button2;
+                    casillas4[j, i].MouseLeftButtonDown += left_button2;
                     Advanced_GridMalla_CASO2.Children.Add(casillas4[j, i]);
                 }
             }
@@ -230,6 +242,9 @@ namespace WPFapp
             {
                 for (int j = 0; j < m5.rows; j++)
                 {
+                    casillas5[j, i].MouseEnter += polygon_enter5;
+                    casillas5[j, i].MouseLeftButtonDown += left_button2;
+                    casillas5[j, i].MouseRightButtonDown += right_button2;
                     Advanced_GridMalla_2_CASO2.Children.Add(casillas5[j, i]);
                 }
             }
@@ -563,6 +578,170 @@ namespace WPFapp
             Advanced_DataGridMalla.Visibility = Visibility.Hidden;
             Advanced_DataGridMalla_2.Visibility = Visibility.Hidden;
         }
+
+        public void polygon_enter2(object sender, EventArgs e)
+        {
+            if (FijarValor1 == false)
+            {
+                // We obtain the points that define the polygon we are in
+                Polygon poly = (Polygon)sender;
+                Point p0 = poly.Points[0];
+                Point p1 = poly.Points[1];
+                Point p2 = poly.Points[2];
+                Point p3 = poly.Points[3];
+
+                // we look for which of the polygons saved in CASILLAS corresponts the points
+                for (int i = 0; i < m2.columns - 1; i++)
+                {
+                    for (int j = 0; j < m2.rows; j++)
+                    {
+                        Point p0_C = casillas2[j, i].Points[0];
+                        Point p1_C = casillas2[j, i].Points[1];
+                        Point p2_C = casillas2[j, i].Points[2];
+                        Point p3_C = casillas2[j, i].Points[3];
+
+                        if ((p0 == p0_C) && (p1 == p1_C) && (p2 == p2_C) && (p3 == p3_C))
+                        {
+                            // when we find the polygon with this points we show the corresponging labels
+                            u1_text.Text = Convert.ToString(m2.matriz[m2.rows - 1 - j, i].u);
+                            v1_text.Text = Convert.ToString(m2.matriz[m2.rows - 1 - j, i].v);
+                            rho1_text.Text = Convert.ToString(m2.matriz[m2.rows - 1 - j, i].Rho);
+                            p1_text.Text = Convert.ToString(m2.matriz[m2.rows - 1 - j, i].P);
+                            t1_text.Text = Convert.ToString(m2.matriz[m2.rows - 1 - j, i].T);
+                            m1_text.Text = Convert.ToString(m2.matriz[m2.rows - 1 - j, i].M);
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public void polygon_enter3(object sender, EventArgs e)
+        {
+            if (FijarValor1 == false)
+            {
+                // We obtain the points that define the polygon we are in
+                Polygon poly = (Polygon)sender;
+                Point p0 = poly.Points[0];
+                Point p1 = poly.Points[1];
+                Point p2 = poly.Points[2];
+                Point p3 = poly.Points[3];
+
+                // we look for which of the polygons saved in CASILLAS corresponts the points
+                for (int i = 0; i < m3.columns - 1; i++)
+                {
+                    for (int j = 0; j < m3.rows; j++)
+                    {
+                        Point p0_C = casillas3[j, i].Points[0];
+                        Point p1_C = casillas3[j, i].Points[1];
+                        Point p2_C = casillas3[j, i].Points[2];
+                        Point p3_C = casillas3[j, i].Points[3];
+
+                        if ((p0 == p0_C) && (p1 == p1_C) && (p2 == p2_C) && (p3 == p3_C))
+                        {
+                            // when we find the polygon with this points we show the corresponging labels
+                            u1_text.Text = Convert.ToString(m3.matriz[m3.rows - 1 - j, i].u);
+                            v1_text.Text = Convert.ToString(m3.matriz[m3.rows - 1 - j, i].v);
+                            rho1_text.Text = Convert.ToString(m3.matriz[m3.rows - 1 - j, i].Rho);
+                            p1_text.Text = Convert.ToString(m3.matriz[m3.rows - 1 - j, i].P);
+                            t1_text.Text = Convert.ToString(m3.matriz[m3.rows - 1 - j, i].T);
+                            m1_text.Text = Convert.ToString(m3.matriz[m3.rows - 1 - j, i].M);
+                        }
+                    }
+                }
+
+
+            }
+        }
+        public void polygon_enter4(object sender, EventArgs e)
+        {
+            if (FijarValor2 == false)
+            {
+                // We obtain the points that define the polygon we are in
+                Polygon poly = (Polygon)sender;
+                Point p0 = poly.Points[0];
+                Point p1 = poly.Points[1];
+                Point p2 = poly.Points[2];
+                Point p3 = poly.Points[3];
+
+                // we look for which of the polygons saved in CASILLAS corresponts the points
+                for (int i = 0; i < m4.columns - 1; i++)
+                {
+                    for (int j = 0; j < m4.rows; j++)
+                    {
+                        Point p0_C = casillas4[j, i].Points[0];
+                        Point p1_C = casillas4[j, i].Points[1];
+                        Point p2_C = casillas4[j, i].Points[2];
+                        Point p3_C = casillas4[j, i].Points[3];
+
+                        if ((p0 == p0_C) && (p1 == p1_C) && (p2 == p2_C) && (p3 == p3_C))
+                        {
+                            // when we find the polygon with this points we show the corresponging labels
+                            u2_text.Text = Convert.ToString(m4.matriz[m4.rows - 1 - j, i].u);
+                            v2_text.Text = Convert.ToString(m4.matriz[m4.rows - 1 - j, i].v);
+                            rho2_text.Text = Convert.ToString(m4.matriz[m4.rows - 1 - j, i].Rho);
+                            p2_text.Text = Convert.ToString(m4.matriz[m4.rows - 1 - j, i].P);
+                            t2_text.Text = Convert.ToString(m4.matriz[m4.rows - 1 - j, i].T);
+                            m2_text.Text = Convert.ToString(m4.matriz[m4.rows - 1 - j, i].M);
+                        }
+                    }
+                }
+
+            }
+        }
+        public void polygon_enter5(object sender, EventArgs e)
+        {
+            if (FijarValor2 == false)
+            {
+                // We obtain the points that define the polygon we are in
+                Polygon poly = (Polygon)sender;
+                Point p0 = poly.Points[0];
+                Point p1 = poly.Points[1];
+                Point p2 = poly.Points[2];
+                Point p3 = poly.Points[3];
+
+                // we look for which of the polygons saved in CASILLAS corresponts the points
+                for (int i = 0; i < m5.columns - 1; i++)
+                {
+                    for (int j = 0; j < m5.rows; j++)
+                    {
+                        Point p0_C = casillas5[j, i].Points[0];
+                        Point p1_C = casillas5[j, i].Points[1];
+                        Point p2_C = casillas5[j, i].Points[2];
+                        Point p3_C = casillas5[j, i].Points[3];
+
+                        if ((p0 == p0_C) && (p1 == p1_C) && (p2 == p2_C) && (p3 == p3_C))
+                        {
+                            // when we find the polygon with this points we show the corresponging labels
+                            u2_text.Text = Convert.ToString(m5.matriz[m5.rows - 1 - j, i].u);
+                            v2_text.Text = Convert.ToString(m5.matriz[m5.rows - 1 - j, i].v);
+                            rho2_text.Text = Convert.ToString(m5.matriz[m5.rows - 1 - j, i].Rho);
+                            p2_text.Text = Convert.ToString(m5.matriz[m5.rows - 1 - j, i].P);
+                            t2_text.Text = Convert.ToString(m5.matriz[m5.rows - 1 - j, i].T);
+                            m2_text.Text = Convert.ToString(m5.matriz[m5.rows - 1 - j, i].M);
+                        }
+                    }
+                }
+
+            }
+        }
+        public void right_button2(object sender, EventArgs e)
+        {
+            FijarValor2 = true;
+        }
+        public void right_button1(object sender, EventArgs e)
+        {
+            FijarValor1 = true;
+        }
+        public void left_button1(object sender, EventArgs e)
+        {
+            FijarValor1 = false;
+        }
+        public void left_button2(object sender, EventArgs e)
+        {
+            FijarValor2 = false;
+        }
+
     }
 
 

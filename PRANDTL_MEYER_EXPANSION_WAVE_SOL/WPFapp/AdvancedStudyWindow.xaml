@@ -528,7 +528,7 @@
                    FontFamily="/Fonts/#Poppins"
                    Foreground="White"
                    FontSize="12"
-            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="78"/>
+            VerticalAlignment="Top" RenderTransformOrigin="0.495,1.177" Height="26" Width="115"/>
             <Label x:Name="labelv2" Content="Vertical velocity [m/s]:" 
             HorizontalAlignment="Left" 
             Margin="801,231,0,0" 
