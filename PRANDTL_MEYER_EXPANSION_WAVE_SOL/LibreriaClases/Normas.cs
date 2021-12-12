@@ -26,7 +26,6 @@ namespace LibreriaClases
         public double a_in { get; set; }
         #endregion INITIAL CONDITIONS ATRIBUITES
         #endregion ATRIBUTES
-
         #region FUNTION TO COMPUTE THE REST OF INITIAL OCNDITIONS
         public void Compute_u()
         {
