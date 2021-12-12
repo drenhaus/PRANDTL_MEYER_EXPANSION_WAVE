@@ -126,7 +126,7 @@
                     Width="277"
                     Style="{DynamicResource RoundCorner}"
                     IsEnabled="False" Grid.Column="1" Grid.Row="1"/>
-            <Button Content="" 
+            <Button 
                     
                     HorizontalAlignment="Left" 
                     Margin="323,8,0,0" 
@@ -134,10 +134,19 @@
                     Height="112" 
                     Width="428"
                     Style="{DynamicResource RoundCorner}"
-                    IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+                    IsEnabled="False" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
+
+            </Button>
 
 
-
+            <Slider Height="30"
+                    Name="slValue"
+                     Grid.Column="1"
+                     Grid.Row="1" Grid.ColumnSpan="2" Margin="584,40,24,19"
+                    Maximum="90"
+                    Minimum="0"
+                    TickPlacement="BottomRight" TickFrequency="10"
+                    Value="5.352"/>
 
             <Label Content="Select precision"
                    HorizontalAlignment="Left"
@@ -318,7 +327,7 @@
             <Label Content="ρ:" 
                    Grid.Column="1" 
                    HorizontalAlignment="Left" 
-                   Margin="339,82,0,0" 
+                   Margin="351,82,0,0" 
                    Grid.Row="1" 
                    VerticalAlignment="Top" 
                    RenderTransformOrigin="0.495,1.177" 
@@ -328,7 +337,7 @@
             <Label Content="P:"
                    Grid.Column="1" 
                    HorizontalAlignment="Left" 
-                   Margin="460,18,0,0" 
+                   Margin="475,18,0,0" 
                    Grid.Row="1" 
                    VerticalAlignment="Top" 
                    RenderTransformOrigin="0.168,0.491" Height="26" Width="19"
@@ -337,7 +346,7 @@
             <Label Content="M:" 
                    Grid.Column="1" 
                    HorizontalAlignment="Left" 
-                   Margin="458,53,0,0" 
+                   Margin="473,53,0,0" 
                    Grid.Row="1" 
                    VerticalAlignment="Top" 
                    RenderTransformOrigin="-0.426,-0.61" 
@@ -347,7 +356,7 @@
             <Label Content="T:" 
                    Grid.Column="1" 
                    HorizontalAlignment="Left" 
-                   Margin="340,46,0,0" 
+                   Margin="352,46,0,0" 
                    Grid.Row="1" 
                    VerticalAlignment="Top" Height="26" Width="19"
                    FontFamily="/Fonts/#Poppins"
@@ -355,7 +364,7 @@
             <Label Content="v:" 
                    Grid.Column="1" 
                    HorizontalAlignment="Left" 
-                   Margin="461,86,0,0" 
+                   Margin="476,86,0,0" 
                    Grid.Row="1" 
                    VerticalAlignment="Top" 
                    RenderTransformOrigin="-0.426,-0.61" Height="26" 
@@ -367,7 +376,7 @@
 
             <TextBox x:Name="P_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="495,16,0,0" 
+                 Margin="510,16,0,0" 
                  Grid.Row="1" 
                  TextWrapping="Wrap" 
                  IsEnabled="False"
@@ -382,7 +391,7 @@
 
             <TextBox x:Name="M_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="495,50,0,0" 
+                 Margin="510,50,0,0" 
                  Grid.Row="1" 
                  TextWrapping="Wrap" 
                  IsEnabled="False"
@@ -395,7 +404,7 @@
 
             <TextBox x:Name="Rho_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="373,83,0,0" 
+                 Margin="385,83,0,0" 
                  Grid.Row="1" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
@@ -409,7 +418,7 @@
 
             <TextBox x:Name="v_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="495,84,0,0" 
+                 Margin="510,84,0,0" 
                  Grid.Row="1" 
                  TextWrapping="Wrap" 
                  IsEnabled="False"
@@ -422,7 +431,7 @@
 
             <TextBox x:Name="T_TextBox" Grid.Column="1" 
                  HorizontalAlignment="Left" 
-                 Margin="373,48,0,0" 
+                 Margin="385,48,0,0" 
                  Grid.Row="1" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top"
@@ -440,12 +449,12 @@
                       Content="Defaul parameters" 
                       Grid.Column="1" 
                       HorizontalAlignment="Left" 
-                      Margin="584,0,0,0" 
+                      Margin="333,18,0,0" 
                       Checked="CheckBox_A_Checked"
                       IsEnabled="False"
-                      VerticalAlignment="Center" Height="22" Width="148"
+                      VerticalAlignment="Top" Height="22" Width="148"
                       FontFamily="/Fonts/#Poppins"
-                      Foreground="White" RenderTransformOrigin="0.475,0.608" Grid.Row="1" Grid.ColumnSpan="2"/>
+                      Foreground="White" RenderTransformOrigin="0.475,0.608" Grid.Row="1"/>
 
 
 
@@ -454,7 +463,7 @@
             <Button x:Name="LoadParametersButton" 
                 Content="Load Parameters" 
                 HorizontalAlignment="Left" 
-                Margin="585,70,0,0" 
+                Margin="584,84,0,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
@@ -463,7 +472,7 @@
                 RenderTransformOrigin="0.477,-0.345" Click="LoadParametersButton_Click"
                     Foreground="White" 
                     FontFamily="/Fonts/#Poppins"
-                    Style="{DynamicResource RoundCorner}" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+                    Style="{DynamicResource RoundCorner}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
             <Button x:Name="SaveSim_button" 
                 Content="Save Simulation" 
@@ -709,10 +718,29 @@
 
             <Image Margin="2,100,167,381" Grid.Row="2" Stretch="Fill" 
                    Source="/icons/AS.png"/>
-            
+
             <Image Margin="0,12,163,462" 
                    Stretch="Fill" 
                    Source="/icons/balnce.png" Grid.Row="2"/>
+            <Label Content="Theta:"
+                Grid.Column="1" 
+                HorizontalAlignment="Left" 
+                Margin="583,13,0,0" 
+                Grid.Row="1" 
+                VerticalAlignment="Top" 
+                RenderTransformOrigin="0.168,0.491" Height="26" Width="54"
+                FontFamily="/Fonts/#Poppins"
+                Foreground="White"/>
+            <Label Content="0º         20º         40º        60º         80º  "
+                Grid.Column="1" 
+                HorizontalAlignment="Left" 
+                Margin="583,60,0,0" 
+                Grid.Row="1" 
+                VerticalAlignment="Top" 
+                RenderTransformOrigin="0.168,0.491" Height="20" Width="163"
+                FontFamily="/Fonts/#Poppins"
+                   FontSize="8"
+                Foreground="White" Grid.ColumnSpan="2"/>
 
         </Grid>
     </Border>
