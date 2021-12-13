@@ -20,7 +20,7 @@
               ItemsSource="{Binding}"  
               LoadingRow="AndersonGridData_LoadingRow"
               RenderTransformOrigin="0.5,0.5" 
-              Margin="231,121,463,19">
+              Margin="254,121,485,19">
 
             </DataGrid>
 
@@ -28,7 +28,7 @@
               RenderTransformOrigin="0.5,0.5" 
               ItemsSource="{Binding}"
               LoadingRow="SimulationGrid_LoadingRow"
-              Margin="430,123,265,16">
+              Margin="467,121,273,18">
 
             </DataGrid>
             <Label Content="Compare the:" 

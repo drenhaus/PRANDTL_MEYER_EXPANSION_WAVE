@@ -387,6 +387,7 @@ namespace WPFapp
         private void Load_tables_butt_Click(object sender, RoutedEventArgs e)
         {
             #region VISIBLE/HIDDE
+            change_Mouse_butt.IsEnabled = true;
             labelt.Visibility = Visibility.Hidden;
             labelm.Visibility = Visibility.Hidden;
             labelp.Visibility = Visibility.Hidden;
@@ -547,6 +548,7 @@ namespace WPFapp
 
         private void change_Mouse_butt_Click(object sender, RoutedEventArgs e)
         {
+            Load_tables_butt.IsEnabled = false;
             labelt.Visibility = Visibility.Visible;
             labelm.Visibility = Visibility.Visible;
             labelp.Visibility = Visibility.Visible;

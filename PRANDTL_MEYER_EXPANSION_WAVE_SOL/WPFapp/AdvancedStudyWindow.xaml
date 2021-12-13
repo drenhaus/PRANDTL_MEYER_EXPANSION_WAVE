@@ -364,7 +364,7 @@
                 Foreground="White" 
                 FontFamily="/Fonts/#Poppins"
                 Style="{DynamicResource RoundCorner}" Click="change_Mouse_butt_Click" 
-                />
+                IsEnabled="False"/>
 
 
             <TextBox x:Name="t1_text" 

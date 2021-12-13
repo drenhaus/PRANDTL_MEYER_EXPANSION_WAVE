@@ -446,7 +446,7 @@
 
 
             <CheckBox x:Name="CheckBox_A" 
-                      Content="Defaul parameters" 
+                      Content="Default parameters" 
                       Grid.Column="1" 
                       HorizontalAlignment="Left" 
                       Margin="333,18,0,0" 
@@ -463,7 +463,7 @@
             <Button x:Name="LoadParametersButton" 
                 Content="Load Parameters" 
                 HorizontalAlignment="Left" 
-                Margin="584,84,0,0" 
+                Margin="593,84,0,0" 
                 Grid.Row="1" 
                 Grid.Column="1"
                 VerticalAlignment="Top" 
