@@ -38,14 +38,20 @@
                     Style="{DynamicResource RoundCorner}"
                     Foreground="White" HorizontalAlignment="Left"/>
 
-            <Button x:Name="TutorialButton" Content="Tutorial" 
+            <Button x:Name="TutorialButton"  
             Margin="0,445,0,48" 
             Width="186" 
             FontWeight="Bold" 
             FontSize="30" 
-            Click="Button_Click"
+             Content="Tutorial"
+                    Click="TutorialButton_Click"
                     Style="{DynamicResource RoundCorner}"
-                    Foreground="White" HorizontalAlignment="Center"/>
+                    Foreground="White" HorizontalAlignment="Center">
+
+                
+
+            </Button>
+                
 
             <Button Content="" 
                     HorizontalAlignment="Center" Height="310" 

@@ -437,7 +437,7 @@
 
 
             <CheckBox x:Name="CheckBox_A" 
-                      Content="Defaul parameters" 
+                      Content="Default parameters" 
                       Grid.Column="1" 
                       HorizontalAlignment="Left" 
                       Margin="584,0,0,0" 

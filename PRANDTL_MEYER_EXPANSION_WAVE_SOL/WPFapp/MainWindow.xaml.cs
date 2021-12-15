@@ -602,6 +602,7 @@ namespace WPFapp
                 }
                 if (PresitionComboBox.SelectedIndex == 2) //high precision
                 {
+                    SeeGrounfOf("HIGH");
                     columnas = 452;
                     filas = 201;
                     delta_y_t = 0.005;                
@@ -829,6 +830,8 @@ namespace WPFapp
                 }
                 else
                 { MessageBox.Show("No ha sido posible cargar la simulación"); }
+                PresitionComboBox.IsEnabled = true;
+            
             }
             catch (Exception ex)
             {

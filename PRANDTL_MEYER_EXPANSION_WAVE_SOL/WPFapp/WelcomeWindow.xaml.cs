@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace WPFapp
 {
@@ -42,12 +43,23 @@ namespace WPFapp
             Close();
         }
 
+
         private void Label_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 this.DragMove();
             }
+        }
+
+        private void TutorialButton_Click(object sender, RoutedEventArgs e)
+        {
+           // Process.Start(@"C:\Users\olgac\OneDrive\Documents\UNI\4A\SIMULACIO\pradtl-meyer\PROJECTE\PRANDTL_MEYER_EXPANSION_WAVE\PRANDTL_MEYER_EXPANSION_WAVE_SOL\WPFapp\Images\info.png");
+            var uri = "https://drive.google.com/file/d/162K73R3-4f5F61Byt_n0pj7m2N6TDX_X/view?usp=sharing";
+            var psi = new System.Diagnostics.ProcessStartInfo();
+            psi.UseShellExecute = true;
+            psi.FileName = uri;
+            System.Diagnostics.Process.Start(psi);
         }
     }
 }

@@ -420,7 +420,8 @@ namespace WPFapp
             #endregion VISIBLE/HIDDE
 
 
-
+            change_Mouse_butt.IsEnabled = true;
+            Load_tables_butt.IsEnabled = true;
 
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
@@ -547,6 +548,10 @@ namespace WPFapp
 
         private void change_Mouse_butt_Click(object sender, RoutedEventArgs e)
         {
+            change_Mouse_butt.IsEnabled = false;
+            Load_tables_butt.IsEnabled = true;
+
+
             labelt.Visibility = Visibility.Visible;
             labelm.Visibility = Visibility.Visible;
             labelp.Visibility = Visibility.Visible;

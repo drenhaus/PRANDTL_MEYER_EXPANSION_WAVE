@@ -362,6 +362,7 @@
                 VerticalAlignment="Top" 
                 Height="32" Width="127"
                 Foreground="White" 
+                    IsEnabled="False"
                 FontFamily="/Fonts/#Poppins"
                 Style="{DynamicResource RoundCorner}" Click="change_Mouse_butt_Click" 
                 />
