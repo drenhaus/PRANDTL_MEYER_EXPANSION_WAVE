@@ -70,25 +70,8 @@ namespace WPFapp
                 dispatcherTimer.Stop();
             }
                 timer = timer + 1;
-        }
-        private void dispatcherTimer_Tick2(object sender, EventArgs e)
-        {
-            if (timer2 == 1)
-            {
-                ld = new Loading();
-                ld.Show();
-            }
-            if (timer2 == 2)
-            {
-                table_to_Export.ExportToExcel();
-            }
-            if (timer2 == 3)
-            {
-                ld.Close();
-                timer2 = -1;
-                dispatcherTimer2.Stop();
-            }
-            timer2 = timer2 + 1;
+        
+      
         }
         #endregion TIMERS
 
@@ -136,22 +119,7 @@ namespace WPFapp
                 dt.Columns[i].ColumnName = Convert.ToString(i + 1);
             }
         }
-        private void ExportTable_Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                dispatcherTimer2 = new DispatcherTimer();
-                dispatcherTimer2.Tick += new EventHandler(dispatcherTimer_Tick2);
-                dispatcherTimer2.Interval = TimeSpan.FromMilliseconds(100);
-                dispatcherTimer2.Start();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
+      
         public void Compute()
         {
 

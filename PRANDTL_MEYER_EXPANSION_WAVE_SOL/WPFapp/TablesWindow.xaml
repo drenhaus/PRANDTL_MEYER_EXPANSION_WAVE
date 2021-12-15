@@ -122,13 +122,6 @@
                                   HorizontalAlignment="Left"
                                   FontSize="14"/>
             </ComboBox>
-            <Button x:Name="ExportTable_Button" Content="Export current table" 
-                HorizontalAlignment="Left" 
-                Margin="639,30,0,0" 
-                Foreground="White"
-                    FontFamily="/Fonts/#Poppins"
-                VerticalAlignment="Top" 
-                Height="32" Width="134" Style="{DynamicResource RoundCorner}" RenderTransformOrigin="0.31,0.437" Click="ExportTable_Button_Click"/>
             <Button x:Name="InfoTables_button"  
                 HorizontalAlignment="Left" 
                 Margin="235,20,0,0"
