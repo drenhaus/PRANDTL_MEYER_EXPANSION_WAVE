@@ -53,7 +53,7 @@ namespace LibreriaClases
         }
 
         //GENERATING THE DENSITY FUNCTION
-        // Function that once gived the upper limit it returns a list of points evaluating Mach
+            // Function that once gived the upper limit it returns a list of points evaluating density
         public List<Punto> GenerarDatosDensidad(double limiteSuperior)
         {
             double limiteInferior = 0; //lower boundary
@@ -68,42 +68,49 @@ namespace LibreriaClases
             return Puntos;
         }
        
-        
+        //GENERATING THE  PRESURE
+            // Function that once gived the upper limit it returns a list of points evaluating pressure
         public List<Punto> GenerarDatosPresure(double limiteSuperior)
         {
             double limiteInferior = 0; //lower boundary
-            double incremento = 1; // incremento
+            double incremento = 1; // increment
 
             Puntos = new List<Punto>();
             for (double x = limiteInferior; x <= limiteSuperior; x += incremento)
             {
-                Puntos.Add(new Punto(EvaluarX(x), EvaluarPresure(x)));
+                Puntos.Add(new Punto(EvaluarX(x), EvaluarPresure(x))); // evaluating the points
             }
 
             return Puntos;
         }
+
+        //GENERATING THE  U
+        // Function that once gived the upper limit it returns a list of points evaluating u
         public List<Punto> GenerarDatosU(double limiteSuperior)
         {
             double limiteInferior = 0; //lower boundary
-            double incremento = 1; // incremento
+            double incremento = 1; // increment
 
             Puntos = new List<Punto>();
             for (double x = limiteInferior; x <= limiteSuperior; x += incremento)
             {
-                Puntos.Add(new Punto(EvaluarX(x), EvaluarU(x)));
+                Puntos.Add(new Punto(EvaluarX(x), EvaluarU(x))); // evaluating the points
             }
 
             return Puntos;
         }
+
+        //GENERATING THE V
+        // Function that once gived the upper limit it returns a list of points evaluating v
         public List<Punto> GenerarDatosV(double limiteSuperior)
         {
             double limiteInferior = 0; //lower boundary
-            double incremento = 1; // incremento
+            double incremento = 1; // increment
 
             Puntos = new List<Punto>();
             for (double x = limiteInferior; x <= limiteSuperior; x += incremento)
             {
-                Puntos.Add(new Punto(EvaluarX(x), EvaluarV(x)));
+                Puntos.Add(new Punto(EvaluarX(x), EvaluarV(x))); // evaluating the points
             }
 
             return Puntos;
@@ -113,32 +120,41 @@ namespace LibreriaClases
         #endregion ATRIBUTES
 
         #region EVALUATE FUNTIONS
-        //GENERAMOS LAS FUNCIONES QUE VAMOS A PLOTEAR
-        // dada una iteración, nos devuelve el valor de la temperatura media en esa iteración
+        //GENERATING PLOTING FUNCTIONS 
+        // given an iteration, it returns the mean value of that iteration 
+        
+        
+            // Given a double x it search this in the list of X
         private double EvaluarX(double x)
         {
             return listaDeXColumna_G[Convert.ToInt32(x)];
         }
+            // evaluating temperature
         private double EvaluarTEMP(double x)
         {
-            return listaTEMPxColumna_G[Convert.ToInt32(x)]; // hace la busqueda en la lista
+            return listaTEMPxColumna_G[Convert.ToInt32(x)]; 
         }
+            // evaluating mach
         private double EvaluarMACH(double x)
         {
-            return listaMachxColumna_G[Convert.ToInt32(x)]; // hace la busqueda en la lista
+            return listaMachxColumna_G[Convert.ToInt32(x)]; 
         }
+            // evaluating density
         private double EvaluarDensidad(double x)
         {
-            return listaDensidadxColumna_G[Convert.ToInt32(x)]; // hace la busqueda en la lista
+            return listaDensidadxColumna_G[Convert.ToInt32(x)]; 
         }
+            // evaluating pressure
         private double EvaluarPresure(double x)
         {
             return listaPresurexColumna_G[Convert.ToInt32(x)]; // hace la busqueda en la lista
         }
+            // evaluating u
         private double EvaluarU(double x)
         {
             return listaUxColumna_G[Convert.ToInt32(x)]; // hace la busqueda en la lista
         }
+            // evaluating v
         private double EvaluarV(double x)
         {
             return listaVxColumna_G[Convert.ToInt32(x)]; // hace la busqueda en la lista

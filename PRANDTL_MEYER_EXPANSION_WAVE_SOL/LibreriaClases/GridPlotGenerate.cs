@@ -20,24 +20,33 @@ namespace LibreriaClases
     public class GridPlotGenerate
     {
         #region ATRIBUTES
-
-        Polygon[,] casillas;
+        
+        Polygon[,] casillas; // we set a matrix of polygons for showing in the grid
  
-        int filas;
+        // the matrix of polygons would have the same dimensions as the matrix set in the main
+        int filas; 
         int columnas;
 
+        // we set a proportional value (scaling) for determining how big the polygons are
         public int dimension_scale { get; set; } = 7;
 
         #endregion ATRIBUTES
 
         #region GRID PLOR GENERATOR
+        
+        // GENERATING GRID
+            // Given the dimensions of rows and columns and the Malla, a new polygon is created with the pysical
+            // plane dimensions
         public Polygon[,] GenerateGridPlot(int filas, int columnas, Malla m)
         {
+            // seting the number of rows and columns
             this.filas = filas;
             this.columnas = columnas;
 
-            casillas = new Polygon[filas, columnas - 1];
+            // defining the size of the matrix
+            casillas = new Polygon[filas, columnas - 1]; 
 
+            // vertexs of the polygon
             double x1 = 0; // column left
             double x2; // column right
             double y1; // top left
@@ -45,38 +54,40 @@ namespace LibreriaClases
             double y3; // down left
             double y4; // down right
 
+            //defining all the values of delta_y
             double[] delta_y = m.Vector_Delta_y();
 
-
+            // loop that creates the polygons
             for (int i = 0; i < columnas - 1; i++)
             {
                 x2 = x1 + m.delta_x;
                 y3 = 0;
                 y4 = 0;
 
-                
 
                 for (int j = 0; j < filas; j++)
                 {
                     y1 = y3 + delta_y[i];
                     y2 = y4 + delta_y[i + 1];
 
-                    Polygon myPolygon = new Polygon();
+                    Polygon myPolygon = new Polygon(); // new polygon
+
+                    //defining the points
                     System.Windows.Point Point1 = new System.Windows.Point(x1 * dimension_scale, y1 * dimension_scale);
                     System.Windows.Point Point2 = new System.Windows.Point(x2 * dimension_scale, y2 * dimension_scale);
                     System.Windows.Point Point3 = new System.Windows.Point(x1 * dimension_scale, y3 * dimension_scale);
                     System.Windows.Point Point4 = new System.Windows.Point(x2 * dimension_scale, y4 * dimension_scale);
                     myPolygon.StrokeThickness = 0;
                     PointCollection myPointCollection = new PointCollection();
+
+                    //adding the points
                     myPointCollection.Add(Point1);
                     myPointCollection.Add(Point2);
                     myPointCollection.Add(Point4);
                     myPointCollection.Add(Point3);
                     myPolygon.Points = myPointCollection;
                     casillas[j, i] = myPolygon;
-                    
-                   // myPolygon.MouseEnter += new System.Windows.Input.MouseEventHandler(polygon_enter);
-
+                  
                     y4 = y2;
                     y3 = y1;
 
@@ -91,6 +102,9 @@ namespace LibreriaClases
         #endregion GRID PLOT GENERATOR
 
         #region UPDATE GRID COLOR
+
+        // CHANGING THE COLOUR OF A POLYGON
+            // Given a datatable
         public Polygon[,] actualizar_colores_grid(DataTable t, byte R, byte G, byte B, bool DataIsV)
         {
             double[] max_min;
