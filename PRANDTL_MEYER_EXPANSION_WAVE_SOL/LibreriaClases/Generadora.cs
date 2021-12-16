@@ -7,63 +7,71 @@ namespace LibreriaClases
     public class Generadora
     {
         #region ATRIBUTES
+        // LISTS OF POINTS AND VALUES
         public List<Punto> Puntos { get; set; } //generamos una lista de puntos  
 
-        public List<double> listaDeXColumna_G { get; set; }
-        public List<double> listaTEMPxColumna_G { get; set; }
-        public List<double> listaMachxColumna_G { get; set; }
-        public List<double> listaDensidadxColumna_G { get; set; }
-        public List<double> listaPresurexColumna_G { get; set; }
-        public List<double> listaUxColumna_G { get; set; }
-        public List<double> listaVxColumna_G { get; set; }
+        public List<double> listaDeXColumna_G { get; set; } // x list
+        public List<double> listaTEMPxColumna_G { get; set; } // temperature list
+        public List<double> listaMachxColumna_G { get; set; } // mach list
+        public List<double> listaDensidadxColumna_G { get; set; } // density list
+        public List<double> listaPresurexColumna_G { get; set; } // pressure list
+        public List<double> listaUxColumna_G { get; set; } // u list
+        public List<double> listaVxColumna_G { get; set; } // v list
 
 
 
-
-
-        //GENERAMOS EL GRÁFICO DE LA TEMPERATURA
+        //GENERATING THE TEMPERATURE FUNCTION
+            // Function that once gived the upper limit it returns a list of points evaluating temperature
         public List<Punto> GenerarDatosTEMP(double limiteSuperior)
         {
-            double limiteInferior = 0; //límite inferior
-            double incremento = 1; // incremento
+            double limiteInferior = 0; //lower boundary
+            double incremento = 1; // increments
 
             Puntos = new List<Punto>();
             for (double x = limiteInferior; x <= limiteSuperior; x += incremento)
             {
-                Puntos.Add(new Punto(EvaluarX(x), EvaluarTEMP(x)));
+                Puntos.Add(new Punto(EvaluarX(x), EvaluarTEMP(x))); // evaluating the points
             }
 
             return Puntos;
         }
+
+        //GENERATING THE MACH FUNCTION
+            // Function that once gived the upper limit it returns a list of points evaluating Mach
         public List<Punto> GenerarDatosMACH(double limiteSuperior)
         {
-            double limiteInferior = 0; //límite inferior
-            double incremento = 1; // incremento
+            double limiteInferior = 0; //lower boundary
+            double incremento = 1; // increments
 
             Puntos = new List<Punto>();
             for (double x = limiteInferior; x <= limiteSuperior; x += incremento)
             {
-                Puntos.Add(new Punto(EvaluarX(x), EvaluarMACH(x)));
+                Puntos.Add(new Punto(EvaluarX(x), EvaluarMACH(x))); // evaluating the points
             }
 
             return Puntos;
         }
+
+        //GENERATING THE DENSITY FUNCTION
+        // Function that once gived the upper limit it returns a list of points evaluating Mach
         public List<Punto> GenerarDatosDensidad(double limiteSuperior)
         {
-            double limiteInferior = 0; //límite inferior
-            double incremento = 1; // incremento
+            double limiteInferior = 0; //lower boundary
+            double incremento = 1; // increments
 
             Puntos = new List<Punto>();
             for (double x = limiteInferior; x <= limiteSuperior; x += incremento)
             {
-                Puntos.Add(new Punto(EvaluarX(x), EvaluarDensidad(x)));
+                Puntos.Add(new Punto(EvaluarX(x), EvaluarDensidad(x))); // evaluating the points
             }
 
             return Puntos;
         }
+       
+        
         public List<Punto> GenerarDatosPresure(double limiteSuperior)
         {
-            double limiteInferior = 0; //límite inferior
+            double limiteInferior = 0; //lower boundary
             double incremento = 1; // incremento
 
             Puntos = new List<Punto>();
@@ -76,7 +84,7 @@ namespace LibreriaClases
         }
         public List<Punto> GenerarDatosU(double limiteSuperior)
         {
-            double limiteInferior = 0; //límite inferior
+            double limiteInferior = 0; //lower boundary
             double incremento = 1; // incremento
 
             Puntos = new List<Punto>();
@@ -89,7 +97,7 @@ namespace LibreriaClases
         }
         public List<Punto> GenerarDatosV(double limiteSuperior)
         {
-            double limiteInferior = 0; //límite inferior
+            double limiteInferior = 0; //lower boundary
             double incremento = 1; // incremento
 
             Puntos = new List<Punto>();
