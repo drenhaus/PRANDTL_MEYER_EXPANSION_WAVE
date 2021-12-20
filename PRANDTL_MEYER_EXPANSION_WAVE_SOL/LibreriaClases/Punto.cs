@@ -13,12 +13,12 @@ namespace LibreriaClases
         #endregion ATRIBUTES
 
         #region FUNCTIONS SET POINT AND GIVE A FROMAT
-        public Punto(double x, double y)
+        public Punto(double x, double y)     // Definimos  las x como x y y
         {
             X = x;
             Y = y;
         }
-        public override string ToString()
+        public override string ToString()   // Definimos en el formato que luego usaremos en en la classe Generadora. 
         {
             return string.Format("({0},{1})", X, Y);
         }
