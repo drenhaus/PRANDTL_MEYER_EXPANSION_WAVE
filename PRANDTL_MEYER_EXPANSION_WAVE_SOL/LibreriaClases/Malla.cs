@@ -66,7 +66,7 @@ namespace LibreriaClases
 
         }
         //We compute the delta_y values
-        public double[] Vector_Delta_y()
+        public double[] Vector_Delta_y() // We use a list that later will use
         {
             delta_y_array = new double[columns];
             for (int i = 0; i < columns; i++)
@@ -117,21 +117,21 @@ namespace LibreriaClases
             for (int j = 0; matriz[0, j].x <= norma.L; j++)
             {
 
-                for (int i = 0; i < rows; i++)
+                for (int i = 0; i < rows; i++)  // We introduce de change of variable to have a rectangural grid. 
                 {
                     matriz[i, j].xy_Transformation_ToEtaXi(norma.H, norma.E, norma.Theta);
                 }
 
-                double[] max_tan_Array = new double[rows];
+                double[] max_tan_Array = new double[rows]; // We create a list of each iteration to find the f actual that matches with the Mach actual. 
 
                 for (int i = 0; i < rows; i++)
                 {
-                    delta_y = matriz[2, j].y - matriz[1, j].y; // mirar si posar 1 i 0 afecta
+                    delta_y = matriz[2, j].y - matriz[1, j].y; 
                     max_tan_Array[i] = matriz[i, j].TanMax(norma.Theta);
 
                 }
                 double max_tan = max_tan_Array.Max();
-                delta_x = C * delta_y / max_tan;
+                delta_x = C * delta_y / max_tan;   // We define the new increment in the X axis as funcion of the max TANG
                 delta_xi = delta_x;
                 for (int i = 0; i < rows; i++)
                 {
@@ -141,6 +141,8 @@ namespace LibreriaClases
                 for (int i = 0; i < rows; i++)
                     {
                         double[] F1_F2_F3_F4_p_derecha_vector;
+
+                    // The computation of the predictor steps are made in the following lines of code as funcion we are located. We only have artificial viscosity in the middle parts. 
                         if (i == 0)
                         {
                             F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Inferior(delta_y_t, delta_xi, matriz[i + 1, j].F1, matriz[i + 1, j].F2, 
@@ -161,6 +163,7 @@ namespace LibreriaClases
                                                                                                  matriz[i + 1, j].G1, matriz[i + 1, j].G2, matriz[i + 1, j].G3,
                                                                                                  matriz[i + 1, j].G4, matriz[i + 1, j].P, matriz[i - 1, j].P);
                         }
+                        // We add the predicted steps in the following column to make teh next iteration. 
                         matriz[i, j + 1].F1_p = F1_F2_F3_F4_p_derecha_vector[0];
                         matriz[i, j + 1].F2_p = F1_F2_F3_F4_p_derecha_vector[1];
                         matriz[i, j + 1].F3_p = F1_F2_F3_F4_p_derecha_vector[2];
@@ -168,12 +171,12 @@ namespace LibreriaClases
                     }
 
 
-
+                    // The same procedure is made but now we it is made for the G
                     for (int i = 0; i < rows; i++)
                     {
                         double[] G1p_G2p_G3p_G4p_Rhop_Pp = matriz[i, j].Gp_Rhop_Pp_Predicted(norma.Gamma, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p, 
                                                                                             matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p);
-
+                        // As in the F, we add the results of teh predicted steps to the nest row. 
                         matriz[i, j + 1].G1_p = G1p_G2p_G3p_G4p_Rhop_Pp[0];
                         matriz[i, j + 1].G2_p = G1p_G2p_G3p_G4p_Rhop_Pp[1];
                         matriz[i, j + 1].G3_p = G1p_G2p_G3p_G4p_Rhop_Pp[2];
@@ -182,6 +185,8 @@ namespace LibreriaClases
                         matriz[i, j + 1].P_p = G1p_G2p_G3p_G4p_Rhop_Pp[5];
                     }
 
+
+                    // Now we make the correction to make theb adjacent flow paralel to the surface. 
                     for (int i = 0; i < rows; i++)
                     {
                         double[] F1_F2_F3_F4_derecha_corrected;
@@ -226,12 +231,15 @@ namespace LibreriaClases
                                 matriz[i, j+1].P_p, 
                                 matriz[i - 1, j+1].P_p);
                         }
+                            // we reintroduce the corrected values to the F for the next iteration
                             matriz[i, j + 1].F1 = F1_F2_F3_F4_derecha_corrected[0];
                             matriz[i, j + 1].F2 = F1_F2_F3_F4_derecha_corrected[1];
                             matriz[i, j + 1].F3 = F1_F2_F3_F4_derecha_corrected[2];
                             matriz[i, j + 1].F4 = F1_F2_F3_F4_derecha_corrected[3];
                     }
 
+
+                    // All this computation let us to know the conditions of each cell
                     for (int i = 0; i < rows; i++)
                     {
                         if (i == 0)
@@ -250,6 +258,7 @@ namespace LibreriaClases
 
             }
 
+        // we have created the function Compute2 to make the second grid of the advanced study with the final values from teh first. 
         public void Compute2(List<Celda> listaUltimaColumna)
         {
 
