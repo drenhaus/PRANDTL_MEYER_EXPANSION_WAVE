@@ -22,19 +22,20 @@ namespace WPFapp
     {
 
         #region ATRIBUTES
+        // bool parameters
         bool FijarValor1 = false;
         bool FijarValor2 = false;
-
+        // new mallas
         Malla m2 = new Malla();
         Malla m3 = new Malla();
         Malla m4 = new Malla();
         Malla m5 = new Malla();
-
+        //new grid plots
         GridPlotGenerate GPG2 = new GridPlotGenerate();
         GridPlotGenerate GPG3 = new GridPlotGenerate();
         GridPlotGenerate GPG4 = new GridPlotGenerate();
         GridPlotGenerate GPG5 = new GridPlotGenerate();
-
+        // new tables
         DataTable temperature_table_1= new DataTable();
         DataTable u_table_1 = new DataTable();
         DataTable v_table_1 = new DataTable();
@@ -48,20 +49,21 @@ namespace WPFapp
         DataTable rho_table_2 = new DataTable();
         DataTable p_table_2 = new DataTable();
         DataTable M_table_2 = new DataTable();
-
+        // new matrixs of polygons
         Polygon[,] casillas2;
         Polygon[,] casillas3;
         Polygon[,] casillas4;
         Polygon[,] casillas5;
-
+        //general tables M2,M3,M4,M5
         DataTable[] tablesM2;
         DataTable[] tablesM3;
         DataTable[] tablesM4;
         DataTable[] tablesM5;
 
+        //timer for displaying the loading window
         DispatcherTimer dispatcherTimer;
         int timer = 0;
-        Loading ld;
+        Loading ld; // loading window
         #endregion ATRIBUTES
 
         public AdvancedStudyWindow()
@@ -73,10 +75,10 @@ namespace WPFapp
             #region FRIST CASE PARAMETERS (2 STATGE)
 
             #region MALLA M2 DEFINITION
-            // m2 sera la primera malla del caso 1 (caso 1 el de dos pendientes de angulo distinto juntas)
-
-            // Parimos de cero, es decir, nueva malla y reacemos el calculo de una matriz en resolucion media
-            //la idea es hacer otra matriz con los datos recogidos de la ultima columna de la simulacion.
+            // m2  is the first Malla for case 1 (case 1 are two different angles together
+          
+            // Starting from 0, new Malla and redo all the computations of a matrix with medium resulation
+            // the idea is making another matrix with the data gathered in the last column
 
             m2.rows = 41;
             m2.columns = 72;
@@ -103,12 +105,12 @@ namespace WPFapp
             m2.Compute();
             m2.Fill_DataTable();
             tablesM2 = m2.GetTables();
-
+            // list with the information of the last column
             List<Celda> ListadeUltimaColumnadeCeldas_caso1 = GetLastColumOfMatriz(m2);
             #endregion MALLA M2 DEFINITION
 
             #region MALLA M3 DEFINITION
-            //Empezamos con la segunda malla que empieza con los ultimos datos d ela anterior matriz. 
+            // Starting with the second Malla that starts with the last values of the previous matrix
 
             m3.norma.L = 45;
             m3.norma.E = 0.1;
@@ -122,7 +124,8 @@ namespace WPFapp
 
 
             m3.DefinirMatriz();
-            m3.Compute2(ListadeUltimaColumnadeCeldas_caso1);
+            // we define the initial data line as the list of the last values column of the previous Malla
+            m3.Compute2(ListadeUltimaColumnadeCeldas_caso1); 
             m3.Fill_DataTable();
             tablesM3 = m3.GetTables();
 
@@ -133,12 +136,11 @@ namespace WPFapp
             #region SECOND CASE PARAMETERS (3 STAGE)
             //CASO 2!!
 
-            // Caso dos, tenemos dos pendientes eparadas por superficie plana
+            // Case 2, we have two angles different separated by a straight surface
 
             #region MALLA M4 DEFINITION
-            //10 m llegamos a E, 30 M llegamos a final, 30 metros de estaviliadad, y repetimos pero con
-            //dos angulo
-
+            //10 m to E, 30 M ti final, 30 metros of stabilization and redoing for two angles
+          
             m4.rows = 41;
             m4.columns = 53;
             m4.delta_y_t = 0.025;
@@ -164,7 +166,7 @@ namespace WPFapp
             m4.Compute();
             m4.Fill_DataTable();
             tablesM4 = m4.GetTables();
-
+            // list with the values of the last column of the matrix  
             List<Celda> ListadeUltimaColumnadeCeldas_caso2 = GetLastColumOfMatriz(m4);
 
             #endregion MALLA M4 DEFINITION
@@ -192,65 +194,75 @@ namespace WPFapp
 
 
             #region DIMENSION SCALE DEFINITIONM
+            // setting the dimension scale lower for fitting the grids in the window
             GPG2.dimension_scale = 6;
             GPG3.dimension_scale = 6;
             GPG4.dimension_scale = 6;
             GPG5.dimension_scale = 6;
             #endregion DIMENSION SCALE DEFINITIONM
-
+            
+            // generating grid plots
             casillas2 = GPG2.GenerateGridPlot(m2.rows, m2.columns, m2);
             casillas3 = GPG3.GenerateGridPlot(m3.rows, m3.columns, m3);
             casillas4 = GPG4.GenerateGridPlot(m4.rows, m4.columns, m4);
             casillas5 = GPG5.GenerateGridPlot(m5.rows, m5.columns, m5);
 
 
-            // CASO 1, Advanced_GridMalla_CASO1 y Advanced_GridMalla_2_CASO1
+            // CASE 1, Advanced_GridMalla_CASO1 y Advanced_GridMalla_2_CASO1
 
+            //we make a loop through all the columns and rows and add events Mouse enter,
+            // right button, left button and add the polygons in the grid
             for (int i = 0; i < m2.columns - 1; i++)
             {
                 for (int j = 0; j < m2.rows; j++)
                 {
-                    casillas2[j, i].MouseEnter += polygon_enter2;
-                    casillas2[j, i].MouseRightButtonDown += right_button1;
-                    casillas2[j, i].MouseLeftButtonDown += left_button1;
-                    Advanced_GridMalla_CASO1.Children.Add(casillas2[j, i]);
+                    casillas2[j, i].MouseEnter += polygon_enter2; // event entering mouse
+                    casillas2[j, i].MouseRightButtonDown += right_button1; // event right click
+                    casillas2[j, i].MouseLeftButtonDown += left_button1; // event left click
+                    Advanced_GridMalla_CASO1.Children.Add(casillas2[j, i]); // adding the polygons in the grid
                 }
             }
+            //we make a loop through all the columns and rows and add events Mouse enter,
+            // right button, left button and add the polygons in the grid
             for (int i = 0; i < m3.columns - 1; i++)
             {
                 for (int j = 0; j < m3.rows; j++)
                 {
-                    casillas3[j, i].MouseLeftButtonDown += left_button1;
-                    casillas3[j, i].MouseEnter += polygon_enter3;
-                    casillas3[j, i].MouseRightButtonDown += right_button1;
-                    Advanced_GridMalla_2_CASO1.Children.Add(casillas3[j, i]);
+                    casillas3[j, i].MouseLeftButtonDown += left_button1; // event left click
+                    casillas3[j, i].MouseEnter += polygon_enter3; // event entering mouse
+                    casillas3[j, i].MouseRightButtonDown += right_button1; // event right click
+                    Advanced_GridMalla_2_CASO1.Children.Add(casillas3[j, i]); // adding the polygons in the grid
                 }
             }
-            // CASO 2, Advanced_GridMalla_CASO2 y Advanced_GridMalla_2_CASO2
-
+            // CASE 2, Advanced_GridMalla_CASO2 y Advanced_GridMalla_2_CASO2
+           
+            //we make a loop through all the columns and rows and add events Mouse enter,
+            // right button, left button and add the polygons in the grid
             for (int i = 0; i < m4.columns - 1; i++)
             {
                 for (int j = 0; j < m4.rows; j++)
                 {
-                    casillas4[j, i].MouseEnter += polygon_enter4;
-                    casillas4[j, i].MouseRightButtonDown += right_button2;
-                    casillas4[j, i].MouseLeftButtonDown += left_button2;
-                    Advanced_GridMalla_CASO2.Children.Add(casillas4[j, i]);
+                    casillas4[j, i].MouseEnter += polygon_enter4; // event entering mouse
+                    casillas4[j, i].MouseRightButtonDown += right_button2; // event right click
+                    casillas4[j, i].MouseLeftButtonDown += left_button2; // event left click
+                    Advanced_GridMalla_CASO2.Children.Add(casillas4[j, i]); // adding the polygons in the grid
                 }
             }
+            //we make a loop through all the columns and rows and add events Mouse enter,
+            // right button, left button and add the polygons in the grid
             for (int i = 0; i < m5.columns - 1; i++)
             {
                 for (int j = 0; j < m5.rows; j++)
                 {
-                    casillas5[j, i].MouseEnter += polygon_enter5;
-                    casillas5[j, i].MouseLeftButtonDown += left_button2;
-                    casillas5[j, i].MouseRightButtonDown += right_button2;
-                    Advanced_GridMalla_2_CASO2.Children.Add(casillas5[j, i]);
+                    casillas5[j, i].MouseEnter += polygon_enter5; // event entering mouse
+                    casillas5[j, i].MouseLeftButtonDown += left_button2; // event left click
+                    casillas5[j, i].MouseRightButtonDown += right_button2; // event right click
+                    Advanced_GridMalla_2_CASO2.Children.Add(casillas5[j, i]); // adding the polygons in the grid
                 }
             }
 
             #region TABLE MANIPULATION
-            // Unimos las tablas de m2 con m3 
+            // Put together tables of m2 and m3  
             temperature_table_1 = JuntarTablas(tablesM2[0], tablesM3[0]);
             u_table_1 = JuntarTablas(tablesM2[1], tablesM3[1]);
             v_table_1 = JuntarTablas(tablesM2[2], tablesM3[2]);
@@ -258,7 +270,7 @@ namespace WPFapp
             p_table_1 = JuntarTablas(tablesM2[4], tablesM3[4]);
             M_table_1 = JuntarTablas(tablesM2[5], tablesM3[5]);
 
-            // Unimos las tablas m4 con m5
+            // Put together tables of m4 and m5  
             temperature_table_2 = JuntarTablas(tablesM4[0], tablesM5[0]);
             u_table_2 = JuntarTablas(tablesM4[1], tablesM5[1]);
             v_table_2 = JuntarTablas(tablesM4[2], tablesM5[2]);
@@ -269,28 +281,37 @@ namespace WPFapp
 
         }
 
+        // GET LAST COLUMN OF A MATRIX
+        // Introducing a malla the function returns a list with the values of 
+        // the last column of the matrix
+        
+        #region LAST COLUMN
         public List<Celda> GetLastColumOfMatriz(Malla Nmalla)
         {
-            List<Celda> lista = new List<Celda>();
+            List<Celda> lista = new List<Celda>(); // returning list
 
-            int col = Nmalla.columns;
-            int row = Nmalla.rows;
+            int col = Nmalla.columns; // columns
+            int row = Nmalla.rows; // rows
 
             for (int nrow = 0; nrow < row; nrow++)
             {
-                lista.Add(Nmalla.matriz[nrow, col - 1]);
+                lista.Add(Nmalla.matriz[nrow, col - 1]); // last column
             }
 
             return lista;
 
         }
+        #endregion LAST COLUMN
 
         #region GRID CHANGE PARAMETER SHOWN
+        // When changing the selecting parameter in the combobox, the grid is going to display the parameters choosen
+        // for making that, the polygons have to actualise their colours
         private void DataGridComboBox_AS_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
             if (DataGridComboBox_AS.SelectedIndex == 0) //temperature
             {
+                // actualising polygons' colours
                 casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[0], temperature_table_1, m2.rows + m3.rows, m2.columns + m3.columns, temperature_table_2);
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[0], temperature_table_1, m2.rows + m3.rows, m2.columns + m3.columns, temperature_table_2);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[0], temperature_table_2, m4.rows + m5.rows, m4.columns + m5.columns, temperature_table_1);
@@ -298,6 +319,7 @@ namespace WPFapp
             }
             if (DataGridComboBox_AS.SelectedIndex == 1) //u
             {
+                // actualising polygons' colours
                 casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[1], u_table_1, m2.rows + m3.rows, m2.columns + m3.columns, u_table_2);
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[1], u_table_1, m2.rows + m3.rows, m2.columns + m3.columns, u_table_2);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[1], u_table_2, m4.rows + m5.rows, m4.columns + m5.columns, u_table_1);
@@ -305,6 +327,7 @@ namespace WPFapp
             }
             if (DataGridComboBox_AS.SelectedIndex == 2) //v
             {
+                // actualising polygons' colours
                 casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[2], v_table_1, m2.rows + m3.rows, m2.columns + m3.columns, v_table_2);
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[2],  v_table_1, m2.rows + m3.rows, m2.columns + m3.columns, v_table_2);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[2], v_table_2, m4.rows + m5.rows, m4.columns + m5.columns, v_table_1);
@@ -312,6 +335,7 @@ namespace WPFapp
             }
             if (DataGridComboBox_AS.SelectedIndex == 3) //rho
             {
+                // actualising polygons' colours
                 casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[3], rho_table_1, m2.rows + m3.rows, m2.columns + m3.columns, rho_table_2);
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[3],rho_table_1, m2.rows + m3.rows, m2.columns + m3.columns, rho_table_2);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[3],rho_table_2, m4.rows + m5.rows, m4.columns + m5.columns, rho_table_1);
@@ -319,6 +343,7 @@ namespace WPFapp
             }
             if (DataGridComboBox_AS.SelectedIndex == 4) //p
             {
+                // actualising polygons' colours
                 casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[4], p_table_1, m2.rows + m3.rows, m2.columns + m3.columns, p_table_2);
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[4],p_table_1, m2.rows + m3.rows, m2.columns + m3.columns, p_table_2);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[4],p_table_2, m4.rows + m5.rows, m4.columns + m5.columns, p_table_1);
@@ -327,6 +352,7 @@ namespace WPFapp
             }
             if (DataGridComboBox_AS.SelectedIndex == 5) //Mach
             {
+                // actualising polygons' colours
                 casillas2 = GPG2.actualizar_colores_grid_AS(tablesM2[5], M_table_1, m2.rows + m3.rows, m2.columns + m3.columns, M_table_2);
                 casillas3 = GPG3.actualizar_colores_grid_AS(tablesM3[5], M_table_1, m2.rows + m3.rows, m2.columns + m3.columns, M_table_2);
                 casillas4 = GPG4.actualizar_colores_grid_AS(tablesM4[5], M_table_2, m4.rows + m5.rows, m4.columns + m5.columns, M_table_1);
@@ -337,25 +363,33 @@ namespace WPFapp
         #endregion GRID CHANGE PARAMETER SHOWN
 
         #region DATA TABLES MANIPULATIONS
+        
+        //JOIN DATATABLES
+            // given two datatables, this function puts together the tables and return the resulting
+            // datatable
         public DataTable JuntarTablas(DataTable dt1, DataTable dt2)
         {
-            DataTable Unida = new DataTable();
-            int dt1_rows = dt1.Rows.Count;
-            int dt1_columns = dt1.Columns.Count;
-            int dt2_columns = dt2.Columns.Count;
-                        
+            DataTable Unida = new DataTable(); // resulting datatable
+            int dt1_rows = dt1.Rows.Count; // rows table 1, that are the same as table 2
+            int dt1_columns = dt1.Columns.Count; // columns table 1
+            int dt2_columns = dt2.Columns.Count; // columns table 2
+
             for (int i = 0; i < dt1_columns+dt2_columns; i++)
             {
+                // new column
                 DataColumn dc = new DataColumn();
+                // add the column
                 Unida.Columns.Add(dc);
             }
 
             for (int j = 0; j < dt1_rows; j++)
             {
+                // new row
                 DataRow dr = Unida.NewRow();
            
                 for (int i = 0; i < dt1_columns + dt2_columns; i++)
                 {
+                    // adding the values
                     if (i < dt1_columns)
                     {
                         dr[i] = Convert.ToDouble(dt1.Rows[j][i].ToString());
@@ -366,15 +400,17 @@ namespace WPFapp
                     }
                     
                 }
-
+                // adding the row
                 Unida.Rows.Add(dr);
               
             }
 
-            return Unida;
-
+            return Unida; // resulting datatable 
 
         }
+        
+        // SET THE HEADERS
+            // Puting the name of the columns headers, starting at 1
         private void Set_headers(DataTable dt)
         {
             for (int i = 0; i < dt.Columns.Count; i++)
@@ -383,9 +419,12 @@ namespace WPFapp
             }
         }
 
-
+        //LOAD TABLES BUTTON
+            // When pressing the load tables button it is going to be displayed the values of the observing
+            // parameters
         private void Load_tables_butt_Click(object sender, RoutedEventArgs e)
         {
+            // hiding and setting visible the required elements
             #region VISIBLE/HIDDE
             labelt.Visibility = Visibility.Hidden;
             labelm.Visibility = Visibility.Hidden;
@@ -419,83 +458,89 @@ namespace WPFapp
             Advanced_DataGridMalla_2.Visibility = Visibility.Visible;
             #endregion VISIBLE/HIDDE
 
-
+            // changing is enable functoins
             change_Mouse_butt.IsEnabled = true;
             Load_tables_butt.IsEnabled = true;
-
+            // new timer to start the loading window
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
             dispatcherTimer.Start();
 
         }
+        
+        // TIMER TICK FUNCTION
+            //Each time the timer ticks the int timer increases its value. When it is 1 a loading window opens
+            // then the tables are loaded and, once finished, the window of loading closes and the timer stops
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             if (timer == 1)
             {
-                ld = new Loading();
-                ld.Show();
+                ld = new Loading(); // new loading window
+                ld.Show(); // opening the window
             }
             if (timer == 2)
             {
-                TablesLoaded();
+                TablesLoaded(); // loading tables
             }
             if (timer == 3)
             {
-                ld.Close();
+                ld.Close(); // closing loading window
                 timer = -1;
-                dispatcherTimer.Stop();
+                dispatcherTimer.Stop(); // stoping the timer
             }
             timer = timer + 1;
         }
 
+        // LOADED TABLES
+            // In function of the parameter selected a table or other is going to be shown
         public void TablesLoaded()
         {
 
             if (DataGridComboBox_AS.SelectedIndex == 0) //temperature
             {
-                Set_headers(temperature_table_1);
-                Set_headers(temperature_table_2);
+                Set_headers(temperature_table_1); // seting headers
+                Set_headers(temperature_table_2);// seting headers
 
-                Advanced_DataGridMalla.DataContext = temperature_table_1.DefaultView;
+                Advanced_DataGridMalla.DataContext = temperature_table_1.DefaultView; 
                 Advanced_DataGridMalla_2.DataContext = temperature_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 1) //u
             {
-                Set_headers(u_table_1);
-                Set_headers(u_table_2);
+                Set_headers(u_table_1);// seting headers
+                Set_headers(u_table_2);// seting headers
 
                 Advanced_DataGridMalla.DataContext = u_table_1.DefaultView;
                 Advanced_DataGridMalla_2.DataContext = u_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 2) //v
             {
-                Set_headers(v_table_1);
-                Set_headers(v_table_2);
+                Set_headers(v_table_1);// seting headers
+                Set_headers(v_table_2);// seting headers
 
                 Advanced_DataGridMalla.DataContext = v_table_1.DefaultView;
                 Advanced_DataGridMalla_2.DataContext = v_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 3) //rho
             {
-                Set_headers(rho_table_1);
-                Set_headers(rho_table_2);
+                Set_headers(rho_table_1);// seting headers
+                Set_headers(rho_table_2);// seting headers
 
                 Advanced_DataGridMalla.DataContext = rho_table_1.DefaultView;
                 Advanced_DataGridMalla_2.DataContext = rho_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 4) //p
             {
-                Set_headers(p_table_1);
-                Set_headers(p_table_2);
+                Set_headers(p_table_1);// seting headers
+                Set_headers(p_table_2);// seting headers
 
                 Advanced_DataGridMalla.DataContext = p_table_1.DefaultView;
                 Advanced_DataGridMalla_2.DataContext = p_table_2.DefaultView;
             }
             if (DataGridComboBox_AS.SelectedIndex == 5) //Mach
             {
-                Set_headers(M_table_1);
-                Set_headers(M_table_2);
+                Set_headers(M_table_1);// seting headers
+                Set_headers(M_table_2);// seting headers
 
                 Advanced_DataGridMalla.DataContext = M_table_1.DefaultView;
                 DataContext = M_table_2.DefaultView;
@@ -505,14 +550,20 @@ namespace WPFapp
         #endregion DATA TABLES MANIPULATIONS
 
         #region WINDOW MANIPULATION FUNCTIONS
+        // CLOSE BUTTON
+            //When clicking to the top right button (red circle) the current window closes
         private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+        // MINIMIZE BUTTON
+            //When clicking to the top right button (yellow circle) the current window minimises
         private void Mini_Button_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
+        // DRAG MOVE
+            //When the left button is pressed and draged, the window can be moved
         private void Label_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -522,6 +573,9 @@ namespace WPFapp
         }
         #endregion WINDOW MANIPULATION FUNCTIONS
 
+        #region ROW HEADINGS
+        //ROW HEADING OF THE DATAGRIDMALLA 1
+            //Headers of the rows are set, starting at 1
         private void Advanced_DataGridMalla_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             if (Convert.ToDouble((e.Row.GetIndex()).ToString()) != m2.rows)
@@ -533,7 +587,8 @@ namespace WPFapp
                 e.Row.Header = "";
             }
         }
-
+        //ROW HEADING OF THE DATAGRIDMALLA 
+            //Headers of the rows are set, starting at 1
         private void Advanced_DataGridMalla_2_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             if (Convert.ToDouble((e.Row.GetIndex()).ToString()) != m4.rows)
@@ -545,13 +600,20 @@ namespace WPFapp
                 e.Row.Header = "";
             }
         }
+        #endregion ROW HEADINGS
 
+        #region MOUSE EVENTS
+
+        // TABLES BUTTON
+            // When changing to the tables, the textboxs and labels are going to be hidden and other
+            // objects will be visible
         private void change_Mouse_butt_Click(object sender, RoutedEventArgs e)
         {
+            // when changing to the tables some buttons and labels are going to be hiden
             change_Mouse_butt.IsEnabled = false;
             Load_tables_butt.IsEnabled = true;
 
-
+            #region VISIBILITY
             labelt.Visibility = Visibility.Visible;
             labelm.Visibility = Visibility.Visible;
             labelp.Visibility = Visibility.Visible;
@@ -582,9 +644,12 @@ namespace WPFapp
 
             Advanced_DataGridMalla.Visibility = Visibility.Hidden;
             Advanced_DataGridMalla_2.Visibility = Visibility.Hidden;
+            #endregion VISIBILITY
         }
 
-        // Mouse functions
+        // MOUSE ENTERING IN A POLYGON
+            // When a mouse enterns in a polygon it is posible to observe the attributes of that 
+            // polygon in the textboxes at the right side of the window
         public void polygon_enter2(object sender, EventArgs e)
         {
             if (FijarValor1 == false)
@@ -621,6 +686,9 @@ namespace WPFapp
             }
 
         }
+        // MOUSE ENTERING IN A POLYGON
+            // When a mouse enterns in a polygon it is posible to observe the attributes of that 
+            // polygon in the textboxes at the right side of the window
         public void polygon_enter3(object sender, EventArgs e)
         {
             if (FijarValor1 == false)
@@ -658,6 +726,9 @@ namespace WPFapp
 
             }
         }
+        // MOUSE ENTERING IN A POLYGON
+            // When a mouse enterns in a polygon it is posible to observe the attributes of that 
+            // polygon in the textboxes at the right side of the window
         public void polygon_enter4(object sender, EventArgs e)
         {
             if (FijarValor2 == false)
@@ -694,6 +765,9 @@ namespace WPFapp
 
             }
         }
+        // MOUSE ENTERING IN A POLYGON
+            // When a mouse enterns in a polygon it is posible to observe the attributes of that 
+            // polygon in the textboxes at the right side of the window
         public void polygon_enter5(object sender, EventArgs e)
         {
             if (FijarValor2 == false)
@@ -730,23 +804,33 @@ namespace WPFapp
 
             }
         }
+        // RIGHT BUTTON ON A POLYGON
+            // When the right button is press inside a polygon, the values shown in the textboxs is 
+            // going to be fixed. Giving the information of that specific cell
         public void right_button2(object sender, EventArgs e)
         {
             FijarValor2 = true;
         }
+        // RIGHT BUTTON ON A POLYGON
+            // When the right button is press inside a polygon, the values shown in the textboxs is 
+            // going to be fixed. Giving the information of that specific cell
         public void right_button1(object sender, EventArgs e)
         {
             FijarValor1 = true;
         }
+        // LEFT BUTTON ON A POLYGON
+            // When the left button is pressed the fixed value is liberated
         public void left_button1(object sender, EventArgs e)
         {
             FijarValor1 = false;
         }
+        // LEFT BUTTON ON A POLYGON
+            // When the left button is pressed the fixed value is liberated
         public void left_button2(object sender, EventArgs e)
         {
             FijarValor2 = false;
         }
-
+        #endregion MOUSE EVENTS
     }
 
 
