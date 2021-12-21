@@ -12,10 +12,15 @@ namespace LibreriaClases
     public static class ExportExcel
     {
         #region EXPORT TABLE FUNCTION
+
+        // EXPORTING EXCEL FUNCTION
+            //Functions that enables exporting to excel by setting table.ExportToExcel
+            // it is needed to have installed the microsoft excel
         public static void ExportToExcel(this DataTable tbl)
         {
             try
             {
+                // new excel
                 var new_excel = new Excel.Application();
                 new_excel.Workbooks.Add();
 
@@ -25,7 +30,7 @@ namespace LibreriaClases
                 {
                     workSheet.Cells[1, i + 1] = tbl.Columns[i].ColumnName;
                 }
-
+                // loop for writing all the cells
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
 

@@ -6,6 +6,8 @@ namespace LibreriaClases
     public class Celda
     {
         #region ATRIBUTES
+        // ATTRIBUTES
+            // We define the primitive attributes of the flow
         public double M { get; set; }
         public double u { get; set; }
         public double v { get; set; }
@@ -14,12 +16,11 @@ namespace LibreriaClases
         public double Rho { get; set; }
         public double a { get; set; }
         public double M_angle { get; set; }
-
+            // Tan max
         public double tan_max { get; set; }
 
 
         #region F VALUES
-
         public double F1 { get; set; }
         public double F2 { get; set; }
         public double F3 { get; set; }
@@ -68,31 +69,20 @@ namespace LibreriaClases
         public double delta_x { get; set; }
         public double dEta_dx { get; set; }
         public double dEta_dy { get; set; }
-        public double delta_y_t { get; set; }
-
-        public double SF1 { get; set; }     // 0 REFERENCIAS!!! SE PUEDE QUITAR
-        public double SF2 { get; set; }
-        public double SF3 { get; set; }
-        public double SF4 { get; set; }
-
-
-        public double dF1_x_av { get; set; }
-        public double dF2_x_av { get; set; }
-        public double dF3_x_av { get; set; }
-        public double dF4_x_av { get; set; }
 
         #endregion ATRIBUTES
 
         #region FIRST COLUM COMPUTATIOPN
-        // for the initial data line
+        // FUNCTION FOR COMPUTING THE G ANF F VALUES
+            // For the initial data line we directly compute the values as the M,u,v... are known
         public void Compute_G_F(double Gamma)
         {
-
+            // F values
             this.F1 = Rho * u;
             this.F2 = Rho * Math.Pow(u, 2) + P;
             this.F3 = Rho * u * v;
             this.F4 = Gamma / (Gamma - 1) * P * u + Rho * u * (Math.Pow(u, 2) + Math.Pow(v, 2)) / 2;
-
+            // G values
             this.G1 = Rho * (F3 / F1);
             this.G2 = F3;
             this.G3 = Rho * Math.Pow(F3 / F1, 2) + F2 - Math.Pow(F1, 2) / Rho;
@@ -102,40 +92,39 @@ namespace LibreriaClases
         #endregion FIRST COLUM COMPUTATIOPN
 
         #region GRID DIMENSION VARIATION COMPUTATION
+        // COMPUTING THE y_t
+            // We introduce a value y_t below and the delta_y_t value and it is actualised
         public void Compute_y_t(double y_t_debajo, double delta_y_t)
         { 
             this.y_t = y_t_debajo + delta_y_t; 
         }
-
-        public void xy_Transformation_ToEtaXi(double H, double E, double Theta) // mirar si es pot comprimir
+        // ACTUALISING THE VALUES OF Y_S, h, dETA 
+           // Depending the position of the E we define some conditions or others
+        public void xy_Transformation_ToEtaXi(double H, double E, double Theta) 
         {
+            // When x<E the plane is flat and the h=H and the y_s does not change
             if (x < E)
             {
                 this.y_s = 0;
                 this.h = H;
+                this.dEta_dx = 0;
             }
-
+            // when x>E the plane is inclned and the parameters change
             else
             {
                 this.y_s = -(x - E) * Math.Tan(Theta);
                 this.h = H + ((x - E) * Math.Tan(Theta));
-            }
-
-
-            if (x < E)
-            {
-                this.dEta_dx = 0;
-            }
-            else
-            {
                 double Eta = (y - y_s) / h;
-                this.dEta_dx = Math.Tan(Theta) / h *(1-Eta);
+                this.dEta_dx = Math.Tan(Theta) / h * (1 - Eta);
             }
-            
+
+            // computing the new y value and dEta_dy
             this.y = h*y_t+y_s;
             this.dEta_dy = 1/h;       
         }
-
+        // COMPUTATION OF THE MAXIMUM TANGENT
+            // We compute the maximum tangen as the maximum value between the absolute value of the tangent
+            // between theta +- Mach angle. We return the max tangent
         public double TanMax(double Theta)
         {
             this.tan_max = Math.Max(Math.Abs(Math.Tan(Theta + this.M_angle)), Math.Abs(Math.Tan(Theta - this.M_angle)));
@@ -146,18 +135,23 @@ namespace LibreriaClases
 
         #region PREDICTIOON STEP FUNTIONS
 
+        // PREDICTION STEP FOR PRINCIPAL BODY
+            // We compute the precision step. dF_x and the artificial viscosity term and compute
+            // the predicted F values
         public double[] Predictor_Step_Principal (double Cy, double delta_y_t,double delta_x, double F1_arriba, double F2_arriba,double F3_arriba, double F4_arriba, double F1_abajo,double F2_abajo, double F3_abajo, double F4_abajo ,double G1_arriba,double G2_arriba, double G3_arriba, double G4_arriba, double P_arriba, double P_abajo)
-        { 
+        {
+            // predictor approximation
             dF1_x = (dEta_dx * ((F1 - F1_arriba) / delta_y_t)) + (dEta_dy * ((G1 - G1_arriba) / delta_y_t));
             dF2_x = (dEta_dx * ((F2 - F2_arriba) / delta_y_t)) + (dEta_dy * ((G2 - G2_arriba) / delta_y_t));
             dF3_x = (dEta_dx * ((F3 - F3_arriba) / delta_y_t)) + (dEta_dy * ((G3 - G3_arriba) / delta_y_t));
             dF4_x = (dEta_dx * ((F4 - F4_arriba) / delta_y_t)) + (dEta_dy * ((G4 - G4_arriba) / delta_y_t));
 
+            // artificial viscosity
             double SF1 = ((Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo))) / (P_arriba + 2 * P + P_abajo)) * (F1_arriba - (2 * F1) + F1_abajo);
             double SF2 = ((Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo))) / (P_arriba + 2 * P + P_abajo)) * (F2_arriba - (2 * F2) + F2_abajo);
             double SF3 = ((Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo))) / (P_arriba + 2 * P + P_abajo)) * (F3_arriba - (2 * F3) + F3_abajo);
             double SF4 = ((Cy * (Math.Abs(P_arriba - (2 * P) + P_abajo))) / (P_arriba + 2 * P + P_abajo)) * (F4_arriba - (2 * F4) + F4_abajo);
-
+            // predicted values
             double F1_p_derecha = F1 + (dF1_x * delta_x) + SF1;
             double F2_p_derecha = F2 + (dF2_x * delta_x) + SF2;
             double F3_p_derecha = F3 + (dF3_x * delta_x) + SF3;
@@ -167,13 +161,17 @@ namespace LibreriaClases
             return F_p_derecha_vector;
         }
 
+        // PREDICTION STEP FOR SUPERIOR BODY
+            // We compute the precision step. dF_x without the artificial viscosity term and compute
+            // the predicted F values
         public double[] Predictor_Step_Contorno_Superior (double delta_y_t, double delta_x, double F1_abajo, double F2_abajo, double F3_abajo, double F4_abajo, double G1_abajo, double G2_abajo, double G3_abajo, double G4_abajo)
         {
+            // predictor step computation
             dF1_x = (dEta_dx * ((F1_abajo - F1) / delta_y_t)) + (dEta_dy * ((G1_abajo - G1) / delta_y_t));
             dF2_x = (dEta_dx * ((F2_abajo - F2) / delta_y_t)) + (dEta_dy * ((G2_abajo - G2) / delta_y_t));
             dF3_x = (dEta_dx * ((F3_abajo - F3) / delta_y_t)) + (dEta_dy * ((G3_abajo - G3) / delta_y_t));
             dF4_x = (dEta_dx * ((F4_abajo - F4) / delta_y_t)) + (dEta_dy * ((G4_abajo - G4) / delta_y_t));
-
+            // right value F predicted value
             double F1_p_derecha = F1 + (dF1_x * delta_x);
             double F2_p_derecha = F2 + (dF2_x * delta_x);
             double F3_p_derecha = F3 + (dF3_x * delta_x);
@@ -184,13 +182,17 @@ namespace LibreriaClases
             return F_p_derecha_vector;
         }
 
+        // PREDICTION STEP FOR LOWER BODY
+            // We compute the precision step. dF_x without the artificial viscosity term and compute
+            // the predicted F values
         public double[] Predictor_Step_Contorno_Inferior(double delta_y_t, double delta_x, double F1_arriba, double F2_arriba, double F3_arriba, double F4_arriba,  double G1_arriba, double G2_arriba, double G3_arriba, double G4_arriba)
         {
+            // predictor step computation
             dF1_x = (dEta_dx * ((F1- F1_arriba) / delta_y_t)) + (dEta_dy * ((G1 - G1_arriba) / delta_y_t));
             dF2_x = (dEta_dx * ((F2- F2_arriba) / delta_y_t)) + (dEta_dy * ((G2 - G2_arriba) / delta_y_t));
             dF3_x = (dEta_dx * ((F3- F3_arriba) / delta_y_t)) + (dEta_dy * ((G3 - G3_arriba) / delta_y_t));
             dF4_x = (dEta_dx * ((F4- F4_arriba) / delta_y_t)) + (dEta_dy * ((G4 - G4_arriba) / delta_y_t));
-
+            // computing the F values at right
             double F1_p_derecha = F1 + (dF1_x * delta_x);
             double F2_p_derecha = F2 + (dF2_x * delta_x);
             double F3_p_derecha = F3 + (dF3_x * delta_x);
@@ -200,15 +202,20 @@ namespace LibreriaClases
             return F_p_derecha_vector;
         }
 
+        // G, Rho AND P PREDICTED VALUES
+            // Once we have the predicted values it is possible to compute the G, Rho and P values
+            // with this function the needed computations for obtaining this values are done
         public double[] Gp_Rhop_Pp_Predicted(double Gamma, double F1_p_derecha, double F2_p_derecha, double F3_p_derecha, double F4_p_derecha)
-        { 
-            double A_p= ((Math.Pow(F3_p_derecha,2))/(2*F1_p_derecha)) - F4_p_derecha;
+        {
+            // Computation of the A,B and C parameters
+            double A_p = ((Math.Pow(F3_p_derecha,2))/(2*F1_p_derecha)) - F4_p_derecha;
             double B_p= (Gamma/(Gamma - 1))*F1_p_derecha*F2_p_derecha;
             double C_p= -(((Gamma + 1)/(2*(Gamma - 1)))*(Math.Pow(F1_p_derecha,3)));
-            
-            double Rho_p_derecha= (-B_p + (Math.Sqrt((Math.Pow(B_p, 2)) - (4 * A_p * C_p)))) / (2 * A_p);
-            double P_p_derecha= F2_p_derecha - ((Math.Pow(F1_p_derecha, 2)) / Rho_p_derecha);
-
+            //rho predicted
+            double Rho_p_derecha = (-B_p + (Math.Sqrt((Math.Pow(B_p, 2)) - (4 * A_p * C_p)))) / (2 * A_p);
+            // p predicted
+            double P_p_derecha = F2_p_derecha - ((Math.Pow(F1_p_derecha, 2)) / Rho_p_derecha);
+            // G values
             double G1_p_derecha = Rho_p_derecha * (F3_p_derecha / F1_p_derecha);
             double G2_p_derecha = F3_p_derecha;
             double G3_p_derecha = (Rho_p_derecha * (Math.Pow((F3_p_derecha / F1_p_derecha), 2))) + F2_p_derecha - ((Math.Pow(F1_p_derecha, 2)) / Rho_p_derecha);
@@ -222,26 +229,30 @@ namespace LibreriaClases
         #endregion PREDICTION STEP FUNTIONS
 
         #region CORRECTOR STEPS FUNTIONS
+        
+        //CORRECTOR STEP FOR PRINCIPAL BODY
+            //With the computed predicted values we apply the corrector step
         public double[] Corrector_Step_Principal (double Cy, double delta_x,double delta_y_t, double F1_p_debajo_derecha,double F2_p_debajo_derecha, double F3_p_debajo_derecha, double F4_p_debajo_derecha,
             double F1_p_derecha, double F2_p_derecha, double F3_p_derecha,double F4_p_derecha, double G1_p_debajo_derecha, double G2_p_debajo_derecha,double G3_p_debajo_derecha,double G4_p_debajo_derecha, 
             double G1_p_derecha,   double G2_p_derecha,  double G3_p_derecha, double G4_p_derecha, double F1_p_derecha_arriba, double F2_p_derecha_arriba,double F3_p_derecha_arriba, double F4_p_derecha_arriba,
              double P_p_arriba_derecha, double P_p_derecha, double P_p_abajo_derecha)
         {
+            // the approximate corrected derivative values
             double dF1_p_x_derecha = (dEta_dx * ((F1_p_debajo_derecha - F1_p_derecha) / delta_y_t)) + (dEta_dy * ((G1_p_debajo_derecha - G1_p_derecha) / delta_y_t));
             double dF2_p_x_derecha = (dEta_dx * ((F2_p_debajo_derecha - F2_p_derecha) / delta_y_t)) + (dEta_dy * ((G2_p_debajo_derecha - G2_p_derecha) / delta_y_t));
             double dF3_p_x_derecha = (dEta_dx * ((F3_p_debajo_derecha - F3_p_derecha) / delta_y_t)) + (dEta_dy * ((G3_p_debajo_derecha - G3_p_derecha) / delta_y_t));
             double dF4_p_x_derecha = (dEta_dx * ((F4_p_debajo_derecha - F4_p_derecha) / delta_y_t)) + (dEta_dy * ((G4_p_debajo_derecha - G4_p_derecha) / delta_y_t));
-
+            // artificial viscosity effect
             double SF1_p = (((Cy * (Math.Abs(P_p_arriba_derecha) - (2 * P_p_derecha) + P_p_abajo_derecha))) / (P_p_arriba_derecha + 2 * P_p_derecha + P_p_abajo_derecha)) * (F1_p_derecha_arriba - (2 * F1_p_derecha) + F1_p_debajo_derecha);
             double SF2_p = (((Cy * (Math.Abs(P_p_arriba_derecha) - (2 * P_p_derecha) + P_p_abajo_derecha))) / (P_p_arriba_derecha + 2 * P_p_derecha + P_p_abajo_derecha)) * (F2_p_derecha_arriba - (2 * F2_p_derecha) + F2_p_debajo_derecha);
             double SF3_p = (((Cy * (Math.Abs(P_p_arriba_derecha) - (2 * P_p_derecha) + P_p_abajo_derecha))) / (P_p_arriba_derecha + 2 * P_p_derecha + P_p_abajo_derecha)) * (F3_p_derecha_arriba - (2 * F3_p_derecha) + F3_p_debajo_derecha);
             double SF4_p = (((Cy * (Math.Abs(P_p_arriba_derecha) - (2 * P_p_derecha) + P_p_abajo_derecha))) / (P_p_arriba_derecha + 2 * P_p_derecha + P_p_abajo_derecha)) * (F4_p_derecha_arriba - (2 * F4_p_derecha) + F4_p_debajo_derecha);
-
+            // average derivative computed
             double dF1_x_av = 0.5*(dF1_x + dF1_p_x_derecha);
             double dF2_x_av = 0.5*(dF2_x + dF2_p_x_derecha);
             double dF3_x_av = 0.5*(dF3_x + dF3_p_x_derecha);
             double dF4_x_av = 0.5*(dF4_x + dF4_p_x_derecha);
-
+            // corrected values of F
             double F1_derecha = F1 + (dF1_x_av * delta_x) + SF1_p;
             double F2_derecha = F2 + (dF2_x_av * delta_x) + SF2_p;
             double F3_derecha = F3 + (dF3_x_av * delta_x) + SF3_p;
@@ -251,19 +262,21 @@ namespace LibreriaClases
             return F_Derecha;
 
         }
-
+        // CORRECTOR STEP FOR LOWER BODY
+            //We apply the corrector step for the lower boundary
         public double[] Corrector_Step_Contorno_Inferior (double delta_y_t, double F1_p_derecha, double F2_p_derecha, double F3_p_derecha, double F4_p_derecha, double F1_p_arriba_derecha, double F2_p_arriba_derecha, double F3_p_arriba_derecha, double F4_p_arriba_derecha, double G1_p_derecha, double G2_p_derecha, double G3_p_derecha, double G4_p_derecha, double G1_p_arriba_derecha, double G2_p_arriba_derecha, double G3_p_arriba_derecha, double G4_p_arriba_derecha, double delta_x)
         {
+            // the approximate corrected derivative values
             double dF1_p_x_derecha = (dEta_dx * ((F1_p_derecha - F1_p_arriba_derecha) / delta_y_t)) + (dEta_dy * ((G1_p_derecha - G1_p_arriba_derecha) / delta_y_t));
             double dF2_p_x_derecha = (dEta_dx * ((F2_p_derecha - F2_p_arriba_derecha) / delta_y_t)) + (dEta_dy * ((G2_p_derecha - G2_p_arriba_derecha) / delta_y_t));
             double dF3_p_x_derecha = (dEta_dx * ((F3_p_derecha - F3_p_arriba_derecha) / delta_y_t)) + (dEta_dy * ((G3_p_derecha - G3_p_arriba_derecha) / delta_y_t));
             double dF4_p_x_derecha = (dEta_dx * ((F4_p_derecha - F4_p_arriba_derecha) / delta_y_t)) + (dEta_dy * ((G4_p_derecha - G4_p_arriba_derecha) / delta_y_t));
-
+            // average derivative computed
             double dF1_x_av = 0.5 * (dF1_x + dF1_p_x_derecha);
             double dF2_x_av = 0.5 * (dF2_x + dF2_p_x_derecha);
             double dF3_x_av = 0.5 * (dF3_x + dF3_p_x_derecha);
             double dF4_x_av = 0.5 * (dF4_x + dF4_p_x_derecha);
-
+            // the corrected F values
             double F1_derecha = F1 + (dF1_x_av * delta_x);
             double F2_derecha = F2 + (dF2_x_av * delta_x);
             double F3_derecha = F3 + (dF3_x_av * delta_x);
@@ -272,19 +285,21 @@ namespace LibreriaClases
             double[] F_Derecha = { F1_derecha, F2_derecha, F3_derecha, F4_derecha };
             return F_Derecha;
         }
-
+        // CORRECTOR STEP FOR UPPER BODY
+            //We apply the corrector step for the lower boundary
         public double[] Corrector_Step_Contorno_Superior(double delta_y_t, double F1_p_derecha, double F2_p_derecha, double F3_p_derecha, double F4_p_derecha, double F1_p_debajo_derecha, double F2_p_debajo_derecha, double F3_p_debajo_derecha, double F4_p_debajo_derecha, double G1_p_derecha, double G2_p_derecha, double G3_p_derecha, double G4_p_derecha, double G1_p_debajo_derecha, double G2_p_debajo_derecha, double G3_p_debajo_derecha, double G4_p_debajo_derecha, double delta_x)
         {
+            // the approximate corrected derivative values
             double dF1_p_x_derecha = (dEta_dx * ((F1_p_debajo_derecha - F1_p_derecha) / delta_y_t)) + (dEta_dy * ((G1_p_debajo_derecha - G1_p_derecha) / delta_y_t));
             double dF2_p_x_derecha = (dEta_dx * ((F2_p_debajo_derecha - F2_p_derecha) / delta_y_t)) + (dEta_dy * ((G2_p_debajo_derecha - G2_p_derecha) / delta_y_t));
             double dF3_p_x_derecha = (dEta_dx * ((F3_p_debajo_derecha - F3_p_derecha) / delta_y_t)) + (dEta_dy * ((G3_p_debajo_derecha - G3_p_derecha) / delta_y_t));
             double dF4_p_x_derecha = (dEta_dx * ((F4_p_debajo_derecha - F4_p_derecha) / delta_y_t)) + (dEta_dy * ((G4_p_debajo_derecha - G4_p_derecha) / delta_y_t));
-
+            // average derivative computed
             double dF1_x_av = 0.5 * (dF1_x + dF1_p_x_derecha);
             double dF2_x_av = 0.5 * (dF2_x + dF2_p_x_derecha);
             double dF3_x_av = 0.5 * (dF3_x + dF3_p_x_derecha);
             double dF4_x_av = 0.5 * (dF4_x + dF4_p_x_derecha);
-
+            // the corrected F values
             double F1_derecha = F1 + (dF1_x_av * delta_x);
             double F2_derecha = F2 + (dF2_x_av * delta_x);
             double F3_derecha = F3 + (dF3_x_av * delta_x);
@@ -296,19 +311,25 @@ namespace LibreriaClases
 
         #endregion  CORRECTOR STEPS FUNTIONS
 
+        #region OBTAIN FINAL VALUES
+
+        //WALL BOUNDARY CONDITIONS FOR DECODING THE FLOW
+            // Once the values are obtained, we apply the wall boundary condition for the lower layer
+            // to decode the flux variables
         public void Wall_Bounday_Condition(double Gamma, double R_aire, double E, double theta)
         {
+            // define the A, B and C values
             double A = (Math.Pow(F3, 2) / (2 * F1)) - F4;
             double B = (Gamma / (Gamma - 1)) * F1 * F2;
             double C = -(((Gamma + 1) / (2 * (Gamma - 1))) * Math.Pow(F1, 3));
-
+            // we obtain the calculated values
             double Rho_cal = (-B + Math.Sqrt(Math.Pow(B, 2) - (4 * A * C))) / (2 * A);
             double u_cal = F1 / Rho_cal;
             double v_cal = F3 / F1;
             double P_cal = F2 - (F1 * u_cal);
             double T_cal = P_cal / (R_aire * Rho_cal);
             double M_cal = (Math.Sqrt((Math.Pow(u_cal, 2)) + (Math.Pow(v_cal, 2)))) / Math.Sqrt(Gamma * R_aire * T_cal);
-
+            // define the phi value
             double phi;
             if (x < E)
             {
@@ -319,16 +340,17 @@ namespace LibreriaClases
                 phi = theta - (Math.Atan(Math.Abs(v_cal) / u_cal));
 
             }
+            // computing the f cal value
             double patata = Math.Sqrt((Gamma + 1) / (Gamma - 1));
             double moniato = Math.Sqrt((Gamma - 1) / (Gamma + 1) * (M_cal* M_cal - 1));
             double pastanaga = Math.Atan(moniato);
             double mandarina = Math.Atan(Math.Sqrt(Math.Pow(M_cal, 2) - 1));
-
+            // define the f_act value
             double f_cal = patata * pastanaga - mandarina;
             double f_act = f_cal + phi;
-
-            double M_act = compute_M_act(Gamma, f_act); // posible lugar de fallo
-
+            // apply secant method to obtain the actual Mach
+            double M_act = compute_M_act(Gamma, f_act);
+            //decoding the final variables
             M = M_act;
             M_angle = Math.Asin(1 / M);
             P = P_cal * (Math.Pow(((1 + ((Gamma - 1) / 2) * (Math.Pow(M_cal, 2))) / (1 + ((Gamma - 1) / 2) * (Math.Pow(M_act, 2)))), (Gamma / (Gamma - 1))));
@@ -336,17 +358,17 @@ namespace LibreriaClases
             Rho = P / (R_aire * T);
             u = u_cal;
             a = Math.Sqrt(Gamma * R_aire * T);
-
+            // for the vertical velocity we define a condition 
             if (x > E)
             { v = -(u * Math.Tan(theta)); }
             else
             { v = 0; }
-
+            // the F values
             F1 = Rho * u;
             F2 = (Rho * Math.Pow(u, 2)) + P;
             F3 = Rho * u * v;
             F4 = (Gamma / (Gamma - 1)) * P * u + Rho * u * ((Math.Pow(u, 2) + Math.Pow(v, 2)) / 2);
-
+            // the G values
             G1 = Rho * (F3 / F1);
             G2 = F3;
             G3 = (Rho * Math.Pow((F3 / F1), 2)) + F2 - (Math.Pow(F1, 2) / Rho);
@@ -354,12 +376,16 @@ namespace LibreriaClases
 
         }
 
+        //DECODING THE FLUID FOR THE REST OF THE BODY
+            // We define the function to compute the finall values when we are not in contact with the 
+            // wall
         public void ComputeFinalValues(double Gamma, double R_aire)
         {
+            // define A,B,C
             double A =(( F3 * F3) / (2 * F1)) - F4;
             double B = (Gamma / (Gamma - 1)) * F1 * F2;
             double C = -((Gamma + 1) / (2 * (Gamma - 1))) * F1 * F1 * F1;
-
+            // compute the properties values of the flux
             this.Rho = (-B + Math.Sqrt((B * B) - (4 * A * C))) / (2 * A);
             this.u = F1 / Rho;
             this.v = F3 / F1;
@@ -368,26 +394,33 @@ namespace LibreriaClases
             this.a = Math.Sqrt(Gamma * R_aire * T);
             this.M = Math.Sqrt(Math.Pow(u, 2) + Math.Pow(v, 2)) / a;
             this.M_angle = Math.Asin(1 / M);
-
+            // the G values
             this.G1 = Rho * (F3 / F1);
             this.G2 = F3;
             this.G3 = Rho * Math.Pow((F3 / F1), 2) + F2 - (Math.Pow(F1, 2) / Rho);
             this.G4 = ((Gamma / (Gamma - 1)) * ((F2) - ((Math.Pow(F1, 2)) / Rho)) * (F3 / F1)) + (((Rho * F3) / (2 * F1)) * ((Math.Pow((F1 / Rho), 2)) + (Math.Pow((F3 / F1), 2))));
         }
 
+        #endregion OBTAIN FINAL VALUES
+
         #region COMPUTATION OF THE ACTUAL MACH
+
+        // FUNCTION THAT COMPUTES NUMERICALLY THE ACTUAL MACH
+            //As no analytical result is found, the actual mach is computed numerically with
+            // the secand method
         public double compute_M_act(double Gamma, double f_act)
         {
 
-            List<double> x0 = new List<double>(); //vector posicion inicial
-            List<double> xi = new List<double>(); //vector siguientes posiciones
+            List<double> x0 = new List<double>(); //vector initial posicion 
+            List<double> xi = new List<double>(); //vector final posicions
 
             x0.Add(2.0); 
             xi.Add(2.4);
 
-            int iteraciones = 30; // maximo de iteraciones
-            double Tol = 10e-9; // Tolerancia para el criterio de convergencia a superar o igualar(%)
+            int iteraciones = 30; // max iterations
+            double Tol = 10e-9; // max tolerations until it converges 
 
+            // loop that computes the values
             for (int i = 0; i < iteraciones; i++)
             { 
               double f_M_i = Math.Sqrt((Gamma + 1) / (Gamma - 1)) * Math.Atan(Math.Sqrt((Gamma - 1) / (Gamma + 1) * (Math.Pow(xi[i],2) - 1))) - Math.Atan(Math.Sqrt(Math.Pow(xi[i],2) - 1)) - f_act;
@@ -397,11 +430,11 @@ namespace LibreriaClases
               x0.Add(xi[i]);
 
                 if (Math.Abs(f_M_i) < Tol)
-                { break; }
+                { break; }// when is found we stop the computing
             }
 
-            return xi[xi.Count - 1];
-    
+            return xi[xi.Count - 1]; // geting the value
+
         }
         #endregion COMPUTATION OF THE ACTUAL MACH
 
