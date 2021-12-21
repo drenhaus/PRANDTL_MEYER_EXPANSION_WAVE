@@ -91,7 +91,7 @@ namespace LibreriaClases
         #endregion GRID PLOT GENERATOR
 
         #region UPDATE GRID COLOR
-        public Polygon[,] actualizar_colores_grid(DataTable t, byte R, byte G, byte B, bool DataIsV)
+        public Polygon[,] actualizar_colores_grid(DataTable t, bool DataIsV)
         {
             double[] max_min;
             max_min = Max_Min_Datatables(t, DataIsV);
@@ -100,14 +100,14 @@ namespace LibreriaClases
             {
                 for (int j = 0; j < filas; j++)
                 {
-                    byte alpha = Define_Cloroes(max_min[0], max_min[1], Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()),DataIsV);
-                    casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(alpha, R, G, B));
+                    byte[] ARGB = Define_Cloroes(max_min[0], max_min[1], Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()),DataIsV);
+                    casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(ARGB[0], ARGB[1], ARGB[2], ARGB[3]));
                 }
             }
             return casillas;
 
         }
-        public Polygon[,] actualizar_colores_grid_AS(DataTable t, byte R, byte G, byte B, DataTable t_minmax, int filas_t, int columnas_t, DataTable t_minmax2)
+        public Polygon[,] actualizar_colores_grid_AS(DataTable t, DataTable t_minmax, int filas_t, int columnas_t, DataTable t_minmax2)
         {
             
             double[] max_min1;
@@ -122,18 +122,22 @@ namespace LibreriaClases
             {
                 for (int j = 0; j < filas; j++)
                 {
-                    byte alpha = Define_Cloroes(max,min, Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()),true);
-                    casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(alpha, R, G, B));
+                    byte[] ARGB = Define_Cloroes(max,min, Convert.ToDouble(t.Rows[filas - 1 - j][i].ToString()),true);
+                    casillas[j, i].Fill = new SolidColorBrush(Color.FromArgb(ARGB[0], ARGB[1], ARGB[2], ARGB[3]));
                 }
             }
             return casillas;
 
         }
-        public byte Define_Cloroes(double max, double min, double value, bool DataIsV)
+        public byte[] Define_Cloroes(double max, double min, double value, bool DataIsV)
         {
             double rango = max - min;
 
-            byte alpha=255; // to initialize the variable
+            byte R=0; // from value 255 to 51
+            byte G=0; // from 51 to 255 and 51 again
+            byte B=0; // from 51 to 255
+
+            byte alpha = 255;
 
             //max byte --255
             // min byte --30
@@ -147,14 +151,128 @@ namespace LibreriaClases
             {
                 try
                 {
-                    alpha = Convert.ToByte(30 + (255 - 30) / (max - min) * (value - min));
+                    // defining the 3 different variables
+                    if (value <= min+ rango/4)
+                    {
+                        // R: 51 bytes assigned. From 255 to 204
+                        // G: 102 bytes assigned. From 51 to 153
+                        // B: 51 bytes assigned. From 51 to 102
+                       
+                        // DEFINING BYTE R
+                       int bytemin = 255;
+                       int bytemax = 204;
+                       double min_value = min;
+                       double max_value = min + rango / 4;
+
+                       R = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
+
+                        // DEFINING BYTE G
+                        bytemin = 51;
+                        bytemax = 153;
+
+                        G = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
+
+                        // DEFINING BYTE B
+                        bytemin = 51;
+                        bytemax = 102;
+                       
+                        B = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
+
+
+                    }
+                    else if ((min+rango/4<value) && (value<= min+2*rango/4))
+                    {
+                        // R: 51 bytes assigned. From 204 to 153
+                        // G: 102 bytes assigned. From 153 to 255
+                        // B: 51 bytes assigned. From 102 to 153
+
+
+                        // DEFINING BYTE R
+                        int bytemin = 204;
+                        int bytemax = 153;
+                        double min_value = min+rango/4;
+                        double max_value = min + 2 * rango / 4;
+
+                        R = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
+
+                        // DEFINING BYTE G
+                        bytemin = 153;
+                        bytemax = 255;
+
+                        G = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
+
+                        // DEFINING BYTE B
+                        bytemin = 102;
+                        bytemax = 153;
+
+                        B = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
+
+                    }
+                    else if ((min + 2*rango / 4 < value) && (value <= min + 3 * rango / 4))
+                    {
+                        // R: 51 bytes assigned. From 153 to 102
+                        // G: 102 bytes assigned. From 255 to 153
+                        // B: 51 bytes assigned. From 153 to 204
+
+
+                        // DEFINING BYTE R
+                        int bytemin = 153;
+                        int bytemax = 102;
+                        double min_value = min + 2 * rango / 4;
+                        double max_value = min + 3 * rango / 4;
+
+                        R = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
+
+                        // DEFINING BYTE G
+                        bytemin = 255;
+                        bytemax = 153;
+
+                        G = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
+
+                        // DEFINING BYTE B
+                        bytemin = 153;
+                        bytemax = 204;
+
+                        B = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
+
+
+                    }
+                    else
+                    {
+                        // R: 51 bytes assigned. From 102 to 51
+                        // G: 102 bytes assigned. From 153 to 51
+                        // B: 51 bytes assigned. From 204 to 255
+
+                        // DEFINING BYTE R
+                        int bytemin = 102;
+                        int bytemax = 51;
+                        double min_value = min + 3 * rango / 4;
+                        double max_value = max;
+
+                        R = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
+
+                        // DEFINING BYTE G
+                        bytemin = 153;
+                        bytemax = 51;
+
+                        G = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
+
+                        // DEFINING BYTE B
+                        bytemin = 204;
+                        bytemax = 255;
+
+                        B = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
+                    }
+
+                    alpha = 255;
                 }
                 catch { }
             }
-            
+
+            byte[] byte_Values = { alpha, R, G, B };
            
 
-            return alpha;
+            return byte_Values;
 
         }
 

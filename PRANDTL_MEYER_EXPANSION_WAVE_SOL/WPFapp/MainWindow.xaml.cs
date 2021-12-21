@@ -179,27 +179,27 @@ namespace WPFapp
         {
             if (DataGridComboBox.SelectedIndex == 0) // if temperature selected
             {
-                casillas=GPG.actualizar_colores_grid(temperature_table, 255, 0, 0,false);
+                casillas=GPG.actualizar_colores_grid(temperature_table,false);
             }
             if (DataGridComboBox.SelectedIndex == 1) // if u selected
             {
-                casillas = GPG.actualizar_colores_grid(u_table, 0, 255, 0,false);
+                casillas = GPG.actualizar_colores_grid(u_table,false);
             }
             if (DataGridComboBox.SelectedIndex == 2) //if v selected
             {
-                casillas = GPG.actualizar_colores_grid(v_table, 255, 128, 0,true);
+                casillas = GPG.actualizar_colores_grid(v_table,true);
             }
             if (DataGridComboBox.SelectedIndex == 3) //if rho selected
             {
-                casillas = GPG.actualizar_colores_grid(rho_table, 18, 184, 255,false);
+                casillas = GPG.actualizar_colores_grid(rho_table,false);
             }
             if (DataGridComboBox.SelectedIndex == 4) //if p selected
             {
-                casillas = GPG.actualizar_colores_grid(p_table, 255, 0, 127,false);
+                casillas = GPG.actualizar_colores_grid(p_table,false);
             }
             if (DataGridComboBox.SelectedIndex == 5) //if Mach selected
             {
-                casillas = GPG.actualizar_colores_grid(M_table, 255, 255, 255,false);
+                casillas = GPG.actualizar_colores_grid(M_table,false);
             }
 
         }
