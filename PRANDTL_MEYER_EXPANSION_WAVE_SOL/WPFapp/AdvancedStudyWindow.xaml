@@ -143,7 +143,9 @@
                         <LineBreak />
                         CASE 2. Two consecutive inclined planes but with a straight plane between them
                         <LineBreak />
-                        The results can be observed by selecting the data in the combobox
+                        The results can be observed by selecting the data in the combobox or by moving the mouse 
+                        <LineBreak />
+                         inside the grids in Show cells detail. Right button for fixing a value and left for liberating.   
                         </TextBlock>
                         <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
                         <WrapPanel>
