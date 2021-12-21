@@ -69,8 +69,9 @@ namespace WPFapp
         }
 
         #region SIMULATION FUNCTION
-        //When the simulation function is called the needed parameters are set and 
-        // the functions that compute the simulation in the Malla are initialized        
+        //SIMULATION FUNCTION
+            //When the simulation function is called the needed parameters are set and 
+            // the functions that compute the simulation in the Malla are initialized        
         private void Simulate()
         {
             // We define the rows, columns and the delta_y_t depending of the precision
@@ -123,8 +124,8 @@ namespace WPFapp
         }
 
         // DISPATCHER TIMER TICK FOR Simulation()
-        // When the timer is initialized a new window loading is opened during the long process
-        // is executed. When this process finishes the loading window closes and the timer is stoped
+            // When the timer is initialized a new window loading is opened during the long process
+            // is executed. When this process finishes the loading window closes and the timer is stoped
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             if (timer == 1)
@@ -146,8 +147,8 @@ namespace WPFapp
         }
 
         // DISPATCHER TIMER TICK FOR DataChangedComboBox
-        // When the timer is initialized a new window loading is opened during the long process
-        // is executed. When this process finishes the loading window closes and the timer is stoped
+            // When the timer is initialized a new window loading is opened during the long process
+            // is executed. When this process finishes the loading window closes and the timer is stoped
         private void dispatcherTimer_Tick2(object sender, EventArgs e)
         {
             if (timer2 == 1)
@@ -173,8 +174,8 @@ namespace WPFapp
         #region SIMULATION WPF CONTROLS
 
         // FUNCTION CALLED WHEN CHANGING THE SELECTED INDEX OF THE DATA VIEW COMBOBOX
-        // Depending the index selected, the polygons saved in CASILLAS are changed their color
-        // according to the data displayed
+            // Depending the index selected, the polygons saved in CASILLAS are changed their color
+            // according to the data displayed
         private void DataChangedComboBox()
         {
             if (DataGridComboBox.SelectedIndex == 0) // if temperature selected
@@ -205,8 +206,8 @@ namespace WPFapp
         }
 
         // DEPENDING OF THE PRECISION A LOADING ADVICE WILL APPEAR
-        //if the selected index of the precision is 2 (high presition) a loading advice is going
-        // to be shown
+            //if the selected index of the precision is 2 (high presition) a loading advice is going
+            // to be shown
         private void DataGridComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (PresitionComboBox.SelectedIndex == 2)
@@ -224,7 +225,7 @@ namespace WPFapp
         }
 
         // CHECKBOX OF DEFAULT PARAMETERS CHECKED
-        // if the checkbox is selected it is written the parameters by default
+            // if the checkbox is selected it is written the parameters by default
         private void CheckBox_A_Checked(object sender, RoutedEventArgs e)
         {
             // we write the parameters
@@ -237,8 +238,8 @@ namespace WPFapp
         }
 
         // LOAD PARAMETERS BUTTON
-        // When clicking to load the writen parameters are going to be set as the atributes of the 
-        // NORMA class where we find the parameter conditions of the simulation
+            // When clicking to load the writen parameters are going to be set as the atributes of the 
+            // NORMA class where we find the parameter conditions of the simulation
         private void LoadParametersButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -366,8 +367,8 @@ namespace WPFapp
         }
 
         // RESET BUTTON
-        //If some simulation has been executed but the user wants to make some change in the parameters or
-        // redo the simulation, the reset button creates a new Malla and empties all the DataTables and grid
+            //If some simulation has been executed but the user wants to make some change in the parameters or
+            // redo the simulation, the reset button creates a new Malla and empties all the DataTables and grid
         private void Reset_button_Click(object sender, RoutedEventArgs e)
         {
             // new Malla created
@@ -425,6 +426,8 @@ namespace WPFapp
 
         }
 
+        // DEFAULT PARAMETERS SELECTED?
+            // This function checks if the default parameters are selected for the simulation
         public bool AreDefautParametersLoaded()
         {
             if (m.norma.v_in == 0.0 && m.norma.Rho_in == 1.23 && m.norma.P_in == 101000 && m.norma.M_in == 2.0 && m.norma.T_in == 286.1)
@@ -472,8 +475,8 @@ namespace WPFapp
 
 
         // SEE GROUND 
-        // This function sets if the ground of the simulation is visible or hidden and if is visible which configuration
-        // low, medium or high
+            // This function sets if the ground of the simulation is visible or hidden and if is visible which configuration
+            // low, medium or high
         private void SeeGrounfOf(string str)
         {
             if (str == "LOW")
@@ -579,8 +582,8 @@ namespace WPFapp
         }
 
         // CHANGING THE PRECISION INDEX
-        // Depending of the precision selected in the Combobox the dimensions of delta_y_t, rows and columns are
-        // higher or lower and thus is more accurate or not and the ground is visible
+            // Depending of the precision selected in the Combobox the dimensions of delta_y_t, rows and columns are
+            // higher or lower and thus is more accurate or not and the ground is visible
         private void PresitionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -637,16 +640,20 @@ namespace WPFapp
         #endregion SIMULATION WPF CONTROLS
 
         #region SAVE/LOAD SIMULATION
+        
+        //SAVING FUNCTION
+            // To save the simulation it is writed the precision and the parameters
+            // selected in a txt
         public int GuardarSimulacion(string nombre)
         {
             try
             {
                 StreamWriter w = new StreamWriter(nombre);
 
-                w.Write(PresitionComboBox.SelectedIndex);
-                w.Write('\n');
-                w.Write(m.norma.v_in + " " + m.norma.Rho_in + " " + m.norma.P_in + " " + m.norma.M_in + " " + m.norma.T_in);
-                w.Close();
+                w.Write(PresitionComboBox.SelectedIndex); // writing the presision
+                w.Write('\n'); // in the next line
+                w.Write(m.norma.v_in + " " + m.norma.Rho_in + " " + m.norma.P_in + " " + m.norma.M_in + " " + m.norma.T_in); // initial data line
+                w.Close(); 
                 return 0;
             }
             catch (Exception)
@@ -654,16 +661,21 @@ namespace WPFapp
                 return -1;
             }
         }
+        
+        // LOAD SIMULATION
+            //When loading a simulation, a txt file is loaded and the parameters are readed
+            // from tje txt and the saved simulation can be done again
         public Malla CargarSimulacion(string name)
         {
-            //Malla m = new Malla();
+            
             isLOADING = true;
 
-            StreamReader sr = new StreamReader(name);
-            string linea = sr.ReadLine();
+            StreamReader sr = new StreamReader(name); // we read the selected file
+            string linea = sr.ReadLine(); // define as a string the first line
 
             #region PRESITION OF SAVED FILE
-            if (Convert.ToInt16(linea) == 0)
+            // the presition is saved as the index
+            if (Convert.ToInt16(linea) == 0) // if index is 0 we have low presition
             { 
                 SeeGrounfOf("LOW");
                 columnas = 24;
@@ -671,7 +683,7 @@ namespace WPFapp
                 delta_y_t = 0.1;
                 PresitionComboBox.SelectedIndex = 0;
             }
-            if (Convert.ToInt16(linea) == 1)
+            if (Convert.ToInt16(linea) == 1) // if index is 1 we have medium presition
             {
                 SeeGrounfOf("MEDIUM");
                 columnas = 92;
@@ -679,7 +691,7 @@ namespace WPFapp
                 delta_y_t = 0.025;
                 PresitionComboBox.SelectedIndex = 1;
             }
-            if (Convert.ToInt16(linea) == 2)
+            if (Convert.ToInt16(linea) == 2) // if index is 2 we have high presition
             {
                 SeeGrounfOf("MEDIUM");
                 columnas = 452;
@@ -690,6 +702,7 @@ namespace WPFapp
             
             #endregion PRESITION OF SAVED FILE
 
+            // enable the following buttons for being able to continue with the simulation
             LoadParametersButton.IsEnabled = true;
             CheckBox_A.IsEnabled = true;
             T_TextBox.IsEnabled = true;
@@ -700,26 +713,28 @@ namespace WPFapp
             SaveSim_button.IsEnabled = true;
             Reset_button.IsEnabled = true;
 
-
+            // the next line are the initial data line
             string lineaParam = sr.ReadLine();
-            string[] trozosParam = lineaParam.Split(' ');
+            string[] trozosParam = lineaParam.Split(' '); // the parameters are separated by a space
 
-            m.norma.v_in = Convert.ToDouble(trozosParam[0]);
-            m.norma.Rho_in = Convert.ToDouble(trozosParam[1]);
-            m.norma.P_in = Convert.ToDouble(trozosParam[2]);
-            m.norma.M_in = Convert.ToDouble(trozosParam[3]);
-            m.norma.T_in = Convert.ToDouble(trozosParam[4]);
+            m.norma.v_in = Convert.ToDouble(trozosParam[0]); // the first element is the v
+            m.norma.Rho_in = Convert.ToDouble(trozosParam[1]); // the next is the density
+            m.norma.P_in = Convert.ToDouble(trozosParam[2]); // the pressure
+            m.norma.M_in = Convert.ToDouble(trozosParam[3]); // the mach
+            m.norma.T_in = Convert.ToDouble(trozosParam[4]); // the temperature
 
+            //compute the remaining values of Normas class
             m.norma.Compute_a();
             m.norma.Compute_M_angle();
             m.norma.Compute_u();
-
+            // we write the values also in the text boxes
             v_TextBox.Text = Convert.ToString(trozosParam[0]);
             Rho_TextBox.Text = Convert.ToString(trozosParam[1]);
             P_TextBox.Text = Convert.ToString(trozosParam[2]);
             M_TextBox.Text = Convert.ToString(trozosParam[3]);
             T_TextBox.Text = Convert.ToString(trozosParam[4]);
 
+            // Compute the simulation showing the loading advice if the precision is high
             if (Convert.ToInt16(linea) == 2)
             {
                 dispatcherTimer = new DispatcherTimer();
@@ -729,13 +744,19 @@ namespace WPFapp
             }
 
             else
-            { Simulate(); }
+            { // for other precisions, we run directly the simulation
+                Simulate(); }
 
             isLOADING = false;
             sr.Close();
             return m;
             
         }
+        
+        // SAVE SIMULATION BUTTON
+            //When preassed the saving simulation, we can select the name and the place we want 
+            // to save the file
+            // By default the name is Simulación
         private void SaveSim_button_Click(object sender, RoutedEventArgs e)
         {
             
@@ -762,6 +783,10 @@ namespace WPFapp
             else
             { MessageBox.Show("No ha sido posible guardar la simulación"); }
         }
+        
+        // LOADING THE SIMULATION BUTTON
+            // When pressing the loading button the whole grid and parameters are cleared and the 
+            // selected file opens and is read
         private void LoadSim_button_Click(object sender, RoutedEventArgs e)
         {
             #region CLEAR ALL
@@ -795,26 +820,12 @@ namespace WPFapp
             M_TextBox.Text = "";
             v_TextBox.Text = "";
 
-            //// is enable of buttons fals
-            //DataGridComboBox.IsEnabled = false;
-            //Reset_button.IsEnabled = false;
-            //LoadParametersButton.IsEnabled = false;
-            //SaveSim_button.IsEnabled = false;
-            //LoadSim_button.IsEnabled = false;
-            //CheckBox_A.IsEnabled = false;
-            //PresitionComboBox.IsEnabled = true;
-            //T_TextBox.IsEnabled = false;
-            //Rho_TextBox.IsEnabled = false;
-            //P_TextBox.IsEnabled = false;
-            //M_TextBox.IsEnabled = false;
-            //v_TextBox.IsEnabled = false;
-
             #endregion CLEAR ALL
 
             #region LOAD FILE
 
             try
-            {
+            {   // opening a new file
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.Multiselect = true;
                 ofd.Filter = "Text documents (.txt)|*.txt";
@@ -822,7 +833,7 @@ namespace WPFapp
 
                 if (result == true)
                 {
-                    // Cargar documento
+                    // charging the document
                     string filename = ofd.FileName;
                     m = CargarSimulacion(filename);
                     DataGridComboBox.IsEnabled = true;
@@ -846,8 +857,8 @@ namespace WPFapp
 
         #region LEFT BUTTONS (OPEN TABLES, COMPARATIONS, GRAPHICS AND ADVANCED STUDY)
         // NEW WINDOW: WELCOME
-        // When clicking to the menu BACK TO START the simulation window closes and it is opened
-        // again the welcome to the simulator windows
+            // When clicking to the menu BACK TO START the simulation window closes and it is opened
+            // again the welcome to the simulator windows
         private void WelcomeButton_Click(object sender, RoutedEventArgs e)
         {
             WelcomeWindow ww = new WelcomeWindow();
@@ -878,9 +889,9 @@ namespace WPFapp
         }
 
         // NEW WINDOW: TABLES
-        //When clicking to the menu option TABLES a new window is opened showing the information tables
-        // It is necessary to transfer the information of the tables from the main simulation window to
-        // the tables window
+            //When clicking to the menu option TABLES a new window is opened showing the information tables
+            // It is necessary to transfer the information of the tables from the main simulation window to
+            // the tables window
         private void TablesButton_Click(object sender, RoutedEventArgs e)
         {
             if (temperature_table != null)
@@ -937,21 +948,21 @@ namespace WPFapp
 
         #region WINDOW MANIPULATION FUNCTIONS
         // CLOSE BUTTON
-        //When clicking to the top right button (red circle) the current window closes
+            //When clicking to the top right button (red circle) the current window closes
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
         // MINIMIZE BUTTON
-        //When clicking to the top right button (yellow circle) the current window minimises
+            //When clicking to the top right button (yellow circle) the current window minimises
         private void MiniButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
 
         // DRAG MOVE
-        //When the left button is pressed and draged, the window can be moved
+            //When the left button is pressed and draged, the window can be moved
         private void Label_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
