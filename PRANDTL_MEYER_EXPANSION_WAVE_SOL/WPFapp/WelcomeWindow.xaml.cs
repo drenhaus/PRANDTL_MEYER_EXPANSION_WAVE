@@ -57,7 +57,7 @@ namespace WPFapp
         private void TutorialButton_Click(object sender, RoutedEventArgs e)
         {
             // link
-            var uri = "https://drive.google.com/file/d/162K73R3-4f5F61Byt_n0pj7m2N6TDX_X/view?usp=sharing";
+            var uri = "https://drive.google.com/drive/folders/12VDQVxcK5ydkCNb3lHm-_q2y88NVEP2n?usp=sharing";
             var psi = new System.Diagnostics.ProcessStartInfo();
             psi.UseShellExecute = true;
             psi.FileName = uri;
