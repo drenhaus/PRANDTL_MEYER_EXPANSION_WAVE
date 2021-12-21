@@ -153,6 +153,7 @@ namespace WPFapp
             // it is not an accedible way
         private void TableSetect_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+            ExportTable_Button.IsEnabled = true;
             // we initilise the timer 
             dispatcherTimer = new DispatcherTimer();
             // define the new function of the mouse in the polyfon
