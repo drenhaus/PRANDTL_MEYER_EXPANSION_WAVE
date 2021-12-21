@@ -6,22 +6,23 @@ namespace LibreriaClases
 {
     public class Punto
     {
-        #region ATRIBUTES
-        // Definimos una clase punto con un valor x e y
+        #region ATTRIBUTES
+        // We define a class Punto with an x and y value 
         public double X { get; set; }
         public double Y { get; set; }
-        #endregion ATRIBUTES
+        #endregion ATTRIBUTES
 
         #region FUNCTIONS SET POINT AND GIVE A FROMAT
+        
+        //FUNCTION WITH THE SAME NAME OF THE CLASS 
+            // When calling the class a double x and y would be introduced and
+            // automatically saved as thee attributes of the class Punto
         public Punto(double x, double y)
         {
-            X = x;
-            Y = y;
+            X = x; // we define the x as x
+            Y = y; // defining the y as y
         }
-        public override string ToString()
-        {
-            return string.Format("({0},{1})", X, Y);
-        }
+       
         #endregion FUNCTIONS SET POINT AND GIVE A FROMAT
     }
 }
