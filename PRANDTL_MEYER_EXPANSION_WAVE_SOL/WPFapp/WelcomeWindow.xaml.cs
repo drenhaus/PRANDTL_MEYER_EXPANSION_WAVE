@@ -22,39 +22,41 @@ namespace WPFapp
         {
             InitializeComponent();
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //label_explicacion.Visibility = Visibility.Visible;
-            //label_explicacion.Content = "The objective of this project is to simulate and obtain a numerical solution of a flow over a Prandtl-Meyer expansion corner. In this simulation, we are going to suppose that the flow that moves on the surface is two-dimensional, supersonic and invisible and we are going to establish a series of initial conditions in order to simplify the problem and obtain the main properties of the flow that interests us to study its behaviour.";
-            //Load text for main label explaining the project
-        }
-
+       
+        // EXIT BUTTON
+            // When exit button is pressed the windows closes and the program stops
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Close(); // closing the window
         }
 
+        // START BUTTON
+            // When the start button is pressed, the main simulation window opens
+            // allowing the user start making simulations and the welcome window closes
         private void StarButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            MainWindow MW = new MainWindow();
-
-            MW.Show();
-            Close();
+            MainWindow MW = new MainWindow(); // new window of MainWindow
+            MW.Show(); // showing the window
+            Close(); // closing the welcome window
         }
 
-
+        // DRAGING FUNCTION
+            // When the mouse is pressed and moven on the top of the window, it can be moved
+            // to the place wanted
         private void Label_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                this.DragMove();
+                this.DragMove(); // drag the window
             }
         }
 
+        // TUTORIAL BUTTON
+            //When the tutorial window is pressed, a new window opens and the manual of use and tutorial 
+            // can be obtained
         private void TutorialButton_Click(object sender, RoutedEventArgs e)
         {
-           // Process.Start(@"C:\Users\olgac\OneDrive\Documents\UNI\4A\SIMULACIO\pradtl-meyer\PROJECTE\PRANDTL_MEYER_EXPANSION_WAVE\PRANDTL_MEYER_EXPANSION_WAVE_SOL\WPFapp\Images\info.png");
+            // link
             var uri = "https://drive.google.com/file/d/162K73R3-4f5F61Byt_n0pj7m2N6TDX_X/view?usp=sharing";
             var psi = new System.Diagnostics.ProcessStartInfo();
             psi.UseShellExecute = true;
