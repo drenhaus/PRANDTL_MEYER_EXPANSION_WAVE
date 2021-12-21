@@ -24,6 +24,7 @@ namespace WPFapp
             InitializeComponent();
 
             #region HIDDE LABELS & TEXTBOX
+            // When initialising, the error labels and text boxs are hidden
             anderson_error.Visibility = Visibility.Hidden;
             anderson_label.Visibility = Visibility.Hidden;
             computed_label.Visibility = Visibility.Hidden;
@@ -32,20 +33,21 @@ namespace WPFapp
         }
 
         #region ATRIBUTES
+        // defining the errors of anderson
         double Anderson_M_error;
         double Anderson_p_error;
         double Anderson_rho_error;
         double Anderson_t_error;
         double Anderson_u_error;
         double Anderson_v_error;
-
+        // our computed errors
         double our_M_error;
         double our_p_error;
         double our_rho_error;
         double our_t_error;
         double our_u_error;
         double our_v_error;
-
+        //defining a new Malla
         public Malla m { get; set; }
         public int p { get; set; } // indicates the precision. if p=0 low. p=1 medium. p=2 high
 
@@ -226,9 +228,12 @@ namespace WPFapp
         #endregion ATRIBUTES
 
         #region FILL DATATABLE
-
+        // FILLING ANDERSON TABLE
+            //With the data introduced as matrices and arrays we create a table with this
+            // anderson information
         public void Fill_Anderson_Tables()
         {
+            // creating the columns for position 12
             DataColumn TEMP_C = new DataColumn();
             DataColumn U_C = new DataColumn();
             DataColumn V_C = new DataColumn();
@@ -239,7 +244,7 @@ namespace WPFapp
             DataColumn F2_C = new DataColumn();
             DataColumn F3_C = new DataColumn();
             DataColumn F4_C = new DataColumn();
-
+            // creating the columns for position 66
             DataColumn TEMP_C2 = new DataColumn();
             DataColumn U_C2 = new DataColumn();
             DataColumn V_C2 = new DataColumn();
@@ -250,7 +255,7 @@ namespace WPFapp
             DataColumn F2_C2 = new DataColumn();
             DataColumn F3_C2 = new DataColumn();
             DataColumn F4_C2 = new DataColumn();
-
+            // adding the columns into the tables of 12 m
             Anderson_T_12.Columns.Add(TEMP_C);
             Anderson_u_12.Columns.Add(U_C);
             Anderson_v_12.Columns.Add(V_C);
@@ -261,7 +266,7 @@ namespace WPFapp
             Anderson_F2_12.Columns.Add(F2_C);
             Anderson_F3_12.Columns.Add(F3_C);
             Anderson_F4_12.Columns.Add(F4_C);
-
+            // adding the columns into the tables of 66 m
             Anderson_T_66.Columns.Add(TEMP_C2);
             Anderson_u_66.Columns.Add(U_C2);
             Anderson_v_66.Columns.Add(V_C2);
@@ -275,6 +280,7 @@ namespace WPFapp
 
             for (int i = 0; i < A_F4_66.Length; i++)
             {
+                // creating rows for position 12 m
                 DataRow TEMP_R = Anderson_T_12.NewRow();
                 DataRow U_R = Anderson_u_12.NewRow();
                 DataRow V_R = Anderson_v_12.NewRow();
@@ -285,7 +291,7 @@ namespace WPFapp
                 DataRow F2_R = Anderson_F2_12.NewRow();
                 DataRow F3_R = Anderson_F3_12.NewRow();
                 DataRow F4_R = Anderson_F4_12.NewRow();
-
+                // creating rows for position 66 m
                 DataRow TEMP_R2 = Anderson_T_66.NewRow();
                 DataRow U_R2 = Anderson_u_66.NewRow();
                 DataRow V_R2 = Anderson_v_66.NewRow();
@@ -296,7 +302,7 @@ namespace WPFapp
                 DataRow F2_R2 = Anderson_F2_66.NewRow();
                 DataRow F3_R2 = Anderson_F3_66.NewRow();
                 DataRow F4_R2 = Anderson_F4_66.NewRow();
-
+                // defining the values at each cell
                 TEMP_R[0] = A_T_12[i];
                 U_R[0] = A_u_12[i];
                 V_R[0] = A_v_12[i];
@@ -307,7 +313,6 @@ namespace WPFapp
                 F2_R[0] = A_F2_12[i];
                 F3_R[0] = A_F3_12[i];
                 F4_R[0] = A_F4_12[i];
-
                 TEMP_R2[0] = A_T_66[i];
                 U_R2[0] = A_u_66[i];
                 V_R2[0] = A_v_66[i];
@@ -318,7 +323,7 @@ namespace WPFapp
                 F2_R2[0] = A_F2_66[i];
                 F3_R2[0] = A_F3_66[i];
                 F4_R2[0] = A_F4_66[i];
-
+                // adding the rows at position 12
                 Anderson_T_12.Rows.Add(TEMP_R);
                 Anderson_u_12.Rows.Add(U_R);
                 Anderson_v_12.Rows.Add(V_R);
@@ -329,7 +334,7 @@ namespace WPFapp
                 Anderson_F2_12.Rows.Add(F2_R);
                 Anderson_F3_12.Rows.Add(F3_R);
                 Anderson_F4_12.Rows.Add(F4_R);
-
+                // adding the rows at position 66
                 Anderson_T_66.Rows.Add(TEMP_R2);
                 Anderson_u_66.Rows.Add(U_R2);
                 Anderson_v_66.Rows.Add(V_R2);
@@ -343,9 +348,14 @@ namespace WPFapp
 
             }
         }
+        
+        //FILLING OUR TABLES
+            // We fill our tables with the results obtained and by interpolating to obtain the 
+            // exact result
         public void Fill_Our_Tables()
         {
             double x;
+            // array of the parameters at position 12
             double[] O_T_12= new double[A_F4_66.Length];
             double[] O_V_12 = new double[A_F4_66.Length];
             double[] O_U_12 = new double[A_F4_66.Length];
@@ -356,7 +366,7 @@ namespace WPFapp
             double[] O_F2_12 = new double[A_F4_66.Length];
             double[] O_F3_12 = new double[A_F4_66.Length];
             double[] O_F4_12 = new double[A_F4_66.Length];
-
+            // array of the parameters at position 66
             double[] O_T_66 = new double[A_F4_66.Length];
             double[] O_V_66 = new double[A_F4_66.Length];
             double[] O_U_66 = new double[A_F4_66.Length];
@@ -368,9 +378,10 @@ namespace WPFapp
             double[] O_F3_66 = new double[A_F4_66.Length];
             double[] O_F4_66 = new double[A_F4_66.Length];
 
-            if (p == 1)
+            if (p == 1) // same number of rows than anderson
             {
                 x = 12.928;
+                // we interpolate the result
                 O_T_12 = Interpolate_our_results(x, "t");
                 O_V_12 = Interpolate_our_results(x, "v");
                 O_U_12 = Interpolate_our_results(x, "u");
@@ -383,6 +394,7 @@ namespace WPFapp
                 O_F4_12 = Interpolate_our_results(x, "f4");
 
                 x = 66.278; 
+                // we interpolate the result
                 O_T_66 = Interpolate_our_results(x, "t");
                 O_V_66 = Interpolate_our_results(x, "v");
                 O_U_66 = Interpolate_our_results(x, "u");
@@ -395,9 +407,10 @@ namespace WPFapp
                 O_F4_66 = Interpolate_our_results(x, "f4");
             }
 
-            if (p == 0 || p==2)
+            if (p == 0 || p==2) // different number of rows than anderson
             {
                 x = 12.928;
+                // interpolating the results
                 O_T_12 = Interpolate_our_results_different_precision(x, "t");
                 O_V_12 = Interpolate_our_results_different_precision(x, "v");
                 O_U_12 = Interpolate_our_results_different_precision(x, "u");
@@ -410,6 +423,7 @@ namespace WPFapp
                 O_F4_12 = Interpolate_our_results_different_precision(x, "f4");
 
                 x = 66.278;
+                // interpolating the results
                 O_T_66 = Interpolate_our_results_different_precision(x, "t");
                 O_V_66 = Interpolate_our_results_different_precision(x, "v");
                 O_U_66 = Interpolate_our_results_different_precision(x, "u");
@@ -422,7 +436,9 @@ namespace WPFapp
                 O_F4_66 = Interpolate_our_results_different_precision(x, "f4");
             }
 
-
+            // Filling the tables in the same way we did with anderon
+            
+            // defining the columns for position 12
             DataColumn TEMP_C = new DataColumn();
             DataColumn U_C = new DataColumn();
             DataColumn V_C = new DataColumn();
@@ -433,7 +449,7 @@ namespace WPFapp
             DataColumn F2_C = new DataColumn();
             DataColumn F3_C = new DataColumn();
             DataColumn F4_C = new DataColumn();
-
+            // defining the columns for position 66
             DataColumn TEMP_C2 = new DataColumn();
             DataColumn U_C2 = new DataColumn();
             DataColumn V_C2 = new DataColumn();
@@ -444,7 +460,7 @@ namespace WPFapp
             DataColumn F2_C2 = new DataColumn();
             DataColumn F3_C2 = new DataColumn();
             DataColumn F4_C2 = new DataColumn();
-
+            // adding the columns in our tables
             our_T_12.Columns.Add(TEMP_C);
             our_u_12.Columns.Add(U_C);
             our_v_12.Columns.Add(V_C);
@@ -455,7 +471,6 @@ namespace WPFapp
             our_F2_12.Columns.Add(F2_C);
             our_F3_12.Columns.Add(F3_C);
             our_F4_12.Columns.Add(F4_C);
-
             our_T_66.Columns.Add(TEMP_C2);
             our_u_66.Columns.Add(U_C2);
             our_v_66.Columns.Add(V_C2);
@@ -469,6 +484,7 @@ namespace WPFapp
 
             for (int i = 0; i < A_F4_66.Length; i++)
             {
+                // creating the rows at position 12
                 DataRow TEMP_R = our_T_12.NewRow();
                 DataRow U_R = our_u_12.NewRow();
                 DataRow V_R = our_v_12.NewRow();
@@ -479,7 +495,7 @@ namespace WPFapp
                 DataRow F2_R = our_F2_12.NewRow();
                 DataRow F3_R = our_F3_12.NewRow();
                 DataRow F4_R = our_F4_12.NewRow();
-
+                // creating the rows at position66
                 DataRow TEMP_R2 = our_T_66.NewRow();
                 DataRow U_R2 = our_u_66.NewRow();
                 DataRow V_R2 = our_v_66.NewRow();
@@ -490,7 +506,7 @@ namespace WPFapp
                 DataRow F2_R2 = our_F2_66.NewRow();
                 DataRow F3_R2 = our_F3_66.NewRow();
                 DataRow F4_R2 = our_F4_66.NewRow();
-
+                // introducing the values of the table
                 TEMP_R[0] = Math.Round(O_T_12[i],4);
                 U_R[0] = Math.Round(O_U_12[i], 4);
                 V_R[0] = Math.Round(O_V_12[i], 4);
@@ -501,7 +517,6 @@ namespace WPFapp
                 F2_R[0] = Math.Round(O_F2_12[i], 4);
                 F3_R[0] = Math.Round(O_F3_12[i], 4);
                 F4_R[0] = Math.Round(O_F4_12[i], 4);
-
                 TEMP_R2[0] = Math.Round(O_T_66[i], 4);
                 U_R2[0] = Math.Round(O_U_66[i], 4);
                 V_R2[0] = Math.Round(O_V_66[i], 4);
@@ -513,6 +528,7 @@ namespace WPFapp
                 F3_R2[0] = Math.Round(O_F3_66[i], 4);
                 F4_R2[0] = Math.Round(O_F4_66[i], 4);
 
+                // adding the rows at position in 12 m
                 our_T_12.Rows.Add(TEMP_R);
                 our_u_12.Rows.Add(U_R);
                 our_v_12.Rows.Add(V_R);
@@ -523,7 +539,7 @@ namespace WPFapp
                 our_F2_12.Rows.Add(F2_R);
                 our_F3_12.Rows.Add(F3_R);
                 our_F4_12.Rows.Add(F4_R);
-
+                // adding the rows at position in 66 m
                 our_T_66.Rows.Add(TEMP_R2);
                 our_u_66.Rows.Add(U_R2);
                 our_v_66.Rows.Add(V_R2);
@@ -538,15 +554,17 @@ namespace WPFapp
         }
 
         #region TABLE COMPUTATIONS
+        // COMPUTING THE ERRORS WITH ANDERSON AND OUR
         public void Compute_Errors()
         {
+            //anderson error
             Anderson_M_error = Math.Round(100 * Math.Abs(2.2 - MeanValue(Anderson_M_66)) / 2.2,4);    
             Anderson_p_error = Math.Round(100 * Math.Abs(0.739*Math.Pow(10,5) - MeanValue(Anderson_p_66)) / (0.739 * Math.Pow(10, 5)),4);
             Anderson_rho_error = Math.Round(100 * Math.Abs(0.984 - MeanValue(Anderson_rho_66)) / 0.984,4);
             Anderson_t_error = Math.Round(100 * Math.Abs(262 - MeanValue(Anderson_T_66)) / 262,4);
             Anderson_u_error = Math.Round(100 * Math.Abs(710 - MeanValue(Anderson_u_66)) / 710,4);
             Anderson_v_error =Math.Abs( Math.Round(100 * Math.Abs(-66.5 - MeanValue(Anderson_v_66)) / -66.5,4));
-            
+            // our error
             our_M_error= Math.Round(100 * Math.Abs(2.2 - MeanValue(our_M_66)) / 2.2,4);
             our_p_error= Math.Round(100 * Math.Abs(0.739 * Math.Pow(10, 5) - MeanValue(our_p_66)) / (0.739 * Math.Pow(10, 5)),4);
             our_rho_error= Math.Round(100 * Math.Abs(0.984 - MeanValue(our_rho_66)) / 0.984,4);
@@ -555,36 +573,44 @@ namespace WPFapp
             our_v_error= Math.Abs(Math.Round(100 * Math.Abs(-66.5 - MeanValue(our_v_66)) / -66.5,4));
 
         }
+        
+        // GET THE MEAN VALUE
         public double MeanValue(DataTable dt)
         {
-            double accomulated = 0;
+            double accomulated = 0;     // the accumulated initially is 0
 
             for (int i = 1; i <= 22; i++)
             {
-                accomulated = accomulated + Convert.ToDouble(dt.Rows[i][0].ToString());
+                accomulated = accomulated + Convert.ToDouble(dt.Rows[i][0].ToString()); 
+                //loop computing the accumulated value
             }
-            double mean = accomulated / 22;
+            double mean = accomulated / 22; // mean value
 
-            return mean;
+            return mean; // returning the mean
         }
         #endregion TABLE COMPUTATIONS
 
         #endregion FILL DATATBLE
 
         #region INTERPOLATION FUNCTIONS
+
+        // INTERPOLATING RESULTS FOR A MEDIUM PRECISION
+            // In order to correctly ajust the exact value of x an interpolation is going to be
+            // made. This function returns an array of doubles with the values obtained
         public double[] Interpolate_our_results(double x_choosen, string data)
         {
-            double[] valores1;
-            double[] valores2;
-            double[] valores = new double[m.rows];
+            double[] valores1; // array of values from which we are going to interpolate
+            double[] valores2; // the other array of values from which we are going to interpolate
+            double[] valores = new double[m.rows]; // final values
 
             int j = 0;
             bool valor_exacto = false;
 
-            for (j = 0; m.matriz[0, j].x <= x_choosen; j++)
+            // loop loking for the column that approximates the most for the x choosen
+            for ( j = 0; m.matriz[0, j].x <= x_choosen; j++)
             {
 
-                if (m.matriz[0, j].x == x_choosen)
+                if (m.matriz[0, j].x == x_choosen) // if we found exactly the value
                 {
                     valor_exacto = true;
                 }
@@ -602,7 +628,7 @@ namespace WPFapp
                     valores[i] = valores2[i] + (valores1[i] - valores2[i]) / (m.matriz[0, j].x - m.matriz[0, j - 1].x) * (x_choosen - m.matriz[0, j - 1].x);
                 }
             }
-            else if (valor_exacto == true)
+            else if (valor_exacto == true) // if we had found the exact value
             {
                 valores = m.GetColumnData_array(data, j - 1);
             }
@@ -611,25 +637,29 @@ namespace WPFapp
 
         }
 
+        // INTERPOLATING RESULTS FOR LOW AND HIGH PRECISION
+            // In this case we would require a double interpolation, an initial interpolation for obtaining the
+            // column that approximates the x values and a second one to interpolate to obtain only 41 rows
         public double[] Interpolate_our_results_different_precision(double x_choosen, string data)
         {
-            double[] valores1;
-            double[] valores2;
-            double[] valores = new double[m.rows];
+            double[] valores1; // array of values from which we are going to interpolate
+            double[] valores2; //the other array of values from which we are going to interpolate
+            double[] valores = new double[m.rows]; // final values
 
             int j = 0;
             bool valor_exacto = false;
 
+            // loop for looking for the column with the closest x value
             for (j = 0; m.matriz[0, j].x <= x_choosen; j++)
             {
 
-                if (m.matriz[0, j].x == x_choosen)
+                if (m.matriz[0, j].x == x_choosen) // if we found exactly the same value
                 {
                     valor_exacto = true;
                 }
             }
 
-            if (valor_exacto == false)
+            if (valor_exacto == false) // if we had found the exactly same value
             {
                 // we interpolate between values at j and values at j-1
                 valores1 = m.GetColumnData_array(data, j);
@@ -637,7 +667,7 @@ namespace WPFapp
 
                 for (int i = 0; i < valores1.Length; i++)
                 {
-                    //Interpolacion lineal
+                    //lineal interpolation
                     valores[i] = valores2[i] + (valores1[i] - valores2[i]) / (m.matriz[0, j].x - m.matriz[0, j - 1].x) * (x_choosen - m.matriz[0, j - 1].x);
                 }
             }
@@ -649,9 +679,9 @@ namespace WPFapp
             // now we need to addaptate it to a 41 rows vector
             double[] valores_low = new double[A_u_12.Length];
 
-            if (p==0)
+            if (p==0) // for low presition
             {
-
+                // the rows that we already have correspond to exact rows refered to the 41 rows
                 valores_low[0] = valores[0];
                 valores_low[4] = valores[1];
                 valores_low[8] = valores[2];
@@ -664,7 +694,7 @@ namespace WPFapp
                 valores_low[36] = valores[9];
                 valores_low[40] = valores[10];
 
-                // interpolamos los valores que faltan
+                // interpolating the remaining results
                 valores_low[1] = valores_low[0]+(valores_low[0] - valores_low[4]) / (0 - 4) * (1 - 0);
                 valores_low[2] = valores_low[0]+ (valores_low[0] - valores_low[4]) / (0 - 4) * (2 - 0);
                 valores_low[3] = valores_low[0]+ (valores_low[0] - valores_low[4]) / (0 - 4) * (3 - 0);
@@ -705,11 +735,11 @@ namespace WPFapp
                 valores_low[38] = valores_low[36] + (valores_low[36] - valores_low[40]) / (36 - 40) * (38 - 36);
                 valores_low[39] = valores_low[36] + (valores_low[36] - valores_low[40]) / (36 - 40) * (39- 36);
             }
-            if (p == 2)
+            if (p == 2) // for high presition
             {
                 for (int y=0; y< A_u_12.Length; y++)
                 {
-                    valores_low[y] = valores[y*5];
+                    valores_low[y] = valores[y*5]; // the ones that are multiple of 5 are the ones refered to the 41 rows
                 }
             }
             return valores_low;
@@ -717,8 +747,13 @@ namespace WPFapp
         #endregion INTERPOLATION FUNCTIONS
 
         #region COMPARE BUTTON
+        
+        // COMPARE BUTTON CLICK 
+            // When clicking in the comparing button the tables are filled and displayed the ones selected
+            // moreover if the x selected is 66 it is also shown the errors
         private void Compare_btn_Click(object sender, RoutedEventArgs e)
         {
+            // defining the new datatables of anderson
             #region NEW DATATABLE DEFINITIONS
             Anderson_u_12 = new DataTable();
              Anderson_v_12 = new DataTable();
@@ -762,17 +797,19 @@ namespace WPFapp
              our_F4_66 = new DataTable();
             #endregion NEW DATATABLE DEFINITIONS
 
+            // filling the anderson tables, our tables and computing the errors, calling the functions
             #region FUNCIONTS
             Fill_Anderson_Tables();
             Fill_Our_Tables();
             Compute_Errors();
             #endregion FUNCIONTS
 
+            //depending of the selected items in the combobox it is going to be displayed some tables or others
             #region CHANGE WHAT IT IS SHOWN
             if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex==0) //T AND 12
             { AndersonGridData.DataContext = Anderson_T_12.DefaultView;
               SimulationGrid.DataContext = our_T_12.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility= Visibility.Hidden;
                 anderson_label.Visibility= Visibility.Hidden;
                 computed_label.Visibility= Visibility.Hidden;
@@ -782,7 +819,7 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 0 && Setect_X_ComboBox.SelectedIndex == 1) //T AND 66
             {AndersonGridData.DataContext = Anderson_T_66.DefaultView;
              SimulationGrid.DataContext = our_T_66.DefaultView;
-
+                // error labels and text boxs are visible
                 anderson_error.Visibility = Visibility.Visible;
                 anderson_label.Visibility = Visibility.Visible;
                 computed_label.Visibility = Visibility.Visible;
@@ -794,7 +831,7 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 1 && Setect_X_ComboBox.SelectedIndex == 0) //u AND 12
             { AndersonGridData.DataContext = Anderson_u_12.DefaultView;
               SimulationGrid.DataContext = our_u_12.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility = Visibility.Hidden;
                 anderson_label.Visibility = Visibility.Hidden;
                 computed_label.Visibility = Visibility.Hidden;
@@ -803,7 +840,7 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 1 && Setect_X_ComboBox.SelectedIndex == 1) //u AND 66
             { AndersonGridData.DataContext = Anderson_u_66.DefaultView;
               SimulationGrid.DataContext = our_u_66.DefaultView;
-
+                // error labels and text boxs are visible
                 anderson_error.Visibility = Visibility.Visible;
                 anderson_label.Visibility = Visibility.Visible;
                 computed_label.Visibility = Visibility.Visible;
@@ -812,11 +849,10 @@ namespace WPFapp
                 anderson_error.Text = Convert.ToString(Anderson_u_error);
                 our_error.Text = Convert.ToString(our_u_error);
             }
-
             if (Setect_Parameter_ComboBox.SelectedIndex == 2 && Setect_X_ComboBox.SelectedIndex == 0) //v AND 12
             { AndersonGridData.DataContext = Anderson_v_12.DefaultView;
               SimulationGrid.DataContext = our_v_12.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility = Visibility.Hidden;
                 anderson_label.Visibility = Visibility.Hidden;
                 computed_label.Visibility = Visibility.Hidden;
@@ -825,7 +861,7 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 2 && Setect_X_ComboBox.SelectedIndex == 1) //v AND 66
             { AndersonGridData.DataContext = Anderson_v_66.DefaultView;
               SimulationGrid.DataContext = our_v_12.DefaultView;
-
+                // error labels and text boxs are visible
                 anderson_error.Visibility = Visibility.Visible;
                 anderson_label.Visibility = Visibility.Visible;
                 computed_label.Visibility = Visibility.Visible;
@@ -837,7 +873,7 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 3 && Setect_X_ComboBox.SelectedIndex == 0) //rho AND 12
             { AndersonGridData.DataContext = Anderson_rho_12.DefaultView;
               SimulationGrid.DataContext = our_rho_12.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility = Visibility.Hidden;
                 anderson_label.Visibility = Visibility.Hidden;
                 computed_label.Visibility = Visibility.Hidden;
@@ -846,7 +882,7 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 3 && Setect_X_ComboBox.SelectedIndex == 1) //rho AND 66
             { AndersonGridData.DataContext = Anderson_rho_66.DefaultView;
               SimulationGrid.DataContext = our_rho_12.DefaultView;
-
+                // error labels and text boxs are visible
                 anderson_error.Visibility = Visibility.Visible;
                 anderson_label.Visibility = Visibility.Visible;
                 computed_label.Visibility = Visibility.Visible;
@@ -855,11 +891,10 @@ namespace WPFapp
                 anderson_error.Text = Convert.ToString(Anderson_rho_error);
                 our_error.Text = Convert.ToString(our_rho_error);
             }
-
             if (Setect_Parameter_ComboBox.SelectedIndex == 4 && Setect_X_ComboBox.SelectedIndex == 0) //p AND 12
             { AndersonGridData.DataContext = Anderson_p_12.DefaultView;
               SimulationGrid.DataContext = our_p_12.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility = Visibility.Hidden;
                 anderson_label.Visibility = Visibility.Hidden;
                 computed_label.Visibility = Visibility.Hidden;
@@ -868,7 +903,7 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 4 && Setect_X_ComboBox.SelectedIndex == 1) //p AND 66
             { AndersonGridData.DataContext = Anderson_p_66.DefaultView;
               SimulationGrid.DataContext = our_p_66.DefaultView;
-
+                // error labels and text boxs are visible
                 anderson_error.Visibility = Visibility.Visible;
                 anderson_label.Visibility = Visibility.Visible;
                 computed_label.Visibility = Visibility.Visible;
@@ -880,7 +915,7 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 5 && Setect_X_ComboBox.SelectedIndex == 0) //M AND 12
             { AndersonGridData.DataContext = Anderson_M_12.DefaultView;
               SimulationGrid.DataContext = our_M_12.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility = Visibility.Hidden;
                 anderson_label.Visibility = Visibility.Hidden;
                 computed_label.Visibility = Visibility.Hidden;
@@ -889,7 +924,7 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 5 && Setect_X_ComboBox.SelectedIndex == 1) //M AND 66
             { AndersonGridData.DataContext = Anderson_M_66.DefaultView;
               SimulationGrid.DataContext = our_M_66.DefaultView;
-
+                // error labels and text boxs are visible
                 anderson_error.Visibility = Visibility.Visible;
                 anderson_label.Visibility = Visibility.Visible;
                 computed_label.Visibility = Visibility.Visible;
@@ -898,11 +933,10 @@ namespace WPFapp
                 anderson_error.Text = Convert.ToString(Anderson_M_error);
                 our_error.Text = Convert.ToString(our_M_error);
             }
-
             if (Setect_Parameter_ComboBox.SelectedIndex == 6 && Setect_X_ComboBox.SelectedIndex == 0) //F1 AND 12
             { AndersonGridData.DataContext = Anderson_F1_12.DefaultView;
               SimulationGrid.DataContext = our_F1_12.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility = Visibility.Hidden;
                 anderson_label.Visibility = Visibility.Hidden;
                 computed_label.Visibility = Visibility.Hidden;
@@ -911,17 +945,16 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 6 && Setect_X_ComboBox.SelectedIndex == 1) //F1 AND 66
             { AndersonGridData.DataContext = Anderson_F1_66.DefaultView;
               SimulationGrid.DataContext = our_F1_66.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility = Visibility.Hidden;
                 anderson_label.Visibility = Visibility.Hidden;
                 computed_label.Visibility = Visibility.Hidden;
                 our_error.Visibility = Visibility.Hidden;
             }
-
             if (Setect_Parameter_ComboBox.SelectedIndex == 7 && Setect_X_ComboBox.SelectedIndex == 0) //F2 AND 12
             { AndersonGridData.DataContext = Anderson_F2_12.DefaultView;
               SimulationGrid.DataContext = our_F2_12.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility = Visibility.Hidden;
                 anderson_label.Visibility = Visibility.Hidden;
                 computed_label.Visibility = Visibility.Hidden;
@@ -930,17 +963,16 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 7 && Setect_X_ComboBox.SelectedIndex == 1) //F2 AND 66
             { AndersonGridData.DataContext = Anderson_F2_66.DefaultView;
               SimulationGrid.DataContext = our_F2_66.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility = Visibility.Hidden;
                 anderson_label.Visibility = Visibility.Hidden;
                 computed_label.Visibility = Visibility.Hidden;
                 our_error.Visibility = Visibility.Hidden;
             }
-
             if (Setect_Parameter_ComboBox.SelectedIndex == 8 && Setect_X_ComboBox.SelectedIndex == 0) //F3 AND 12
             { AndersonGridData.DataContext = Anderson_F3_12.DefaultView;
               SimulationGrid.DataContext = our_F3_12.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility = Visibility.Hidden;
                 anderson_label.Visibility = Visibility.Hidden;
                 computed_label.Visibility = Visibility.Hidden;
@@ -949,17 +981,16 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 8 && Setect_X_ComboBox.SelectedIndex == 1) //F3 AND 66
             { AndersonGridData.DataContext = Anderson_F3_66.DefaultView;
               SimulationGrid.DataContext = our_F3_66.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility = Visibility.Hidden;
                 anderson_label.Visibility = Visibility.Hidden;
                 computed_label.Visibility = Visibility.Hidden;
                 our_error.Visibility = Visibility.Hidden;
             }
-
             if (Setect_Parameter_ComboBox.SelectedIndex == 9 && Setect_X_ComboBox.SelectedIndex == 0) //F4 AND 12
             { AndersonGridData.DataContext = Anderson_F4_12.DefaultView;
               SimulationGrid.DataContext = our_F4_12.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility = Visibility.Hidden;
                 anderson_label.Visibility = Visibility.Hidden;
                 computed_label.Visibility = Visibility.Hidden;
@@ -968,7 +999,7 @@ namespace WPFapp
             if (Setect_Parameter_ComboBox.SelectedIndex == 9 && Setect_X_ComboBox.SelectedIndex == 1) //F4 AND 66
             { AndersonGridData.DataContext = Anderson_F4_66.DefaultView;
               SimulationGrid.DataContext = our_F4_66.DefaultView;
-
+                // error labels and text boxs are hidden
                 anderson_error.Visibility = Visibility.Hidden;
                 anderson_label.Visibility = Visibility.Hidden;
                 computed_label.Visibility = Visibility.Hidden;
@@ -980,15 +1011,21 @@ namespace WPFapp
 
         #endregion COMPARE BUTTON
 
+        #region WINDOW MANIPULATION FUNCTIONS
+        // MINIMIZE BUTTON
+            //When clicking to the top right button (yellow circle) the current window minimises
         private void Mini_Button_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
-
+        // CLOSE BUTTON
+            //When clicking to the top right button (red circle) the current window closes
         private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+        // DRAG MOVE
+            //When the left button is pressed and draged, the window can be moved
         private void Label_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -997,6 +1034,11 @@ namespace WPFapp
             }
         }
 
+        #endregion WINDOW MANIPULATION FUNCTIONS
+
+        #region LOADING ROW
+        //SETTING HEADER TO ANDERSON TABLES
+            //Setting the row headers to anderson tables
         private void AndersonGridData_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             if (Convert.ToDouble((e.Row.GetIndex()).ToString()) != A_F1_12.Length)
@@ -1008,7 +1050,8 @@ namespace WPFapp
                 e.Row.Header = "";
             }
         }
-
+        //SETTING HEADER TO OUR COMPUTED TABLES
+            //Setting the row headers to our tables
         private void SimulationGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             if (Convert.ToDouble((e.Row.GetIndex()).ToString()) != A_F1_12.Length)
@@ -1020,5 +1063,6 @@ namespace WPFapp
                 e.Row.Header = "";
             }
         }
+        #endregion LOADING ROW
     }
 }
