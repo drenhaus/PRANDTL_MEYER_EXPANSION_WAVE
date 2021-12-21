@@ -154,13 +154,13 @@ namespace LibreriaClases
                     // defining the 3 different variables
                     if (value <= min+ rango/4)
                     {
-                        // R: 51 bytes assigned. From 255 to 204
+                        // R: 51 bytes assigned. From 51 to 102
                         // G: 102 bytes assigned. From 51 to 153
-                        // B: 51 bytes assigned. From 51 to 102
+                        // B: 51 bytes assigned. From 255 to 204
                        
                         // DEFINING BYTE R
-                       int bytemin = 255;
-                       int bytemax = 204;
+                       int bytemin = 51;
+                       int bytemax = 102;
                        double min_value = min;
                        double max_value = min + rango / 4;
 
@@ -173,8 +173,8 @@ namespace LibreriaClases
                         G = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
 
                         // DEFINING BYTE B
-                        bytemin = 51;
-                        bytemax = 102;
+                        bytemin = 255;
+                        bytemax = 204;
                        
                         B = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
 
@@ -182,13 +182,13 @@ namespace LibreriaClases
                     }
                     else if ((min+rango/4<value) && (value<= min+2*rango/4))
                     {
-                        // R: 51 bytes assigned. From 204 to 153
+                        // R: 51 bytes assigned. From 102 to 153
                         // G: 102 bytes assigned. From 153 to 255
-                        // B: 51 bytes assigned. From 102 to 153
+                        // B: 51 bytes assigned. From 204 to 153
 
 
                         // DEFINING BYTE R
-                        int bytemin = 204;
+                        int bytemin = 102;
                         int bytemax = 153;
                         double min_value = min+rango/4;
                         double max_value = min + 2 * rango / 4;
@@ -202,7 +202,7 @@ namespace LibreriaClases
                         G = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
 
                         // DEFINING BYTE B
-                        bytemin = 102;
+                        bytemin = 204;
                         bytemax = 153;
 
                         B = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
@@ -210,14 +210,14 @@ namespace LibreriaClases
                     }
                     else if ((min + 2*rango / 4 < value) && (value <= min + 3 * rango / 4))
                     {
-                        // R: 51 bytes assigned. From 153 to 102
+                        // R: 51 bytes assigned. From 153 to 204
                         // G: 102 bytes assigned. From 255 to 153
-                        // B: 51 bytes assigned. From 153 to 204
+                        // B: 51 bytes assigned. From 153 to 102
 
 
                         // DEFINING BYTE R
                         int bytemin = 153;
-                        int bytemax = 102;
+                        int bytemax = 204;
                         double min_value = min + 2 * rango / 4;
                         double max_value = min + 3 * rango / 4;
 
@@ -231,7 +231,7 @@ namespace LibreriaClases
 
                         // DEFINING BYTE B
                         bytemin = 153;
-                        bytemax = 204;
+                        bytemax = 102;
 
                         B = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
 
@@ -239,13 +239,13 @@ namespace LibreriaClases
                     }
                     else
                     {
-                        // R: 51 bytes assigned. From 102 to 51
+                        // R: 51 bytes assigned. From 204 to 255
                         // G: 102 bytes assigned. From 153 to 51
-                        // B: 51 bytes assigned. From 204 to 255
+                        // B: 51 bytes assigned. From 102 to 51
 
                         // DEFINING BYTE R
-                        int bytemin = 102;
-                        int bytemax = 51;
+                        int bytemin = 204;
+                        int bytemax = 255;
                         double min_value = min + 3 * rango / 4;
                         double max_value = max;
 
@@ -258,8 +258,8 @@ namespace LibreriaClases
                         G = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
 
                         // DEFINING BYTE B
-                        bytemin = 204;
-                        bytemax = 255;
+                        bytemin = 102;
+                        bytemax = 51;
 
                         B = Convert.ToByte(bytemin + (bytemax - bytemin) / (max_value - min_value) * (value - min_value));
                     }
