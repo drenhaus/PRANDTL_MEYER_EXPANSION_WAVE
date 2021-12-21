@@ -10,22 +10,25 @@ namespace LibreriaClases
     {
         #region ATRIBUTES
 
-        public int rows { get; set; }  //   j filas
-        public int columns { get; set; }  // i les columnas
-        public double delta_y_t { get; set; }
+        public int rows { get; set; }  //   j rows
+        public int columns { get; set; }  // i columns
+        public double delta_y_t { get; set; } // delta y value
+
+        // coeficients used
         double Cy = 0.6;
         double C = 0.5;
 
+        // increments
         public double delta_x { get; set; }
         double delta_y;
+        public double[] delta_y_array { get; set; } // array with the delta_y increments
 
-        double delta_xi;
-
-        public double[] delta_y_array { get; set; }
-
+        // new norma defined
         public Normas norma { get; set; } = new Normas();
+        // a matrix of Celdas
         public Celda[,] matriz { get; set; }
 
+        // list of x, temperature, mach, density, pressure, u, v for the graphics
         public List<double> listaDeXColumna = new List<double>();
         public List<double> listaTemperaturaxColumna = new List<double>();
         public List<double> listaMachxColumna = new List<double>();
@@ -50,9 +53,12 @@ namespace LibreriaClases
         #endregion ATRIBUTES 
 
         #region MATRIX DEFINITION
+       
+        // DEFINING THE DIMENSIONS OF THE MATRIX
+            // we set a the matrix of Celdas as big as the number of rows and columns
+            // and introduce in each position a new element Celda
         public void DefinirMatriz()
         {
-
             this.matriz = new Celda[rows, columns];
 
             //We fill the matrix with Cells
@@ -60,15 +66,19 @@ namespace LibreriaClases
             {
                 for (int j = 0; j < rows; j++)
                 {
-                    matriz[j, i] = new Celda();
+                    matriz[j, i] = new Celda(); // new element added
                 }
             }
 
         }
-        //We compute the delta_y values
+        
+        // COMPUTING THE DELTA Y VALUES
+            //We compute the delta_y values and save them in an array
         public double[] Vector_Delta_y()
         {
+            // defining the dimension of the array
             delta_y_array = new double[columns];
+            // computing all the delta y values and saving them
             for (int i = 0; i < columns; i++)
             {
                 delta_y_array[i] = matriz[1, i].y - matriz[0, i].y;
@@ -77,20 +87,22 @@ namespace LibreriaClases
                     delta_y_array[i] = delta_y_array[i - 1];
                 }
             }
-            return delta_y_array;
+            return delta_y_array; // we return the array
         }
 
         #endregion MATRIX DEFINITION
 
         #region COMPUTE
-
+        //COMPUTING FUNCTION
+            //Main function of the class that makes loops calling the functions of the 
+            // class Celda and actualises and computes all the values of the matrix
         public void Compute()
         {
-
-            // We define the initial line conditions
+            // We define the initial line conditions and compute the G and F values of the 
+            // initial data line
             for (int j = 0; j < rows; j++)
             {
-
+                // saving the initial data line in the current matrix
                 matriz[j, 0].a = norma.a_in;
                 matriz[j, 0].M = norma.M_in;
                 matriz[j, 0].u = norma.u_in;
@@ -99,10 +111,9 @@ namespace LibreriaClases
                 matriz[j, 0].P = norma.P_in;
                 matriz[j, 0].Rho = norma.Rho_in;
                 matriz[j, 0].M_angle = norma.M_angle;
+                // Computing their F and G values by calling the function Compute_G_F
                 matriz[j, 0].Compute_G_F(norma.Gamma);
-
             }
-
 
             //We define all the y_t values of the matrix
             for (int i = 0; i < columns; i++)
@@ -113,67 +124,77 @@ namespace LibreriaClases
                 }
             }
 
-
-            for (int j = 0; matriz[0, j].x <= norma.L; j++)
+            // general loop for predictor/ corrector step and geting the values
+            for (int j = 0; matriz[0, j].x <= norma.L; j++) // we stop it when the x position is bigger than the L
             {
-
+                // first compute the transformation of the parameters to work in the computational plane
                 for (int i = 0; i < rows; i++)
                 {
                     matriz[i, j].xy_Transformation_ToEtaXi(norma.H, norma.E, norma.Theta);
                 }
 
+                // defininf the maximum tangent array
                 double[] max_tan_Array = new double[rows];
 
+                // filling the array of maximum tangent by callin the function TanMax
                 for (int i = 0; i < rows; i++)
                 {
-                    delta_y = matriz[2, j].y - matriz[1, j].y; // mirar si posar 1 i 0 afecta
+                    delta_y = matriz[2, j].y - matriz[1, j].y; 
                     max_tan_Array[i] = matriz[i, j].TanMax(norma.Theta);
-
                 }
+
+                // The final maximum tangent is the higher value of the array
                 double max_tan = max_tan_Array.Max();
+                // computing the delta_x which is the same in the computational plane (delta_xi)
                 delta_x = C * delta_y / max_tan;
-                delta_xi = delta_x;
+                
+                // define all the positions (x) of the elements in the matrix
                 for (int i = 0; i < rows; i++)
                 {
                     matriz[i,j+1].x = matriz[i, j].x + delta_x;
                 }
 
+                // applying the predictor step
                 for (int i = 0; i < rows; i++)
                     {
-                        double[] F1_F2_F3_F4_p_derecha_vector;
+                        double[] F1_F2_F3_F4_p_derecha_vector; // definfg an array with the values
+
+                        // if we are at the lower part 
                         if (i == 0)
                         {
-                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Inferior(delta_y_t, delta_xi, matriz[i + 1, j].F1, matriz[i + 1, j].F2, 
+                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Inferior(delta_y_t, delta_x, matriz[i + 1, j].F1, matriz[i + 1, j].F2, 
                                                                                                          matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i + 1, j].G1, 
                                                                                                          matriz[i + 1, j].G2, matriz[i + 1, j].G3, matriz[i + 1, j].G4);
                         }
+                        //if we are in the top part
                         else if (i == rows - 1)
                         {
-                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Superior(delta_y_t, delta_xi, matriz[i - 1, j].F1, matriz[i - 1, j].F2, 
+                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Superior(delta_y_t, delta_x, matriz[i - 1, j].F1, matriz[i - 1, j].F2, 
                                                                                                          matriz[i - 1, j].F3, matriz[i - 1, j].F4, matriz[i - 1, j].G1, 
                                                                                                          matriz[i - 1, j].G2, matriz[i - 1, j].G3, matriz[i - 1, j].G4);
                         }
+                        // other cases (main body)
                         else
                         {
-                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Principal(Cy, delta_y_t, delta_xi, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
+                            F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Principal(Cy, delta_y_t, delta_x, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
                                                                                                  matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i - 1, j].F1,
                                                                                                  matriz[i - 1, j].F2, matriz[i - 1, j].F3, matriz[i - 1, j].F4,
                                                                                                  matriz[i + 1, j].G1, matriz[i + 1, j].G2, matriz[i + 1, j].G3,
                                                                                                  matriz[i + 1, j].G4, matriz[i + 1, j].P, matriz[i - 1, j].P);
                         }
+                        // saving the predicted values obtained in the right position of the current celd
                         matriz[i, j + 1].F1_p = F1_F2_F3_F4_p_derecha_vector[0];
                         matriz[i, j + 1].F2_p = F1_F2_F3_F4_p_derecha_vector[1];
                         matriz[i, j + 1].F3_p = F1_F2_F3_F4_p_derecha_vector[2];
                         matriz[i, j + 1].F4_p = F1_F2_F3_F4_p_derecha_vector[3];
                     }
-
-
-
+                    // computing the G, P , Rho predicted
                     for (int i = 0; i < rows; i++)
                     {
+                    // calling the function to compute the values and saving them in a vector
                         double[] G1p_G2p_G3p_G4p_Rhop_Pp = matriz[i, j].Gp_Rhop_Pp_Predicted(norma.Gamma, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p, 
                                                                                             matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p);
-
+                    // actualising the attributs of the Celda at the right with the predicted values of G, Rho and P
                         matriz[i, j + 1].G1_p = G1p_G2p_G3p_G4p_Rhop_Pp[0];
                         matriz[i, j + 1].G2_p = G1p_G2p_G3p_G4p_Rhop_Pp[1];
                         matriz[i, j + 1].G3_p = G1p_G2p_G3p_G4p_Rhop_Pp[2];
@@ -182,26 +203,30 @@ namespace LibreriaClases
                         matriz[i, j + 1].P_p = G1p_G2p_G3p_G4p_Rhop_Pp[5];
                     }
 
+                    // applying corrector step
                     for (int i = 0; i < rows; i++)
                     {
+                    //creating a vector for saving the F values
                         double[] F1_F2_F3_F4_derecha_corrected;
-
+                    // if we are in the lower part
                         if (i == 0)
                         {
                             F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Inferior(delta_y_t, matriz[i, j+1].F1_p, matriz[i, j+1].F2_p, matriz[i, j+1].F3_p, matriz[i, j+1].F4_p, matriz[i + 1, j+1].F1_p,
                                 matriz[i + 1, j+1].F2_p, matriz[i + 1, j+1].F3_p, matriz[i + 1, j+1].F4_p, matriz[i, j+1].G1_p, matriz[i, j+1].G2_p, matriz[i, j+1].G3_p, matriz[i, j+1].G4_p, matriz[i + 1, j+1].G1_p,
-                                matriz[i + 1, j+1].G2_p, matriz[i + 1, j+1].G3_p, matriz[i + 1, j+1].G4_p, delta_xi);
+                                matriz[i + 1, j+1].G2_p, matriz[i + 1, j+1].G3_p, matriz[i + 1, j+1].G4_p, delta_x);
                         }
+                        // if we are at the top part
                         else if (i == rows - 1)
                         {
                             F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Superior(delta_y_t, matriz[i, j+1].F1_p, matriz[i, j+1].F2_p, matriz[i, j+1].F3_p, matriz[i, j+1].F4_p, matriz[i - 1, j+1].F1_p,
                                 matriz[i - 1, j+1].F2_p, matriz[i - 1, j+1].F3_p, matriz[i - 1, j+1].F4_p, matriz[i, j+1].G1_p, matriz[i, j+1].G2_p, matriz[i, j+1].G3_p, matriz[i, j+1].G4_p, matriz[i - 1, j+1].G1_p,
-                                matriz[i - 1, j+1].G2_p, matriz[i - 1, j+1].G3_p, matriz[i - 1, j+1].G4_p, delta_xi);
+                                matriz[i - 1, j+1].G2_p, matriz[i - 1, j+1].G3_p, matriz[i - 1, j+1].G4_p, delta_x);
 
                         }
                         else
+                        // other cases (main body)
                         {
-                            F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, delta_xi, delta_y_t, 
+                            F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, delta_x, delta_y_t, 
                                 matriz[i - 1, j+1].F1_p, 
                                 matriz[i - 1, j+1].F2_p, 
                                 matriz[i - 1, j+1].F3_p, 
@@ -226,20 +251,21 @@ namespace LibreriaClases
                                 matriz[i, j+1].P_p, 
                                 matriz[i - 1, j+1].P_p);
                         }
+                            // we save the values obtained in the right Celda 
                             matriz[i, j + 1].F1 = F1_F2_F3_F4_derecha_corrected[0];
                             matriz[i, j + 1].F2 = F1_F2_F3_F4_derecha_corrected[1];
                             matriz[i, j + 1].F3 = F1_F2_F3_F4_derecha_corrected[2];
                             matriz[i, j + 1].F4 = F1_F2_F3_F4_derecha_corrected[3];
                     }
-
+                    // obtaining the final values loop
                     for (int i = 0; i < rows; i++)
                     {
-                        if (i == 0)
+                        if (i == 0) // if we are in contact with the wall
                         {
                             matriz[i, j + 1].Wall_Bounday_Condition(norma.Gamma, norma.R_air, norma.E, norma.Theta);
                         }
 
-                        else
+                        else // other cases
                         {
                             matriz[i, j + 1].ComputeFinalValues(norma.Gamma, norma.R_air);
                         }
@@ -250,6 +276,7 @@ namespace LibreriaClases
 
             }
 
+        // COMPUTING FUNCTION WHEN THE INITIAL DATA LINE IS NOT THE ONE SPECIFIED IN NORMAS
         public void Compute2(List<Celda> listaUltimaColumna)
         {
 
