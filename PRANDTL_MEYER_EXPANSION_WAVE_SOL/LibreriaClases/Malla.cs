@@ -277,6 +277,8 @@ namespace LibreriaClases
             }
 
         // COMPUTING FUNCTION WHEN THE INITIAL DATA LINE IS NOT THE ONE SPECIFIED IN NORMAS
+            // The compute 2 works in the same way as Compute, however, the initial data line are
+            // the parameters introduced as an input List
         public void Compute2(List<Celda> listaUltimaColumna)
         {
 
@@ -292,6 +294,7 @@ namespace LibreriaClases
                 matriz[j, 0].P = listaUltimaColumna[j].P;
                 matriz[j, 0].Rho = listaUltimaColumna[j].Rho;
                 matriz[j, 0].M_angle = listaUltimaColumna[j].M_angle;
+                // Computing their F and G values by calling the function Compute_G_F
                 matriz[j, 0].Compute_G_F(norma.Gamma);
             }
 
@@ -305,67 +308,71 @@ namespace LibreriaClases
                 }
             }
 
-
-            for (int j = 0; matriz[0, j].x <= norma.L; j++)
+            // general loop for predictor/ corrector step and geting the values
+            for (int j = 0; matriz[0, j].x <= norma.L; j++) // stop the loop when the x position is bigger than L
             {
-
+                // loop for computing the transformation in all the values to operate in the computational plane
                 for (int i = 0; i < rows; i++)
                 {
                     matriz[i, j].xy_Transformation_ToEtaXi(norma.H, norma.E, norma.Theta);
                 }
-
+                // defining array of maximum tangents
                 double[] max_tan_Array = new double[rows];
 
+                // computing the maximum tangent and adding the values to the array
                 for (int i = 0; i < rows; i++)
                 {
-                    delta_y = matriz[2, j].y - matriz[1, j].y; // mirar si posar 1 i 0 afecta
+                    delta_y = matriz[2, j].y - matriz[1, j].y; 
                     max_tan_Array[i] = matriz[i, j].TanMax(norma.Theta);
 
                 }
-                double max_tan = max_tan_Array.Max();
+                // we define the max tangent as the maximum value of the array
+                double max_tan = max_tan_Array.Max(); 
                 delta_x = C * delta_y / max_tan;
-                delta_xi = delta_x;
+               
+                // actualising all the x values of the matrix
                 for (int i = 0; i < rows; i++)
                 {
                     matriz[i, j + 1].x = matriz[i, j].x + delta_x;
                 }
-
+                // computing the predictor step
                 for (int i = 0; i < rows; i++)
                 {
                     double[] F1_F2_F3_F4_p_derecha_vector;
-                    if (i == 0)
+                    if (i == 0) // in the lower part of the flux
                     {
-                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Inferior(delta_y_t, delta_xi, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
+                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Inferior(delta_y_t, delta_x, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
                                                                                                      matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i + 1, j].G1,
                                                                                                      matriz[i + 1, j].G2, matriz[i + 1, j].G3, matriz[i + 1, j].G4);
                     }
-                    else if (i == rows - 1)
+                    else if (i == rows - 1) // in the upper body
                     {
-                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Superior(delta_y_t, delta_xi, matriz[i - 1, j].F1, matriz[i - 1, j].F2,
+                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Contorno_Superior(delta_y_t, delta_x, matriz[i - 1, j].F1, matriz[i - 1, j].F2,
                                                                                                      matriz[i - 1, j].F3, matriz[i - 1, j].F4, matriz[i - 1, j].G1,
                                                                                                      matriz[i - 1, j].G2, matriz[i - 1, j].G3, matriz[i - 1, j].G4);
                     }
-                    else
+                    else // the other cases (main body)
                     {
-                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Principal(Cy, delta_y_t, delta_xi, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
+                        F1_F2_F3_F4_p_derecha_vector = matriz[i, j].Predictor_Step_Principal(Cy, delta_y_t, delta_x, matriz[i + 1, j].F1, matriz[i + 1, j].F2,
                                                                                              matriz[i + 1, j].F3, matriz[i + 1, j].F4, matriz[i - 1, j].F1,
                                                                                              matriz[i - 1, j].F2, matriz[i - 1, j].F3, matriz[i - 1, j].F4,
                                                                                              matriz[i + 1, j].G1, matriz[i + 1, j].G2, matriz[i + 1, j].G3,
                                                                                              matriz[i + 1, j].G4, matriz[i + 1, j].P, matriz[i - 1, j].P);
                     }
+                    // actualising the predicted values of the cell at the right
                     matriz[i, j + 1].F1_p = F1_F2_F3_F4_p_derecha_vector[0];
                     matriz[i, j + 1].F2_p = F1_F2_F3_F4_p_derecha_vector[1];
                     matriz[i, j + 1].F3_p = F1_F2_F3_F4_p_derecha_vector[2];
                     matriz[i, j + 1].F4_p = F1_F2_F3_F4_p_derecha_vector[3];
                 }
 
-
-
+                // Computing the G, P , Rho predicted
                 for (int i = 0; i < rows; i++)
                 {
+                    // calling the fucntion
                     double[] G1p_G2p_G3p_G4p_Rhop_Pp = matriz[i, j].Gp_Rhop_Pp_Predicted(norma.Gamma, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p,
                                                                                         matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p);
-
+                    // actualising the predicted values of the cell at the right
                     matriz[i, j + 1].G1_p = G1p_G2p_G3p_G4p_Rhop_Pp[0];
                     matriz[i, j + 1].G2_p = G1p_G2p_G3p_G4p_Rhop_Pp[1];
                     matriz[i, j + 1].G3_p = G1p_G2p_G3p_G4p_Rhop_Pp[2];
@@ -374,26 +381,28 @@ namespace LibreriaClases
                     matriz[i, j + 1].P_p = G1p_G2p_G3p_G4p_Rhop_Pp[5];
                 }
 
+                // computing the corrected values
                 for (int i = 0; i < rows; i++)
                 {
+                    // defining the array where the F are going to be saved
                     double[] F1_F2_F3_F4_derecha_corrected;
 
-                    if (i == 0)
+                    if (i == 0) // lower part of the body
                     {
                         F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Inferior(delta_y_t, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p, matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p, matriz[i + 1, j + 1].F1_p,
                             matriz[i + 1, j + 1].F2_p, matriz[i + 1, j + 1].F3_p, matriz[i + 1, j + 1].F4_p, matriz[i, j + 1].G1_p, matriz[i, j + 1].G2_p, matriz[i, j + 1].G3_p, matriz[i, j + 1].G4_p, matriz[i + 1, j + 1].G1_p,
-                            matriz[i + 1, j + 1].G2_p, matriz[i + 1, j + 1].G3_p, matriz[i + 1, j + 1].G4_p, delta_xi);
+                            matriz[i + 1, j + 1].G2_p, matriz[i + 1, j + 1].G3_p, matriz[i + 1, j + 1].G4_p, delta_x);
                     }
-                    else if (i == rows - 1)
+                    else if (i == rows - 1) // upper case
                     {
                         F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Contorno_Superior(delta_y_t, matriz[i, j + 1].F1_p, matriz[i, j + 1].F2_p, matriz[i, j + 1].F3_p, matriz[i, j + 1].F4_p, matriz[i - 1, j + 1].F1_p,
                             matriz[i - 1, j + 1].F2_p, matriz[i - 1, j + 1].F3_p, matriz[i - 1, j + 1].F4_p, matriz[i, j + 1].G1_p, matriz[i, j + 1].G2_p, matriz[i, j + 1].G3_p, matriz[i, j + 1].G4_p, matriz[i - 1, j + 1].G1_p,
-                            matriz[i - 1, j + 1].G2_p, matriz[i - 1, j + 1].G3_p, matriz[i - 1, j + 1].G4_p, delta_xi);
+                            matriz[i - 1, j + 1].G2_p, matriz[i - 1, j + 1].G3_p, matriz[i - 1, j + 1].G4_p, delta_x);
 
                     }
-                    else
+                    else // main part
                     {
-                        F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, delta_xi, delta_y_t,
+                        F1_F2_F3_F4_derecha_corrected = matriz[i, j].Corrector_Step_Principal(Cy, delta_x, delta_y_t,
                             matriz[i - 1, j + 1].F1_p,
                             matriz[i - 1, j + 1].F2_p,
                             matriz[i - 1, j + 1].F3_p,
@@ -418,20 +427,22 @@ namespace LibreriaClases
                             matriz[i, j + 1].P_p,
                             matriz[i - 1, j + 1].P_p);
                     }
+                    // Actualising the values of the right cells
                     matriz[i, j + 1].F1 = F1_F2_F3_F4_derecha_corrected[0];
                     matriz[i, j + 1].F2 = F1_F2_F3_F4_derecha_corrected[1];
                     matriz[i, j + 1].F3 = F1_F2_F3_F4_derecha_corrected[2];
                     matriz[i, j + 1].F4 = F1_F2_F3_F4_derecha_corrected[3];
                 }
 
+                // decoding the final parameters 
                 for (int i = 0; i < rows; i++)
                 {
-                    if (i == 0)
+                    if (i == 0) // if we are in contact with the wall
                     {
                         matriz[i, j + 1].Wall_Bounday_Condition(norma.Gamma, norma.R_air, norma.E, norma.Theta);
                     }
 
-                    else
+                    else // for the rest of the cases
                     {
                         matriz[i, j + 1].ComputeFinalValues(norma.Gamma, norma.R_air);
                     }
@@ -446,12 +457,15 @@ namespace LibreriaClases
         #endregion COMPUTE
 
         #region TABLE MANIPULATION FUNCION
+
+        // FILLING THE DATATABLES
+            // With this functions the defined tables in attributes are filled
+            // with their corresponding values
         public void Fill_DataTable()
         {
-
             for (int j = 0; j < columns; j++)
             {
-
+                // creating columns
                 DataColumn TEMP_C = new DataColumn();
                 DataColumn U_C = new DataColumn();
                 DataColumn V_C = new DataColumn();
@@ -462,7 +476,7 @@ namespace LibreriaClases
                 DataColumn F2_C = new DataColumn();
                 DataColumn F3_C = new DataColumn();
                 DataColumn F4_C = new DataColumn();
-
+                // adding the columns
                 Temperature_table.Columns.Add(TEMP_C);
                 u_table.Columns.Add(U_C);
                 v_table.Columns.Add(V_C);
@@ -477,6 +491,7 @@ namespace LibreriaClases
 
             for (int i = 0; i < rows; i++)
             {
+                // creating rows
                 DataRow TEMP_R = Temperature_table.NewRow();
                 DataRow U_R = u_table.NewRow();
                 DataRow V_R = v_table.NewRow();
@@ -490,6 +505,7 @@ namespace LibreriaClases
 
                 for (int j = 0; j < columns; j++)
                 {
+                    // defining the element that goes in that position
                     TEMP_R[j] = Math.Round(matriz[i, j].T,4);
                     U_R[j] = Math.Round(matriz[i, j].u, 4);
                     V_R[j] = Math.Round(matriz[i, j].v, 4);
@@ -502,7 +518,7 @@ namespace LibreriaClases
                     F4_R[j] = Math.Round(matriz[i, j].F4, 4);
 
                 }
-
+                // adding the rows in the corresponding datatable
                 Temperature_table.Rows.Add(TEMP_R);
                 u_table.Rows.Add(U_R);
                 v_table.Rows.Add(V_R);
@@ -519,9 +535,15 @@ namespace LibreriaClases
 
         }
 
+        // GET ARRAY WITH THE INFORMATION OF A SPECIFIC COLUMN
+            // Given a int value indicating the index of the column and a string indicating
+            // the parameter of interest, the function returns an array with that values
         public double[] GetColumnData_array(string data, int columna_int)
         {
+            // creating the array
             double[] valores= new double[rows];
+
+            // if temperature is selected
             if (data=="t")
             { 
                 for (int j=0;j<rows;j++)
@@ -529,6 +551,8 @@ namespace LibreriaClases
                     valores[j] = matriz[j, columna_int].T;
                 }
             }
+
+            // if u is selected
             else if (data == "u")
             {
                 for (int j = 0; j < rows; j++)
@@ -536,6 +560,8 @@ namespace LibreriaClases
                     valores[j] = matriz[j, columna_int].u;
                 }
             }
+
+            // if v is selected
             else if (data == "v")
             {
                 for (int j = 0; j < rows; j++)
@@ -543,6 +569,8 @@ namespace LibreriaClases
                     valores[j] = matriz[j, columna_int].v;
                 }
             }
+
+            // if mach is selected
             else if (data == "m")
             {
                 for (int j = 0; j < rows; j++)
@@ -550,6 +578,8 @@ namespace LibreriaClases
                     valores[j] = matriz[j, columna_int].M;
                 }
             }
+
+            // if pressure is selected
             else if (data == "p")
             {
                 for (int j = 0; j < rows; j++)
@@ -557,6 +587,8 @@ namespace LibreriaClases
                     valores[j] = matriz[j, columna_int].P;
                 }
             }
+
+            // if density is selected
             else if (data == "rho")
             {
                 for (int j = 0; j < rows; j++)
@@ -564,6 +596,8 @@ namespace LibreriaClases
                     valores[j] = matriz[j, columna_int].Rho;
                 }
             }
+
+            //if f1 is selected
             else if (data == "f1")
             {
                 for (int j = 0; j < rows; j++)
@@ -571,6 +605,8 @@ namespace LibreriaClases
                     valores[j] = matriz[j, columna_int].F1;
                 }
             }
+
+            // if f2 is selected
             else if (data == "f2")
             {
                 for (int j = 0; j < rows; j++)
@@ -578,6 +614,8 @@ namespace LibreriaClases
                     valores[j] = matriz[j, columna_int].F2;
                 }
             }
+
+            // if f3 is selected
             else if (data == "f3")
             {
                 for (int j = 0; j < rows; j++)
@@ -585,6 +623,8 @@ namespace LibreriaClases
                     valores[j] = matriz[j, columna_int].F3;
                 }
             }
+
+            //if f4 is selected
             else if (data == "f4")
             {
                 for (int j = 0; j < rows; j++)
@@ -593,12 +633,17 @@ namespace LibreriaClases
                 }
             }
 
-            return valores;
+            return valores; // returning parameters
         }
 
+        // GET ARRAY WITH THE INFORMATION OF A SPECIFIC ROW
+            // Given a int value indicating the index of the row and a string indicating
+            // the parameter of interest, the function returns an array with that values
         public double[] GetFilaData_array(string data, int fila_int)
         {
+            // creating the array
             double[] valores = new double[columns - 1];
+            // if temperature is selected
             if (data == "t")
             {
                 for (int i = 0; i < columns - 1; i++)
@@ -606,6 +651,7 @@ namespace LibreriaClases
                     valores[i] = matriz[fila_int, i].T;
                 }
             }
+            // if u is selected
             else if (data == "u")
             {
                 for (int i = 0; i < columns - 1; i++)
@@ -613,6 +659,7 @@ namespace LibreriaClases
                     valores[i] = matriz[fila_int, i].u;
                 }
             }
+            // if v is selected
             else if (data == "v")
             {
                 for (int i = 0; i < columns - 1; i++)
@@ -620,6 +667,7 @@ namespace LibreriaClases
                     valores[i] = matriz[fila_int, i].v;
                 }
             }
+            // if mach is selected
             else if (data == "m")
             {
                 for (int i = 0; i < columns - 1; i++)
@@ -627,6 +675,7 @@ namespace LibreriaClases
                     valores[i] = matriz[fila_int, i].M;
                 }
             }
+            // if pressure is selected
             else if (data == "p")
             {
                 for (int i = 0; i < columns - 1; i++)
@@ -634,6 +683,7 @@ namespace LibreriaClases
                     valores[i] = matriz[fila_int, i].P;
                 }
             }
+            // if density is selected
             else if (data == "rho")
             {
                 for (int i = 0; i < columns - 1; i++)
@@ -641,6 +691,7 @@ namespace LibreriaClases
                     valores[i] = matriz[fila_int, i].Rho;
                 }
             }
+            // is f1 is selected
             else if (data == "f1")
             {
                 for (int i = 0; i < columns - 1; i++)
@@ -648,6 +699,7 @@ namespace LibreriaClases
                     valores[i] = matriz[fila_int, i].F1;
                 }
             }
+            // if f2 is selected
             else if (data == "f2")
             {
                 for (int i = 0; i < columns - 1; i++)
@@ -655,6 +707,7 @@ namespace LibreriaClases
                     valores[i] = matriz[fila_int, i].F2;
                 }
             }
+            // if f3 is selected
             else if (data == "f3")
             {
                 for (int i = 0; i < columns - 1; i++)
@@ -662,6 +715,7 @@ namespace LibreriaClases
                     valores[i] = matriz[fila_int, i].F3;
                 }
             }
+            // if f4 is selected
             else if (data == "f4")
             {
                 for (int i = 0; i < columns - 1; i++)
@@ -670,17 +724,25 @@ namespace LibreriaClases
                 }
             }
 
-            return valores;
+            return valores; // returning array values
         }
 
+        // OBTAIN TABLES
+            //The function returns an array with the Datatables filled with the information
+            // of temperature, pressure, density, etc
         public DataTable [] GetTables()
         {
             DataTable [] T_U_V_RHO_P_M_F1_F2_F3_F4 = new DataTable[] {Temperature_table,u_table,v_table,Rho_table,P_table,Mach_table,F1_table,F2_table,F3_table,F4_table};
             return T_U_V_RHO_P_M_F1_F2_F3_F4;
         }
 
+        // CREATING LIST FOR THE PLOTS
+            // Given a string input, this function creates a list of that attribute,
+            // computing the main value of the column
+            // This function is useful for making the graphs
         public void CrearListade(string attribute)
         {
+            // if we select x an array of positions is created
             if (attribute == "x")
             {
                 for (int i = 0; i < columns; i++)
@@ -688,93 +750,94 @@ namespace LibreriaClases
                     listaDeXColumna.Add(matriz[0, i].x);
                 }
             }
+            // if we select T
             if (attribute == "T")
             {
                 for (int i = 0; i < columns; i++)
                 {
-                    double suma_en_columna = 0;
+                    double suma_en_columna = 0; //total sum
 
                     for (int j = 0; j < rows; j++)
                     {
-                        suma_en_columna = suma_en_columna + matriz[j, i].T;
+                        suma_en_columna = suma_en_columna + matriz[j, i].T; // acumulating sum
                     }
-                    suma_en_columna = suma_en_columna / rows;
-                    listaTemperaturaxColumna.Add(suma_en_columna);
+                    suma_en_columna = suma_en_columna / rows; // mean value
+                    listaTemperaturaxColumna.Add(suma_en_columna); // adding the value in the list
                 }
             }
-
+            // if we select mach
             if (attribute == "M")
             {
                 for (int i = 0; i < columns; i++)
                 {
-                    double suma_en_columna = 0;
+                    double suma_en_columna = 0; // total sum
 
                     for (int j = 0; j < rows; j++)
                     {
-                        suma_en_columna = suma_en_columna + matriz[j, i].M;
+                        suma_en_columna = suma_en_columna + matriz[j, i].M; // acumulating sum
                     }
-                    suma_en_columna = suma_en_columna / rows;
-                    listaMachxColumna.Add(suma_en_columna);
+                    suma_en_columna = suma_en_columna / rows; // mean value
+                    listaMachxColumna.Add(suma_en_columna); // adding the value in the list
                 }
             }
-
+            // if we select density
             if (attribute == "Rho")
             {
                 for (int i = 0; i < columns; i++)
                 {
-                    double suma_en_columna = 0;
+                    double suma_en_columna = 0; // total sum
 
                     for (int j = 0; j < rows; j++)
                     {
-                        suma_en_columna = suma_en_columna + matriz[j, i].Rho;
+                        suma_en_columna = suma_en_columna + matriz[j, i].Rho; //acumulating sum
                     }
-                    suma_en_columna = suma_en_columna / rows;
-                    listaDensidadxColumna.Add(suma_en_columna);
+                    suma_en_columna = suma_en_columna / rows; // mean value
+                    listaDensidadxColumna.Add(suma_en_columna);// adding the value in the list
                 }
             }
-
+            // if pressure is selected
             if (attribute == "P")
             {
                 for (int i = 0; i < columns; i++)
                 {
-                    double suma_en_columna = 0;
+                    double suma_en_columna = 0; // total sum
 
                     for (int j = 0; j < rows; j++)
                     {
-                        suma_en_columna = suma_en_columna + matriz[j, i].P;
+                        suma_en_columna = suma_en_columna + matriz[j, i].P; // acumulating sum
                     }
-                    suma_en_columna = suma_en_columna / rows;
-                    listaPresurexColumna.Add(suma_en_columna);
+                    suma_en_columna = suma_en_columna / rows; // mean value
+                    listaPresurexColumna.Add(suma_en_columna); // adding the value in the list
                 }
             }
-
+            // if horizontal speed is selected
             if (attribute == "u")
             {
                 for (int i = 0; i < columns; i++)
                 {
-                    double suma_en_columna = 0;
+                    double suma_en_columna = 0; // total sum
 
                     for (int j = 0; j < rows; j++)
                     {
-                        suma_en_columna = suma_en_columna + matriz[j, i].u;
+                        suma_en_columna = suma_en_columna + matriz[j, i].u; // acumulated sum
                     }
-                    suma_en_columna = suma_en_columna / rows;
-                    listaU_velxColumna.Add(suma_en_columna);
+                    suma_en_columna = suma_en_columna / rows; // mean value
+                    listaU_velxColumna.Add(suma_en_columna); // adding the value in the list
                 }
             }
-
+            // if vertical speed is selecteed
             if (attribute == "v")
             {
                 for (int i = 0; i < columns; i++)
                 {
-                    double suma_en_columna = 0;
+                    double suma_en_columna = 0; // total sum
 
                     for (int j = 0; j < rows; j++)
                     {
-                        suma_en_columna = suma_en_columna + matriz[j, i].v;
+                        suma_en_columna = suma_en_columna + matriz[j, i].v; // acumulated sum
                     }
-                    suma_en_columna = suma_en_columna / rows;
-                    listaV_velxColumna.Add(suma_en_columna);
+                    suma_en_columna = suma_en_columna / rows; // mean value
+                    listaV_velxColumna.Add(suma_en_columna); // adding the value in the list
                 }
             }
         }
